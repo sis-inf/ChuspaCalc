@@ -33,7 +33,7 @@ class TestDialogoAcercaDe:
         """Verifica que mostrar_acerca_de funciona con un parent (widget real)"""
         parent = QWidget()
         qtbot.addWidget(parent)
-        
+
         try:
             mostrar_acerca_de(parent)
         except Exception as e:
@@ -44,9 +44,9 @@ class TestDialogoAcercaDe:
         with patch('escuadra.ui.dialogo_acerca_de.QMessageBox') as MockQMessageBox:
             mock_messagebox = MagicMock()
             MockQMessageBox.about = mock_messagebox
-            
+
             mostrar_acerca_de()
-            
+
             mock_messagebox.assert_called_once()
             args = mock_messagebox.call_args[0]
             assert "Versión:" in args[2]
@@ -56,13 +56,13 @@ class TestDialogoAcercaDe:
         with patch('escuadra.ui.dialogo_acerca_de.QMessageBox') as MockQMessageBox:
             mock_messagebox = MagicMock()
             MockQMessageBox.about = mock_messagebox
-            
+
             mostrar_acerca_de()
-            
+
             mock_messagebox.assert_called_once()
             args = mock_messagebox.call_args[0]
             texto = args[2]
-            
+
             assert "Escuadra" in texto
             assert "Versión:" in texto
             assert "Licencia:" in texto
@@ -74,9 +74,9 @@ class TestDialogoAcercaDe:
         with patch('escuadra.ui.dialogo_acerca_de.QMessageBox') as MockQMessageBox:
             mock_messagebox = MagicMock()
             MockQMessageBox.about = mock_messagebox
-            
+
             mostrar_acerca_de()
-            
+
             mock_messagebox.assert_called_once()
             args = mock_messagebox.call_args[0]
             assert "Acerca de Escuadra" in args[1]
