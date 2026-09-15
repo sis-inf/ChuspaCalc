@@ -80,6 +80,7 @@ Este documento presenta el **roadmap de funcionalidades planificadas** para el p
 | Historial de comandos | ✅ Completada | S | ✅ |
 | Modo interactivo (REPL) | ✅ Completada | M | ❌ |
 | Modo batch | ✅ Completada | M | ❌ |
+| Integración con Google Sheets (vía HTTP API / Apps Script) | 📋 Planificada | M | ❌ |
 
 ---
 
@@ -89,8 +90,8 @@ Este documento presenta el **roadmap de funcionalidades planificadas** para el p
 |--------|----------|
 | ✅ Completada | 22 |
 | 🚧 En desarrollo | 1 |
-| 📋 Planificada | 6 |
-| **Total** | **29** |
+| 📋 Planificada | 7 |
+| **Total** | **30** |
 
 ---
 
