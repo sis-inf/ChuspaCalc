@@ -5,12 +5,16 @@ class Carrera(Enum):
     """
     Enum que centraliza las carreras soportadas por el MVP.
     Para agregar nuevas carreras en el futuro, simplemente
-    añadir un nuevo miembro al enum. Siguiendo el formato: NOMBRE = ("codigo",
-    "Nombre Legible")
+    añadir un nuevo miembro al enum. Siguiendo el formato:
+    NOMBRE = ("codigo", "Nombre Legible")
     """
+
     SISTEMAS = ("sistemas", "Ingeniería de Sistemas e Informática")
     MATEMATICAS = ("matematicas", "Matemáticas")
     ELECTRICA = ("electrica", "Ingeniería Eléctrica")
-    def __init__(self, codigo: str, etiqueta: str):
+    CIVIL = ("civil", "Ingeniería Civil")
+    GEOMETRIA = ("geometria", "Geometría")
+
+    def _init_(self, codigo: str, etiqueta: str):
         self.codigo = codigo
         self.etiqueta = etiqueta
