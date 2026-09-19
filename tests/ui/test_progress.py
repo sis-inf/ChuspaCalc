@@ -2,8 +2,6 @@
 Pruebas para el módulo progress.py (indicador de progreso)
 """
 
-import pytest
-import time
 from unittest.mock import patch, MagicMock
 
 from escuadra.ui.progress import mostrar_progreso, ProgressIndicator

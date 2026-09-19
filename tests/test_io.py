@@ -6,10 +6,8 @@ Pruebas para los módulos io:
 
 import pytest
 import json
-import csv
 import os
 import tempfile
-from unittest.mock import patch, MagicMock
 
 from escuadra.io.csv_parser import parse_csv
 from escuadra.io.exportador_json import exportar_resultado, exportar_lista

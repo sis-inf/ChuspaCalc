@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QWidget, QPushButton, QInputDialog, QListWidgetItem
+from PySide6.QtWidgets import QWidget, QInputDialog, QListWidgetItem
 from PySide6.QtCore import Qt
 
 class PanelHistorial(QWidget):

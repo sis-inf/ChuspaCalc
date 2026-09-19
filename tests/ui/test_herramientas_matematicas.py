@@ -6,7 +6,6 @@ Pruebas para los wrappers de herramientas matemáticas:
 """
 
 import pytest
-from unittest.mock import patch, MagicMock
 
 from PySide6.QtWidgets import QApplication
 

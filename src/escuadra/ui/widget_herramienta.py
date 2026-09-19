@@ -1,4 +1,3 @@
-import time
 import threading
 
 from PySide6.QtGui import QFont

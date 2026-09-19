@@ -3,7 +3,6 @@ Pruebas de humo para el módulo ventana_principal.py
 """
 
 import pytest
-from unittest.mock import MagicMock, patch
 
 from PySide6.QtWidgets import QApplication, QMainWindow
 
