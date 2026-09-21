@@ -6,7 +6,6 @@ import pytest
 import yaml
 import os
 import tempfile
-from pathlib import Path
 
 from escuadra.config.loader import load
 

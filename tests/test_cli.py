@@ -3,8 +3,6 @@ Pruebas para el módulo cli.py
 """
 
 import pytest
-from unittest.mock import patch, MagicMock
-import sys
 
 
 class TestCLI:
