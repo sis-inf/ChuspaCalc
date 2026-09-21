@@ -1,0 +1,52 @@
+name: Check CI Health
+
+on:
+  schedule:
+    # se ejecuta cada 6 horas para verificar el estado de main
+    - cron: '0 */6 * * *'
+  workflow_dispatch: 
+  # permite ejecutarlo manualmente para pruebas
+
+jobs:
+  check-failures:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      actions: read
+    steps:
+      - name: Checkout del código
+        uses: actions/checkout@v4
+
+      - name: Verificar fallos prolongados en CI
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # obtener el último ejecutable exitoso en main para ci.yml
+          LAST_SUCCESS=$(gh run list --workflow=ci.yml --branch=main --status=success --limit 1 --json updatedAt -q '.[0].updatedAt')
+          
+          if [ -z "$LAST_SUCCESS" ]; then
+            echo "No se encontraron ejecuciones exitosas previas."
+            exit 0
+          fi
+
+          # convertir fechas a timestamp UNIX
+          LAST_SUCCESS_TS=$(date -d "$LAST_SUCCESS" +%s)
+          NOW_TS=$(date +%s)
+          DIFF_HOURS=$(( (NOW_TS - LAST_SUCCESS_TS) / 3600 ))
+
+          echo "Horas desde el último éxito en CI: $DIFF_HOURS"
+
+          if [ "$DIFF_HOURS" -ge 24 ]; then
+            echo "CI lleva fallando más de 24h. Verificando si ya existe un Issue abierto..."
+            EXISTING_ISSUE=$(gh issue list --search "ALERTA: CI lleva fallando más de 24 horas in:title state:open" --json number -q '.[0].number')
+            
+            if [ -z "$EXISTING_ISSUE" ]; then
+              echo "creando Issue de notificación..."
+              gh issue create \
+                --title "🚨 ALERTA: CI lleva fallando más de 24 horas en main" \
+                --body "El workflow principal \`ci.yml\` en la rama \`main\` no ha completado exitosamente en las últimas **$DIFF_HOURS horas**. Por favor revisar los logs de ejecución." \
+                --label "bug"
+            else
+              echo "Ya existe un Issue abierto (#$EXISTING_ISSUE). Omitiendo duplicados."
+            fi
+          fi
