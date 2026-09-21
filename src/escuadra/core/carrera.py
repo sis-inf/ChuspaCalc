@@ -11,6 +11,8 @@ class Carrera(Enum):
     SISTEMAS = ("sistemas", "Ingeniería de Sistemas e Informática")
     MATEMATICAS = ("matematicas", "Matemáticas")
     ELECTRICA = ("electrica", "Ingeniería Eléctrica")
+    CIVIL = ("civil", "Ingeniería Civil")
+    GEOMETRIA = ("geometria", "Geometría")
     def __init__(self, codigo: str, etiqueta: str):
         self.codigo = codigo
         self.etiqueta = etiqueta

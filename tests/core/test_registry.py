@@ -68,6 +68,16 @@ def test_herramientas_por_carrera_agrupa_correctamente():
     for carrera, herramientas in resultado.items():
         assert isinstance(carrera, Carrera)
         assert all(h.carrera == carrera for h in herramientas)
+    # verificacion explicita en presencia de 5 mienbros del Enum Carrera
+    carreras_esperadas = {
+        Carrera.SISTEMAS,
+        Carrera.MATEMATICAS,
+        Carrera.ELECTRICA,
+        Carrera.CIVIL,
+        Carrera.GEOMETRIA,
+    }
+    # comprobar que las carreras presentes en el resultado pertenezcan al conjunto esperado
+    assert set (resultado.keys()).issubset(carreras_esperadas)
 
 
 def test_herramientas_por_carrera_ordenadas_alfabeticamente():
