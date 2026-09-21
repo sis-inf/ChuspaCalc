@@ -31,7 +31,7 @@ jobs:
           bandit -r src/escuadra/ -ll -f json -o bandit-report.json
 
       - name: Subir reporte Bandit
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: bandit-report
           path: bandit-report.json
