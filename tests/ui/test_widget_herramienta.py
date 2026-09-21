@@ -19,7 +19,7 @@ sys.modules["PyQt5"] = pyqt5
 sys.modules["PyQt5.QtGui"] = qtgui
 sys.modules["PyQt5.QtWidgets"] = qtwidgets
 
-from escuadra.ui.widget_herramienta import (
+from escuadra.ui.widget_herramienta import ( #noqa: E402
     WidgetHerramienta,
     ejecutar_con_progreso_ui,
 )
