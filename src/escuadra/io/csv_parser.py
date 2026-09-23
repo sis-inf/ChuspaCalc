@@ -11,7 +11,10 @@ def parse_csv(file_path, has_header=True, delimiter=',', encoding='utf-8'):
         with open(file_path, 'r', encoding=encoding) as f:
             reader = csv.reader(f, delimiter=delimiter)
             if has_header:
-                headers = next(reader)
+                try:
+                    headers = next(reader)
+                except StopIteration:
+                    raise ValueError('El archivo CSV está vacío')
                 return [dict(zip(headers, row)) for row in reader]
             else:
                 return list(reader)
@@ -19,7 +22,10 @@ def parse_csv(file_path, has_header=True, delimiter=',', encoding='utf-8'):
         with open(file_path, 'r', encoding='latin-1') as f:
             reader = csv.reader(f, delimiter=delimiter)
             if has_header:
-                headers = next(reader)
+                try:
+                    headers = next(reader)
+                except StopIteration:
+                    raise ValueError('El archivo CSV está vacío')
                 return [dict(zip(headers, row)) for row in reader]
             else:
                 return list(reader)
