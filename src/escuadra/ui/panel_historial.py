@@ -12,15 +12,15 @@ class PanelHistorial(QWidget):
         self.lista_historial.clear()
         # Obtenemos la lista actualizada del modelo
         entradas = self.historial.obtener_historial()
-        
+
         for entrada in entradas:
             # Creamos el ítem con el texto descriptivo
             item = QListWidgetItem(f"{entrada['herramienta']} - {entrada['timestamp']}")
-            
+
             # GUARDAMOS EL DICCIONARIO COMPLETO EN EL ÍTEM
             # Esto es lo que permite que _obtener_datos funcione después
             item.setData(Qt.ItemDataRole.UserRole, entrada)
-            
+
             self.lista_historial.addItem(item)
 
     def _obtener_datos(self, item):
@@ -35,13 +35,13 @@ class PanelHistorial(QWidget):
         if len(seleccionados) == 1:
             item = seleccionados[0]
             datos = self._obtener_datos(item)
-            
+
             # Abrimos diálogo con la nota actual
             nota_actual = datos.get("nota", "")
             nueva_nota, ok = QInputDialog.getText(
                 self, "Anotar entrada", "Comentario:", text=nota_actual
             )
-            
+
             if ok:
                 # Actualizamos en el core (historial.py)
                 self.historial.editar_nota(datos["timestamp"], nueva_nota)

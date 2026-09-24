@@ -32,6 +32,7 @@ El script genera las entradas del changelog a partir de los commits desde el úl
 
 ### Fixed
 - fix(changelog): corrección de entradas faltantes del sprint actual
+- chore(lint): limpieza de espacios en blanco y newlines finales (ruff W293/W292)
 
 ## [0.1.0] - 2026-04-19
 
