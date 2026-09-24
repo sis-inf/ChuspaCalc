@@ -77,13 +77,11 @@ Esto instalará las dependencias necesarias para desarrollo, testing y herramien
 ### Windows / Linux / macOS:
  
 ```bash
-pre-commit install
+pip install pre-commit && pre-commit install
 ```
  
 Este comando instala los hooks de pre-commit configurados por el proyecto. A partir de este momento, cada vez que realices un commit, Git ejecutará automáticamente las verificaciones definidas por el proyecto antes de aceptar el commit.
  
-> Este paso es **obligatorio** para asegurar que todos los cambios cumplan los estándares de calidad y formato establecidos por el proyecto.
-
 Para verificar que los hooks quedaron instalados correctamente:
  
 ```bash

@@ -26,5 +26,5 @@ class HerramientaNumerosComplejos(Herramienta):
         "conversiones entre forma rectangular y polar."
     )
 
-    crear_widget(self) -> QWidget:
+    def crear_widget(self) -> QWidget:
         return QWidget()
