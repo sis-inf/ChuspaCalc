@@ -1,9 +1,7 @@
 import math
 
 
-def convertir_angulo(valor: float,
-                     unidad_origen: str,
-                     unidad_destino: str) -> float:
+def convertir_angulo(valor: float, unidad_origen: str, unidad_destino: str) -> float:
     """
     Convierte ángulos entre grados, radianes y gradianes.
     """

@@ -35,19 +35,13 @@ class Herramienta(ABC):
             return
 
         if cls.nombre == "":
-            raise ValueError(
-                "La subclase debe definir el atributo 'nombre'."
-            )
+            raise ValueError("La subclase debe definir el atributo 'nombre'.")
 
         if cls.carrera is None:
-            raise ValueError(
-                "La subclase debe definir el atributo 'carrera'."
-            )
+            raise ValueError("La subclase debe definir el atributo 'carrera'.")
 
         if cls.descripcion == "":
-            raise ValueError(
-                "La subclase debe definir el atributo 'descripcion'."
-            )
+            raise ValueError("La subclase debe definir el atributo 'descripcion'.")
 
     @abstractmethod
     def crear_widget(self) -> QWidget:

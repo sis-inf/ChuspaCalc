@@ -10,7 +10,6 @@ from escuadra.modulos.matematicas.conversor_angulo import convertir_angulo
 from escuadra.modulos.matematicas.conversor_energia import convertir_energia
 from escuadra.modulos.matematicas.conversor_velocidad import convertir_velocidad
 
-
 # ------------------------
 # Conversor de energía
 # ------------------------
@@ -28,9 +27,7 @@ def test_convertir_energia_kj_a_j():
 
 def test_convertir_energia_mj_a_kwh():
     # 1 MJ = 0.277777... kWh
-    assert convertir_energia(1, "MJ", "kWh") == pytest.approx(
-        1 / 3.6
-    )
+    assert convertir_energia(1, "MJ", "kWh") == pytest.approx(1 / 3.6)
 
 
 # ------------------------
@@ -48,16 +45,12 @@ def test_convertir_velocidad_kmh_a_ms():
 
 def test_convertir_velocidad_ms_a_kmh():
     # 10 m/s = 36 km/h
-    assert convertir_velocidad(10, "m/s", "km/h") == pytest.approx(
-        36.0
-    )
+    assert convertir_velocidad(10, "m/s", "km/h") == pytest.approx(36.0)
 
 
 def test_convertir_velocidad_mph_a_ms():
     # 1 mph = 0.44704 m/s
-    assert convertir_velocidad(1, "mph", "m/s") == pytest.approx(
-        0.44704
-    )
+    assert convertir_velocidad(1, "mph", "m/s") == pytest.approx(0.44704)
 
 
 # ------------------------
@@ -67,20 +60,14 @@ def test_convertir_velocidad_mph_a_ms():
 
 def test_convertir_angulo_180_grados_a_radianes():
     # 180 grados = pi radianes
-    assert convertir_angulo(180, "grados", "radianes") == pytest.approx(
-        math.pi
-    )
+    assert convertir_angulo(180, "grados", "radianes") == pytest.approx(math.pi)
 
 
 def test_convertir_angulo_pi_radianes_a_grados():
     # pi radianes = 180 grados
-    assert convertir_angulo(math.pi, "radianes", "grados") == pytest.approx(
-        180.0
-    )
+    assert convertir_angulo(math.pi, "radianes", "grados") == pytest.approx(180.0)
 
 
 def test_convertir_angulo_100_gradianes_a_grados():
     # 100 gradianes = 90 grados
-    assert convertir_angulo(100, "gradianes", "grados") == pytest.approx(
-        90.0
-    )
+    assert convertir_angulo(100, "gradianes", "grados") == pytest.approx(90.0)

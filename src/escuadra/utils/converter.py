@@ -18,4 +18,3 @@ def km_to_miles(km: float) -> float:
         2.485484
     """
     return km * 0.621371
-

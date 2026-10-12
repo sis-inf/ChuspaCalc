@@ -12,7 +12,9 @@ def calcular_reacciones(longitud: float, carga: float, posicion: float = None) -
 
     # Validaciones
     if longitud <= 0:
-        raise ValueError(f"La longitud debe ser mayor que 0. Valor recibido: {longitud}")
+        raise ValueError(
+            f"La longitud debe ser mayor que 0. Valor recibido: {longitud}"
+        )
     if carga <= 0:
         raise ValueError(f"La carga debe ser mayor que 0. Valor recibido: {carga}")
     if posicion is not None and not (0 <= posicion <= longitud):
@@ -31,8 +33,4 @@ def calcular_reacciones(longitud: float, carga: float, posicion: float = None) -
         Rb = carga * posicion / longitud
         Ra = carga - Rb
 
-    return {
-        "Ra": round(Ra, 4),
-        "Rb": round(Rb, 4),
-        "unidad": "kN"
-    }
+    return {"Ra": round(Ra, 4), "Rb": round(Rb, 4), "unidad": "kN"}

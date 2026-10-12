@@ -16,16 +16,11 @@ class TestConfigLoader:
     def test_load_valid_yaml(self):
         """Verifica que carga un archivo YAML válido correctamente"""
         config_data = {
-            "app": {
-                "name": "Escuadra",
-                "version": "0.1.0"
-            },
-            "logging": {
-                "level": "INFO"
-            }
+            "app": {"name": "Escuadra", "version": "0.1.0"},
+            "logging": {"level": "INFO"},
         }
 
-        with tempfile.NamedTemporaryFile(mode='w', suffix='.yaml', delete=False) as f:
+        with tempfile.NamedTemporaryFile(mode="w", suffix=".yaml", delete=False) as f:
             yaml.dump(config_data, f)
             temp_path = f.name
 
@@ -37,7 +32,7 @@ class TestConfigLoader:
 
     def test_load_empty_yaml(self):
         """Verifica que carga un archivo YAML vacío correctamente"""
-        with tempfile.NamedTemporaryFile(mode='w', suffix='.yaml', delete=False) as f:
+        with tempfile.NamedTemporaryFile(mode="w", suffix=".yaml", delete=False) as f:
             f.write("")
             temp_path = f.name
 
@@ -56,7 +51,7 @@ class TestConfigLoader:
 
     def test_load_malformed_yaml(self):
         """Verifica que lanza YAMLError si el archivo está malformado"""
-        with tempfile.NamedTemporaryFile(mode='w', suffix='.yaml', delete=False) as f:
+        with tempfile.NamedTemporaryFile(mode="w", suffix=".yaml", delete=False) as f:
             f.write("invalid: yaml: content: [")
             temp_path = f.name
 
@@ -70,7 +65,7 @@ class TestConfigLoader:
 
     def test_load_with_comments(self):
         """Verifica que carga YAML con comentarios correctamente"""
-        with tempfile.NamedTemporaryFile(mode='w', suffix='.yaml', delete=False) as f:
+        with tempfile.NamedTemporaryFile(mode="w", suffix=".yaml", delete=False) as f:
             f.write("""
 # Comentario
 app:
@@ -89,20 +84,11 @@ app:
     def test_load_nested_config(self):
         """Verifica que carga configuración anidada correctamente"""
         config_data = {
-            "app": {
-                "name": "Escuadra",
-                "settings": {
-                    "debug": True,
-                    "theme": "dark"
-                }
-            },
-            "database": {
-                "host": "localhost",
-                "port": 5432
-            }
+            "app": {"name": "Escuadra", "settings": {"debug": True, "theme": "dark"}},
+            "database": {"host": "localhost", "port": 5432},
         }
 
-        with tempfile.NamedTemporaryFile(mode='w', suffix='.yaml', delete=False) as f:
+        with tempfile.NamedTemporaryFile(mode="w", suffix=".yaml", delete=False) as f:
             yaml.dump(config_data, f)
             temp_path = f.name
 

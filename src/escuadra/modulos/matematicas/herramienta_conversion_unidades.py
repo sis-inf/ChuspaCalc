@@ -1,4 +1,11 @@
-from PySide6.QtWidgets import QComboBox, QHBoxLayout, QLabel, QLineEdit, QVBoxLayout, QWidget
+from PySide6.QtWidgets import (
+    QComboBox,
+    QHBoxLayout,
+    QLabel,
+    QLineEdit,
+    QVBoxLayout,
+    QWidget,
+)
 
 from escuadra.core.carrera import Carrera
 from escuadra.core.herramienta import Herramienta
@@ -7,7 +14,9 @@ from escuadra.core.herramienta import Herramienta
 class HerramientaConversionUnidades(Herramienta):
     nombre = "Conversión de unidades"
     carrera = Carrera.MATEMATICAS
-    descripcion = "Convierte valores entre unidades de longitud, masa, tiempo y temperatura."
+    descripcion = (
+        "Convierte valores entre unidades de longitud, masa, tiempo y temperatura."
+    )
 
     CATEGORIAS = {
         "Longitud": {
@@ -17,21 +26,10 @@ class HerramientaConversionUnidades(Herramienta):
             "mm": 0.001,
             "in": 0.0254,
             "ft": 0.3048,
-            "mi": 1609.34
+            "mi": 1609.34,
         },
-        "Masa": {
-            "kg": 1.0,
-            "g": 0.001,
-            "lb": 0.453592,
-            "oz": 0.0283495,
-            "t": 1000.0
-        },
-        "Tiempo": {
-            "s": 1.0,
-            "min": 60.0,
-            "h": 3600.0,
-            "d": 86400.0
-        }
+        "Masa": {"kg": 1.0, "g": 0.001, "lb": 0.453592, "oz": 0.0283495, "t": 1000.0},
+        "Tiempo": {"s": 1.0, "min": 60.0, "h": 3600.0, "d": 86400.0},
     }
 
     def crear_widget(self):

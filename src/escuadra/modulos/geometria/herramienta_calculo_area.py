@@ -149,9 +149,7 @@ class HerramientaCalculoArea(Herramienta):
             try:
                 valor = float(texto)
             except ValueError:
-                self.error_label.setText(
-                    f"Error: «{texto}» no es un número válido."
-                )
+                self.error_label.setText(f"Error: «{texto}» no es un número válido.")
                 return
             valores.append(valor)
 

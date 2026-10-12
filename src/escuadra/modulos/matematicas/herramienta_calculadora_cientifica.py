@@ -17,12 +17,14 @@ class HerramientaCalculadoraCientifica(Herramienta):
     def __init__(self):
         super().__init__()
 
-    def evaluar_expresion(self, expresion: str, modo_angular: str = "Radianes") -> float:
+    def evaluar_expresion(
+        self, expresion: str, modo_angular: str = "Radianes"
+    ) -> float:
         if not expresion or not isinstance(expresion, str):
             raise ValueError("La expresión debe ser una cadena de texto válida.")
 
-        expresion_limpia = expresion.replace('^', '**')
-        expresion_limpia = expresion_limpia.replace('π', 'math.pi')
+        expresion_limpia = expresion.replace("^", "**")
+        expresion_limpia = expresion_limpia.replace("π", "math.pi")
 
         entorno_seguro = {
             "math": math,
@@ -33,7 +35,7 @@ class HerramientaCalculadoraCientifica(Herramienta):
             "ln": math.log,
             "sqrt": math.sqrt,
             "pi": math.pi,
-            "e": math.e
+            "e": math.e,
         }
 
         if modo_angular == "Grados":

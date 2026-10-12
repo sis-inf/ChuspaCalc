@@ -18,9 +18,7 @@ def calcular_constante_tiempo_rl(resistencia: float, inductancia: float) -> floa
 
 
 def calcular_voltaje_carga_capacitor(
-    voltaje_fuente: float,
-    tiempo: float,
-    constante_tiempo: float
+    voltaje_fuente: float, tiempo: float, constante_tiempo: float
 ) -> float:
     if constante_tiempo <= 0:
         raise ValueError("La constante de tiempo debe ser mayor que 0")

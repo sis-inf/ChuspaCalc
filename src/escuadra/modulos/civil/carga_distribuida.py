@@ -24,30 +24,20 @@ def calcular_reacciones_carga_parcial(
         raise ValueError("inicio_carga no puede ser negativo")
 
     if inicio_carga >= fin_carga:
-        raise ValueError(
-            "inicio_carga debe ser menor que fin_carga"
-        )
+        raise ValueError("inicio_carga debe ser menor que fin_carga")
 
     if fin_carga > longitud_viga:
-        raise ValueError(
-            "fin_carga no puede superar la longitud de la viga"
-        )
+        raise ValueError("fin_carga no puede superar la longitud de la viga")
 
     longitud_carga = fin_carga - inicio_carga
 
     resultante = carga_por_metro * longitud_carga
 
-    posicion_resultante = (
-        inicio_carga + fin_carga
-    ) / 2
+    posicion_resultante = (inicio_carga + fin_carga) / 2
 
-    reaccion_derecha = (
-        resultante * posicion_resultante
-    ) / longitud_viga
+    reaccion_derecha = (resultante * posicion_resultante) / longitud_viga
 
-    reaccion_izquierda = (
-        resultante - reaccion_derecha
-    )
+    reaccion_izquierda = resultante - reaccion_derecha
 
     return {
         "reaccion_izquierda": reaccion_izquierda,

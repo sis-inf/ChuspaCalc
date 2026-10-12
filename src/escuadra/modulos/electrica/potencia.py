@@ -37,7 +37,7 @@ def potencia_ir(corriente, resistencia) -> float:
     if resistencia <= 0:
         raise ValueError("resistencia debe ser mayor que 0")
 
-    return float((corriente ** 2) * resistencia)
+    return float((corriente**2) * resistencia)
 
 
 def potencia_vr(voltaje, resistencia) -> float:
@@ -58,4 +58,4 @@ def potencia_vr(voltaje, resistencia) -> float:
     if resistencia <= 0:
         raise ValueError("resistencia debe ser mayor que 0")
 
-    return float((voltaje ** 2) / resistencia)
+    return float((voltaje**2) / resistencia)

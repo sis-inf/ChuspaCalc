@@ -61,8 +61,12 @@ class HerramientaColumnaPandeo(Herramienta):
         self._condicion_combo = QComboBox()
         self._condicion_combo.addItem("Biarticulada (K=1.0)", "biarticulada")
         self._condicion_combo.addItem("Empotrada-Libre (K=2.0)", "empotrada-libre")
-        self._condicion_combo.addItem("Empotrada-Empotrada (K=0.5)", "empotrada-empotrada")
-        self._condicion_combo.addItem("Empotrada-Articulada (K=0.7)", "empotrada-articulada")
+        self._condicion_combo.addItem(
+            "Empotrada-Empotrada (K=0.5)", "empotrada-empotrada"
+        )
+        self._condicion_combo.addItem(
+            "Empotrada-Articulada (K=0.7)", "empotrada-articulada"
+        )
         fila_condicion.addWidget(label_condicion)
         fila_condicion.addWidget(self._condicion_combo)
         root.addLayout(fila_condicion)
@@ -124,9 +128,7 @@ class HerramientaColumnaPandeo(Herramienta):
                     return
                 valores[clave] = v
             except ValueError:
-                self._error_label.setText(
-                    f"Error: «{texto}» no es un número válido."
-                )
+                self._error_label.setText(f"Error: «{texto}» no es un número válido.")
                 return
 
         # Obtener condición de apoyo

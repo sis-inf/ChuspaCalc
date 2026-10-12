@@ -2,7 +2,6 @@
 Pruebas para el módulo historial.py
 """
 
-
 from escuadra.core.historial import Historial
 
 
@@ -20,9 +19,7 @@ class TestHistorial:
         historial = Historial()
 
         historial.agregar_calculo(
-            herramienta="suma",
-            parametros={"a": 1, "b": 2},
-            resultado={"valor": 3}
+            herramienta="suma", parametros={"a": 1, "b": 2}, resultado={"valor": 3}
         )
 
         historial_data = historial.obtener_historial()
@@ -38,9 +35,7 @@ class TestHistorial:
 
         for i in range(25):
             historial.agregar_calculo(
-                herramienta=f"test_{i}",
-                parametros={"n": i},
-                resultado={"valor": i * 2}
+                herramienta=f"test_{i}", parametros={"n": i}, resultado={"valor": i * 2}
             )
 
         historial_data = historial.obtener_historial()

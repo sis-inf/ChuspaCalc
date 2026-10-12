@@ -47,9 +47,7 @@ def calcular_capacitancia_correccion(
         raise ValueError("fp_deseado debe estar entre 0 y 1")
 
     if fp_deseado <= fp_actual:
-        raise ValueError(
-            "El factor de potencia deseado debe ser mayor al actual"
-        )
+        raise ValueError("El factor de potencia deseado debe ser mayor al actual")
 
     if potencia_activa <= 0:
         raise ValueError("La potencia debe ser positiva")
@@ -69,6 +67,6 @@ def calcular_capacitancia_correccion(
 
     omega = 2 * math.pi * frecuencia
 
-    capacitancia = potencia_reactiva / (omega * voltaje ** 2)
+    capacitancia = potencia_reactiva / (omega * voltaje**2)
 
     return capacitancia

@@ -20,9 +20,10 @@ from escuadra.math.sistemas_lineales_nxn import resolver_sistema
 
 # ── Widget ───────────────────────────────────────────────────────────────────
 
+
 class HerramientaSistemasLineales(Herramienta):
-    nombre      = "Sistemas de ecuaciones lineales"
-    carrera     = Carrera.MATEMATICAS
+    nombre = "Sistemas de ecuaciones lineales"
+    carrera = Carrera.MATEMATICAS
     descripcion = "Resuelve sistemas A·x = b para tamaños entre 2x2 y 5x5."
 
     def crear_widget(self) -> QWidget:
@@ -50,7 +51,7 @@ class HerramientaSistemasLineales(Herramienta):
         botones = QHBoxLayout()
         btn_resolver = QPushButton("Resolver")
         btn_resolver.clicked.connect(self._resolver)
-        btn_limpiar  = QPushButton("Limpiar")
+        btn_limpiar = QPushButton("Limpiar")
         btn_limpiar.clicked.connect(self._limpiar)
         botones.addWidget(btn_resolver)
         botones.addWidget(btn_limpiar)

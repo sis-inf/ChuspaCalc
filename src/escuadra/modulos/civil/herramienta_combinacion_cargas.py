@@ -19,9 +19,7 @@ from escuadra.modulos.civil.combinacion_cargas import combinar_cargas_lrfd
 class HerramientaCombinacionCargas(Herramienta):
     nombre = "Combinación de cargas"
     carrera = Carrera.CIVIL
-    descripcion = (
-        "Calcula una combinación simplificada de cargas vivas y muertas."
-    )
+    descripcion = "Calcula una combinación simplificada de cargas vivas y muertas."
 
     def crear_widget(self) -> QWidget:
         widget = QWidget()
@@ -57,6 +55,4 @@ class HerramientaCombinacionCargas(Herramienta):
             self._carga_viva.value(),
         )
 
-        self._resultado.setText(
-            f"Carga última de diseño: {resultado:.2f} kN"
-        )
+        self._resultado.setText(f"Carga última de diseño: {resultado:.2f} kN")

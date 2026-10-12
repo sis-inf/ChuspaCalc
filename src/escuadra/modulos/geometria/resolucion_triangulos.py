@@ -18,13 +18,9 @@ def resolver_triangulo_lados(a: float, b: float, c: float):
     if a + b <= c or a + c <= b or b + c <= a:
         raise ValueError("Los lados no forman un triángulo válido")
 
-    angulo_a = math.degrees(
-        math.acos((b**2 + c**2 - a**2) / (2 * b * c))
-    )
+    angulo_a = math.degrees(math.acos((b**2 + c**2 - a**2) / (2 * b * c)))
 
-    angulo_b = math.degrees(
-        math.acos((a**2 + c**2 - b**2) / (2 * a * c))
-    )
+    angulo_b = math.degrees(math.acos((a**2 + c**2 - b**2) / (2 * a * c)))
 
     angulo_c = 180 - angulo_a - angulo_b
 
@@ -50,16 +46,8 @@ def resolver_triangulo_lado_angulo(
 
     angulo_c = 180 - angulo_a - angulo_b
 
-    b = (
-        a
-        * math.sin(math.radians(angulo_b))
-        / math.sin(math.radians(angulo_a))
-    )
+    b = a * math.sin(math.radians(angulo_b)) / math.sin(math.radians(angulo_a))
 
-    c = (
-        a
-        * math.sin(math.radians(angulo_c))
-        / math.sin(math.radians(angulo_a))
-    )
+    c = a * math.sin(math.radians(angulo_c)) / math.sin(math.radians(angulo_a))
 
     return b, c, angulo_c

@@ -17,14 +17,15 @@ from escuadra.core.herramienta import Herramienta
 
 # Logica de conversion
 
+
 def convertir_desde_decimal(entero: int) -> dict[str, str]:
     """Convierte un entero a sus representaciones en las cuatro bases."""
     signo = "-" if entero < 0 else ""
     magnitud = abs(entero)
     return {
-        "decimal":     str(entero),
-        "binario":     signo + bin(magnitud)[2:],
-        "octal":       signo + oct(magnitud)[2:],
+        "decimal": str(entero),
+        "binario": signo + bin(magnitud)[2:],
+        "octal": signo + oct(magnitud)[2:],
         "hexadecimal": signo + hex(magnitud)[2:].upper(),
     }
 
@@ -33,7 +34,7 @@ def parsear_valor(texto: str, base: int) -> int:
     """Convierte texto en la base indicada a entero. Soporta negativos en decimal."""
     texto = texto.strip()
     if base == 10:
-        return int(texto)          # acepta signo '-'
+        return int(texto)  # acepta signo '-'
     negativo = texto.startswith("-")
     magnitud = texto.lstrip("-")
     valor = int(magnitud, base)
@@ -42,25 +43,25 @@ def parsear_valor(texto: str, base: int) -> int:
 
 # Widget
 class HerramientaConversionBases(Herramienta):
-    nombre      = "Conversión de bases"
-    carrera     = Carrera.SISTEMAS
+    nombre = "Conversión de bases"
+    carrera = Carrera.SISTEMAS
     descripcion = "Convierte un número entre decimal, binario, octal y hexadecimal."
 
     # Configuración de cada campo: etiqueta, base, placeholder
     _CAMPOS = [
-        ("Decimal",      10, "Ej: 255"),
-        ("Binario",       2, "Ej: 11111111"),
-        ("Octal",         8, "Ej: 377"),
-        ("Hexadecimal",  16, "Ej: FF"),
+        ("Decimal", 10, "Ej: 255"),
+        ("Binario", 2, "Ej: 11111111"),
+        ("Octal", 8, "Ej: 377"),
+        ("Hexadecimal", 16, "Ej: FF"),
     ]
 
     def crear_widget(self) -> QWidget:
         widget = QWidget()
-        root   = QVBoxLayout()
+        root = QVBoxLayout()
         root.setSpacing(10)
 
         # Campos de entrada
-        self._inputs: dict[int, QLineEdit] = {}   # base → QLineEdit
+        self._inputs: dict[int, QLineEdit] = {}  # base → QLineEdit
 
         for etiqueta, base, placeholder in self._CAMPOS:
             fila = QHBoxLayout()
@@ -68,9 +69,7 @@ class HerramientaConversionBases(Herramienta):
             label.setFixedWidth(100)
             campo = QLineEdit()
             campo.setPlaceholderText(placeholder)
-            campo.editingFinished.connect(
-                lambda b=base: self._on_edicion(b)
-            )
+            campo.editingFinished.connect(lambda b=base: self._on_edicion(b))
             fila.addWidget(label)
             fila.addWidget(campo)
             root.addLayout(fila)
@@ -80,7 +79,7 @@ class HerramientaConversionBases(Herramienta):
         botones = QHBoxLayout()
         btn_convertir = QPushButton("Convertir")
         btn_convertir.clicked.connect(self._convertir_campo_activo)
-        btn_limpiar   = QPushButton("Limpiar")
+        btn_limpiar = QPushButton("Limpiar")
         btn_limpiar.clicked.connect(self._limpiar)
         botones.addWidget(btn_convertir)
         botones.addWidget(btn_limpiar)
@@ -113,7 +112,7 @@ class HerramientaConversionBases(Herramienta):
     def _convertir_campo_activo(self) -> None:
         if self._ultima_base is None:
             return
-        base  = self._ultima_base
+        base = self._ultima_base
         texto = self._inputs[base].text().strip()
 
         if not texto:
@@ -122,12 +121,10 @@ class HerramientaConversionBases(Herramienta):
             return
 
         try:
-            entero       = parsear_valor(texto, base)
-            resultados   = convertir_desde_decimal(entero)
+            entero = parsear_valor(texto, base)
+            resultados = convertir_desde_decimal(entero)
         except ValueError:
-            self._error_label.setText(
-                f"Valor inválido para base {base}: «{texto}»"
-            )
+            self._error_label.setText(f"Valor inválido para base {base}: «{texto}»")
             return
 
         self._error_label.setText("")

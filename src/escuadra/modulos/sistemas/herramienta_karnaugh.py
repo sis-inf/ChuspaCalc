@@ -4,7 +4,6 @@ from escuadra.core.carrera import Carrera
 from escuadra.core.herramienta import Herramienta
 
 
-
 class HerramientaKarnaugh(Herramienta):
     nombre = "Mapas de Karnaugh"
 

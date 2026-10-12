@@ -2,7 +2,6 @@
 Tests unitarios para el registry de herramientas.
 """
 
-
 from PySide6.QtWidgets import QLabel, QWidget
 
 from escuadra.core.carrera import Carrera
@@ -77,7 +76,7 @@ def test_herramientas_por_carrera_agrupa_correctamente():
         Carrera.GEOMETRIA,
     }
     # comprobar que las carreras presentes en el resultado pertenezcan al conjunto esperado
-    assert set (resultado.keys()).issubset(carreras_esperadas)
+    assert set(resultado.keys()).issubset(carreras_esperadas)
 
 
 def test_herramientas_por_carrera_ordenadas_alfabeticamente():

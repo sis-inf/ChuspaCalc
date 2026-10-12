@@ -1,12 +1,20 @@
 """
 Herramienta de Figuras Compuestas para Escuadra.
 """
+
 from PySide6.QtWidgets import (
-    QHBoxLayout, QLabel, QLineEdit, QPushButton, QVBoxLayout, QWidget, QTextEdit
+    QHBoxLayout,
+    QLabel,
+    QLineEdit,
+    QPushButton,
+    QVBoxLayout,
+    QWidget,
+    QTextEdit,
 )
 from escuadra.core.carrera import Carrera
 from escuadra.core.herramienta import Herramienta
-from.figuras_compuestas import calcular_area_compuesta, calcular_volumen_compuesto
+from .figuras_compuestas import calcular_area_compuesta, calcular_volumen_compuesto
+
 
 class HerramientaFigurasCompuestas(Herramienta):
     nombre = "Figuras Compuestas"
@@ -18,12 +26,16 @@ class HerramientaFigurasCompuestas(Herramienta):
         root = QVBoxLayout()
         root.setSpacing(10)
 
-        ayuda = QLabel("Esta herramienta usa calcular_area_compuesta y calcular_volumen_compuesto. Ingresa JSON de figuras o usa valores de prueba.")
+        ayuda = QLabel(
+            "Esta herramienta usa calcular_area_compuesta y calcular_volumen_compuesto. Ingresa JSON de figuras o usa valores de prueba."
+        )
         ayuda.setWordWrap(True)
         root.addWidget(ayuda)
 
         self._entrada = QTextEdit()
-        self._entrada.setPlaceholderText('Ej: [{"tipo": "rectangulo", "base": 5, "altura": 3}] - Deja vacío para demo')
+        self._entrada.setPlaceholderText(
+            'Ej: [{"tipo": "rectangulo", "base": 5, "altura": 3}] - Deja vacío para demo'
+        )
         root.addWidget(self._entrada)
 
         botones = QHBoxLayout()
@@ -54,9 +66,12 @@ class HerramientaFigurasCompuestas(Herramienta):
             # Si no hay entrada, usar demo vacío que llame a la lógica
             # Aquí solo demostramos que la Herramienta existe y es descubrible
             import json
+
             texto = self._entrada.toPlainText().strip()
             if not texto:
-                self._resultado.setText("Herramienta registrada correctamente. Ingresa figuras para calcular.")
+                self._resultado.setText(
+                    "Herramienta registrada correctamente. Ingresa figuras para calcular."
+                )
                 return
 
             figuras = json.loads(texto)
@@ -72,6 +87,8 @@ class HerramientaFigurasCompuestas(Herramienta):
     def ejecutar(self, figuras):
         # Método requerido por algunos tests
         return calcular_area_compuesta(figuras)
+
+
 def calcular_volumen(figuras):
     """
     Calcula el volumen total de una figura compuesta.

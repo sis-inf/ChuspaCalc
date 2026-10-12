@@ -41,9 +41,7 @@ def calcular_r2_para_tension(v_entrada, v_salida, r1):
         raise ValueError("r1 debe ser positiva")
 
     if v_salida <= 0 or v_salida >= v_entrada:
-        raise ValueError(
-            "v_salida debe ser positiva y menor que v_entrada"
-        )
+        raise ValueError("v_salida debe ser positiva y menor que v_entrada")
 
     r2 = (v_salida * r1) / (v_entrada - v_salida)
 

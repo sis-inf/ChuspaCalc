@@ -29,7 +29,7 @@ class ServidorEscuadra(BaseHTTPRequestHandler):
             respuesta = {
                 "herramienta": self.path.replace("/calcular/", ""),
                 "parametros": parametros,
-                "resultado": None
+                "resultado": None,
             }
 
             contenido = json.dumps(respuesta).encode("utf-8")
@@ -51,10 +51,7 @@ def iniciar_servidor(host="localhost", puerto=8000):
     Solo escucha en localhost por seguridad.
     """
 
-    servidor = HTTPServer(
-        (host, puerto),
-        ServidorEscuadra
-    )
+    servidor = HTTPServer((host, puerto), ServidorEscuadra)
 
     print(f"Servidor iniciado en http://{host}:{puerto}")
     servidor.serve_forever()

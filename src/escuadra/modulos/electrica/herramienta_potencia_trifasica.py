@@ -21,7 +21,9 @@ from escuadra.modulos.electrica.potencia_trifasica import calcular_potencia_trif
 class HerramientaPotenciaTrifasica(Herramienta):
     nombre = "Potencia Trifásica"
     carrera = Carrera.ELECTRICA
-    descripcion = "Calcula la potencia activa, reactiva y aparente en sistemas trifásicos."
+    descripcion = (
+        "Calcula la potencia activa, reactiva y aparente en sistemas trifásicos."
+    )
 
     def crear_widget(self) -> QWidget:
         widget = QWidget()
@@ -130,9 +132,7 @@ class HerramientaPotenciaTrifasica(Herramienta):
                     return
                 valores[clave] = v
             except ValueError:
-                self._error_label.setText(
-                    f"Error: «{texto}» no es un número válido."
-                )
+                self._error_label.setText(f"Error: «{texto}» no es un número válido.")
                 return
 
         # Obtener tipo de conexión

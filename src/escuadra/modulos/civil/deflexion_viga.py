@@ -30,18 +30,10 @@ def calcular_deflexion_max(
         raise ValueError("Todos los parámetros deben ser mayores que 0")
 
     if tipo_carga == "puntual_central":
-        delta = (
-            carga * longitud**3
-        ) / (
-            48 * modulo_elasticidad * inercia
-        )
+        delta = (carga * longitud**3) / (48 * modulo_elasticidad * inercia)
 
     elif tipo_carga == "distribuida":
-        delta = (
-            5 * carga * longitud**4
-        ) / (
-            384 * modulo_elasticidad * inercia
-        )
+        delta = (5 * carga * longitud**4) / (384 * modulo_elasticidad * inercia)
 
     else:
         raise ValueError("Tipo de carga inválido")

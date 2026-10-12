@@ -55,19 +55,17 @@ class HerramientaDivisorTension(Herramienta):
         layout = QVBoxLayout(widget)
 
         self.modo = QComboBox()
-        self.modo.addItems([
-            "Calcular V_out conociendo V_in, R1 y R2",
-            "Calcular R2 conociendo V_in, V_out y R1",
-            "Calcular R1 conociendo V_in, V_out y R2",
-        ])
+        self.modo.addItems(
+            [
+                "Calcular V_out conociendo V_in, R1 y R2",
+                "Calcular R2 conociendo V_in, V_out y R1",
+                "Calcular R1 conociendo V_in, V_out y R2",
+            ]
+        )
 
         layout.addWidget(self.modo)
 
-        esquema = QLabel(
-            "V_in ─[R1]─┬─[R2]─ GND\n"
-            "           │\n"
-            "          V_out"
-        )
+        esquema = QLabel("V_in ─[R1]─┬─[R2]─ GND\n" "           │\n" "          V_out")
 
         layout.addWidget(esquema)
 
@@ -90,13 +88,9 @@ class HerramientaDivisorTension(Herramienta):
         boton = QPushButton("Calcular")
         layout.addWidget(boton)
 
-        self.modo.currentIndexChanged.connect(
-            self.actualizar_modo
-        )
+        self.modo.currentIndexChanged.connect(self.actualizar_modo)
 
-        boton.clicked.connect(
-            self.realizar_calculo
-        )
+        boton.clicked.connect(self.realizar_calculo)
 
         self.actualizar_modo()
 
@@ -128,50 +122,27 @@ class HerramientaDivisorTension(Herramienta):
                 r1 = float(self.r1.text())
                 r2 = float(self.r2.text())
 
-                resultado = calcular_vout(
-                    vin,
-                    r1,
-                    r2
-                )
+                resultado = calcular_vout(vin, r1, r2)
 
-                self.vout.setText(
-                    f"{resultado:.2f}"
-                )
+                self.vout.setText(f"{resultado:.2f}")
 
             elif modo == 1:
                 vin = float(self.vin.text())
                 vout = float(self.vout.text())
                 r1 = float(self.r1.text())
 
-                resultado = calcular_r2(
-                    vin,
-                    vout,
-                    r1
-                )
+                resultado = calcular_r2(vin, vout, r1)
 
-                self.r2.setText(
-                    f"{resultado:.2f}"
-                )
+                self.r2.setText(f"{resultado:.2f}")
 
             else:
                 vin = float(self.vin.text())
                 vout = float(self.vout.text())
                 r2 = float(self.r2.text())
 
-                resultado = calcular_r1(
-                    vin,
-                    vout,
-                    r2
-                )
+                resultado = calcular_r1(vin, vout, r2)
 
-                self.r1.setText(
-                    f"{resultado:.2f}"
-                )
+                self.r1.setText(f"{resultado:.2f}")
 
         except ValueError as error:
-            QMessageBox.warning(
-                None,
-                "Error",
-                str(error)
-            )
-
+            QMessageBox.warning(None, "Error", str(error))

@@ -1,62 +1,35 @@
 """
-Despachador de comandos que mapea subcomandos a funciones ejecutables
-consultando dinámicamente al registry.
+Despachador de comandos que mapea subcomandos a herramientas
+consultando al registry real.
 """
 
-import importlib
+from __future__ import annotations
+
 import sys
+from typing import Any
 
-from escuadra.core import registry
+from escuadra.core.registry import buscar_por_nombre
 
 
-def _cargar_modulos_dinamicos() -> None:
-    """Carga dinámicamente los módulos de la carpeta 'modulos'."""
-    if registry.MODULOS_DIR.exists():
-        for archivo in registry.MODULOS_DIR.glob("*.py"):
-            if archivo.name != "__init__.py":
-                nombre_modulo = f"escuadra.modulos.{archivo.stem}"
-                try:
-                    importlib.import_module(nombre_modulo)
-                except (ImportError, ModuleNotFoundError):
-                    pass
+def despacho(nombre: str) -> Any:
+    """Despacha un subcomando a su herramienta."""
+    herramienta_cls = buscar_por_nombre(nombre)
+    if herramienta_cls is None:
+        sys.stderr.write(f"Error: subcomando desconocido '{nombre}'\n")
+        return None
+    instancia = herramienta_cls()
+    if hasattr(instancia, "ejecutar"):
+        return instancia.ejecutar()
+    if hasattr(instancia, "run"):
+        return instancia.run()
+    return instancia
 
 
 def dispatch(subcommand: str) -> int:
-    """
-    Despacha un subcomando a su función ejecutable correspondiente.
-
-    Args:
-        subcommand: Nombre del subcomando a ejecutar.
-
-    Returns:
-        Código de salida entero (0 para éxito).
-
-    Examples:
-        >>> dispatch("convert")
-        Ejecutando conversión...
-        0
-        >>> dispatch("desconocido")
-        Error: subcomando desconocido 'desconocido'
-        1
-    """
-    # Forzamos el descubrimiento automático de submódulos antes de consultar
-    _cargar_modulos_dinamicos()
-
-    tools = registry.get_tools()
-    handler = tools.get(subcommand)
-
-    if handler is None:
-        print(
-            f"Error: subcomando desconocido '{subcommand}'",
-            file=sys.stderr,
-        )
+    """Despacha un subcomando a su herramienta correspondiente."""
+    result = despacho(subcommand)
+    if result is None:
         return 1
-
-    try:
-        return handler()
-    except (ImportError, ModuleNotFoundError):
-        print(
-            "Error: El módulo solicitado no está disponible o no existe.",
-            file=sys.stderr,
-        )
-        return 1
+    if isinstance(result, int):
+        return result
+    return 0

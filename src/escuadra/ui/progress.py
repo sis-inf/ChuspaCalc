@@ -5,6 +5,7 @@ Módulo de indicador de progreso para el CLI de Escuadra.
 import time
 import threading
 
+
 def mostrar_progreso(current: int, total: int, width: int = 30) -> None:
     """
     Muestra una barra de progreso en la consola.
@@ -24,6 +25,7 @@ def mostrar_progreso(current: int, total: int, width: int = 30) -> None:
 
     if current == total:
         print()
+
 
 class ProgressIndicator:
     def __init__(self, mensaje="Procesando..."):

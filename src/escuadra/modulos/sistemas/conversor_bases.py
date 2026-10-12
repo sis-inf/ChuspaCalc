@@ -1,5 +1,6 @@
 BASES_SOPORTADAS = {2, 8, 10, 16}
 
+
 def convertir(numero: str, base_origen: int, base_destino: int) -> dict:
     """
     Convierte números entre bases 2, 8, 10 y 16.
@@ -36,5 +37,5 @@ def convertir(numero: str, base_origen: int, base_destino: int) -> dict:
         "numero_original": numero,
         "base_origen": base_origen,
         "resultado": resultado,
-        "base_destino": base_destino
+        "base_destino": base_destino,
     }

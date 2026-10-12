@@ -32,8 +32,8 @@ El script genera las entradas del changelog a partir de los commits desde el úl
 
 ### Fixed
 - fix(changelog): corrección de entradas faltantes del sprint actual
-- chore(lint): limpieza de espacios en blanco y newlines finales (ruff W293/W292)
-- fix(herramienta_resolucion_triangulos): herramienta registrada en Geometría en lugar de Matemáticas y documentada
+- fix(centro/dispatcher): reescribir despacho() contra API real buscar_por_nombre, elimina MODULOS_DIR y get_tools inexistentes - Closes #1107
+- chore(changelog): actualización de módulos documentados en desarrollo 
 
 ## [0.1.0] - 2026-04-19
 

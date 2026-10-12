@@ -2,6 +2,8 @@
 Módulo conversor_color
 Encargado de realizar conversiones de color entre los modelos RGB, HEX y HSL.
 """
+
+
 def rgb_a_hex(r: int, g: int, b: int) -> str:
     """Convierte valores RGB (0-255) a su representación hexadecimal '#RRGGBB'."""
     if not (0 <= r <= 255 and 0 <= g <= 255 and 0 <= b <= 255):
@@ -9,13 +11,16 @@ def rgb_a_hex(r: int, g: int, b: int) -> str:
 
     return f"#{r:02X}{g:02X}{b:02X}"
 
+
 def hex_a_rgb(hex_str: str) -> tuple:
     """Convierte un string hexadecimal (con o sin prefijo '#') a una tupla RGB (r, g, b)."""
-    if hex_str.startswith('#'):
+    if hex_str.startswith("#"):
         hex_str = hex_str[1:]
 
     if len(hex_str) != 6:
-        raise ValueError("El formato hexadecimal debe contener exactamente 6 caracteres")
+        raise ValueError(
+            "El formato hexadecimal debe contener exactamente 6 caracteres"
+        )
 
     try:
         r = int(hex_str[0:2], 16)
@@ -25,6 +30,7 @@ def hex_a_rgb(hex_str: str) -> tuple:
         raise ValueError("El string contiene caracteres hexadecimales inválidos")
 
     return (r, g, b)
+
 
 def rgb_a_hsl(r: int, g: int, b: int) -> tuple:
     """

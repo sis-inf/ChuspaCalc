@@ -27,7 +27,9 @@ from escuadra.modulos.sistemas.tabla_ascii import (
 class HerramientaTablaAscii(Herramienta):
     nombre = "Tabla ASCII"
     carrera = Carrera.SISTEMAS
-    descripcion = "Convierte caracteres a código ASCII y lista rangos de la tabla estándar."
+    descripcion = (
+        "Convierte caracteres a código ASCII y lista rangos de la tabla estándar."
+    )
 
     def crear_widget(self) -> QWidget:
         widget = QWidget()

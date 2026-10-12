@@ -43,16 +43,16 @@ def exportar_tabla(parametros, resultado, formula=None):
     ]
 
     for clave, valor in parametros.items():
-        lineas.append(
-            f"{escapar_latex(clave)} & {escapar_latex(valor)} \\\\"
-        )
+        lineas.append(f"{escapar_latex(clave)} & {escapar_latex(valor)} \\\\")
 
-    lineas.extend([
-        r"\hline",
-        f"Resultado & {escapar_latex(resultado)} \\\\",
-        r"\hline",
-        r"\end{tabular}",
-    ])
+    lineas.extend(
+        [
+            r"\hline",
+            f"Resultado & {escapar_latex(resultado)} \\\\",
+            r"\hline",
+            r"\end{tabular}",
+        ]
+    )
 
     if formula:
         lineas.append("")

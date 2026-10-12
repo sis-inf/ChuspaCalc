@@ -1,38 +1,35 @@
-"""
-Pruebas para el módulo dispatcher.py
-"""
+from unittest.mock import MagicMock, patch
 
-from unittest.mock import patch, MagicMock
-
-from escuadra.core.dispatcher import dispatch
+from escuadra.core import dispatcher
 
 
-class TestDispatcher:
-    """Pruebas para las funciones del dispatcher"""
+def test_despacho_desconocido_devuelve_none():
+    with patch("escuadra.core.dispatcher.buscar_por_nombre", return_value=None):
+        result = dispatcher.despacho("no_existe")
+    assert result is None
 
-    def test_dispatch_subcomando_valido(self):
-        """Verifica que dispatch ejecuta un subcomando válido"""
-        mock_herramienta = MagicMock()
-        mock_instancia = MagicMock()
-        mock_instancia.ejecutar.return_value = 0
-        mock_herramienta.return_value = mock_instancia
 
-        with patch('escuadra.core.registry.buscar_por_nombre', return_value=mock_herramienta):
-            resultado = dispatch('test_tool')
-            assert resultado == 0
-            mock_instancia.ejecutar.assert_called_once()
+def test_despacho_conocido_llama_ejecutar():
+    mock_cls = MagicMock()
+    mock_instance = MagicMock()
+    mock_instance.ejecutar.return_value = "ok"
+    mock_cls.return_value = mock_instance
 
-    def test_dispatch_subcomando_desconocido(self):
-        """Verifica que dispatch maneja subcomandos desconocidos"""
-        with patch('escuadra.core.registry.buscar_por_nombre', return_value=None):
-            resultado = dispatch('comando_inexistente')
-            assert resultado == 1
+    with patch("escuadra.core.dispatcher.buscar_por_nombre", return_value=mock_cls):
+        result = dispatcher.despacho("karnaugh")
 
-    def test_dispatch_error_importacion(self):
-        """Verifica que dispatch maneja errores de importación"""
-        mock_herramienta = MagicMock()
-        mock_herramienta.side_effect = ImportError("Módulo no encontrado")
+    assert result == "ok"
+    mock_instance.ejecutar.assert_called_once()
+    mock_cls.assert_called_once()
 
-        with patch('escuadra.core.registry.buscar_por_nombre', return_value=mock_herramienta):
-            resultado = dispatch('tool_fallo')
-            assert resultado == 1
+
+def test_dispatch_alias_devuelve_ejecutar():
+    mock_cls = MagicMock()
+    mock_instance = MagicMock()
+    mock_instance.ejecutar.return_value = 123
+    mock_cls.return_value = mock_instance
+
+    with patch("escuadra.core.dispatcher.buscar_por_nombre", return_value=mock_cls):
+        result = dispatcher.despacho("karnaugh")
+
+    assert result == 123

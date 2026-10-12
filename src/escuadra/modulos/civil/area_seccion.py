@@ -14,7 +14,7 @@ def area_circular(radio):
     if radio <= 0:
         raise ValueError("El radio debe ser mayor que 0")
 
-    return math.pi * radio ** 2
+    return math.pi * radio**2
 
 
 def area_circular_hueca(radio_ext, radio_int):
@@ -23,11 +23,9 @@ def area_circular_hueca(radio_ext, radio_int):
         raise ValueError("Los radios deben ser mayores que 0")
 
     if radio_int >= radio_ext:
-        raise ValueError(
-            "El radio interior debe ser menor que el radio exterior"
-        )
+        raise ValueError("El radio interior debe ser menor que el radio exterior")
 
-    return math.pi * (radio_ext ** 2 - radio_int ** 2)
+    return math.pi * (radio_ext**2 - radio_int**2)
 
 
 def area_perfil_i(
@@ -47,10 +45,7 @@ def area_perfil_i(
     if any(d <= 0 for d in dimensiones):
         raise ValueError("Las dimensiones deben ser mayores que 0")
 
-    return (
-        2 * ancho_ala * espesor_ala
-        + altura_alma * espesor_alma
-    )
+    return 2 * ancho_ala * espesor_ala + altura_alma * espesor_alma
 
 
 def area_perfil_t(
@@ -70,7 +65,4 @@ def area_perfil_t(
     if any(d <= 0 for d in dimensiones):
         raise ValueError("Las dimensiones deben ser mayores que 0")
 
-    return (
-        ancho_ala * espesor_ala
-        + altura_alma * espesor_alma
-    )
+    return ancho_ala * espesor_ala + altura_alma * espesor_alma

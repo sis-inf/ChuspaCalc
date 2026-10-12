@@ -24,7 +24,7 @@ class TestDialogoAcercaDe:
 
     def test_mostrar_acerca_de_instancia(self, app, qtbot):
         """Verifica que mostrar_acerca_de se ejecuta sin error"""
-        with patch('escuadra.ui.dialogo_acerca_de.QMessageBox') as MockQMessageBox:
+        with patch("escuadra.ui.dialogo_acerca_de.QMessageBox") as MockQMessageBox:
             mock_messagebox = MagicMock()
             MockQMessageBox.about = mock_messagebox
 
@@ -38,7 +38,7 @@ class TestDialogoAcercaDe:
         parent = QWidget()
         qtbot.addWidget(parent)
 
-        with patch('escuadra.ui.dialogo_acerca_de.QMessageBox') as MockQMessageBox:
+        with patch("escuadra.ui.dialogo_acerca_de.QMessageBox") as MockQMessageBox:
             mock_messagebox = MagicMock()
             MockQMessageBox.about = mock_messagebox
 
@@ -49,7 +49,7 @@ class TestDialogoAcercaDe:
 
     def test_mostrar_acerca_de_usa_version(self, app, qtbot):
         """Verifica que mostrar_acerca_de usa la versión del proyecto"""
-        with patch('escuadra.ui.dialogo_acerca_de.QMessageBox') as MockQMessageBox:
+        with patch("escuadra.ui.dialogo_acerca_de.QMessageBox") as MockQMessageBox:
             mock_messagebox = MagicMock()
             MockQMessageBox.about = mock_messagebox
 
@@ -61,7 +61,7 @@ class TestDialogoAcercaDe:
 
     def test_mostrar_acerca_de_contenido(self, app, qtbot):
         """Verifica que el diálogo contiene la información esperada"""
-        with patch('escuadra.ui.dialogo_acerca_de.QMessageBox') as MockQMessageBox:
+        with patch("escuadra.ui.dialogo_acerca_de.QMessageBox") as MockQMessageBox:
             mock_messagebox = MagicMock()
             MockQMessageBox.about = mock_messagebox
 
@@ -79,7 +79,7 @@ class TestDialogoAcercaDe:
 
     def test_mostrar_acerca_de_titulo(self, app, qtbot):
         """Verifica que el diálogo tiene el título correcto"""
-        with patch('escuadra.ui.dialogo_acerca_de.QMessageBox') as MockQMessageBox:
+        with patch("escuadra.ui.dialogo_acerca_de.QMessageBox") as MockQMessageBox:
             mock_messagebox = MagicMock()
             MockQMessageBox.about = mock_messagebox
 

@@ -1,10 +1,10 @@
-
-
 class ErrorDisenoVial(Exception):
     pass
 
 
-def calcular_pendiente(elevacion_inicial: float, elevacion_final: float, distancia_horizontal: float) -> float:
+def calcular_pendiente(
+    elevacion_inicial: float, elevacion_final: float, distancia_horizontal: float
+) -> float:
     """
     Calcula pendiente en porcentaje (%)
     """
@@ -16,7 +16,9 @@ def calcular_pendiente(elevacion_inicial: float, elevacion_final: float, distanc
     return pendiente
 
 
-def calcular_peralte_curva(velocidad_diseno: float, radio_curva: float, friccion_lateral: float = 0.15) -> float:
+def calcular_peralte_curva(
+    velocidad_diseno: float, radio_curva: float, friccion_lateral: float = 0.15
+) -> float:
     """
     Calcula peralte básico de curva horizontal
     """
@@ -31,6 +33,6 @@ def calcular_peralte_curva(velocidad_diseno: float, radio_curva: float, friccion
 
     v = velocidad_diseno / 3.6  # km/h → m/s
 
-    peralte = (v ** 2) / (g * radio_curva) - friccion_lateral
+    peralte = (v**2) / (g * radio_curva) - friccion_lateral
 
     return peralte

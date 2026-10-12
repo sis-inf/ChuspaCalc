@@ -12,7 +12,6 @@ from .volumen import (
     volumen_paralelepipedo,
 )
 
-
 FUNCIONES_AREA = {
     "triangulo": area_triangulo,
     "circulo": area_circulo,

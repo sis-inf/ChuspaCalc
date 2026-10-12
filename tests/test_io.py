@@ -18,7 +18,7 @@ class TestCSVParser:
 
     def test_parse_csv_con_header(self):
         """Verifica el parseo de un CSV con encabezados"""
-        with tempfile.NamedTemporaryFile(mode='w', suffix='.csv', delete=False) as f:
+        with tempfile.NamedTemporaryFile(mode="w", suffix=".csv", delete=False) as f:
             f.write("nombre,edad,ciudad\nJuan,25,La Paz\nMaria,30,Cochabamba")
             temp_path = f.name
 
@@ -34,7 +34,7 @@ class TestCSVParser:
 
     def test_parse_csv_sin_header(self):
         """Verifica el parseo de un CSV sin encabezados"""
-        with tempfile.NamedTemporaryFile(mode='w', suffix='.csv', delete=False) as f:
+        with tempfile.NamedTemporaryFile(mode="w", suffix=".csv", delete=False) as f:
             f.write("Juan,25,La Paz\nMaria,30,Cochabamba")
             temp_path = f.name
 
@@ -48,7 +48,7 @@ class TestCSVParser:
 
     def test_parse_csv_con_delimitador(self):
         """Verifica el parseo con delimitador personalizado"""
-        with tempfile.NamedTemporaryFile(mode='w', suffix='.csv', delete=False) as f:
+        with tempfile.NamedTemporaryFile(mode="w", suffix=".csv", delete=False) as f:
             f.write("nombre;edad;ciudad\nJuan;25;La Paz\nMaria;30;Cochabamba")
             temp_path = f.name
 
@@ -61,7 +61,7 @@ class TestCSVParser:
 
     def test_parse_csv_vacio(self):
         """Verifica que parse_csv lanza ValueError con un archivo vacío"""
-        with tempfile.NamedTemporaryFile(mode='w', suffix='.csv', delete=False) as f:
+        with tempfile.NamedTemporaryFile(mode="w", suffix=".csv", delete=False) as f:
             f.write("")
             temp_path = f.name
 
@@ -74,7 +74,7 @@ class TestCSVParser:
 
     def test_parse_csv_solo_encabezados(self):
         """Verifica el parseo de CSV solo con encabezados"""
-        with tempfile.NamedTemporaryFile(mode='w', suffix='.csv', delete=False) as f:
+        with tempfile.NamedTemporaryFile(mode="w", suffix=".csv", delete=False) as f:
             f.write("nombre,edad,ciudad")
             temp_path = f.name
 
@@ -92,8 +92,10 @@ class TestCSVParser:
 
     def test_parse_csv_con_comillas(self):
         """Verifica el parseo de CSV con valores entre comillas"""
-        with tempfile.NamedTemporaryFile(mode='w', suffix='.csv', delete=False) as f:
-            f.write('nombre,descripcion\nJuan,"Ingeniero, Sistemas"\nMaria,"Arquitecta"')
+        with tempfile.NamedTemporaryFile(mode="w", suffix=".csv", delete=False) as f:
+            f.write(
+                'nombre,descripcion\nJuan,"Ingeniero, Sistemas"\nMaria,"Arquitecta"'
+            )
             temp_path = f.name
 
         try:
@@ -109,11 +111,7 @@ class TestExportadorJSON:
 
     def test_exportar_resultado(self):
         """Verifica la exportación de un resultado a JSON"""
-        datos = {
-            "nombre": "Juan",
-            "edad": 25,
-            "ciudad": "La Paz"
-        }
+        datos = {"nombre": "Juan", "edad": 25, "ciudad": "La Paz"}
 
         # Usar un archivo temporal que no exista
         temp_dir = tempfile.mkdtemp()
@@ -122,7 +120,7 @@ class TestExportadorJSON:
         try:
             exportar_resultado(datos, temp_path)
 
-            with open(temp_path, 'r') as f:
+            with open(temp_path, "r") as f:
                 contenido = json.load(f)
                 assert contenido["nombre"] == "Juan"
                 assert contenido["edad"] == 25
@@ -140,7 +138,7 @@ class TestExportadorJSON:
         temp_path = os.path.join(temp_dir, "test.json")
 
         # Crear archivo existente
-        with open(temp_path, 'w') as f:
+        with open(temp_path, "w") as f:
             json.dump({"otro": "dato"}, f)
 
         try:
@@ -158,13 +156,13 @@ class TestExportadorJSON:
         temp_dir = tempfile.mkdtemp()
         temp_path = os.path.join(temp_dir, "test.json")
 
-        with open(temp_path, 'w') as f:
+        with open(temp_path, "w") as f:
             json.dump({"otro": "dato"}, f)
 
         try:
             exportar_resultado(datos, temp_path, sobreescribir=True)
 
-            with open(temp_path, 'r') as f:
+            with open(temp_path, "r") as f:
                 contenido = json.load(f)
                 assert contenido["nombre"] == "Juan"
         finally:
@@ -190,10 +188,7 @@ class TestExportadorJSON:
 
     def test_exportar_lista(self):
         """Verifica la exportación de una lista a JSON"""
-        datos = [
-            {"nombre": "Juan", "edad": 25},
-            {"nombre": "Maria", "edad": 30}
-        ]
+        datos = [{"nombre": "Juan", "edad": 25}, {"nombre": "Maria", "edad": 30}]
 
         temp_dir = tempfile.mkdtemp()
         temp_path = os.path.join(temp_dir, "test.json")
@@ -201,7 +196,7 @@ class TestExportadorJSON:
         try:
             exportar_lista(datos, temp_path)
 
-            with open(temp_path, 'r') as f:
+            with open(temp_path, "r") as f:
                 contenido = json.load(f)
                 assert len(contenido) == 2
                 assert contenido[0]["nombre"] == "Juan"
@@ -236,11 +231,12 @@ class TestExportadorJSON:
         try:
             exportar_resultado(datos, temp_path)
             assert os.path.exists(temp_path)
-            with open(temp_path, 'r') as f:
+            with open(temp_path, "r") as f:
                 contenido = json.load(f)
                 assert contenido["nombre"] == "Juan"
         finally:
             import shutil
+
             shutil.rmtree(temp_dir)
 
     def test_exportar_con_unicode(self):
@@ -253,7 +249,7 @@ class TestExportadorJSON:
         try:
             exportar_resultado(datos, temp_path)
 
-            with open(temp_path, 'r', encoding='utf-8') as f:
+            with open(temp_path, "r", encoding="utf-8") as f:
                 contenido = json.load(f)
                 assert contenido["nombre"] == "José"
                 assert contenido["ciudad"] == "Cochabamba"
@@ -261,4 +257,6 @@ class TestExportadorJSON:
             if os.path.exists(temp_path):
                 os.unlink(temp_path)
             os.rmdir(temp_dir)
+
+
 # Test comment

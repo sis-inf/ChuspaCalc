@@ -12,6 +12,7 @@ def cartesiana_a_polar(x, y):
         theta_grados = 0.0
     return {"r": round(r, 2), "theta_grados": round(theta_grados, 2)}
 
+
 def polar_a_cartesiana(r, theta_grados):
     """Convierte coordenadas polares (r, theta_grados) a cartesianas (x, y)."""
     theta_radianes = math.radians(theta_grados)
@@ -19,10 +20,12 @@ def polar_a_cartesiana(r, theta_grados):
     y = r * math.sin(theta_radianes)
     return {"x": round(x, 2), "y": round(y, 2)}
 
+
 def cartesiana_a_cilindrica(x, y, z):
     """Convierte coordenadas cartesianas (x, y, z) a cilíndricas (r, theta_grados, z)."""
     polar = cartesiana_a_polar(x, y)
     return {"r": polar["r"], "theta_grados": polar["theta_grados"], "z": round(z, 2)}
+
 
 def cartesiana_a_esferica(x, y, z):
     """Convierte coordenadas cartesianas (x, y, z) a esféricas (rho, theta_grados, phi_grados)."""
@@ -34,4 +37,8 @@ def cartesiana_a_esferica(x, y, z):
     else:
         phi_radianes = math.acos(z / rho)
         phi_grados = math.degrees(phi_radianes)
-    return {"rho": round(rho, 2), "theta_grados": theta_grados, "phi_grados": round(phi_grados, 2)}
+    return {
+        "rho": round(rho, 2),
+        "theta_grados": theta_grados,
+        "phi_grados": round(phi_grados, 2),
+    }

@@ -2,7 +2,7 @@ import logging
 import sys
 
 
-def configurar_logging(nivel='INFO'):
+def configurar_logging(nivel="INFO"):
     # Usamos "escuadra" como el logger raíz según el requerimiento
     logger_raiz = logging.getLogger("escuadra")
 
@@ -16,12 +16,13 @@ def configurar_logging(nivel='INFO'):
 
         # Formato: [YYYY-MM-DD HH:MM:SS] [NIVEL] [nombre_logger] mensaje
         formato = logging.Formatter(
-            '[%(asctime)s] [%(levelname)s] [%(name)s] %(message)s',
-            datefmt='%Y-%m-%d %H:%M:%S'
+            "[%(asctime)s] [%(levelname)s] [%(name)s] %(message)s",
+            datefmt="%Y-%m-%d %H:%M:%S",
         )
 
         handler.setFormatter(formato)
         logger_raiz.addHandler(handler)
+
 
 def obtener_logger(nombre):
     # Wrapper para mantener la API consistente

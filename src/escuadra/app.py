@@ -72,7 +72,9 @@ def main() -> None:
         sys.exit(app.exec())
 
     except Exception as error:
-        logger.critical("Error fatal al arrancar la aplicación: %s", error, exc_info=True)
+        logger.critical(
+            "Error fatal al arrancar la aplicación: %s", error, exc_info=True
+        )
         try:
             QMessageBox.critical(
                 None,

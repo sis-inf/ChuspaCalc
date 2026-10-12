@@ -5,7 +5,7 @@ def calcular_carga_critica_euler(
     modulo_elasticidad: float,
     momento_inercia: float,
     longitud: float,
-    condicion_apoyo: str = "biarticulada"
+    condicion_apoyo: str = "biarticulada",
 ) -> float:
     """
     Calcula la carga crítica de pandeo de Euler para columnas a compresión.
@@ -64,8 +64,10 @@ def calcular_carga_critica_euler(
 
     # Calcular carga crítica de Euler
     # P_cr = π² · E · I / (K · L)²
-    pi_cuadrado = math.pi ** 2
+    pi_cuadrado = math.pi**2
     longitud_efectiva = K * longitud
-    carga_critica = (pi_cuadrado * modulo_elasticidad * momento_inercia) / (longitud_efectiva ** 2)
+    carga_critica = (pi_cuadrado * modulo_elasticidad * momento_inercia) / (
+        longitud_efectiva**2
+    )
 
     return float(carga_critica)

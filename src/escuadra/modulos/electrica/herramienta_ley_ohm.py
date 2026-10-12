@@ -27,7 +27,9 @@ def calcular_potencia(voltaje: float, corriente: float) -> float:
 class HerramientaLeyOhm(Herramienta):
     nombre = "Ley de Ohm"
     carrera = Carrera.ELECTRICA
-    descripcion = "Calcula voltaje, corriente o resistencia a partir de las otras dos magnitudes."
+    descripcion = (
+        "Calcula voltaje, corriente o resistencia a partir de las otras dos magnitudes."
+    )
 
     def crear_widget(self) -> QWidget:
         widget = QWidget()
@@ -112,7 +114,9 @@ class HerramientaLeyOhm(Herramienta):
                 return
 
             if valor < 0:
-                self._error_label.setText(f"Error: el valor de {clave} debe ser positivo.")
+                self._error_label.setText(
+                    f"Error: el valor de {clave} debe ser positivo."
+                )
                 return
 
             valores[clave] = valor

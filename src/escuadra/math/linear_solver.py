@@ -6,9 +6,7 @@ from typing import Optional, Tuple
 
 
 def solve_linear_2x2(
-    a11: float, a12: float,
-    a21: float, a22: float,
-    b1: float, b2: float
+    a11: float, a12: float, a21: float, a22: float, b1: float, b2: float
 ) -> Optional[Tuple[float, float]]:
     """
     Resuelve un sistema de ecuaciones lineales 2x2 usando la regla de Cramer.

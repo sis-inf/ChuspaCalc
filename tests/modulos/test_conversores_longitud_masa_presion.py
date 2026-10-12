@@ -88,9 +88,7 @@ def test_convertir_longitud_valor_negativo():
     reason="Bug conocido: conversor_longitud_extendido.py importa desde 'src.escuadra'.",
 )
 def test_convertir_longitud_extendida_pc_a_al():
-    assert convertir_longitud(1, "pc", "al") == pytest.approx(
-        3.086e16 / 9.461e15
-    )
+    assert convertir_longitud(1, "pc", "al") == pytest.approx(3.086e16 / 9.461e15)
 
 
 @pytest.mark.skipif(

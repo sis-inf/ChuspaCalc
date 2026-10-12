@@ -1,12 +1,15 @@
-from escuadra.modulos.matematicas.conversor_longitud import UNIDADES_A_METROS as UNIDADES_BASE
+from escuadra.modulos.matematicas.conversor_longitud import (
+    UNIDADES_A_METROS as UNIDADES_BASE,
+)
 
 UNIDADES_A_METROS = {
     **UNIDADES_BASE,
     "ua": 1.496e11,
     "al": 9.461e15,
     "mn": 1852.0,
-    "pc": 3.086e16
+    "pc": 3.086e16,
 }
+
 
 def convertir_longitud(valor: float, unidad_origen: str, unidad_destino: str) -> float:
     if valor < 0:
