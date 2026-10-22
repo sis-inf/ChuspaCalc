@@ -1,12 +1,12 @@
 # Autocompletado de Shell para el CLI
 
-Escuadra soporta autocompletado de comandos en bash y zsh mediante la libreria argcomplete.
+ChuspaCalc soporta autocompletado de comandos en bash y zsh mediante la libreria argcomplete.
 
 ## Requisitos
 
 - Python 3.10 o superior
-- Escuadra instalado
-- argcomplete instalado (incluido como dependencia de Escuadra)
+- ChuspaCalc instalado
+- argcomplete instalado (incluido como dependencia de ChuspaCalc)
 
 Verificar que argcomplete este instalado:
 
@@ -24,11 +24,11 @@ Esto activa el autocompletado para todos los scripts que usen argcomplete. Luego
 
     source ~/.bashrc
 
-### Metodo 2: Activacion solo para escuadra
+### Metodo 2: Activacion solo para ChuspaCalc
 
 Agregar al archivo ~/.bashrc:
 
-    eval "$(register-python-argcomplete escuadra)"
+    eval "$(register-python-argcomplete ChuspaCalc)"
 
 Recargar:
 
@@ -40,7 +40,7 @@ Agregar al archivo ~/.zshrc:
 
     autoload -U bashcompinit
     bashcompinit
-    eval "$(register-python-argcomplete escuadra)"
+    eval "$(register-python-argcomplete escuChuspaCalcadra)"
 
 Recargar:
 
@@ -50,19 +50,19 @@ Recargar:
 
 Abrir una terminal nueva y escribir:
 
-    escuadra <TAB>
+    ChuspaCalc <TAB>
 
 Deberia mostrar la lista de herramientas disponibles. Tambien funciona con argumentos parciales:
 
-    escuadra --<TAB>
+    ChuspaCalc --<TAB>
 
 ## Uso del autocompletado
 
 Una vez activado, presionar Tab en cualquier momento para ver las opciones disponibles:
 
-    escuadra [TAB]          # muestra todas las herramientas
-    escuadra --[TAB]        # muestra todas las opciones globales
-    escuadra civil [TAB]    # muestra herramientas del modulo civil
+    ChuspaCalc [TAB]          # muestra todas las herramientas
+    ChuspaCalc --[TAB]        # muestra todas las opciones globales
+    ChuspaCalc civil [TAB]    # muestra herramientas del modulo civil
 
 ## Solucionar problemas
 
@@ -78,6 +78,6 @@ Si el autocompletado no funciona despues de activarlo:
 
 3. Abrir una terminal completamente nueva (no solo recargar)
 
-4. Verificar que escuadra sea accesible desde el PATH:
+4. Verificar que ChuspaCalc sea accesible desde el PATH:
 
-    which escuadra
+    which ChuspaCalc
