@@ -36,4 +36,4 @@ Los siguientes tiempos representan el **promedio de 1000 ejecuciones** en micros
 ### Opción 1: Usando `timeit` (recomendado)
 
 ```bash
-python -m timeit -n 1000 "import src.chuspacalc.modulos as m; m.herramienta_ejemplo()"
+python -m timeit -n 1000 "import src.escuadra.modulos as m; m.herramienta_ejemplo()"
