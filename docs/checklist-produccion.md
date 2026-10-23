@@ -1,9 +1,9 @@
-# Checklist de Producción — Distribución de Escuadra
+# Checklist de Producción — Distribución de ChuspaCalc
 
 ## Introducción
 
 Esta lista de verificación debe revisarse antes de distribuir una nueva
-versión de Escuadra para uso real en un curso. Su objetivo es asegurar
+versión de ChuspaCalc para uso real en un curso. Su objetivo es asegurar
 que la aplicación sea estable, completa y esté correctamente empaquetada
 antes de llegar a los estudiantes.
 
