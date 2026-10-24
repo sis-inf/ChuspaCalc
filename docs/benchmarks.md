@@ -1,6 +1,6 @@
 # 📊 Benchmarks de herramientas
 
-Este documento contiene los tiempos de ejecución de referencia para las herramientas disponibles en Escuadra.
+Este documento contiene los tiempos de ejecución de referencia para las herramientas disponibles en ChuspaCalc.
 
 ## 🖥️ Entorno de referencia
 
