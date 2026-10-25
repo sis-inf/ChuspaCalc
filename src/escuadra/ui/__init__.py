@@ -1,3 +1,3 @@
 """
-Componentes de interfaz de usuario de Escuadra.
+Componentes de interfaz de usuario de ChuspaCalc.
 """
