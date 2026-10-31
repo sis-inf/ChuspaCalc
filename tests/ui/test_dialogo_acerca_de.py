@@ -2,9 +2,9 @@
 Pruebas para el módulo dialogo_acerca_de.py
 """
 
-import pytest
-from unittest.mock import patch, MagicMock
+from unittest.mock import MagicMock, patch
 
+import pytest
 from PySide6.QtWidgets import QApplication, QWidget
 
 from escuadra.ui.dialogo_acerca_de import mostrar_acerca_de

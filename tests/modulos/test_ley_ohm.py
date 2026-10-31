@@ -4,8 +4,8 @@ Tests unitarios para las funciones de cálculo de la Ley de Ohm.
 
 import pytest
 
-from escuadra.modulos.electrica.ley_ohm import calcular_ohm
 from escuadra.modulos.electrica.herramienta_ley_ohm import calcular_potencia
+from escuadra.modulos.electrica.ley_ohm import calcular_ohm
 
 
 def test_calcular_voltaje():

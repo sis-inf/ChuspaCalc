@@ -2,10 +2,11 @@
 Pruebas para el módulo config/loader.py
 """
 
-import pytest
-import yaml
 import os
 import tempfile
+
+import pytest
+import yaml
 
 from escuadra.config.loader import load
 

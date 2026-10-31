@@ -2,7 +2,7 @@
 Wrapper de herramienta para calculadora de subredes IP/CIDR
 """
 
-from ChuspaCalc.modulos.sistemas.calculadora_subred import calcular_subred, ErrorCIDR
+from ChuspaCalc.modulos.sistemas.calculadora_subred import ErrorCIDR, calcular_subred
 
 
 def herramienta_calculadora_subred(ip: str, prefijo_cidr: str) -> str:

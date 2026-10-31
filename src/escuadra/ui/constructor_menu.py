@@ -3,12 +3,11 @@ Constructor dinámico de menú para ChuspaCalc.
 Conecta el registry de herramientas con los menús de la ventana principal.
 """
 
-from PySide6.QtGui import QAction
-from PySide6.QtWidgets import QMenu
-
 from chuspacalc.core.carrera import Carrera
 from chuspacalc.core.herramienta import Herramienta
 from chuspacalc.ui.ventana_principal import VentanaPrincipal
+from PySide6.QtGui import QAction
+from PySide6.QtWidgets import QMenu
 
 
 def construir_menu(

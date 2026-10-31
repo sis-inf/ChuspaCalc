@@ -2,7 +2,7 @@
 Pruebas para el módulo dispatcher.py
 """
 
-from unittest.mock import patch, MagicMock
+from unittest.mock import MagicMock, patch
 
 from escuadra.core.dispatcher import dispatch
 

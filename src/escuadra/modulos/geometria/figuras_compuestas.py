@@ -1,17 +1,15 @@
 from .calculo_area import (
-    area_triangulo,
     area_circulo,
     area_rectangulo,
+    area_triangulo,
 )
-
 from .volumen import (
-    volumen_cubo,
-    volumen_esfera,
     volumen_cilindro,
     volumen_cono,
+    volumen_cubo,
+    volumen_esfera,
     volumen_paralelepipedo,
 )
-
 
 FUNCIONES_AREA = {
     "triangulo": area_triangulo,

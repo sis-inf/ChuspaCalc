@@ -2,6 +2,12 @@
 Herramienta para resolver triángulos mediante ley de senos y cosenos.
 """
 
+from ChuspaCalc.core.carrera import Carrera
+from ChuspaCalc.core.herramienta import Herramienta
+from ChuspaCalc.modulos.geometria.resolucion_triangulos import (
+    resolver_triangulo_lado_angulo,
+    resolver_triangulo_lados,
+)
 from PySide6.QtWidgets import (
     QComboBox,
     QLabel,
@@ -9,13 +15,6 @@ from PySide6.QtWidgets import (
     QPushButton,
     QVBoxLayout,
     QWidget,
-)
-
-from ChuspaCalc.core.carrera import Carrera
-from ChuspaCalc.core.herramienta import Herramienta
-from ChuspaCalc.modulos.geometria.resolucion_triangulos import (
-    resolver_triangulo_lado_angulo,
-    resolver_triangulo_lados,
 )
 
 

@@ -2,8 +2,9 @@
 Módulo de indicador de progreso para el CLI de ChuspaCalc.
 """
 
-import time
 import threading
+import time
+
 
 def mostrar_progreso(current: int, total: int, width: int = 30) -> None:
     """

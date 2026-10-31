@@ -1,8 +1,7 @@
-import escuadra.core.carrera as carrera
-import escuadra.modulos.geometria.calculo_area as calculo_area
-
 from PySide6.QtCore import Qt
 
+import escuadra.core.carrera as carrera
+import escuadra.modulos.geometria.calculo_area as calculo_area
 
 # Dependencias pendientes del módulo de geometría.
 # Se agregan temporalmente para permitir probar el widget hasta que

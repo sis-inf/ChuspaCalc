@@ -4,13 +4,14 @@ Pruebas para los módulos io:
 - exportador_json.py
 """
 
-import pytest
 import json
 import os
 import tempfile
 
+import pytest
+
 from escuadra.io.csv_parser import parse_csv
-from escuadra.io.exportador_json import exportar_resultado, exportar_lista
+from escuadra.io.exportador_json import exportar_lista, exportar_resultado
 
 
 class TestCSVParser:

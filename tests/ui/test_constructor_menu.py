@@ -2,11 +2,12 @@
 Pruebas para el módulo constructor_menu.py
 """
 
-import pytest
 from unittest.mock import MagicMock, patch
 
-from escuadra.ui.constructor_menu import construir_menu
+import pytest
+
 from escuadra.core.carrera import Carrera
+from escuadra.ui.constructor_menu import construir_menu
 
 
 class TestConstructorMenu:

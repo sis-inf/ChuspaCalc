@@ -2,11 +2,20 @@
 Herramienta de Figuras Compuestas para Escuadra.
 """
 from PySide6.QtWidgets import (
-    QHBoxLayout, QLabel, QLineEdit, QPushButton, QVBoxLayout, QWidget, QTextEdit
+    QHBoxLayout,
+    QLabel,
+    QLineEdit,
+    QPushButton,
+    QTextEdit,
+    QVBoxLayout,
+    QWidget,
 )
+
 from escuadra.core.carrera import Carrera
 from escuadra.core.herramienta import Herramienta
-from.figuras_compuestas import calcular_area_compuesta, calcular_volumen_compuesto
+
+from .figuras_compuestas import calcular_area_compuesta, calcular_volumen_compuesto
+
 
 class HerramientaFigurasCompuestas(Herramienta):
     nombre = "Figuras Compuestas"

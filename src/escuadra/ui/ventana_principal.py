@@ -4,6 +4,7 @@ Contiene la clase VentanaPrincipal que hereda de QMainWindow.
 """
 
 from typing import Callable
+
 from PySide6.QtGui import QAction, QKeySequence, QShortcut
 from PySide6.QtWidgets import QApplication, QMainWindow, QMenu, QStackedWidget, QStatusBar, QWidget
 

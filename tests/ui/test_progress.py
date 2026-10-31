@@ -2,9 +2,9 @@
 Pruebas para el módulo progress.py (indicador de progreso)
 """
 
-from unittest.mock import patch, MagicMock
+from unittest.mock import MagicMock, patch
 
-from escuadra.ui.progress import mostrar_progreso, ProgressIndicator
+from escuadra.ui.progress import ProgressIndicator, mostrar_progreso
 
 
 class TestMostrarProgreso:

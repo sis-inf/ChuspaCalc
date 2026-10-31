@@ -1,14 +1,16 @@
 """
 Herramienta de Diseño Vial para Escuadra.
 """
-from PySide6.QtWidgets import (
-    QHBoxLayout, QLabel, QLineEdit, QPushButton, QVBoxLayout, QWidget
-)
+from PySide6.QtWidgets import QHBoxLayout, QLabel, QLineEdit, QPushButton, QVBoxLayout, QWidget
+
 from escuadra.core.carrera import Carrera
 from escuadra.core.herramienta import Herramienta
 from escuadra.modulos.civil.diseno_vial import (
-    calcular_pendiente, calcular_peralte_curva, ErrorDisenoVial
+    ErrorDisenoVial,
+    calcular_pendiente,
+    calcular_peralte_curva,
 )
+
 
 class HerramientaDisenoVial(Herramienta):
     nombre = "Diseño Vial"

@@ -6,11 +6,14 @@ Pruebas para los wrappers de herramientas matemáticas:
 """
 
 import pytest
-
 from PySide6.QtWidgets import QApplication
 
-from escuadra.modulos.matematicas.herramienta_conversion_unidades import HerramientaConversionUnidades
-from escuadra.modulos.matematicas.herramienta_calculadora_cientifica import HerramientaCalculadoraCientifica
+from escuadra.modulos.matematicas.herramienta_calculadora_cientifica import (
+    HerramientaCalculadoraCientifica,
+)
+from escuadra.modulos.matematicas.herramienta_conversion_unidades import (
+    HerramientaConversionUnidades,
+)
 from escuadra.modulos.matematicas.herramienta_sistemas_lineales import HerramientaSistemasLineales
 
 

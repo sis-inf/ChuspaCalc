@@ -13,8 +13,8 @@ Uso:
 from __future__ import annotations
 
 import json
-from escuadra.core.registry import descubrir_herramientas
 
+from escuadra.core.registry import descubrir_herramientas
 
 # Mapa de tipos Python a tipos JSON Schema
 _TIPO_JSON: dict[str, str] = {
