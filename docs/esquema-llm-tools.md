@@ -3,7 +3,7 @@
 ## Introducción
 
 Este documento describe el esquema JSON propuesto para exponer las
-herramientas de Escuadra a asistentes de IA mediante function calling,
+herramientas de ChuspaCalc a asistentes de IA mediante function calling,
 permitiendo que un LLM invoque directamente las funciones de cálculo
 del proyecto a partir de su descripción estructurada.
 
