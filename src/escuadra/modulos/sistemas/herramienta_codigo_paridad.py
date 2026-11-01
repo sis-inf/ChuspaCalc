@@ -1,6 +1,6 @@
 """Wrapper de herramienta para cálculo y verificación de paridad."""
 
-from ChuspaCalc.modulos.sistemas.codigo_paridad import (
+from chuspacalc.modulos.sistemas.codigo_paridad import (
     calcular_bit_paridad,
     verificar_paridad,
 )
