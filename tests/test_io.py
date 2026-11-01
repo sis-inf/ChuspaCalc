@@ -9,8 +9,8 @@ import json
 import os
 import tempfile
 
-from escuadra.io.csv_parser import parse_csv
-from escuadra.io.exportador_json import exportar_resultado, exportar_lista
+from chuspacalc.io.csv_parser import parse_csv
+from chuspacalc.io.exportador_json import exportar_resultado, exportar_lista
 
 
 class TestCSVParser:
