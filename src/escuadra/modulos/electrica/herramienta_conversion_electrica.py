@@ -1,5 +1,5 @@
 """
-Herramienta de conversión de unidades eléctricas para Escuadra.
+Herramienta de conversión de unidades eléctricas para ChuspaCalc.
 Convierte entre unidades de potencia y energía.
 """
 
@@ -13,8 +13,8 @@ from PySide6.QtWidgets import (
     QWidget,
 )
 
-from escuadra.core.carrera import Carrera
-from escuadra.core.herramienta import Herramienta
+from chuspacalc.core.carrera import Carrera
+from chuspacalc.core.herramienta import Herramienta
 
 # Función pura de conversión
 
