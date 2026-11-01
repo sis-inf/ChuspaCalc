@@ -1,11 +1,11 @@
 import logging
 
-from escuadra.utils.converter import (
+from chuspacalc.utils.converter import (
     celsius_to_fahrenheit,
     km_to_miles,
 )
-from escuadra.utils.helpers import formatear_numero
-from escuadra.utils.logging_config import configurar_logging, obtener_logger
+from chuspacalc.utils.helpers import formatear_numero
+from chuspacalc.utils.logging_config import configurar_logging, obtener_logger
 
 
 def test_converter_celsius_to_fahrenheit():
@@ -27,7 +27,7 @@ def test_formatear_numero_sin_decimales():
 def test_configurar_logging_crea_logger_funcional():
     configurar_logging("INFO")
 
-    logger = obtener_logger("escuadra")
+    logger = obtener_logger("chuspacalc")
 
     assert logger is not None
     assert logger.level == logging.INFO
