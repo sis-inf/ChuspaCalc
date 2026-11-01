@@ -6,7 +6,7 @@ como el manejo de valores fuera del rango permitido.
 
 import pytest
 
-from escuadra.modulos.matematicas.conversor_temperatura import (
+from chuspacalc.modulos.matematicas.conversor_temperatura import (
     celsius_a_fahrenheit,
     celsius_a_kelvin,
     fahrenheit_a_celsius,
