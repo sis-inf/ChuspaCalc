@@ -1,6 +1,6 @@
 # Guía de primeros pasos para tu primer Pull Request
 
-¡Bienvenido/a a Escuadra!
+¡Bienvenido/a a ChuspaCalc!
 
 Si es tu primera vez contribuyendo a un proyecto en GitHub, esta guía te acompañará paso a paso para realizar tu primer Pull Request (PR). Aprenderás cómo preparar tu entorno, crear una rama de trabajo, realizar cambios y enviar tu contribución correctamente.
 
@@ -14,8 +14,8 @@ Antes de ejecutar cualquier comando, es importante entender la estructura de tre
 
 ```mermaid
 flowchart TD
-    upstream["upstream\nsis-inf/escuadra\nRepositorio original del proyecto"]
-    origin["origin\nTU_USUARIO/escuadra\nTu copia personal en GitHub"]
+    upstream["upstream\nsis-inf/ChuspaCalc\nRepositorio original del proyecto"]
+    origin["origin\nTU_USUARIO/ChuspaCalc\nTu copia personal en GitHub"]
     local["local\nTu máquina"]
 
     upstream -- "git pull upstream dev\n(mantener actualizado)" --> local
@@ -34,11 +34,11 @@ flowchart TD
 Un fork crea una copia del repositorio bajo tu cuenta de GitHub. Es necesario porque no tienes permisos de escritura en el repositorio original.
 
 **Cómo hacerlo:**
-1. Ingresa a la página del repositorio de Escuadra en GitHub.
+1. Ingresa a la página del repositorio de ChuspaCalc en GitHub.
 2. Haz clic en el botón **Fork** (esquina superior derecha).    
 3. Selecciona tu cuenta personal como destino y confirma.
 
-Al terminar, tendrás el repositorio disponible en `https://github.com/TU_USUARIO/escuadra`.
+Al terminar, tendrás el repositorio disponible en `https://github.com/TU_USUARIO/ChuspaCalc`.
 
 > Este paso se hace una sola vez. Si ya tienes un fork, ve directo al Paso 2.
 
@@ -49,8 +49,8 @@ Al terminar, tendrás el repositorio disponible en `https://github.com/TU_USUARI
 Clonar descarga el repositorio a tu máquina y configura automáticamente el remote `origin` apuntando a tu fork.
 
 ```bash
-git clone https://github.com/TU_USUARIO/escuadra.git
-cd escuadra
+git clone https://github.com/TU_USUARIO/ChuspaCalc.git
+cd ChuspaCalc
 ```
 
 **¿Por qué clonar el fork y no el repositorio original?**
@@ -63,7 +63,7 @@ Porque si clonas el original, no tendrás permisos para hacer push. Al clonar tu
 Por defecto, al clonar tu fork, Git solo conoce `origin` (tu fork). Necesitas agregar `upstream` para poder sincronizarte con los cambios del repositorio original.
 
 ```bash
-git remote add upstream https://github.com/sis-inf/escuadra.git
+git remote add upstream https://github.com/sis-inf/ChuspaCalc.git
 ```
 
 Verifica que ambos remotes estén configurados:
@@ -75,10 +75,10 @@ git remote -v
 Deberías ver:
 
 ```
-origin    https://github.com/TU_USUARIO/escuadra.git (fetch)
-origin    https://github.com/TU_USUARIO/escuadra.git (push)
-upstream  https://github.com/sis-inf/escuadra.git (fetch)
-upstream  https://github.com/sis-inf/escuadra.git (push)
+origin    https://github.com/TU_USUARIO/ChuspaCalc.git (fetch)
+origin    https://github.com/TU_USUARIO/ChuspaCalc.git (push)
+upstream  https://github.com/sis-inf/ChuspaCalc.git (fetch)
+upstream  https://github.com/sis-inf/ChuspaCalc.git (push)
 ```
 
 > Si ves solo `origin`, el comando `git remote add upstream` no se ejecutó correctamente. Vuelve a intentarlo.
@@ -147,7 +147,7 @@ source .venv/bin/activate
 ```
 
 Sabrás que está activo porque verás el prefijo `(.venv)` en tu terminal:
-(.venv) usuario@equipo:~/escuadra$
+(.venv) usuario@equipo:~/ChuspaCalc$
 
 Instala las dependencias:
 
@@ -267,14 +267,14 @@ Después de este paso, tu rama existe tanto en tu máquina como en tu fork de Gi
 
 ## Paso 10 — Abrir el Pull Request
 
-1. Ve a `https://github.com/TU_USUARIO/escuadra`.
+1. Ve a `https://github.com/TU_USUARIO/ChuspaCalc`.
 2. GitHub mostrará un banner **"Compare & pull request"** — haz clic en él.
 3. Verifica la configuración del PR:
 
 ```mermaid
 flowchart LR
-    A["base repository\nsis-inf/escuadra"] --> B["base branch\ndev"]
-    C["head repository\nTU_USUARIO/escuadra"] --> D["compare branch\ntipo/nombre-descriptivo"]
+    A["base repository\nsis-inf/ChuspaCalc"] --> B["base branch\ndev"]
+    C["head repository\nTU_USUARIO/ChuspaCalc"] --> D["compare branch\ntipo/nombre-descriptivo"]
     B --> E["Pull Request"]
     D --> E
 ```
