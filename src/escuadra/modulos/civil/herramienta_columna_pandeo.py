@@ -1,5 +1,5 @@
 """
-Herramienta de Carga Crítica de Euler para Escuadra.
+Herramienta de Carga Crítica de Euler para ChuspaCalc.
 Calcula la carga crítica de pandeo para columnas a compresión.
 """
 
@@ -13,9 +13,9 @@ from PySide6.QtWidgets import (
     QWidget,
 )
 
-from escuadra.core.carrera import Carrera
-from escuadra.core.herramienta import Herramienta
-from escuadra.modulos.civil.columna_pandeo import calcular_carga_critica_euler
+from chuspacalc.core.carrera import Carrera
+from chuspacalc.core.herramienta import Herramienta
+from chuspacalc.modulos.civil.columna_pandeo import calcular_carga_critica_euler
 
 
 class HerramientaColumnaPandeo(Herramienta):
