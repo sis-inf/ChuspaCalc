@@ -7,7 +7,7 @@ import yaml
 import os
 import tempfile
 
-from escuadra.config.loader import load
+from chuspacalc.config.loader import load
 
 
 class TestConfigLoader:
@@ -17,7 +17,7 @@ class TestConfigLoader:
         """Verifica que carga un archivo YAML válido correctamente"""
         config_data = {
             "app": {
-                "name": "Escuadra",
+                "name": "ChuspaCalc",
                 "version": "0.1.0"
             },
             "logging": {
@@ -74,14 +74,14 @@ class TestConfigLoader:
             f.write("""
 # Comentario
 app:
-  name: Escuadra  # Comentario inline
+  name: ChuspaCalc  # Comentario inline
   version: 0.1.0
 """)
             temp_path = f.name
 
         try:
             result = load(temp_path)
-            assert result["app"]["name"] == "Escuadra"
+            assert result["app"]["name"] == "ChuspaCalc"
             assert result["app"]["version"] == "0.1.0"
         finally:
             os.unlink(temp_path)
@@ -90,7 +90,7 @@ app:
         """Verifica que carga configuración anidada correctamente"""
         config_data = {
             "app": {
-                "name": "Escuadra",
+                "name": "ChuspaCalc",
                 "settings": {
                     "debug": True,
                     "theme": "dark"
