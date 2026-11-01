@@ -3,8 +3,8 @@ import sys
 
 
 def configurar_logging(nivel='INFO'):
-    # Usamos "escuadra" como el logger raíz según el requerimiento
-    logger_raiz = logging.getLogger("escuadra")
+    # Usamos "chuspacalc" como el logger raíz según el requerimiento
+    logger_raiz = logging.getLogger("chuspacalc")
 
     # Convertir el nivel de string a constante de logging
     numeric_level = getattr(logging, nivel.upper(), logging.INFO)
