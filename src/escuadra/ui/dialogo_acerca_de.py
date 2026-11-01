@@ -22,7 +22,7 @@ def mostrar_acerca_de(parent: QWidget | None = None) -> None:
                 Si es ``None``, el dialogo se muestra sin padre.
     """
     try:
-        from ChuspaCalc import __version__ as version
+        from chuspacalc import __version__ as version
     except (ImportError, AttributeError):
         version = "0.1.0"
 
