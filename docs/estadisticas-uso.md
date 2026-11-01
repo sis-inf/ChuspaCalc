@@ -1,6 +1,6 @@
 # Estadísticas de uso de herramientas
 
-Este documento describe el panel de estadísticas de uso de herramientas de la suite Escuadra. El panel permite visualizar qué herramientas se han utilizado, con qué frecuencia y cómo se distribuye ese uso según la carrera del usuario.
+Este documento describe el panel de estadísticas de uso de herramientas de la suite ChuspaCalc. El panel permite visualizar qué herramientas se han utilizado, con qué frecuencia y cómo se distribuye ese uso según la carrera del usuario.
 
 ## ¿Qué muestra el panel?
 
