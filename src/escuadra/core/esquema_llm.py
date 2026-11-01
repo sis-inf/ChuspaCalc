@@ -1,19 +1,19 @@
 """
-Exportación del esquema de herramientas de Escuadra en formato JSON Schema
+Exportación del esquema de herramientas de ChuspaCalc en formato JSON Schema
 compatible con integraciones de function-calling de LLMs (OpenAI, Anthropic, etc.).
 
 Uso:
-    from escuadra.core.esquema_llm import exportar_esquema_llm
+    from chuspacalc.core.esquema_llm import exportar_esquema_llm
     esquema = exportar_esquema_llm()
 
     # O desde la CLI:
-    python -m escuadra.core.esquema_llm
+    python -m chuspacalc.core.esquema_llm
 """
 
 from __future__ import annotations
 
 import json
-from escuadra.core.registry import descubrir_herramientas
+from chuspacalc.core.registry import descubrir_herramientas
 
 
 # Mapa de tipos Python a tipos JSON Schema
