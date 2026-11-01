@@ -12,7 +12,7 @@ class TestCLI:
         """Verifica que __version__ está definida en cli.py"""
         # No importamos cli directamente para evitar el bug de registry
         import importlib.util
-        spec = importlib.util.spec_from_file_location("cli", "src/escuadra/cli.py")
+        spec = importlib.util.spec_from_file_location("cli", "src/chuspacalc/cli.py")
         module = importlib.util.module_from_spec(spec)
         try:
             spec.loader.exec_module(module)
@@ -25,7 +25,7 @@ class TestCLI:
     def test_cli_main_exists(self):
         """Verifica que la función main existe en cli.py"""
         import importlib.util
-        spec = importlib.util.spec_from_file_location("cli", "src/escuadra/cli.py")
+        spec = importlib.util.spec_from_file_location("cli", "src/chuspacalc/cli.py")
         module = importlib.util.module_from_spec(spec)
         try:
             spec.loader.exec_module(module)
@@ -37,7 +37,7 @@ class TestCLI:
     def test_cli_verificar_entorno_exists(self):
         """Verifica que la función verificar_entorno existe en cli.py"""
         import importlib.util
-        spec = importlib.util.spec_from_file_location("cli", "src/escuadra/cli.py")
+        spec = importlib.util.spec_from_file_location("cli", "src/chuspacalc/cli.py")
         module = importlib.util.module_from_spec(spec)
         try:
             spec.loader.exec_module(module)
