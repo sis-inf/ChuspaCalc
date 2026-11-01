@@ -11,9 +11,9 @@ from PySide6.QtWidgets import (
     QWidget,
 )
 
-from escuadra.core.carrera import Carrera
-from escuadra.core.herramienta import Herramienta
-from escuadra.modulos.civil.combinacion_cargas import combinar_cargas_lrfd
+from chuspacalc.core.carrera import Carrera
+from chuspacalc.core.herramienta import Herramienta
+from chuspacalc.modulos.civil.combinacion_cargas import combinar_cargas_lrfd
 
 
 class HerramientaCombinacionCargas(Herramienta):
