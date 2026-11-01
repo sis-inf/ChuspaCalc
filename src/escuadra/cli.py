@@ -1,5 +1,5 @@
 """
-Módulo CLI de Escuadra.
+Módulo CLI de ChuspaCalc.
 Punto de entrada principal con subcomandos para las herramientas.
 """
 
@@ -10,13 +10,13 @@ import sys
 
 import argcomplete
 
-from escuadra.cli_interactivo import ejecutar_interactivo
-from escuadra.core.registry import descubrir_herramientas, herramientas_por_carrera
+from chuspacalc.cli_interactivo import ejecutar_interactivo
+from chuspacalc.core.registry import descubrir_herramientas, herramientas_por_carrera
 
 
 def verificar_entorno():
     if sys.version_info < (3, 10):
-        print("Error: Escuadra requiere Python 3.10 o superior.")
+        print("Error: ChuspaCalc requiere Python 3.10 o superior.")
         sys.exit(1)
 
     try:
@@ -67,7 +67,7 @@ def ejecutar_herramienta(args):
 
     try:
         modulo = __import__(
-            f"escuadra.modulos.{herramienta}",
+            f"chuspacalc.modulos.{herramienta}",
             fromlist=["ejecutar"]
         )
     except (ModuleNotFoundError, ImportError):
@@ -100,7 +100,7 @@ def cmd_version(args):
     """Muestra la versión del proyecto y datos de diagnóstico del entorno."""
     from PySide6 import __version__ as pyside6_version
 
-    print(f"Escuadra:      {__version__}")
+    print(f"ChuspaCalc:      {__version__}")
     print(f"Python:        {platform.python_version()}")
     print(f"PySide6:       {pyside6_version}")
     print(f"Plataforma:    {platform.platform()}")
@@ -133,12 +133,12 @@ def cmd_listar(args):
 
 
 def main():
-    """Punto de entrada principal del CLI de Escuadra."""
+    """Punto de entrada principal del CLI de ChuspaCalc."""
     try:
         verificar_entorno()
 
         parser = argparse.ArgumentParser(
-            prog="escuadra",
+            prog="chuspacalc",
             description="Herramientas de cálculo de ingeniería civil y eléctrica."
         )
 
