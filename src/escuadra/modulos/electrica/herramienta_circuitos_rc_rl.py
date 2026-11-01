@@ -1,4 +1,4 @@
-from escuadra.modulos.electrica.circuitos_rc_rl import (
+from chuspacalc.modulos.electrica.circuitos_rc_rl import (
     calcular_constante_tiempo_rc,
     calcular_constante_tiempo_rl,
     calcular_voltaje_carga_capacitor,
