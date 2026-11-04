@@ -18,12 +18,17 @@ class HerramientaFigurasCompuestas(Herramienta):
         root = QVBoxLayout()
         root.setSpacing(10)
 
-        ayuda = QLabel("Esta herramienta usa calcular_area_compuesta y calcular_volumen_compuesto. Ingresa JSON de figuras o usa valores de prueba.")
+        ayuda = QLabel(
+            "Esta herramienta usa calcular_area_compuesta y calcular_volumen_compuesto. "
+            "Ingresa JSON de figuras o usa valores de prueba."
+        )
         ayuda.setWordWrap(True)
         root.addWidget(ayuda)
 
         self._entrada = QTextEdit()
-        self._entrada.setPlaceholderText('Ej: [{"tipo": "rectangulo", "base": 5, "altura": 3}] - Deja vacío para demo')
+        self._entrada.setPlaceholderText(
+            'Ej: [{"tipo": "rectangulo", "base": 5, "altura": 3}] - Deja vacío para demo'
+        )
         root.addWidget(self._entrada)
 
         botones = QHBoxLayout()
@@ -56,7 +61,9 @@ class HerramientaFigurasCompuestas(Herramienta):
             import json
             texto = self._entrada.toPlainText().strip()
             if not texto:
-                self._resultado.setText("Herramienta registrada correctamente. Ingresa figuras para calcular.")
+                self._resultado.setText(
+                    "Herramienta registrada correctamente. Ingresa figuras para calcular."
+                )
                 return
 
             figuras = json.loads(texto)
