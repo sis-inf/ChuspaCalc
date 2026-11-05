@@ -74,3 +74,15 @@ def confirmar(parent, titulo, mensaje):
     caja.exec()
 
     return caja.clickedButton() == boton_si
+
+def mostrar_error_calculo(parent, modulo: str, error: Exception):
+    """Muestra un diálogo de error formateando el módulo y la causa técnica."""
+    titulo = f"Error en cálculo - {modulo}"
+    mensaje = f"Ocurrió un error al procesar el módulo '{modulo}':\n\n{str(error)}"
+    QMessageBox.critical(parent, titulo, mensaje)
+
+def mostrar_exito_exportacion(parent, ruta: str):
+    """Muestra un diálogo de éxito indicando la ruta de destino del archivo."""
+    titulo = "Exportación exitosa"
+    mensaje = f"Los datos se han exportado correctamente en:\n\n{ruta}"
+    QMessageBox.information(parent, titulo, mensaje)
