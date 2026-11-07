@@ -84,6 +84,15 @@ Este documento presenta el **roadmap de funcionalidades planificadas** para el p
 
 ---
 
+## 📑 Detalles de Funcionalidades en Roadmap (Futuras)
+
+### Integración con Google Sheets
+* **Módulo:** CLI / Sistemas de Exportación
+* **Estado:** 📋 Planificada (Sin implementación actual en `src/escuadra/`)
+* **Descripción:** Funcionalidad propuesta para permitir la sincronización, volcado y exportación de resultados de cálculos directamente hacia hojas de cálculo de Google Sheets utilizando llamadas vía HTTP API o Google Apps Script.
+
+---
+
 ## 📊 Resumen por estado
 
 | Estado | Cantidad |
