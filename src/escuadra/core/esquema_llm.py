@@ -3,18 +3,20 @@ Exportación del esquema de herramientas de ChuspaCalc en formato JSON Schema
 compatible con integraciones de function-calling de LLMs (OpenAI, Anthropic, etc.).
 
 Uso:
-    from chuspacalc.core.esquema_llm import exportar_esquema_llm
+    from escuadra.core.esquema_llm import exportar_esquema_llm
     esquema = exportar_esquema_llm()
 
     # O desde la CLI:
-    python -m chuspacalc.core.esquema_llm
+    python -m escuadra.core.esquema_llm
 """
 
 from __future__ import annotations
 
 import json
+import types
+from typing import Any, Union, get_args, get_origin, get_type_hints
 
-from chuspacalc.core.registry import descubrir_herramientas
+from escuadra.core.registry import descubrir_herramientas
 
 # Mapa de tipos Python a tipos JSON Schema
 _TIPO_JSON: dict[str, str] = {
@@ -28,8 +30,92 @@ _TIPO_JSON: dict[str, str] = {
 
 
 def _tipo_json(anotacion: str) -> str:
-    """Convierte una anotación de tipo Python a tipo JSON Schema."""
+    """Convierte una anotación simple de tipo Python a JSON Schema."""
     return _TIPO_JSON.get(anotacion, "string")
+
+
+def _anotacion_a_esquema(anotacion: Any) -> dict:
+    """
+    Convierte una anotación de tipo Python a un esquema JSON Schema.
+
+    Soporta:
+    - Tipos simples: str, int, float y bool.
+    - Listas: list[T].
+    - Diccionarios: dict[str, T].
+    - Uniones: Union[T1, T2] y T1 | T2.
+    - Tipos opcionales: Optional[T] y T | None.
+    - Tipos compuestos anidados.
+
+    Las anotaciones no soportadas conservan el comportamiento
+    de respaldo a string.
+    """
+    if anotacion is None or anotacion is type(None):
+        return {"type": "null"}
+
+    origen = get_origin(anotacion)
+    argumentos = get_args(anotacion)
+
+    # Listas: list[T]
+    if origen is list:
+        esquema = {"type": "array"}
+
+        if argumentos:
+            esquema["items"] = _anotacion_a_esquema(argumentos[0])
+
+        return esquema
+
+    # Diccionarios: dict[str, T]
+    if origen is dict:
+        esquema = {"type": "object"}
+
+        if len(argumentos) == 2:
+            esquema["additionalProperties"] = _anotacion_a_esquema(
+                argumentos[1]
+            )
+
+        return esquema
+
+    # Uniones y tipos opcionales
+    if origen in (Union, types.UnionType):
+        return {
+            "anyOf": [
+                _anotacion_a_esquema(tipo)
+                for tipo in argumentos
+            ]
+        }
+
+    # Compatibilidad con anotaciones simples expresadas como texto
+    if isinstance(anotacion, str):
+        nombre = anotacion.strip()
+
+        if nombre in ("None", "NoneType"):
+            return {"type": "null"}
+    else:
+        nombre = getattr(anotacion, "__name__", str(anotacion))
+
+    return {"type": _tipo_json(nombre)}
+
+
+def _resolver_anotacion(metodo: Any, anotacion: Any) -> Any:
+    """
+    Resuelve anotaciones diferidas de Python, incluyendo las declaradas
+    mediante from __future__ import annotations.
+    """
+    if not isinstance(anotacion, str):
+        return anotacion
+
+    def funcion_temporal() -> None:
+        return None
+
+    funcion_temporal.__annotations__ = {"return": anotacion}
+
+    try:
+        return get_type_hints(
+            funcion_temporal,
+            globalns=getattr(metodo, "__globals__", None),
+        )["return"]
+    except (NameError, TypeError, SyntaxError):
+        return anotacion
 
 
 def _herramienta_a_funcion(herramienta: type) -> dict:
@@ -73,16 +159,19 @@ def _herramienta_a_funcion(herramienta: type) -> dict:
             if param_nombre in ("self", "cls"):
                 continue
 
-            anotacion = "string"
-            if param.annotation != inspect.Parameter.empty:
-                anotacion = _tipo_json(param.annotation.__name__
-                                       if hasattr(param.annotation, "__name__")
-                                       else str(param.annotation))
+            anotacion = param.annotation
 
-            params_metodo[param_nombre] = {
-                "type": anotacion,
-                "description": f"Parámetro '{param_nombre}' de {nombre_metodo}",
-            }
+            if anotacion is inspect.Parameter.empty:
+                anotacion = "string"
+            else:
+                anotacion = _resolver_anotacion(metodo, anotacion)
+
+            esquema_parametro = _anotacion_a_esquema(anotacion)
+            esquema_parametro["description"] = (
+                f"Parámetro '{param_nombre}' de {nombre_metodo}"
+            )
+
+            params_metodo[param_nombre] = esquema_parametro
 
             if param.default is inspect.Parameter.empty:
                 req_metodo.append(param_nombre)
