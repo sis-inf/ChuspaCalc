@@ -45,6 +45,16 @@ def area_perfil_i(
     if any(d <= 0 for d in dimensiones):
         raise ValueError("Las dimensiones deben ser mayores que 0")
 
+    if espesor_ala >= ancho_ala:
+        raise ValueError(
+            "El espesor del ala debe ser menor que el ancho del ala"
+        )
+
+    if espesor_alma >= altura_alma:
+        raise ValueError(
+            "El espesor del alma debe ser menor que la altura del alma"
+        )
+
     return 2 * ancho_ala * espesor_ala + altura_alma * espesor_alma
 
 
