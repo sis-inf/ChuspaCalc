@@ -7,6 +7,7 @@ aritméticas y conversiones entre forma rectangular y polar.
 
 import cmath
 import math
+import numbers
 
 
 def sumar(a: complex, b: complex) -> complex:
@@ -80,6 +81,16 @@ def polar_a_rectangular(r: float, theta: float) -> complex:
         r: módulo
         theta: ángulo en radianes
     """
+    if isinstance(r, bool) or not isinstance(r, numbers.Real):
+        raise ValueError("El módulo debe ser un número real.")
+    if isinstance(theta, bool) or not isinstance(theta, numbers.Real):
+        raise ValueError("El ángulo debe ser un número real.")
+
+    if not math.isfinite(r):
+        raise ValueError("El módulo debe ser un número finito.")
+    if not math.isfinite(theta):
+        raise ValueError("El ángulo debe ser un número finito.")
+        
     if r < 0:
         raise ValueError("El módulo no puede ser negativo.")
 
