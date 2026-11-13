@@ -2,7 +2,10 @@
 
 
 def validar_cadena_binaria(cadena: str) -> None:
-    """Valida que la cadena no esté vacía y contenga únicamente caracteres '0' y '1'."""
+    """Valida que la entrada sea una cadena binaria no vacía."""
+    if not isinstance(cadena, str):
+        raise ValueError("La entrada debe ser una cadena de texto binaria.")
+
     if not cadena:
         raise ValueError("La cadena de entrada no puede estar vacía.")
 

@@ -4,6 +4,9 @@ Funciones para convertir entre decimal y complemento a 2.
 
 
 def decimal_a_complemento(numero: int, bits: int) -> str:
+    if isinstance(bits, bool) or not isinstance(bits, int) or bits < 1:
+        raise ValueError("La cantidad de bits debe ser un entero positivo.")
+
     minimo = -(2 ** (bits - 1))
     maximo = (2 ** (bits - 1)) - 1
 
@@ -19,6 +22,9 @@ def decimal_a_complemento(numero: int, bits: int) -> str:
 
 
 def complemento_a_decimal(binario: str, bits: int) -> int:
+    if isinstance(bits, bool) or not isinstance(bits, int) or bits < 1:
+        raise ValueError("La cantidad de bits debe ser un entero positivo.")
+
     if len(binario) != bits:
         raise ValueError(
             f"Debe ingresar exactamente {bits} bits."

@@ -115,6 +115,62 @@ Las tres ecuaciones son equivalentes y se pueden derivar unas de otras usando la
 | `caida_tension` | V_caida = I · R_conductor | Corriente, resistencia del conductor |
 | `divisor_tension` | V_salida = V_entrada · (R₂ / (R₁ + R₂)) | Voltaje de entrada, resistencias R₁ y R₂ |
 
+## Potencia trifásica
+
+La potencia trifásica es la que entrega un sistema de **tres corrientes alternas** desfasadas 120° entre sí. Es el sistema más usado en instalaciones industriales y comerciales por su mayor eficiencia y capacidad de transmisión.
+
+| Característica | Monofásica | Trifásica |
+|----------------|------------|-----------|
+| Número de fases | 1 | 3 |
+| Aplicación típica | Residencial | Industrial / comercial |
+| Potencia | Menor | Mayor |
+| Eficiencia | Menor | Mayor |
+
+**Fórmulas (con valores de línea, iguales para estrella y triángulo):**
+
+- Potencia activa: **P = √3 · V_L · I_L · cos(φ)** (W)
+- Potencia reactiva: **Q = √3 · V_L · I_L · sen(φ)** (VAR)
+- Potencia aparente: **S = √3 · V_L · I_L** (VA)
+
+Donde **V_L** es el voltaje de línea (V), **I_L** la corriente de línea (A) y **cos(φ)** el factor de potencia (entre 0 y 1).
+
+**Estrella (Y) vs triángulo (Δ):**
+
+| Característica | Estrella (Y) | Triángulo (Δ) |
+|----------------|--------------|---------------|
+| Voltaje de fase | V_f = V_L / √3 | V_f = V_L |
+| Corriente de fase | I_f = I_L | I_f = I_L / √3 |
+| Potencia activa | P = √3 · V_L · I_L · cos(φ) | P = √3 · V_L · I_L · cos(φ) |
+| Ventaja | Menor voltaje por fase | Menor corriente por fase |
+
+**Ejemplos:**
+
+- Estrella, V_L = 400 V, I_L = 10 A, cos(φ) = 0.85: P = 1.732 · 400 · 10 · 0.85 ≈ 5889 W ≈ 5.89 kW
+- Triángulo, V_L = 220 V, I_L = 15 A, cos(φ) = 0.90: P = 1.732 · 220 · 15 · 0.90 ≈ 5144 W ≈ 5.14 kW
+
+**Uso desde código:**
+
+```python
+from escuadra.modulos.electrica.potencia_trifasica import calcular_potencia_trifasica
+
+calcular_potencia_trifasica(400, 10, 0.85, conexion="estrella")
+# {"potencia_activa": 5888.97..., "potencia_reactiva": 3649.66..., "potencia_aparente": 6928.20...}
+```
+
+`conexion` acepta `"estrella"` (por defecto) o `"triangulo"`. Se lanza `ValueError` si el voltaje o la corriente no son mayores que 0 y finitos, o si el factor de potencia no está entre 0 y 1.
+
+**Solución de problemas:**
+
+| Problema | Solución |
+|----------|----------|
+| El resultado no coincide | Verificar que el factor de potencia esté entre 0 y 1 |
+| Error en el cálculo | Verificar que se usen valores de **línea** (no de fase) de voltaje y corriente |
+
+**Referencias:**
+
+- [Sistema trifásico](https://es.wikipedia.org/wiki/Sistema_trif%C3%A1sico)
+- [Conexión estrella-triángulo](https://es.wikipedia.org/wiki/Diagrama_estrella-tri%C3%A1ngulo)
+
 ## Unidades y conversiones
 
 En el análisis de circuitos eléctricos es fundamental comprender las unidades básicas y sus prefijos para realizar cálculos correctos y evitar errores de magnitud.

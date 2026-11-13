@@ -26,14 +26,24 @@ Garantizar la fiabilidad, precisión numérica y estabilidad de la suite de cál
 ## 4. Entornos
 
 | Entorno | SO | Versión |
-|---|---|---|
-| Local | Windows 10/11 / Linux | JDK 17 / Maven 3.8 |
+| --- | --- | --- |
+| Local | Windows 10/11 / Linux | Python 3.10 o superior / PySide6 / pytest |
 | CI | Ubuntu latest | GitHub Actions |
+
+### Tecnologías y herramientas de pruebas
+
+- Python 3.10 o superior: entorno de ejecución.
+- PySide6 (>=6.6,<7.0): interfaz gráfica Qt.
+- pytest (>=8,<10): pruebas automatizadas.
+- pytest-qt: pruebas de componentes Qt.
+- GitHub Actions: integración continua.
+
+Las dependencias se encuentran definidas en `pyproject.toml`.
 
 ## 5. Responsables
 
 | Rol | Responsable |
-|---|---|
+| --- | --- |
 | Diseño de casos | BALTAZAR BORRAS |
 | Ejecución manual | BALTAZAR BORRAS |
 | Automatización | BALTAZAR BORRAS / GitHub Actions |
@@ -47,8 +57,8 @@ Garantizar la fiabilidad, precisión numérica y estabilidad de la suite de cál
 ## 7. Riesgos
 
 | Riesgo | Probabilidad | Impacto | Mitigación |
-|---|---|---|---|
-| Errores de precisión decimal | Alta | Crítico | Uso de `double` y validación con tablas estándar. |
+| --- | --- | --- | --- |
+| Errores de precisión decimal | Alta | Crítico | Uso de `float` de Python y validación con tablas estándar. |
 | Desbordamiento de memoria (grandes datos) | Media | Alto | Implementación de pruebas de estrés y límites de entrada. |
 | Inconsistencia en CI (Ubuntu) vs Local | Baja | Medio | Uso de contenedores o entornos estandarizados en GitHub Actions. |
 | Fórmulas matemáticas mal implementadas | Media | Crítico | Revisión por pares y contraste con software de ingeniería (Matlab/Excel). |
@@ -60,7 +70,7 @@ Garantizar la fiabilidad, precisión numérica y estabilidad de la suite de cál
 #### Funciones a probar
 
 | Función | Descripción |
-|---------|-------------|
+| --------- | ------------- |
 | `calcular_terreno()` | Calcula áreas y perímetros de terrenos |
 | `calcular_materiales()` | Estima cantidad de materiales necesarios |
 | `validar_normativa()` | Valida que el diseño cumpla con normativas |
@@ -68,7 +78,7 @@ Garantizar la fiabilidad, precisión numérica y estabilidad de la suite de cál
 #### Casos de prueba recomendados
 
 | Tipo | Descripción |
-|------|-------------|
+| ------ | ------------- |
 | **Normales** | Datos típicos de entrada (terrenos regulares) |
 | **Borde** | Valores límite (áreas mínimas/máximas) |
 | **Error** | Datos inválidos (valores negativos, tipos incorrectos) |
@@ -85,7 +95,7 @@ Garantizar la fiabilidad, precisión numérica y estabilidad de la suite de cál
 #### Funciones a probar
 
 | Función | Descripción |
-|---------|-------------|
+| --------- | ------------- |
 | `calcular_corriente()` | Calcula corriente eléctrica con ley de Ohm |
 | `calcular_potencia()` | Calcula potencia eléctrica |
 | `calcular_resistencia()` | Calcula resistencia equivalente |
@@ -93,7 +103,7 @@ Garantizar la fiabilidad, precisión numérica y estabilidad de la suite de cál
 #### Casos de prueba recomendados
 
 | Tipo | Descripción |
-|------|-------------|
+| ------ | ------------- |
 | **Normales** | Valores típicos de resistencia y voltaje |
 | **Borde** | Resistencias cero o infinito (circuitos abiertos) |
 | **Error** | Valores negativos, divisiones por cero |
@@ -110,7 +120,7 @@ Garantizar la fiabilidad, precisión numérica y estabilidad de la suite de cál
 #### Funciones a probar
 
 | Función | Descripción |
-|---------|-------------|
+| --------- | ------------- |
 | `area_circulo()` | Calcula área de un círculo |
 | `perimetro_rectangulo()` | Calcula perímetro de un rectángulo |
 | `volumen_cilindro()` | Calcula volumen de un cilindro |
@@ -118,7 +128,7 @@ Garantizar la fiabilidad, precisión numérica y estabilidad de la suite de cál
 #### Casos de prueba recomendados
 
 | Tipo | Descripción |
-|------|-------------|
+| ------ | ------------- |
 | **Normales** | Figuras con dimensiones típicas |
 | **Borde** | Radios o lados iguales a cero |
 | **Error** | Tipos de datos incorrectos, valores negativos |

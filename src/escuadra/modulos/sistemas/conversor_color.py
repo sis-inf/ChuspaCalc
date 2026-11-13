@@ -4,6 +4,9 @@ Encargado de realizar conversiones de color entre los modelos RGB, HEX y HSL.
 """
 def rgb_a_hex(r: int, g: int, b: int) -> str:
     """Convierte valores RGB (0-255) a su representación hexadecimal '#RRGGBB'."""
+    if any(type(valor) is not int for valor in (r, g, b)):
+        raise ValueError("Los componentes RGB deben ser números enteros.")
+
     if not (0 <= r <= 255 and 0 <= g <= 255 and 0 <= b <= 255):
         raise ValueError("Los valores r, g, b deben estar en el rango [0, 255]")
 
@@ -31,6 +34,9 @@ def rgb_a_hsl(r: int, g: int, b: int) -> tuple:
     Convierte valores RGB (0-255) a HSL (h, s, l_pct).
     h está en el rango 0-360, s y l_pct están en el rango 0-100.
     """
+    if any(type(valor) is not int for valor in (r, g, b)):
+        raise ValueError("Los componentes RGB deben ser números enteros.")
+
     if not (0 <= r <= 255 and 0 <= g <= 255 and 0 <= b <= 255):
         raise ValueError("Los valores r, g, b deben estar en el rango [0, 255]")
 

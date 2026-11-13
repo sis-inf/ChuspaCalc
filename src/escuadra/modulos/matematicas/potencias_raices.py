@@ -19,13 +19,15 @@ def raiz_n(valor, n):
     - n <= 0
     - valor es negativo y n es par
     """
-    if n <= 0:
-        raise ValueError("n debe ser mayor que 0")
+    if type(n) is not int or n <= 0:
+        raise ValueError("n debe ser un entero positivo")
 
-    if valor < 0 and n % 2 == 0:
-        raise ValueError(
-            "No existe raíz par real de un número negativo"
-        )
+    if valor < 0:
+        if n % 2 == 0:
+            raise ValueError(
+                "No existe raíz par real de un número negativo"
+            )
+        return -float((-valor) ** (1 / n))
 
     return float(valor ** (1 / n))
 

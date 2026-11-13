@@ -24,6 +24,8 @@ def ascii_a_caracter(codigo: int) -> dict:
     """
     Convierte un código ASCII a carácter y sus representaciones.
     """
+    if isinstance(codigo, bool) or not isinstance(codigo, int):
+        raise ValueError("El código ASCII debe ser un número entero")
 
     if not 0 <= codigo <= 127:
         raise ValueError("Código ASCII fuera de rango")
@@ -43,6 +45,12 @@ def listar_ascii_rango(inicio: int, fin: int) -> list:
     """
     Retorna una lista de diccionarios para un rango ASCII.
     """
+    
+    if isinstance(inicio, bool) or not isinstance(inicio, int):
+        raise ValueError("El inicio del rango debe ser un número entero")
+
+    if isinstance(fin, bool) or not isinstance(fin, int):
+        raise ValueError("El fin del rango debe ser un número entero")
 
     if not (0 <= inicio <= 127 and 0 <= fin <= 127):
         raise ValueError("Rango ASCII inválido")

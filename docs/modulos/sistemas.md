@@ -4,12 +4,13 @@
 
 El módulo `sistemas` agrupa las herramientas orientadas a informática y computación. Sus herramientas son especialmente útiles en cursos de **arquitectura de computadoras**, **lógica digital** y **programación de sistemas**, ya que cubren los fundamentos numéricos y lógicos sobre los que se construye el software y el hardware.
 
-El módulo contiene tres herramientas principales:
+El módulo contiene las siguientes herramientas principales:
 
 - `conversor_bases` — conversión entre sistemas de numeración (binario, octal, decimal, hexadecimal)
 - `herramienta_tablas_verdad` — generación de tablas de verdad para expresiones booleanas
 - `tabla_ascii` — consulta y conversión de caracteres y códigos ASCII
 - `conversor_color` — conversión de colores entre los modelos RGB, HEX y HSL
+- `calculadora_subred` — cálculo de red, broadcast, máscara y rango de hosts de una subred IPv4/CIDR
 
 ---
 
@@ -218,6 +219,67 @@ rgb_a_hsl(255, 0, 0)      # (0, 100, 50)   — rojo: matiz 0°, saturación 100%
 rgb_a_hsl(0, 128, 0)      # (120, 100, 25) — verde oscuro
 rgb_a_hsl(128, 128, 128)  # (0, 0, 50)     — gris neutro
 ```
+
+---
+
+## Redes
+
+### `calculadora_subred`
+
+Calcula la **dirección de red**, la **dirección de broadcast**, la **máscara de subred**, el **rango de hosts** y el **número total de hosts** de una dirección IPv4 con su prefijo CIDR (1 a 32).
+
+**Fórmulas utilizadas:**
+
+```
+Red       = IP AND Máscara
+Broadcast = IP OR (NOT Máscara)
+Hosts     = Red + 1  →  Broadcast - 1
+Total     = 2^(32 - prefijo) - 2
+```
+
+Para los prefijos `/31` y `/32` no hay hosts asignables: `primer_host` y `ultimo_host` valen `"N/A"` y `total_hosts` es `0`.
+
+**Ejemplos:**
+
+| IP / CIDR        | Máscara         | Red           | Primer host   | Último host     | Broadcast       | Hosts  |
+|------------------|-----------------|---------------|---------------|-----------------|-----------------|--------|
+| `192.168.1.0/24` | `255.255.255.0` | `192.168.1.0` | `192.168.1.1` | `192.168.1.254` | `192.168.1.255` | 254    |
+| `10.0.0.0/16`    | `255.255.0.0`   | `10.0.0.0`    | `10.0.0.1`    | `10.0.255.254`  | `10.0.255.255`  | 65 534 |
+
+Desarrollo del primer ejemplo (`192.168.1.0/24`):
+
+```
+Máscara   = 255.255.255.0   (wildcard: 0.0.0.255)
+Red       = 192.168.1.0 AND 255.255.255.0 = 192.168.1.0
+Broadcast = 192.168.1.0 OR  0.0.0.255     = 192.168.1.255
+Hosts     = 192.168.1.1 → 192.168.1.254
+Total     = 2^(32 - 24) - 2 = 254
+```
+
+**Uso desde código:**
+
+```python
+from escuadra.modulos.sistemas.calculadora_subred import calcular_subred
+
+calcular_subred("192.168.1.0", "24")
+# {"red": "192.168.1.0", "broadcast": "192.168.1.255", "mascara": "255.255.255.0",
+#  "primer_host": "192.168.1.1", "ultimo_host": "192.168.1.254", "total_hosts": 254}
+```
+
+Si la IP no tiene cuatro octetos entre 0 y 255, o el prefijo no es un entero entre 1 y 32, se lanza `ErrorCIDR` (subclase de `ValueError`).
+
+**Solución de problemas:**
+
+| Problema | Solución |
+|----------|----------|
+| El resultado no coincide | Verificar que el prefijo CIDR sea el correcto (ej. `/24` = `255.255.255.0`) |
+| Error en el cálculo | Verificar que la IP tenga cuatro octetos numéricos y que el prefijo sea un entero |
+
+**Referencias:**
+
+- [Subred](https://es.wikipedia.org/wiki/Subred)
+- [Notación CIDR](https://es.wikipedia.org/wiki/Classless_Inter-Domain_Routing)
+- [Dirección IP](https://es.wikipedia.org/wiki/Direcci%C3%B3n_IP)
 
 ---
 

@@ -59,11 +59,56 @@ antes de llegar a los estudiantes.
 
 ---
 
+## Registro de evidencias para la aprobación del MVP v0.1.0
+
+Cada verificación debe registrarse en la tabla de responsables, indicando:
+
+- **Ítem revisado:** control específico del checklist.
+- **Responsable:** persona que realizó o validó la verificación.
+- **Fecha:** fecha de ejecución o revisión (AAAA-MM-DD).
+- **Resultado:** Aprobado, Pendiente, No aprobado o Excepción aceptada.
+- **Evidencia:** enlace o referencia verificable que respalde el resultado.
+
+### Evidencias aceptadas
+
+- **CI:** enlace a la ejecución específica de GitHub Actions, con su resultado.
+- **Pruebas:** enlace al informe, registro o artefacto de pruebas ejecutadas.
+- **Incidencias:** enlace al issue correspondiente, indicando su estado.
+- **Validaciones manuales:** registro reproducible con entorno, versión, pasos y resultado.
+
+No se debe marcar un control como aprobado sin evidencia verificable.
+Una ejecución fallida o una incidencia abierta no constituye evidencia de aprobación.
+
+### Verificaciones pendientes
+
+Para cada control pendiente, registrar el motivo, responsable, acción necesaria,
+fecha prevista de resolución y enlace a la incidencia o seguimiento, si existe.
+Mantener el resultado como Pendiente hasta completar y verificar la revisión.
+
+### Excepciones aceptadas
+
+Documentar el control afectado, motivo, riesgo, impacto, responsable de aceptar
+el riesgo, fecha de aceptación, medidas de mitigación y enlace a la decisión.
+Una excepción aceptada no equivale a una verificación aprobada.
+
+### Relación con los criterios de salida
+
+Antes de aprobar el MVP v0.1.0, contrastar las evidencias con
+`tests/plan/criterios-de-salida.md`: cobertura requerida, ausencia de bugs
+Críticos o Altos abiertos, casos del sprint ejecutados, informe aprobado,
+revisión de seguridad completada y documentación actualizada.
+
+El umbral de cobertura debe definirse y verificarse antes de la aprobación.
+No declarar aprobado el MVP mientras existan criterios sin evidencia
+o pendientes sin una decisión formal documentada.
+
+---
+
 ## Responsable de la verificación
 
-| Ítem revisado | Responsable | Fecha | Resultado |
-|---------------|-------------|-------|-----------|
-|               |             |       |           |
+| Ítem revisado | Responsable | Fecha | Resultado | Evidencia |
+| --- | --- | --- | --- | --- |
+|               |             |       |           |           |
 
 ---
 
