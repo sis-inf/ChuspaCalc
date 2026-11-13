@@ -5,11 +5,36 @@ class ErrorCIDR(ValueError):
     pass
 
 
+def _calcular_subred_ipv6(ip: str, prefijo: int) -> dict:
+    """
+    Calcula la red IPv6 a partir de una IP y un prefijo entre 0 y 128.
+
+    IPv6 no tiene dirección broadcast: todas las direcciones del rango
+    (de primera_direccion a ultima_direccion) son utilizables.
+    """
+    if prefijo < 0 or prefijo > 128:
+        raise ErrorCIDR("El prefijo CIDR de IPv6 debe estar entre 0 y 128")
+
+    try:
+        red = ipaddress.IPv6Network(f"{ip}/{prefijo}", strict=False)
+    except ValueError:
+        raise ErrorCIDR(f"La dirección IPv6 '{ip}' no es válida")
+
+    return {
+        "version": 6,
+        "red": str(red.network_address),
+        "prefijo": red.prefixlen,
+        "primera_direccion": str(red.network_address),
+        "ultima_direccion": str(red[-1]),
+        "total_direcciones": red.num_addresses,
+    }
+
+
 def calcular_subred(ip: str, prefijo_cidr: str) -> dict:
     """
-    Calcula información de subred a partir de una IP y un prefijo CIDR.
+    Calcula información de subred a partir de una IP (IPv4 o IPv6) y un prefijo CIDR.
 
-    Retorna:
+    Retorna para IPv4 (prefijo entre 1 y 32):
         dict con:
         - red
         - broadcast
@@ -17,6 +42,15 @@ def calcular_subred(ip: str, prefijo_cidr: str) -> dict:
         - primer_host
         - ultimo_host
         - total_hosts
+
+    Retorna para IPv6 (prefijo entre 0 y 128), sin broadcast:
+        dict con:
+        - version (6)
+        - red
+        - prefijo
+        - primera_direccion
+        - ultima_direccion
+        - total_direcciones
     """
 
     # ===== VALIDACIÓN =====
@@ -24,6 +58,9 @@ def calcular_subred(ip: str, prefijo_cidr: str) -> dict:
         prefijo = int(prefijo_cidr)
     except ValueError:
         raise ErrorCIDR("El prefijo CIDR debe ser un número entero")
+
+    if ":" in ip:
+        return _calcular_subred_ipv6(ip, prefijo)
 
     if prefijo < 1 or prefijo > 32:
         raise ErrorCIDR("El prefijo CIDR debe estar entre 1 y 32")
