@@ -1,6 +1,8 @@
-BASES_SOPORTADAS = {2, 8, 10, 16}
+from ..matematicas.error_validacion import ErrorValidacion
 
-DIGITOS_POR_BASE = {
+BASES_SOPORTADAS: set[int] = {2, 8, 10, 16}
+
+DIGITOS_POR_BASE: dict[int, set[str]] = {
     2: set("01"),
     8: set("01234567"),
     10: set("0123456789"),
@@ -8,26 +10,52 @@ DIGITOS_POR_BASE = {
 }
 
 
+def _validar_base(base: int, nombre: str) -> None:
+    """Valida que la base sea un entero soportado."""
+    if isinstance(base, bool) or not isinstance(base, int):
+        raise ErrorValidacion(f"La base {nombre} debe ser un entero: {base!r}")
+
+    if base not in BASES_SOPORTADAS:
+        raise ErrorValidacion(f"Base {nombre} no soportada: {base}")
+
+
 def _validar_digitos(numero: str, base: int) -> None:
     cuerpo = numero[1:] if numero[:1] in "+-" else numero
     for caracter in cuerpo:
         if caracter not in DIGITOS_POR_BASE[base]:
-            raise ValueError(f"Carácter inválido '{caracter}' para base {base}")
+            raise ErrorValidacion(f"Carácter inválido '{caracter}' para base {base}")
 
 
-def convertir(numero: str, base_origen: int, base_destino: int) -> dict:
+def convertir(
+    numero: str, base_origen: int, base_destino: int
+) -> dict[str, str | int]:
     """
     Convierte números entre bases 2, 8, 10 y 16.
+
+    Args:
+        numero: Número a convertir, escrito en la base de origen.
+        base_origen: Base en la que está escrito el número (2, 8, 10 o 16).
+        base_destino: Base a la que se quiere convertir (2, 8, 10 o 16).
+
+    Returns:
+        Diccionario con el número original, las bases y el resultado.
+
+    Raises:
+        ErrorValidacion: Si el número no es texto, está vacío o tiene
+            caracteres inválidos para su base, o si alguna base no es un
+            entero soportado.
     """
 
+    if not isinstance(numero, str):
+        raise ErrorValidacion(
+            f"El número debe ser una cadena de texto: {type(numero).__name__}"
+        )
+
     if not numero or not numero.strip():
-        raise ValueError("El número no puede estar vacío")
+        raise ErrorValidacion("El número no puede estar vacío")
 
-    if base_origen not in BASES_SOPORTADAS:
-        raise ValueError(f"Base origen no soportada: {base_origen}")
-
-    if base_destino not in BASES_SOPORTADAS:
-        raise ValueError(f"Base destino no soportada: {base_destino}")
+    _validar_base(base_origen, "origen")
+    _validar_base(base_destino, "destino")
 
     numero = numero.strip().upper()
 
@@ -36,7 +64,7 @@ def convertir(numero: str, base_origen: int, base_destino: int) -> dict:
     try:
         valor_decimal = int(numero, base_origen)
     except ValueError as error:
-        raise ValueError(
+        raise ErrorValidacion(
             f"Número inválido para base {base_origen}: {numero}"
         ) from error
 
