@@ -1,6 +1,6 @@
-"""Pruebas unitarias para escuadra.modulos.sistemas.herramienta_calculadora_subred."""
+"""Pruebas unitarias para chuspacalc.modulos.sistemas.herramienta_calculadora_subred."""
 
-from escuadra.modulos.sistemas.herramienta_calculadora_subred import (
+from chuspacalc.modulos.sistemas.herramienta_calculadora_subred import (
     herramienta_calculadora_subred,
 )
 
