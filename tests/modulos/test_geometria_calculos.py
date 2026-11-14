@@ -9,12 +9,12 @@ import math
 
 import pytest
 
-from escuadra.modulos.geometria.calculo_area import (
+from chuspacalc.modulos.geometria.calculo_area import (
     area_circulo,
     area_rectangulo,
     area_triangulo,
 )
-from escuadra.modulos.geometria.perimetro import (
+from chuspacalc.modulos.geometria.perimetro import (
     perimetro_circulo,
     perimetro_cuadrado,
     perimetro_hexagono_regular,
@@ -23,7 +23,7 @@ from escuadra.modulos.geometria.perimetro import (
     perimetro_trapecio,
     perimetro_triangulo,
 )
-from escuadra.modulos.geometria.volumen import (
+from chuspacalc.modulos.geometria.volumen import (
     volumen_cilindro,
     volumen_cono,
     volumen_cubo,
