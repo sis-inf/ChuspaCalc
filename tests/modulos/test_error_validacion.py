@@ -1,4 +1,4 @@
-from escuadra.modulos.matematicas.error_validacion import ErrorValidacion
+from chuspacalc.modulos.matematicas.error_validacion import ErrorValidacion
 
 
 def test_error_validacion_es_subclase_de_value_error():
