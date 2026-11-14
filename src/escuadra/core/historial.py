@@ -1,24 +1,46 @@
+"""
+Historial en memoria de los cálculos realizados durante la sesión.
+"""
+
 from datetime import datetime
+from typing import Any
 
 
 class Historial:
     """
     Historial en memoria de los últimos 20 cálculos realizados.
+
+    Cada entrada es un diccionario con las claves ``timestamp``,
+    ``herramienta``, ``parametros`` y ``resultado``. La clave ``nota``
+    se agrega al editar una entrada con ``editar_nota``.
+
+    Attributes:
+        LIMITE: Cantidad máxima de entradas que se conservan.
     """
 
-    LIMITE = 20
+    LIMITE: int = 20
 
-    def __init__(self):
-        self._historial = []
+    def __init__(self) -> None:
+        """
+        Inicializa un historial vacío.
+        """
+        self._historial: list[dict[str, Any]] = []
 
     def agregar_calculo(
         self,
         herramienta: str,
-        parametros: dict,
-        resultado: dict,
+        parametros: dict[str, Any],
+        resultado: dict[str, Any],
     ) -> None:
         """
         Agrega un cálculo al historial con timestamp.
+
+        Si el historial supera ``LIMITE`` entradas, se descarta la más antigua.
+
+        Args:
+            herramienta: Nombre de la herramienta que realizó el cálculo.
+            parametros: Parámetros de entrada usados en el cálculo.
+            resultado: Resultado devuelto por la herramienta.
         """
         entrada = {
             "timestamp": datetime.now().isoformat(),
@@ -50,15 +72,22 @@ class Historial:
 
         return False
 
-    def obtener_historial(self) -> list:
+    def obtener_historial(self) -> list[dict[str, Any]]:
         """
-        Retorna el historial más reciente primero.
+        Retorna el historial con la entrada más reciente primero.
+
+        Returns:
+            Lista de entradas, de la más reciente a la más antigua.
+            Está vacía si no hay cálculos registrados.
         """
         return list(reversed(self._historial))
 
-    def obtener_ultimo(self) -> dict | None:
+    def obtener_ultimo(self) -> dict[str, Any] | None:
         """
         Retorna el último registro o None si está vacío.
+
+        Returns:
+            La entrada más reciente, o None si el historial está vacío.
         """
         if not self._historial:
             return None
