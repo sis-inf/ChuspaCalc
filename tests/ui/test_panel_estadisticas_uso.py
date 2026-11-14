@@ -3,7 +3,7 @@ Pruebas para el panel de estadísticas de uso de herramientas:
 - panel_estadisticas_uso.py
 """
 
-from escuadra.ui.panel_estadisticas_uso import PanelEstadisticasUso
+from chuspacalc.ui.panel_estadisticas_uso import PanelEstadisticasUso
 
 
 class TestPanelEstadisticasUso:
