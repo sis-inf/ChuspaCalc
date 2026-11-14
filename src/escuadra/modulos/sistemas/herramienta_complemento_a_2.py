@@ -1,5 +1,6 @@
 from chuspacalc.core.carrera import Carrera
 from chuspacalc.core.herramienta import Herramienta
+from chuspacalc.modulos.matematicas.error_validacion import ErrorValidacion
 from chuspacalc.modulos.sistemas.complemento_a_2 import (
     complemento_a_decimal,
     decimal_a_complemento,
@@ -22,7 +23,7 @@ class HerramientaComplementoA2(Herramienta):
         "Convierte entre decimal con signo y representación en complemento a 2."
     )
 
-    def crear_widget(self):
+    def crear_widget(self) -> QWidget:
       widget = QWidget()
       layout = QVBoxLayout()
 
@@ -96,8 +97,18 @@ class HerramientaComplementoA2(Herramienta):
       widget.setLayout(layout)
       return widget
 
-    def _actualizar_rango(self):
-        bits = int(self.bits_combo.currentText())
+    def _leer_bits(self) -> int:
+        texto = self.bits_combo.currentText()
+
+        try:
+            return int(texto)
+        except ValueError:
+            raise ErrorValidacion(
+                f"La cantidad de bits '{texto}' no es un entero válido."
+            ) from None
+
+    def _actualizar_rango(self) -> None:
+        bits = self._leer_bits()
 
         minimo = -(2 ** (bits - 1))
         maximo = (2 ** (bits - 1)) - 1
@@ -106,12 +117,23 @@ class HerramientaComplementoA2(Herramienta):
             f"Rango con {bits} bits: {minimo} a {maximo}"
         )
 
-    def _convertir_decimal(self):
+    def _convertir_decimal(self) -> None:
         self.error_label.setText("")
 
         try:
-            numero = int(self.decimal_input.text())
-            bits = int(self.bits_combo.currentText())
+            texto = self.decimal_input.text().strip()
+
+            if not texto:
+                raise ErrorValidacion("Ingrese un número decimal.")
+
+            try:
+                numero = int(texto)
+            except ValueError:
+                raise ErrorValidacion(
+                    f"'{texto}' no es un número entero válido. Ejemplo: -5"
+                ) from None
+
+            bits = self._leer_bits()
 
             resultado = decimal_a_complemento(
                 numero,
@@ -123,12 +145,16 @@ class HerramientaComplementoA2(Herramienta):
         except ValueError as e:
             self.error_label.setText(str(e))
 
-    def _convertir_binario(self):
+    def _convertir_binario(self) -> None:
         self.error_label.setText("")
 
         try:
             binario = self.binario_input.text().strip()
-            bits = int(self.bits_combo.currentText())
+
+            if not binario:
+                raise ErrorValidacion("Ingrese un número binario.")
+
+            bits = self._leer_bits()
 
             resultado = complemento_a_decimal(
                 binario,
