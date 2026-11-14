@@ -1,4 +1,4 @@
-from escuadra.io.exportador_markdown import (
+from chuspacalc.io.exportador_markdown import (
     exportar_codigo,
     exportar_lista,
     exportar_markdown,
