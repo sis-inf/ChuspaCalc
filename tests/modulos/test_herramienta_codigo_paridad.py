@@ -2,7 +2,7 @@
 
 import pytest
 
-from escuadra.modulos.sistemas.herramienta_codigo_paridad import (
+from chuspacalc.modulos.sistemas.herramienta_codigo_paridad import (
     ejecutar_calculo_paridad,
 )
 
