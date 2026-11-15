@@ -8,7 +8,7 @@ import math
 
 import pytest
 
-from escuadra.modulos.geometria.resolucion_triangulos import (
+from chuspacalc.modulos.geometria.resolucion_triangulos import (
     resolver_triangulo_lado_angulo,
     resolver_triangulo_lados,
 )
