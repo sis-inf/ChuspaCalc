@@ -13,7 +13,19 @@ from chuspacalc.cli_interactivo import ejecutar_interactivo
 from chuspacalc.core.registry import descubrir_herramientas, herramientas_por_carrera
 
 
-def verificar_entorno():
+def verificar_entorno() -> None:
+    """
+    Verifica que el entorno cumpla los requisitos mínimos.
+
+    Comprueba que la versión de Python sea 3.10 o superior y que PySide6
+    esté instalado. Si alguna comprobación falla, muestre un mensaje de
+    error y termina el programa.
+
+    Raises:
+        SystemExit: Con código 1 si Python es anterior a 3.10 o si PySide6
+            no está instalado.
+
+    """
     if sys.version_info < (3, 10):
         print("Error: ChuspaCalc requiere Python 3.10 o superior.")
         sys.exit(1)
@@ -35,9 +47,12 @@ def verificar_entorno():
 __version__ = "0.1.0"
 
 
-def obtener_modulos_disponibles():
+def obtener_modulos_disponibles() -> set[str]:
     """
-    Obtiene las herramientas disponibles desde el registry.
+    Obtiene los nombres de las herramientas disponibles desde el registry.
+
+    Returns:
+        Conjunto con el nombre de cada herramienta registrada.
     """
     return {
         herramienta.nombre
@@ -45,17 +60,31 @@ def obtener_modulos_disponibles():
     }
 
 
-def herramienta_no_disponible(nombre_herramienta):
-    """Muestra mensaje para herramientas no implementadas."""
+def herramienta_no_disponible(nombre_herramienta: str) -> None:
+    """
+    Muestra mensaje para herramientas no implementadas.
+
+    Args:
+        nombre_herramienta: Nombre de la herramienta solicitada.
+    """
     print(
         f"La herramienta '{nombre_herramienta}' aún está en construcción "
         "y no está disponible."
     )
 
 
-def ejecutar_herramienta(args):
+def ejecutar_herramienta(args: argparse.Namespace) -> None:
     """
     Ejecuta el subcomando correspondiente si el módulo existe.
+
+    Si la herramienta no está registrada o su módulo no se puede importar,
+    muestra un mensaje de herramienta no disponible. Con ``--json`` imprime
+    el resultado como JSON; en caso contrario, lo imprime tal cual.
+
+    Args:
+        args: Argumentos parseados de la línea de comandos. Debe incluir
+            ``herramienta`` y ``json``; el resto se pasa como parámetros
+            a la función ``ejecutar`` del módulo.
     """
     herramienta = args.herramienta
     modulos_disponibles = obtener_modulos_disponibles()
@@ -95,8 +124,14 @@ def ejecutar_herramienta(args):
         print(resultado)
 
 
-def cmd_version(args):
-    """Muestra la versión del proyecto y datos de diagnóstico del entorno."""
+def cmd_version(args: argparse.Namespace) -> None:
+    """
+    Muestra la versión del proyecto y datos de diagnóstico del entorno.
+
+    Args:
+        args: Argumentos parseados de la línea de comandos. No se usan,
+            pero la firma es la que espera ``set_defaults(func=...)``.
+    """
     from PySide6 import __version__ as pyside6_version
 
     print(f"ChuspaCalc:      {__version__}")
@@ -105,8 +140,15 @@ def cmd_version(args):
     print(f"Plataforma:    {platform.platform()}")
 
 
-def cmd_listar(args):
-    """Muestra las herramientas disponibles agrupadas por carrera."""
+def cmd_listar(args: argparse.Namespace) -> None:
+    """
+    Muestra las herramientas disponibles agrupadas por carrera.
+
+    Args:
+        args: Argumentos parseados de cada línea de comandos. El atributo
+            ``carrera`` filtra por código de carrera; si es None, se
+            muestran todas.
+    """
     agrupadas = herramientas_por_carrera()
     filtro = args.carrera.lower() if args.carrera else None
 
@@ -131,8 +173,17 @@ def cmd_listar(args):
         )
 
 
-def main():
-    """Punto de entrada principal del CLI de ChuspaCalc."""
+def main() -> None:
+    """
+    Punto de entrada principal del CLI de ChuspaCalc.
+
+    Verificar el entorno, contruye el parser con los subcomandos y ejecuta
+    el solicitado. Sin subcomando, muestra la ayuda.
+
+    Raises:
+        SystemExit: Con código 1 si el entorno no es válido, 0 al mostrar
+            la ayuda y 130 si el usuario cancela con Crtl+C.
+    """
     try:
         verificar_entorno()
 
