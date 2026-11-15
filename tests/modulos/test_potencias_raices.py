@@ -6,7 +6,7 @@ valores fuera de dominio.
 
 import pytest
 
-from escuadra.modulos.matematicas.potencias_raices import (
+from chuspacalc.modulos.matematicas.potencias_raices import (
     logaritmo_base,
     logaritmo_base10,
     logaritmo_natural,
