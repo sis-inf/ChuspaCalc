@@ -151,7 +151,7 @@ Donde **V_L** es el voltaje de línea (V), **I_L** la corriente de línea (A) y 
 **Uso desde código:**
 
 ```python
-from escuadra.modulos.electrica.potencia_trifasica import calcular_potencia_trifasica
+from chuspacalc.modulos.electrica.potencia_trifasica import calcular_potencia_trifasica
 
 calcular_potencia_trifasica(400, 10, 0.85, conexion="estrella")
 # {"potencia_activa": 5888.97..., "potencia_reactiva": 3649.66..., "potencia_aparente": 6928.20...}
