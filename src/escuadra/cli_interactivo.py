@@ -1,16 +1,43 @@
 """
-Modo interactivo (REPL) para ChuspaCalc CLI
+Modo interactivo (REPL) para ChuspaCalc CLI.
+
+Permite elegir una herramienta registrada, ingresar sus parámetros uno a
+uno con validación de tipos y mostrar el resultado del cálculo.
 """
+
+from typing import Any
 
 from chuspacalc.registry import obtener_herramientas
 
+# Descripción de una herramienta tal como la entrega el registry.
+Herramienta = dict[str, Any]
 
-def ejecutar_interactivo():
+# Valores que puede tomar un parámetro ingresado por el usuario.
+ValorParametro = int | float | str
+
+
+def ejecutar_interactivo() -> None:
+    """
+    Ejecuta el bucle interactivo (REPL) de la CLI.
+
+    Muestra el menú de herramientas obtenidas del registry, solicita al
+    usuario cada parámetro de la herramienta elegida, valida su tipo
+    (``int``, ``float`` o ``str``) y muestra el resultado. El bucle se
+    repite hasta que el usuario elige ``0`` o no hay herramientas
+    registradas.
+
+    Returns:
+        None: La función no devuelve valor; interactúa por consola.
+
+    Raises:
+        Exception: Se propaga cualquier excepción que lance la función
+            de la herramienta seleccionada al ejecutarse.
+    """
     while True:
         print("\n=== ChuspaCalc MODO INTERACTIVO ===\n")
 
         # 1. Obtener herramientas desde el registry (OBLIGATORIO)
-        herramientas = obtener_herramientas()
+        herramientas: list[Herramienta] = obtener_herramientas()
 
         if not herramientas:
             print("No hay herramientas registradas.")
@@ -24,7 +51,7 @@ def ejecutar_interactivo():
 
         # 3. Selección con validación
         try:
-            opcion = int(input("\nSelecciona una herramienta: "))
+            opcion: int = int(input("\nSelecciona una herramienta: "))
         except ValueError:
             print("❌ Debes ingresar un número")
             continue
@@ -37,35 +64,40 @@ def ejecutar_interactivo():
             print("❌ Opción inválida")
             continue
 
-        herramienta = herramientas[opcion - 1]
+        herramienta: Herramienta = herramientas[opcion - 1]
 
         # 4. Pedir parámetros dinámicamente
-        parametros = {}
+        parametros: dict[str, ValorParametro] = {}
 
         print(f"\n--- {herramienta['nombre']} ---\n")
 
         for param in herramienta["parametros"]:
             while True:
-                valor = input(f"Ingrese {param['nombre']}: ")
+                entrada: str = input(f"Ingrese {param['nombre']}: ")
+                valor: ValorParametro
 
                 # 5. VALIDACIÓN DE TIPOS
                 if param["tipo"] == "int":
-                    if not valor.isdigit():
+                    if not entrada.isdigit():
                         print("❌ Debe ser entero")
                         continue
-                    valor = int(valor)
+                    valor = int(entrada)
 
                 elif param["tipo"] == "float":
                     try:
-                        valor = float(valor)
+                        valor = float(entrada)
                     except ValueError:
                         print("❌ Debe ser decimal")
                         continue
 
                 elif param["tipo"] == "str":
-                    if not valor.strip():
+                    if not entrada.strip():
                         print("❌ No puede estar vacío")
                         continue
+                    valor = entrada
+
+                else:
+                    valor = entrada
 
                 parametros[param["nombre"]] = valor
                 break
