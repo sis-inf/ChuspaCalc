@@ -135,14 +135,16 @@ class HerramientaComplementoA2(Herramienta):
 
             bits = self._leer_bits()
 
-            resultado = decimal_a_complemento(
-                numero,
-                bits
-            )
+            try:
+                resultado = decimal_a_complemento(numero, bits)
+            except ErrorValidacion:
+                raise
+            except ValueError as e:
+                raise ErrorValidacion(str(e)) from e
 
             self.binario_output.setText(resultado)
 
-        except ValueError as e:
+        except ErrorValidacion as e:
             self.error_label.setText(str(e))
 
     def _convertir_binario(self) -> None:
@@ -156,14 +158,15 @@ class HerramientaComplementoA2(Herramienta):
 
             bits = self._leer_bits()
 
-            resultado = complemento_a_decimal(
-                binario,
-                bits
-            )
+            try:
+                resultado = complemento_a_decimal(binario, bits)
+            except ErrorValidacion:
+                raise
+            except ValueError as e:
+                raise ErrorValidacion(str(e)) from e
 
-            self.decimal_output.setText(
-                str(resultado)
-            )
+            self.decimal_output.setText(str(resultado))
 
-        except ValueError as e:
+        except ErrorValidacion as e:
             self.error_label.setText(str(e))
+            
