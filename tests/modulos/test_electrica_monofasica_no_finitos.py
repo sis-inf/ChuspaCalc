@@ -6,19 +6,25 @@ entradas no finitas (NaN, inf y -inf) y conservan los resultados válidos.
 import math
 
 import pytest
+<<<<<<< HEAD
 from escuadra.modulos.electrica.caida_tension import calcular_caida
 from escuadra.modulos.electrica.circuito_serie_paralelo import (
+=======
+
+from chuspacalc.modulos.electrica.caida_tension import calcular_caida
+from chuspacalc.modulos.electrica.circuito_serie_paralelo import (
+>>>>>>> 21c81f8 (test(chuspacalc): migrar imports de electrica monofasica)
     capacitancia_paralelo,
     capacitancia_serie,
     resistencia_paralelo,
     resistencia_serie,
 )
-from escuadra.modulos.electrica.correccion_fp import calcular_capacitancia_correccion
-from escuadra.modulos.electrica.divisor_tension import (
+from chuspacalc.modulos.electrica.correccion_fp import calcular_capacitancia_correccion
+from chuspacalc.modulos.electrica.divisor_tension import (
     calcular_r2_para_tension,
     calcular_tension_salida,
 )
-from escuadra.modulos.electrica.potencia import potencia_ir, potencia_vi, potencia_vr
+from chuspacalc.modulos.electrica.potencia import potencia_ir, potencia_vi, potencia_vr
 
 NO_FINITOS = [math.nan, math.inf, -math.inf]
 
