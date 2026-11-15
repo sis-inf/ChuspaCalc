@@ -1,16 +1,29 @@
 """Herramientas educativas para cálculo y verificación de bits de paridad."""
 
+from ..matematicas.error_validacion import ErrorValidacion
+
 
 def validar_cadena_binaria(cadena: str) -> None:
-    """Valida que la entrada sea una cadena binaria no vacía."""
+    """
+    Valida que la entrada sea una cadena binaria no vacía.
+
+    Args:
+        cadena: Texto que debe contener solo 0 y 1.
+
+    Raises:
+        ErrorValidacion: Si cadena no es texto, está vacía o tiene caracteres
+            distintos de 0 y 1.
+    """
     if not isinstance(cadena, str):
-        raise ValueError("La entrada debe ser una cadena de texto binaria.")
+        raise ErrorValidacion("La entrada debe ser una cadena de texto binaria.")
 
     if not cadena:
-        raise ValueError("La cadena de entrada no puede estar vacía.")
+        raise ErrorValidacion("La cadena de entrada no puede estar vacía.")
 
     if not all(char in "01" for char in cadena):
-        raise ValueError("La cadena debe contener exclusivamente caracteres binarios ('0' y '1').")
+        raise ErrorValidacion(
+            "La cadena debe contener exclusivamente caracteres binarios ('0' y '1')."
+        )
 
 
 def calcular_bit_paridad(datos_binarios: str, tipo: str = "par") -> int:
@@ -23,6 +36,10 @@ def calcular_bit_paridad(datos_binarios: str, tipo: str = "par") -> int:
 
     Returns:
         Bit de paridad calculado (0 o 1).
+
+    Raises:
+        ErrorValidacion: Si datos_binarios no es una cadena binaria no vacía
+            o si tipo no es "par" ni "impar".
     """
     validar_cadena_binaria(datos_binarios)
 
@@ -34,7 +51,7 @@ def calcular_bit_paridad(datos_binarios: str, tipo: str = "par") -> int:
     if tipo == "impar":
         return 1 if unos % 2 == 0 else 0
 
-    raise ValueError("El tipo debe ser 'par' o 'impar'")
+    raise ErrorValidacion("El tipo debe ser 'par' o 'impar'")
 
 
 def verificar_paridad(datos_con_paridad: str, tipo: str = "par") -> bool:
@@ -47,6 +64,10 @@ def verificar_paridad(datos_con_paridad: str, tipo: str = "par") -> bool:
 
     Returns:
         True si la paridad es correcta, False en caso contrario.
+
+    Raises:
+        ErrorValidacion: Si datos_con_paridad no es una cadena binaria no
+            vacía o si tipo no es "par" ni "impar".
     """
     validar_cadena_binaria(datos_con_paridad)
 
@@ -58,5 +79,4 @@ def verificar_paridad(datos_con_paridad: str, tipo: str = "par") -> bool:
     if tipo == "impar":
         return cantidad_unos % 2 != 0
 
-    raise ValueError("El tipo debe ser 'par' o 'impar'")
-    
+    raise ErrorValidacion("El tipo debe ser 'par' o 'impar'")
