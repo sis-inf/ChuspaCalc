@@ -3,12 +3,13 @@ Módulo para cargar configuración desde archivos YAML.
 """
 
 from pathlib import Path
+from typing import Any
 
 import yaml
 
-FONT_SCALE_OPTIONS = [1.0, 1.25, 1.5]
+FONT_SCALE_OPTIONS: list[float] = [1.0, 1.25, 1.5]
 
-DEFAULT_FONT_SCALE = 1.0
+DEFAULT_FONT_SCALE: float = 1.0
 
 
 def _get_config_dir() -> Path:
@@ -23,7 +24,7 @@ def _get_config_path() -> Path:
     return _get_config_dir() / "config.yaml"
 
 
-def load(path: str) -> dict:
+def load(path: str) -> dict[str, Any]:
     """
     Carga un archivo YAML y retorna su contenido como diccionario.
 
@@ -100,7 +101,7 @@ def save_font_scale(scale: float) -> None:
         )
 
     config_path = _get_config_path()
-    config = {}
+    config: dict[str, Any] = {}
     if config_path.exists():
         try:
             config = load(str(config_path))
