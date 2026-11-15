@@ -32,6 +32,10 @@ def main() -> None:
     6. Construye el menú dinámico.
     7. Conecta el menú Acerca de.
     8. Muestra la ventana e inicia el event loop.
+
+    Returns:
+        None. El proceso termina con `sys.exit` al cerrar la aplicación
+        (código 0) o si ocurre un error fatal al arrancar (código 1).
     """
     configurar_logging()
 
