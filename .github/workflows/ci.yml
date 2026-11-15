@@ -47,6 +47,11 @@ jobs:
           - "3.12"
     steps:
       - uses: actions/checkout@v7
+      - name: Install Qt system libraries (Ubuntu)
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes --no-install-recommends libegl1 libgl1
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v7
         with:
@@ -55,6 +60,9 @@ jobs:
         run: |
           pip install -e .
           pip install -r requirements-dev.txt
+      - name: Verify PySide6 offscreen startup (Ubuntu)
+        if: matrix.os == 'ubuntu-latest'
+        run: python -c "from PySide6.QtWidgets import QApplication; QApplication([])"
       - name: Verificar ubicación de tests
         run: bash scripts/verificar-tests-ubicacion.sh
       - name: Run pytest
