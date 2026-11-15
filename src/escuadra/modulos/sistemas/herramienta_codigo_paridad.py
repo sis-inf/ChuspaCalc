@@ -7,7 +7,9 @@ from chuspacalc.modulos.sistemas.codigo_paridad import (
 )
 
 
-def ejecutar_calculo_paridad(datos_binarios: str, tipo: str = "par") -> dict[str, object]:
+def ejecutar_calculo_paridad(
+    datos_binarios: str, tipo: str = "par"
+) -> dict[str, object]:
     """
     Ejecuta las funciones de paridad y devuelve los resultados.
 
@@ -29,8 +31,10 @@ def ejecutar_calculo_paridad(datos_binarios: str, tipo: str = "par") -> dict[str
         )
 
     if not isinstance(tipo, str):
-        raise ErrorValidacion(
-            f"El tipo de paridad debe ser una cadena de texto, se recibió {type(tipo).__name__}."
+         raise ErrorValidacion(
+            "El tipo de paridad debe ser una cadena de texto, "
+            f"se recibió {type(tipo).__name__}."
+         )
         )
 
     try:
