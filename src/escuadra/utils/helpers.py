@@ -35,9 +35,10 @@ def copiar_al_portapapeles(texto: str) -> None:
         RuntimeError: Si no existe una instancia activa de QApplication.
     """
     from PySide6.QtWidgets import QApplication
+
     app = QApplication.instance()
 
-    if app is None:
+    if not isinstance(app, QApplication):
         raise RuntimeError("No hay QApplication activa")
 
     clipboard = app.clipboard()
