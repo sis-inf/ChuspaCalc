@@ -1,13 +1,19 @@
 import ipaddress
 
+from ..matematicas.error_validacion import ErrorValidacion
 
-class ErrorCIDR(ValueError):
+
+class ErrorCIDR(ErrorValidacion):
     pass
 
 
-def calcular_subred(ip: str, prefijo_cidr: str) -> dict:
+def calcular_subred(ip: str, prefijo_cidr: str | int) -> dict[str, str | int]:
     """
     Calcula información de subred a partir de una IP y un prefijo CIDR.
+
+    Args:
+        ip: Dirección IPv4 en notación decimal con puntos.
+        prefijo_cidr: Prefijo CIDR entre 1 y 32 (entero o texto numérico).
 
     Retorna:
         dict con:
@@ -17,9 +23,18 @@ def calcular_subred(ip: str, prefijo_cidr: str) -> dict:
         - primer_host
         - ultimo_host
         - total_hosts
+
+    Raises:
+        ErrorCIDR: Si los tipos, el prefijo o la IP no son válidos.
     """
 
     # ===== VALIDACIÓN =====
+    if not isinstance(ip, str):
+        raise ErrorCIDR("La dirección IP debe ser una cadena de texto")
+
+    if isinstance(prefijo_cidr, bool) or not isinstance(prefijo_cidr, (str, int)):
+        raise ErrorCIDR("El prefijo CIDR debe ser un número entero")
+
     try:
         prefijo = int(prefijo_cidr)
     except ValueError:
