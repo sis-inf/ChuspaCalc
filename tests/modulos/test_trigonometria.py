@@ -6,7 +6,7 @@ fuera de dominio.
 
 import pytest
 
-from escuadra.modulos.matematicas.trigonometria import (
+from chuspacalc.modulos.matematicas.trigonometria import (
     arcocoseno,
     arcoseno,
     arcotangente,
