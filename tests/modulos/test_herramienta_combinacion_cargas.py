@@ -1,7 +1,7 @@
 from PySide6.QtWidgets import QWidget
 
-from escuadra.core.carrera import Carrera
-from escuadra.modulos.civil.herramienta_combinacion_cargas import (
+from chuspacalc.core.carrera import Carrera
+from chuspacalc.modulos.civil.herramienta_combinacion_cargas import (
     HerramientaCombinacionCargas,
 )
 
