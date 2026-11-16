@@ -6,7 +6,7 @@ sin centro de transformación.
 
 import pytest
 
-from escuadra.modulos.geometria.transformaciones import (
+from chuspacalc.modulos.geometria.transformaciones import (
     escalar_punto,
     rotar_punto,
     trasladar_punto,
