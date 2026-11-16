@@ -9,7 +9,6 @@ import platform
 import sys
 
 import argcomplete
-from chuspacalc.cli_interactivo import ejecutar_interactivo
 from chuspacalc.core.registry import descubrir_herramientas, herramientas_por_carrera
 
 
@@ -254,6 +253,8 @@ def main() -> None:
             sys.exit(0)
 
         if args.herramienta == "interactivo":
+            from chuspacalc.cli_interactivo import ejecutar_interactivo
+
             ejecutar_interactivo()
             return
 
