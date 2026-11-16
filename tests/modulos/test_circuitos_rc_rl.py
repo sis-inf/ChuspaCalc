@@ -1,6 +1,6 @@
 import pytest
 
-from escuadra.modulos.electrica.circuitos_rc_rl import (
+from chuspacalc.modulos.electrica.circuitos_rc_rl import (
     analisis_transitorio,
     calcular_constante_tiempo_rc,
     calcular_constante_tiempo_rl,

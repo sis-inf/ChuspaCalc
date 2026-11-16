@@ -6,7 +6,7 @@ vacías y de datos insuficientes.
 
 import pytest
 
-from escuadra.modulos.matematicas.estadisticas import (
+from chuspacalc.modulos.matematicas.estadisticas import (
     calcular_desviacion_estandar,
     calcular_media,
     calcular_mediana,

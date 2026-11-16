@@ -52,6 +52,7 @@ chuspacalc = "chuspacalc.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
+include = ["chuspacalc*", "escuadra*"]
 
 [tool.ruff]
 line-length = 100
@@ -99,6 +100,7 @@ omit = [
 
 [tool.mypy]
 python_version = "3.10"
+files = ["src/chuspacalc"]
 warn_return_any = true
 warn_unused_configs = true
 ignore_missing_imports = true
