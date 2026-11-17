@@ -1,4 +1,3 @@
-
 """
 Calculadora de amplitud de intervalos estadísticos.
 """

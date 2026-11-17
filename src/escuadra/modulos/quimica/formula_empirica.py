@@ -1,4 +1,3 @@
-
 """
 Calculadora de formula empirica de un compuesto.
 """
@@ -53,9 +52,6 @@ def calcular_formula_empirica(moles_elementos):
 
     divisor_comun = reduce(gcd, proporciones_enteras)
 
-    resultado = [
-        proporcion // divisor_comun
-        for proporcion in proporciones_enteras
-    ]
+    resultado = [proporcion // divisor_comun for proporcion in proporciones_enteras]
 
     return resultado
