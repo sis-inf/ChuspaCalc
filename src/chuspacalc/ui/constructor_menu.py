@@ -4,7 +4,7 @@ Conecta el registry de herramientas con los menús de la ventana principal.
 """
 
 from PySide6.QtGui import QAction
-from PySide6.QtWidgets import QMenu
+from PySide6.QtWidgets import QMenu, QMessageBox
 
 from chuspacalc.core.carrera import Carrera
 from chuspacalc.core.herramienta import Herramienta
@@ -17,25 +17,49 @@ def construir_menu(
     callback_seleccion,
 ) -> None:
     """
-    Construye los menús dinámicos de la ventana principal a partir
-    del diccionario de herramientas agrupadas por carrera.
+    Construye los menús dinámicos de la ventana principal.
 
     Args:
-        ventana: La ventana principal de la aplicación.
-        herramientas_por_carrera: Diccionario {Carrera: [clase_herramienta, ...]}
-            devuelto por el registry.
-        callback_seleccion: Función que se invoca cuando el usuario selecciona
-            una herramienta. Recibe la clase de la herramienta como argumento.
+        ventana: Ventana principal de la aplicación.
+        herramientas_por_carrera: Diccionario con las herramientas agrupadas
+            por carrera.
+        callback_seleccion: Función que recibe la clase de la herramienta
+            seleccionada.
     """
     menu_carrera = ventana.menu_carrera()
     menu_herramientas = ventana.menu_herramientas()
 
-    # Recopilar todas las herramientas en lista plana
+    # Limpiar los menús para evitar duplicar acciones al reconstruirlos.
+    menu_carrera.clear()
+    menu_herramientas.clear()
+
+    # Reunir todas las herramientas disponibles.
     todas: list[type[Herramienta]] = []
+
     for herramientas in herramientas_por_carrera.values():
         todas.extend(herramientas)
 
-    # Menú Carrera: submenú por cada carrera con herramientas
+    def ejecutar_seleccion(clase: type[Herramienta]) -> None:
+        """
+        Ejecuta el callback de selección y captura posibles errores.
+        """
+        try:
+            callback_seleccion(clase)
+        except ValueError as error:
+            QMessageBox.warning(
+                ventana,
+                "Datos no válidos",
+                f"No se pudo seleccionar la herramienta:\n{error}",
+            )
+        except Exception:
+            QMessageBox.critical(
+                ventana,
+                "Error al seleccionar herramienta",
+                "Ocurrió un error al abrir la herramienta. "
+                "Intente nuevamente.",
+            )
+
+    # Crear un submenú para cada carrera que tenga herramientas.
     for carrera, herramientas in herramientas_por_carrera.items():
         if not herramientas:
             continue
@@ -44,12 +68,16 @@ def construir_menu(
 
         for clase in herramientas:
             accion = QAction(clase.nombre, ventana)
+
+            # Capturar la clase actual para evitar problemas con el cierre
+            # de variables dentro de las funciones lambda.
             accion.triggered.connect(
-                lambda checked=False, c=clase: callback_seleccion(c)
+                lambda checked=False, c=clase: ejecutar_seleccion(c)
             )
+
             submenu.addAction(accion)
 
-    # Menú Herramientas: lista plana con todas las herramientas
+    # Agregar todas las herramientas al menú general.
     if not todas:
         accion_vacia = QAction("Sin herramientas disponibles", ventana)
         accion_vacia.setEnabled(False)
@@ -57,7 +85,9 @@ def construir_menu(
     else:
         for clase in todas:
             accion = QAction(clase.nombre, ventana)
+
             accion.triggered.connect(
-                lambda checked=False, c=clase: callback_seleccion(c)
+                lambda checked=False, c=clase: ejecutar_seleccion(c)
             )
+
             menu_herramientas.addAction(accion)
