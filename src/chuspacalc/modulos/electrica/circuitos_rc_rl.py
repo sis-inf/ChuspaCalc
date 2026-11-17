@@ -2,7 +2,7 @@ import math
 from numbers import Real
 
 
-def _validar_finito(valor: Real, nombre: str) -> None:
+def _validar_finito(valor: float, nombre: str) -> None:
     if isinstance(valor, bool) or not isinstance(valor, Real):
         raise ValueError(f"{nombre} debe ser un numero real finito")
 
@@ -38,9 +38,7 @@ def calcular_constante_tiempo_rl(resistencia: float, inductancia: float) -> floa
 
 
 def calcular_voltaje_carga_capacitor(
-    voltaje_fuente: float,
-    tiempo: float,
-    constante_tiempo: float
+    voltaje_fuente: float, tiempo: float, constante_tiempo: float
 ) -> float:
     _validar_finito(voltaje_fuente, "El voltaje")
     _validar_finito(tiempo, "El tiempo")
@@ -55,10 +53,7 @@ def calcular_voltaje_carga_capacitor(
 
 
 def analisis_transitorio(
-    tipo: str,
-    resistencia: float,
-    componente: float,
-    tension: float
+    tipo: str, resistencia: float, componente: float, tension: float
 ) -> dict:
     """
     Calcula la constante de tiempo y la energía almacenada de un circuito RC o RL.
@@ -86,11 +81,11 @@ def analisis_transitorio(
 
     if tipo == "RC":
         tau = calcular_constante_tiempo_rc(resistencia, componente)
-        energia = 0.5 * componente * tension ** 2
+        energia = 0.5 * componente * tension**2
     else:
         tau = calcular_constante_tiempo_rl(resistencia, componente)
         corriente = tension / resistencia
-        energia = 0.5 * componente * corriente ** 2
+        energia = 0.5 * componente * corriente**2
 
     return {
         "tau": tau,

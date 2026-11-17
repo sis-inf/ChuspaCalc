@@ -14,6 +14,7 @@ from __future__ import annotations
 
 import json
 
+from chuspacalc.core.herramienta import Herramienta
 from chuspacalc.core.registry import descubrir_herramientas
 
 # Mapa de tipos Python a tipos JSON Schema
@@ -32,7 +33,7 @@ def _tipo_json(anotacion: str) -> str:
     return _TIPO_JSON.get(anotacion, "string")
 
 
-def _herramienta_a_funcion(herramienta: type) -> dict:
+def _herramienta_a_funcion(herramienta: type[Herramienta]) -> dict:
     """
     Convierte una clase Herramienta al formato de función
     compatible con function-calling de LLMs.
@@ -50,9 +51,19 @@ def _herramienta_a_funcion(herramienta: type) -> dict:
     """
     import inspect
 
-    nombre = herramienta.nombre.lower().replace(" ", "_").replace("á", "a") \
-        .replace("é", "e").replace("í", "i").replace("ó", "o").replace("ú", "u") \
-        .replace("ñ", "n").replace("ü", "u").replace(",", "").replace(".", "")
+    nombre = (
+        herramienta.nombre.lower()
+        .replace(" ", "_")
+        .replace("á", "a")
+        .replace("é", "e")
+        .replace("í", "i")
+        .replace("ó", "o")
+        .replace("ú", "u")
+        .replace("ñ", "n")
+        .replace("ü", "u")
+        .replace(",", "")
+        .replace(".", "")
+    )
 
     descripcion = herramienta.descripcion
     carrera = herramienta.carrera.value if herramienta.carrera else "general"
@@ -61,8 +72,13 @@ def _herramienta_a_funcion(herramienta: type) -> dict:
     requeridos: list[str] = []
 
     # Inspeccionar métodos públicos que no sean crear_widget ni metadatos
-    for nombre_metodo, metodo in inspect.getmembers(herramienta, predicate=inspect.isfunction):
-        if nombre_metodo.startswith("_") or nombre_metodo in ("crear_widget", "metadatos"):
+    for nombre_metodo, metodo in inspect.getmembers(
+        herramienta, predicate=inspect.isfunction
+    ):
+        if nombre_metodo.startswith("_") or nombre_metodo in (
+            "crear_widget",
+            "metadatos",
+        ):
             continue
 
         sig = inspect.signature(metodo)
@@ -75,9 +91,11 @@ def _herramienta_a_funcion(herramienta: type) -> dict:
 
             anotacion = "string"
             if param.annotation != inspect.Parameter.empty:
-                anotacion = _tipo_json(param.annotation.__name__
-                                       if hasattr(param.annotation, "__name__")
-                                       else str(param.annotation))
+                anotacion = _tipo_json(
+                    param.annotation.__name__
+                    if hasattr(param.annotation, "__name__")
+                    else str(param.annotation)
+                )
 
             params_metodo[param_nombre] = {
                 "type": anotacion,

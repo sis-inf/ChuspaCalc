@@ -16,6 +16,7 @@ def _validar_datos(datos: list) -> None:
         if not math.isfinite(valor):
             raise ValueError("Todos los datos deben ser finitos")
 
+
 def calcular_media(datos: list) -> float:
     _validar_datos(datos)
 
@@ -30,9 +31,7 @@ def calcular_mediana(datos: list) -> float:
     mitad = n // 2
 
     if n % 2 == 0:
-        return float(
-            (datos_ordenados[mitad - 1] + datos_ordenados[mitad]) / 2
-        )
+        return float((datos_ordenados[mitad - 1] + datos_ordenados[mitad]) / 2)
 
     return float(datos_ordenados[mitad])
 
@@ -40,7 +39,7 @@ def calcular_mediana(datos: list) -> float:
 def calcular_moda(datos: list) -> list:
     _validar_datos(datos)
 
-    frecuencias = {}
+    frecuencias: dict[object, int] = {}
 
     for valor in datos:
         frecuencias[valor] = frecuencias.get(valor, 0) + 1
@@ -54,18 +53,13 @@ def calcular_moda(datos: list) -> list:
     ]
 
 
-def calcular_desviacion_estandar(
-    datos: list,
-    poblacional: bool = False
-) -> float:
+def calcular_desviacion_estandar(datos: list, poblacional: bool = False) -> float:
     _validar_datos(datos)
 
     n = len(datos)
 
     if not poblacional and n < 2:
-        raise ValueError(
-            "Se requieren al menos dos datos para la desviacion muestral"
-        )
+        raise ValueError("Se requieren al menos dos datos para la desviacion muestral")
 
     media = sum(datos) / n
 
@@ -78,4 +72,4 @@ def calcular_desviacion_estandar(
 
     varianza = suma_cuadrados / divisor
 
-    return float(varianza ** 0.5)
+    return float(varianza**0.5)

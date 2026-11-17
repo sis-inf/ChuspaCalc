@@ -3,9 +3,6 @@ Herramienta de resolución de sistemas de ecuaciones lineales para ChuspaCalc.
 Resuelve sistemas A·x = b usando eliminación gaussiana con pivoteo parcial.
 """
 
-from chuspacalc.core.carrera import Carrera
-from chuspacalc.core.herramienta import Herramienta
-from chuspacalc.math.sistemas_lineales_nxn import resolver_sistema
 from PySide6.QtWidgets import (
     QGridLayout,
     QHBoxLayout,
@@ -17,11 +14,16 @@ from PySide6.QtWidgets import (
     QWidget,
 )
 
+from chuspacalc.core.carrera import Carrera
+from chuspacalc.core.herramienta import Herramienta
+from chuspacalc.math.sistemas_lineales_nxn import resolver_sistema
+
 # ── Widget ───────────────────────────────────────────────────────────────────
 
+
 class HerramientaSistemasLineales(Herramienta):
-    nombre      = "Sistemas de ecuaciones lineales"
-    carrera     = Carrera.MATEMATICAS
+    nombre = "Sistemas de ecuaciones lineales"
+    carrera = Carrera.MATEMATICAS
     descripcion = "Resuelve sistemas A·x = b para tamaños entre 2x2 y 5x5."
 
     def crear_widget(self) -> QWidget:
@@ -49,7 +51,7 @@ class HerramientaSistemasLineales(Herramienta):
         botones = QHBoxLayout()
         btn_resolver = QPushButton("Resolver")
         btn_resolver.clicked.connect(self._resolver)
-        btn_limpiar  = QPushButton("Limpiar")
+        btn_limpiar = QPushButton("Limpiar")
         btn_limpiar.clicked.connect(self._limpiar)
         botones.addWidget(btn_resolver)
         botones.addWidget(btn_limpiar)
@@ -91,10 +93,14 @@ class HerramientaSistemasLineales(Herramienta):
         # Limpiar grilla anterior
         while self._grilla_container.count():
             item = self._grilla_container.takeAt(0)
-            if item.widget():
-                item.widget().deleteLater()
-            elif item.layout():
-                self._limpiar_layout(item.layout())
+            if item is None:
+                continue
+            widget = item.widget()
+            layout = item.layout()
+            if widget is not None:
+                widget.deleteLater()
+            elif layout is not None:
+                self._limpiar_layout(layout)
 
         # Crear nueva grilla
         grilla = QGridLayout()
