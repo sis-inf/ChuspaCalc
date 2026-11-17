@@ -25,32 +25,24 @@ def mostrar_error_contextualizado(parent, excepcion):
     mensaje = str(excepcion)
 
     if nombre_error == "ErrorParametros":
-        mostrar_advertencia(
-            parent,
-            "Parámetros inválidos",
-            mensaje
-        )
+        mostrar_advertencia(parent, "Parámetros inválidos", mensaje)
 
     elif nombre_error == "ErrorCalculo":
         mostrar_error(
             parent,
             "Error de cálculo",
-            f"{mensaje}\n\nRevise los valores ingresados e intente nuevamente."
+            f"{mensaje}\n\nRevise los valores ingresados e intente nuevamente.",
         )
 
     elif nombre_error == "ErrorValidacion":
         mostrar_error(
             parent,
             "Error de validación",
-            f"{mensaje}\n\nVerifique que los valores estén dentro del rango permitido."
+            f"{mensaje}\n\nVerifique que los valores estén dentro del rango permitido.",
         )
 
     else:
-        mostrar_error(
-            parent,
-            "Error inesperado",
-            mensaje
-        )
+        mostrar_error(parent, "Error inesperado", mensaje)
 
 
 def confirmar(parent, titulo, mensaje):

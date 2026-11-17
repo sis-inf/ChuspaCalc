@@ -1,5 +1,3 @@
-
-
 class ErrorDisenoVial(Exception):
     pass
 
@@ -35,6 +33,6 @@ def calcular_peralte_curva(
 
     v = velocidad_diseno / 3.6  # km/h → m/s
 
-    peralte = (v ** 2) / (g * radio_curva) - friccion_lateral
+    peralte = (v**2) / (g * radio_curva) - friccion_lateral
 
     return peralte

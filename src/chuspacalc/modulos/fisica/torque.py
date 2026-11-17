@@ -1,4 +1,3 @@
-
 """
 Calculadora de torque producido por una fuerza.
 """

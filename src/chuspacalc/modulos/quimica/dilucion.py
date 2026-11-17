@@ -1,4 +1,3 @@
-
 """
 Calculadora de concentración final después de una dilución.
 
@@ -49,15 +48,11 @@ def calcular_concentracion_diluida(
             raise ValueError("Todos los valores deben ser positivos.")
 
     if volumen_final < volumen_inicial:
-        raise ValueError(
-            "El volumen final no puede ser menor que el volumen inicial."
-        )
+        raise ValueError("El volumen final no puede ser menor que el volumen inicial.")
 
     try:
         concentracion_final = (
-            float(concentracion_inicial)
-            * float(volumen_inicial)
-            / float(volumen_final)
+            float(concentracion_inicial) * float(volumen_inicial) / float(volumen_final)
         )
     except (OverflowError, ZeroDivisionError) as error:
         raise ValueError("No se pudo calcular un resultado válido.") from error

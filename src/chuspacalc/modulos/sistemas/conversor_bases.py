@@ -26,9 +26,7 @@ def _validar_digitos(numero: str, base: int) -> None:
             raise ErrorValidacion(f"Carácter inválido '{caracter}' para base {base}")
 
 
-def convertir(
-    numero: str, base_origen: int, base_destino: int
-) -> dict[str, str | int]:
+def convertir(numero: str, base_origen: int, base_destino: int) -> dict[str, str | int]:
     """
     Convierte números entre bases 2, 8, 10 y 16.
 

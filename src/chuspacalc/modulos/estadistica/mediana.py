@@ -1,4 +1,3 @@
-
 """
 Calculadora de la mediana de un conjunto de datos numéricos.
 """
@@ -46,9 +45,7 @@ def calcular_mediana(datos):
         return valores_ordenados[medio]
 
     try:
-        mediana = (
-            valores_ordenados[medio - 1] + valores_ordenados[medio]
-        ) / 2
+        mediana = (valores_ordenados[medio - 1] + valores_ordenados[medio]) / 2
     except OverflowError as error:
         raise ValueError("No se pudo calcular una mediana finita.") from error
 

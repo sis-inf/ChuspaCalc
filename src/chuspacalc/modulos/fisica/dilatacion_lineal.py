@@ -1,4 +1,3 @@
-
 """
 Calculadora de dilatacion lineal de materiales.
 """

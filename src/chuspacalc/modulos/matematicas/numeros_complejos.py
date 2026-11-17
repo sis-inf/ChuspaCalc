@@ -90,7 +90,7 @@ def polar_a_rectangular(r: float, theta: float) -> complex:
         raise ValueError("El módulo debe ser un número finito.")
     if not math.isfinite(theta):
         raise ValueError("El ángulo debe ser un número finito.")
-        
+
     if r < 0:
         raise ValueError("El módulo no puede ser negativo.")
 

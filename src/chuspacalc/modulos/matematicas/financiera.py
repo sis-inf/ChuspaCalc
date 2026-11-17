@@ -2,7 +2,6 @@
 Funciones de matemática financiera básica.
 """
 
-
 import math
 from numbers import Real
 

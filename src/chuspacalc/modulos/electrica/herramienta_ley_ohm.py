@@ -5,9 +5,6 @@ Calcula voltaje, corriente o resistencia a partir de las otras dos
 magnitudes.
 """
 
-from chuspacalc.core.carrera import Carrera
-from chuspacalc.core.herramienta import Herramienta
-from chuspacalc.modulos.electrica.ley_ohm import calcular_ohm
 from PySide6.QtWidgets import (
     QHBoxLayout,
     QLabel,
@@ -16,6 +13,10 @@ from PySide6.QtWidgets import (
     QVBoxLayout,
     QWidget,
 )
+
+from chuspacalc.core.carrera import Carrera
+from chuspacalc.core.herramienta import Herramienta
+from chuspacalc.modulos.electrica.ley_ohm import calcular_ohm
 
 
 def calcular_potencia(voltaje: float, corriente: float) -> float:
@@ -26,7 +27,9 @@ def calcular_potencia(voltaje: float, corriente: float) -> float:
 class HerramientaLeyOhm(Herramienta):
     nombre = "Ley de Ohm"
     carrera = Carrera.ELECTRICA
-    descripcion = "Calcula voltaje, corriente o resistencia a partir de las otras dos magnitudes."
+    descripcion = (
+        "Calcula voltaje, corriente o resistencia a partir de las otras dos magnitudes."
+    )
 
     def crear_widget(self) -> QWidget:
         widget = QWidget()
@@ -111,7 +114,9 @@ class HerramientaLeyOhm(Herramienta):
                 return
 
             if valor < 0:
-                self._error_label.setText(f"Error: el valor de {clave} debe ser positivo.")
+                self._error_label.setText(
+                    f"Error: el valor de {clave} debe ser positivo."
+                )
                 return
 
             valores[clave] = valor

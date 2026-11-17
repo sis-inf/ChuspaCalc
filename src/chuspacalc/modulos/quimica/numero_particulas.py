@@ -1,4 +1,3 @@
-
 """
 Calculadora del número de partículas a partir de la cantidad de moles.
 
@@ -10,7 +9,6 @@ Constante de Avogadro:
 """
 
 import math
-
 
 CONSTANTE_AVOGADRO = 6.02214076e23
 

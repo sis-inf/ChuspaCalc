@@ -1,4 +1,3 @@
-
 """
 Calculadora de fuerza elastica mediante la ley de Hooke.
 """

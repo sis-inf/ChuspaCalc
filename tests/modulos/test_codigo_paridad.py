@@ -3,6 +3,7 @@ Tests unitarios para las funciones de código de paridad.
 """
 
 import pytest
+
 from chuspacalc.modulos.sistemas.codigo_paridad import (
     calcular_bit_paridad,
     verificar_paridad,
