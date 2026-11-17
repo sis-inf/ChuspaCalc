@@ -8,6 +8,8 @@ from typing import Callable
 from PySide6.QtGui import QAction, QKeySequence, QShortcut
 from PySide6.QtWidgets import QApplication, QMainWindow, QMenu, QStackedWidget, QStatusBar, QWidget
 
+from chuspacalc.ui.mensajes import mostrar_error_contextualizado
+
 
 class VentanaPrincipal(QMainWindow):
     """
@@ -35,6 +37,8 @@ class VentanaPrincipal(QMainWindow):
         # Menu Archivo
         menu_archivo = barra.addMenu("Archivo")
         accion_salir = QAction("Salir", self)
+        # La señal triggered se conecta directo a QApplication.quit, que no
+        # necesita el parámetro checked ni validación previa.
         accion_salir.triggered.connect(QApplication.quit)
         menu_archivo.addAction(accion_salir)
 
@@ -46,6 +50,8 @@ class VentanaPrincipal(QMainWindow):
 
         # Menu Ayuda
         menu_ayuda = barra.addMenu("Ayuda")
+        # La señal triggered de esta acción se conecta desde la integración
+        # a través de accion_acerca_de().
         self._accion_acerca_de = QAction("Acerca de", self)
         menu_ayuda.addAction(self._accion_acerca_de)
 
@@ -62,6 +68,8 @@ class VentanaPrincipal(QMainWindow):
         """Configura los atajos de teclado Ctrl+1 a Ctrl+9 para herramientas recientes."""
         self._atajos_herramientas_recientes: list[QShortcut] = []
         for i in range(1, 10):
+            # Los atajos se crean sin conexión; la integración los conecta
+            # mediante conectar_atajos_recientes().
             atajo = QShortcut(QKeySequence(f"Ctrl+{i}"), self)
             self._atajos_herramientas_recientes.append(atajo)
 
@@ -91,7 +99,22 @@ class VentanaPrincipal(QMainWindow):
             callback: Función que recibe el índice (0 a 8) de la herramienta reciente a abrir.
         """
         for idx, atajo in enumerate(self._atajos_herramientas_recientes):
-            atajo.activated.connect(lambda i=idx: callback(i))
+            # Cada atajo ejecuta el callback a través de _ejecutar_atajo_reciente,
+            # que captura errores para que no escapen del bucle de eventos de Qt.
+            atajo.activated.connect(lambda i=idx: self._ejecutar_atajo_reciente(callback, i))
+
+    def _ejecutar_atajo_reciente(self, callback: Callable[[int], None], indice: int) -> None:
+        """
+        Ejecuta el callback de un atajo reciente capturando cualquier error.
+
+        Los atajos se disparan desde el bucle de eventos de Qt; si el callback
+        lanza una excepción, se muestra un mensaje claro en la interfaz en
+        lugar de dejar que se propague fuera de la señal.
+        """
+        try:
+            callback(indice)
+        except Exception as error:
+            mostrar_error_contextualizado(self, error)
 
     def mostrar_herramienta(self, widget: QWidget) -> None:
         """
