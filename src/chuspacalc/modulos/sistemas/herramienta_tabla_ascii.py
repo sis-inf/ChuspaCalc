@@ -4,13 +4,6 @@ Permite convertir caracteres a su codigo ASCII y viceversa,
 y listar rangos de la tabla ASCII estándar (0-127).
 """
 
-from chuspacalc.core.carrera import Carrera
-from chuspacalc.core.herramienta import Herramienta
-from chuspacalc.modulos.sistemas.tabla_ascii import (
-    ascii_a_caracter,
-    caracter_a_ascii,
-    listar_ascii_rango,
-)
 from PySide6.QtWidgets import (
     QHBoxLayout,
     QLabel,
@@ -22,11 +15,21 @@ from PySide6.QtWidgets import (
     QWidget,
 )
 
+from chuspacalc.core.carrera import Carrera
+from chuspacalc.core.herramienta import Herramienta
+from chuspacalc.modulos.sistemas.tabla_ascii import (
+    ascii_a_caracter,
+    caracter_a_ascii,
+    listar_ascii_rango,
+)
+
 
 class HerramientaTablaAscii(Herramienta):
     nombre = "Tabla ASCII"
     carrera = Carrera.SISTEMAS
-    descripcion = "Convierte caracteres a código ASCII y lista rangos de la tabla estándar."
+    descripcion = (
+        "Convierte caracteres a código ASCII y lista rangos de la tabla estándar."
+    )
 
     def crear_widget(self) -> QWidget:
         widget = QWidget()

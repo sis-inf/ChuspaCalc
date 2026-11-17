@@ -5,7 +5,6 @@ Genera un resumen del historial persistente mostrando
 la cantidad de usos por herramienta y carrera.
 """
 
-
 from collections import Counter
 
 from PySide6.QtWidgets import (
@@ -113,7 +112,7 @@ class PanelEstadisticasUso(QWidget):
 
         return {
             "herramientas": self.contar_por_herramienta(),
-            "carreras": self.contar_por_carrera()
+            "carreras": self.contar_por_carrera(),
         }
 
     def generar_grafico_barras(self):
@@ -124,6 +123,4 @@ class PanelEstadisticasUso(QWidget):
         o matplotlib.
         """
 
-        return list(
-            self.contar_por_herramienta().items()
-        )
+        return list(self.contar_por_herramienta().items())

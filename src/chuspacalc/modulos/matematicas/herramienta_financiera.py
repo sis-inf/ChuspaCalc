@@ -1,4 +1,3 @@
-
 """
 Herramienta de matemática financiera para ChuspaCalc.
 
@@ -7,13 +6,6 @@ Calcula valor futuro, valor presente e interés compuesto.
 
 import math
 
-from chuspacalc.core.carrera import Carrera
-from chuspacalc.core.herramienta import Herramienta
-from chuspacalc.modulos.matematicas.financiera import (
-    calcular_interes_compuesto,
-    calcular_valor_futuro,
-    calcular_valor_presente,
-)
 from PySide6.QtWidgets import (
     QComboBox,
     QHBoxLayout,
@@ -24,14 +16,19 @@ from PySide6.QtWidgets import (
     QWidget,
 )
 
+from chuspacalc.core.carrera import Carrera
+from chuspacalc.core.herramienta import Herramienta
+from chuspacalc.modulos.matematicas.financiera import (
+    calcular_interes_compuesto,
+    calcular_valor_futuro,
+    calcular_valor_presente,
+)
+
 
 class HerramientaFinanciera(Herramienta):
     nombre = "Matemática financiera"
     carrera = Carrera.MATEMATICAS
-    descripcion = (
-        "Calcula valor futuro, valor presente "
-        "e interés compuesto."
-    )
+    descripcion = "Calcula valor futuro, valor presente " "e interés compuesto."
 
     def crear_widget(self) -> QWidget:
         widget = QWidget()
@@ -108,9 +105,7 @@ class HerramientaFinanciera(Herramienta):
         root.addWidget(self._error_label)
 
         # Actualizar los campos según el cálculo seleccionado.
-        self._tipo_calculo.currentIndexChanged.connect(
-            self._actualizar_campos
-        )
+        self._tipo_calculo.currentIndexChanged.connect(self._actualizar_campos)
         self._actualizar_campos()
 
         root.addStretch()
@@ -160,23 +155,18 @@ class HerramientaFinanciera(Herramienta):
 
             if texto == "":
                 self._error_label.setText(
-                    f"Error: completa el campo "
-                    f"«{self._etiquetas[clave].text()}»."
+                    f"Error: completa el campo " f"«{self._etiquetas[clave].text()}»."
                 )
                 return
 
             try:
                 valor = float(texto)
             except ValueError:
-                self._error_label.setText(
-                    f"Error: «{texto}» no es un número válido."
-                )
+                self._error_label.setText(f"Error: «{texto}» no es un número válido.")
                 return
 
             if not math.isfinite(valor):
-                self._error_label.setText(
-                    "Error: ingresa valores numéricos finitos."
-                )
+                self._error_label.setText("Error: ingresa valores numéricos finitos.")
                 return
 
             valores[clave] = valor
@@ -191,32 +181,24 @@ class HerramientaFinanciera(Herramienta):
         # La tasa debe ser mayor que -1 para que las
         # fórmulas tengan un factor de capitalización válido.
         if valores["tasa"] <= -1:
-            self._error_label.setText(
-                "Error: la tasa debe ser mayor que -1."
-            )
+            self._error_label.setText("Error: la tasa debe ser mayor que -1.")
             return
 
         # Leer y validar el número entero de períodos.
         texto_periodos = self._campos["periodos"].text().strip()
 
         if texto_periodos == "":
-            self._error_label.setText(
-                "Error: ingresa el número de períodos."
-            )
+            self._error_label.setText("Error: ingresa el número de períodos.")
             return
 
         try:
             periodos = int(texto_periodos)
         except ValueError:
-            self._error_label.setText(
-                "Error: los períodos deben ser un número entero."
-            )
+            self._error_label.setText("Error: los períodos deben ser un número entero.")
             return
 
         if periodos < 0:
-            self._error_label.setText(
-                "Error: los períodos no pueden ser negativos."
-            )
+            self._error_label.setText("Error: los períodos no pueden ser negativos.")
             return
 
         monto = valores["monto"]
@@ -246,15 +228,11 @@ class HerramientaFinanciera(Herramienta):
                 )
 
             if not math.isfinite(resultado):
-                self._error_label.setText(
-                    "Error: el resultado no es un número finito."
-                )
+                self._error_label.setText("Error: el resultado no es un número finito.")
                 return
 
         except (ValueError, ZeroDivisionError, OverflowError) as error:
-            self._error_label.setText(
-                f"Error al realizar el cálculo: {error}"
-            )
+            self._error_label.setText(f"Error al realizar el cálculo: {error}")
             return
 
         self._resultado_output.setText(f"{resultado:.4f}")

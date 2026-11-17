@@ -1,11 +1,6 @@
-from chuspacalc.core.carrera import Carrera
-from chuspacalc.core.herramienta import Herramienta
-from chuspacalc.modulos.geometria.calculo_area import (
-    area_circulo,
-    area_rectangulo,
-    area_trapecio,
-    area_triangulo,
-)
+from collections.abc import Callable
+from typing import TypedDict
+
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import (
     QComboBox,
@@ -19,8 +14,23 @@ from PySide6.QtWidgets import (
     QWidget,
 )
 
+from chuspacalc.core.carrera import Carrera
+from chuspacalc.core.herramienta import Herramienta
+from chuspacalc.modulos.geometria.calculo_area import (
+    area_circulo,
+    area_rectangulo,
+    area_trapecio,
+    area_triangulo,
+)
+
+
+class ConfigFigura(TypedDict):
+    campos: list[tuple[str, str]]
+    calcular: Callable[[list[float]], float]
+
+
 # Configuración de cada figura: nombre visible → (campos requeridos, función de cálculo)
-_FIGURAS = {
+_FIGURAS: dict[str, ConfigFigura] = {
     "Triángulo": {
         "campos": [("Base", "m"), ("Altura", "m")],
         "calcular": lambda v: area_triangulo(v[0], v[1]),
@@ -148,9 +158,7 @@ class HerramientaCalculoArea(Herramienta):
             try:
                 valor = float(texto)
             except ValueError:
-                self.error_label.setText(
-                    f"Error: «{texto}» no es un número válido."
-                )
+                self.error_label.setText(f"Error: «{texto}» no es un número válido.")
                 return
             valores.append(valor)
 

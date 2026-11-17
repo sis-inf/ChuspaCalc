@@ -1,4 +1,3 @@
-
 import math
 from numbers import Real
 
@@ -28,7 +27,7 @@ def area_circulo(radio):
     if radio <= 0:
         raise ValueError("El radio debe ser mayor que cero")
 
-    return 3.1416 * (radio ** 2)
+    return 3.1416 * (radio**2)
 
 
 def area_rectangulo(base, altura):
@@ -39,3 +38,15 @@ def area_rectangulo(base, altura):
         raise ValueError("La base y la altura deben ser mayores que cero")
 
     return base * altura
+
+
+def area_trapecio(base_mayor, base_menor, altura):
+    """Calcula el área de un trapecio con dimensiones reales positivas."""
+    _validar_dimension(base_mayor, "base_mayor")
+    _validar_dimension(base_menor, "base_menor")
+    _validar_dimension(altura, "altura")
+
+    if base_mayor <= 0 or base_menor <= 0 or altura <= 0:
+        raise ValueError("Las bases y la altura deben ser mayores que cero")
+
+    return ((base_mayor + base_menor) * altura) / 2

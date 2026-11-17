@@ -1,4 +1,3 @@
-
 import math
 
 from ..matematicas.error_validacion import ErrorValidacion
@@ -23,9 +22,7 @@ def calcular_molaridad(moles: int | float, volumen_litros: int | float) -> float
     if isinstance(moles, bool) or not isinstance(moles, (int, float)):
         raise ErrorValidacion("Los moles deben ser un número real.")
 
-    if isinstance(volumen_litros, bool) or not isinstance(
-        volumen_litros, (int, float)
-    ):
+    if isinstance(volumen_litros, bool) or not isinstance(volumen_litros, (int, float)):
         raise ErrorValidacion("El volumen debe ser un número real.")
 
     try:

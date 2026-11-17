@@ -45,7 +45,7 @@ def listar_ascii_rango(inicio: int, fin: int) -> list:
     """
     Retorna una lista de diccionarios para un rango ASCII.
     """
-    
+
     if isinstance(inicio, bool) or not isinstance(inicio, int):
         raise ValueError("El inicio del rango debe ser un número entero")
 
@@ -58,7 +58,4 @@ def listar_ascii_rango(inicio: int, fin: int) -> list:
     if inicio > fin:
         raise ValueError("inicio no puede ser mayor que fin")
 
-    return [
-        ascii_a_caracter(codigo)
-        for codigo in range(inicio, fin + 1)
-    ]
+    return [ascii_a_caracter(codigo) for codigo in range(inicio, fin + 1)]

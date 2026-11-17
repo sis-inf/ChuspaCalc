@@ -1,8 +1,7 @@
 """
 Herramienta de Figuras Compuestas para ChuspaCalc.
 """
-from chuspacalc.core.carrera import Carrera
-from chuspacalc.core.herramienta import Herramienta
+
 from PySide6.QtWidgets import (
     QHBoxLayout,
     QLabel,
@@ -12,6 +11,9 @@ from PySide6.QtWidgets import (
     QVBoxLayout,
     QWidget,
 )
+
+from chuspacalc.core.carrera import Carrera
+from chuspacalc.core.herramienta import Herramienta
 
 from .figuras_compuestas import calcular_area_compuesta, calcular_volumen_compuesto
 
@@ -67,6 +69,7 @@ class HerramientaFigurasCompuestas(Herramienta):
             # Si no hay entrada, usar demo vacío que llame a la lógica
             # Aquí solo demostramos que la Herramienta existe y es descubrible
             import json
+
             texto = self._entrada.toPlainText().strip()
             if not texto:
                 self._resultado.setText(
@@ -87,6 +90,8 @@ class HerramientaFigurasCompuestas(Herramienta):
     def ejecutar(self, figuras):
         # Método requerido por algunos tests
         return calcular_area_compuesta(figuras)
+
+
 def calcular_volumen(figuras):
     """
     Calcula el volumen total de una figura compuesta.

@@ -26,6 +26,7 @@ def mostrar_progreso(current: int, total: int, width: int = 30) -> None:
     if current == total:
         print()
 
+
 class ProgressIndicator:
     def __init__(self, mensaje="Procesando..."):
         self.mensaje = mensaje
