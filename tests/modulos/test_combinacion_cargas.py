@@ -7,7 +7,7 @@ incluyendo factores personalizados y cargas en cero.
 
 import pytest
 
-from escuadra.modulos.civil.combinacion_cargas import (
+from chuspacalc.modulos.civil.combinacion_cargas import (
     combinar_cargas_lrfd,
 )
 

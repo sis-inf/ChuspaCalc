@@ -2,6 +2,7 @@
 Tests unitarios para el registry de herramientas.
 """
 
+from PySide6.QtWidgets import QLabel, QWidget
 
 from chuspacalc.core.carrera import Carrera
 from chuspacalc.core.herramienta import Herramienta
@@ -11,7 +12,6 @@ from chuspacalc.core.registry import (
     herramientas_por_carrera,
     limpiar_cache,
 )
-from PySide6.QtWidgets import QLabel, QWidget
 
 
 # Subclases dummy para pruebas
@@ -76,7 +76,7 @@ def test_herramientas_por_carrera_agrupa_correctamente():
         Carrera.GEOMETRIA,
     }
     # comprobar que las carreras presentes en el resultado pertenezcan al conjunto esperado
-    assert set (resultado.keys()).issubset(carreras_esperadas)
+    assert set(resultado.keys()).issubset(carreras_esperadas)
 
 
 def test_herramientas_por_carrera_ordenadas_alfabeticamente():

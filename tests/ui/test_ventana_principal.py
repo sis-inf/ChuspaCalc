@@ -3,8 +3,9 @@ Pruebas de humo para el módulo ventana_principal.py
 """
 
 import pytest
-from chuspacalc.ui.ventana_principal import VentanaPrincipal
 from PySide6.QtWidgets import QApplication, QMainWindow
+
+from chuspacalc.ui.ventana_principal import VentanaPrincipal
 
 
 @pytest.fixture
