@@ -38,7 +38,7 @@ Issues = "https://github.com/sis-inf/ChuspaCalc/issues"
 [project.optional-dependencies]
 dev = [
     "pytest>=8,<10",
-    "pytest-qt",
+    "pytest-qt>=4.5",
     "ruff>=0.4",
     "pyinstaller>=6",
     "flake8>=7.0",
