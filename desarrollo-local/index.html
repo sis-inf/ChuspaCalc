@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Desarrollo Local - ChuspaCalc</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">ChuspaCalc</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../instalacion/" class="nav-link">Instalación</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../configuracion/" class="nav-link">Configuración</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../arquitectura/" class="nav-link">Arquitectura</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="./" class="nav-link active" aria-current="page">Desarrollo Local</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../flujo-de-trabajo/" class="nav-link">Flujo de Trabajo</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../casos-de-uso/" class="nav-link">Casos de Uso</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../testing/" class="nav-link">Testing</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../seguridad/" class="nav-link">Seguridad</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../preguntas-frecuentes/" class="nav-link">Preguntas Frecuentes</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../arquitectura/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../flujo-de-trabajo/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#desarrollo-local" class="nav-link">Desarrollo local</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#requisitos-previos" class="nav-link">Requisitos previos</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#1-crear-entorno-virtual" class="nav-link">1. Crear entorno virtual</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#2-activar-entorno-virtual" class="nav-link">2. Activar entorno virtual</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#linux-macos" class="nav-link">Linux / macOS</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#windows" class="nav-link">Windows</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#3-instalar-dependencias-del-proyecto" class="nav-link">3. Instalar dependencias del proyecto</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#instalar-el-proyecto-en-modo-editable" class="nav-link">Instalar el proyecto en modo editable</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#instalar-dependencias-de-desarrollo" class="nav-link">Instalar dependencias de desarrollo</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#configurar-pre-commit" class="nav-link">Configurar pre-commit</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#que-hace-cada-hook" class="nav-link">¿Qué hace cada hook?</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#4-verificar-instalacion" class="nav-link">4. Verificar instalación</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#uso-del-makefile" class="nav-link">Uso del Makefile</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#resultado-esperado" class="nav-link">Resultado esperado</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#problemas-comunes-con-pre-commit" class="nav-link">Problemas comunes con pre-commit</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#notas-adicionales" class="nav-link">Notas adicionales</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="desarrollo-local">Desarrollo local</h1>
+<p>Esta guía explica cómo configurar el entorno de desarrollo local del proyecto para poder trabajar correctamente en nuevas funcionalidades, correcciones o documentación.</p>
+<hr />
+<h1 id="requisitos-previos">Requisitos previos</h1>
+<p>Antes de comenzar, es recomendable tener instalado:</p>
+<ul>
+<li>Python 3</li>
+<li>pip</li>
+<li>Git</li>
+</ul>
+<p>También se recomienda trabajar dentro de un entorno virtual para evitar conflictos entre dependencias de distintos proyectos.</p>
+<hr />
+<h1 id="1-crear-entorno-virtual">1. Crear entorno virtual</h1>
+<p>Para crear el entorno virtual se utiliza el siguiente comando:</p>
+<pre><code class="language-bash">python -m venv venv
+</code></pre>
+<p>Este comando crea una carpeta llamada <code>venv</code> que contendrá todas las dependencias necesarias del proyecto.</p>
+<h1 id="2-activar-entorno-virtual">2. Activar entorno virtual</h1>
+<p>Una vez creado el entorno virtual, es necesario activarlo.</p>
+<h2 id="linux-macos">Linux / macOS</h2>
+<pre><code class="language-bash">source venv/bin/activate
+</code></pre>
+<h2 id="windows">Windows</h2>
+<pre><code class="language-bash">venv\Scripts\activate
+</code></pre>
+<p>Cuando el entorno virtual está activo, normalmente aparecerá <code>(venv)</code> al inicio de la terminal.</p>
+<h1 id="3-instalar-dependencias-del-proyecto">3. Instalar dependencias del proyecto</h1>
+<h2 id="instalar-el-proyecto-en-modo-editable">Instalar el proyecto en modo editable</h2>
+<pre><code class="language-bash">pip install -e .
+</code></pre>
+<p>El modo editable permite realizar cambios en el proyecto sin necesidad de reinstalar el paquete después de cada modificación.</p>
+<hr />
+<h2 id="instalar-dependencias-de-desarrollo">Instalar dependencias de desarrollo</h2>
+<pre><code class="language-bash">pip install -r requirements-dev.txt
+</code></pre>
+<p>Este archivo contiene herramientas necesarias para el desarrollo y pruebas del proyecto.</p>
+<h2 id="configurar-pre-commit">Configurar pre-commit</h2>
+<p>Después de instalar las dependencias de desarrollo, es obligatorio configurar los hooks de <strong>pre-commit</strong>.</p>
+<h3 id="instalar-los-hooks">Instalar los hooks</h3>
+<pre><code class="language-bash">pre-commit install
+</code></pre>
+<p>Este comando registra los hooks configurados por el proyecto para que se ejecuten automáticamente antes de cada <code>git commit</code>.</p>
+<p>Los hooks ayudan a detectar problemas de formato, calidad de código y configuración antes de que los cambios sean enviados al repositorio.</p>
+<h3 id="verificar-que-los-hooks-funcionan">Verificar que los hooks funcionan</h3>
+<pre><code class="language-bash">pre-commit run --all-files
+</code></pre>
+<p>Este comando ejecuta todos los hooks sobre todos los archivos del proyecto y permite verificar que la configuración es correcta.</p>
+<h2 id="que-hace-cada-hook">¿Qué hace cada hook?</h2>
+<p>Actualmente el proyecto tiene configurados los siguientes hooks:</p>
+<h3 id="ruff">Ruff</h3>
+<p>Este hook ejecuta validaciones de calidad de código utilizando Ruff.</p>
+<p>Detecta problemas como:</p>
+<ul>
+<li>Imports no utilizados</li>
+<li>Variables no utilizadas</li>
+<li>Problemas de estilo</li>
+<li>Errores comunes detectados por las reglas configuradas en el proyecto</li>
+</ul>
+<p>La configuración actual utiliza la opción <code>--fix</code>, por lo que Ruff intentará corregir automáticamente algunos problemas cuando sea posible.</p>
+<h3 id="ruff-format">Ruff Format</h3>
+<p>Este hook aplica automáticamente el formato definido por Ruff para mantener un estilo consistente en todo el proyecto.</p>
+<p>Su objetivo es evitar diferencias de formato entre colaboradores y reducir cambios innecesarios en los Pull Requests.</p>
+<h3 id="check-yaml">Check YAML</h3>
+<p>Este hook verifica que todos los archivos YAML del proyecto tengan una sintaxis válida.</p>
+<p>Ayuda a detectar errores de:</p>
+<ul>
+<li>Indentación incorrecta</li>
+<li>Estructura inválida</li>
+<li>Errores de formato</li>
+<li>Configuraciones YAML mal definidas</li>
+</ul>
+<p>Es especialmente útil para archivos como:</p>
+<pre><code class="language-text">.pre-commit-config.yaml
+.github/workflows/*.yml
+</code></pre>
+<p>Si encuentra errores, el commit será rechazado hasta que el problema sea corregido.</p>
+<h1 id="4-verificar-instalacion">4. Verificar instalación</h1>
+<p>Para comprobar que todo funciona correctamente, ejecutar:</p>
+<pre><code class="language-bash">pytest
+</code></pre>
+<p>Si la configuración es correcta, pytest ejecutará las pruebas del proyecto sin errores.</p>
+<p>También es recomendable ejecutar:</p>
+<pre><code class="language-bash">pre-commit run --all-files
+</code></pre>
+<p>para verificar que todos los hooks funcionan correctamente.</p>
+<h2 id="uso-del-makefile">Uso del Makefile</h2>
+<p>El proyecto incluye un <code>Makefile</code> que reúne los comandos más comunes utilizados durante el desarrollo.</p>
+<table>
+<thead>
+<tr>
+<th>Comando</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>make install</code></td>
+<td>Instala el proyecto en modo editable con las dependencias de desarrollo.</td>
+</tr>
+<tr>
+<td><code>make test</code></td>
+<td>Ejecuta la suite de pruebas mediante <code>pytest</code>.</td>
+</tr>
+<tr>
+<td><code>make lint</code></td>
+<td>Ejecuta <code>ruff check .</code> para verificar la calidad del código.</td>
+</tr>
+<tr>
+<td><code>make format</code></td>
+<td>Ejecuta <code>ruff format .</code> para aplicar el formato del proyecto.</td>
+</tr>
+<tr>
+<td><code>make build</code></td>
+<td>Genera los paquetes de distribución mediante <code>python -m build</code>.</td>
+</tr>
+<tr>
+<td><code>make run</code></td>
+<td>Ejecuta la aplicación localmente.</td>
+</tr>
+</tbody>
+</table>
+<p>Estos comandos funcionan como atajos para las tareas de desarrollo más frecuentes y permiten mantener un flujo de trabajo consistente.</p>
+<h2 id="resultado-esperado">Resultado esperado</h2>
+<p>Al finalizar todos los pasos:</p>
+<ul>
+<li>El entorno virtual estará configurado correctamente.</li>
+<li>Las dependencias del proyecto estarán instaladas.</li>
+<li>El proyecto podrá ejecutarse en modo de desarrollo.</li>
+<li>Las pruebas podrán ejecutarse usando pytest.</li>
+<li>Los hooks de pre-commit estarán configurados y funcionando.</li>
+</ul>
+<h2 id="problemas-comunes-con-pre-commit">Problemas comunes con pre-commit</h2>
+<h3 id="pre-commit-command-not-found"><code>pre-commit: command not found</code></h3>
+<p>La herramienta no está instalada en el entorno actual.</p>
+<p>Instálala mediante:</p>
+<pre><code class="language-bash">pip install pre-commit
+</code></pre>
+<p>Verifica posteriormente la instalación:</p>
+<pre><code class="language-bash">pre-commit --version
+</code></pre>
+<h3 id="los-hooks-fallan-al-ejecutar-pre-commit-run-all-files">Los hooks fallan al ejecutar <code>pre-commit run --all-files</code></h3>
+<p>Lee cuidadosamente el mensaje mostrado en la terminal para identificar el problema.</p>
+<p>En muchos casos basta con ejecutar:</p>
+<pre><code class="language-bash">ruff check . --fix
+ruff format .
+</code></pre>
+<p>Después vuelve a ejecutar:</p>
+<pre><code class="language-bash">pre-commit run --all-files
+</code></pre>
+<p>hasta que todos los hooks finalicen correctamente.</p>
+<h3 id="ruff-modifica-archivos-automaticamente">Ruff modifica archivos automáticamente</h3>
+<p>Es normal que el hook <code>ruff</code> corrija algunos archivos durante la ejecución.</p>
+<p>Si esto ocurre:</p>
+<pre><code class="language-bash">git status
+</code></pre>
+<p>mostrará archivos modificados.</p>
+<p>Simplemente vuelve a agregarlos:</p>
+<pre><code class="language-bash">git add .
+git commit -m &quot;mensaje del commit&quot;
+</code></pre>
+<h3 id="error-en-archivos-yaml">Error en archivos YAML</h3>
+<p>Si el hook <code>check-yaml</code> falla, revisa:</p>
+<ul>
+<li>Indentación incorrecta</li>
+<li>Mezcla de espacios y tabulaciones</li>
+<li>Estructuras YAML incompletas</li>
+<li>Caracteres inválidos</li>
+</ul>
+<p>Corrige el archivo indicado y vuelve a ejecutar:</p>
+<pre><code class="language-bash">pre-commit run --all-files
+</code></pre>
+<h3 id="reinstalar-los-hooks">Reinstalar los hooks</h3>
+<p>Si existe algún problema con la instalación, puedes reinstalarlos:</p>
+<pre><code class="language-bash">pre-commit uninstall
+pre-commit install
+</code></pre>
+<p>Esto suele resolver problemas relacionados con configuraciones dañadas o cambios recientes en el proyecto.</p>
+<h1 id="notas-adicionales">Notas adicionales</h1>
+<p>Si ocurre algún problema con las dependencias, se recomienda:</p>
+<ul>
+<li>Verificar la versión de Python instalada</li>
+<li>Actualizar pip</li>
+<li>Volver a crear el entorno virtual</li>
+</ul>
+<p>Comando para actualizar pip:</p>
+<pre><code class="language-bash">python -m pip install --upgrade pip
+</code></pre></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

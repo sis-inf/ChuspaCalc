@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Ejemplos de Uso — Suite ChuspaCalc - ChuspaCalc</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">ChuspaCalc</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../instalacion/" class="nav-link">Instalación</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../configuracion/" class="nav-link">Configuración</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../arquitectura/" class="nav-link">Arquitectura</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../desarrollo-local/" class="nav-link">Desarrollo Local</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../flujo-de-trabajo/" class="nav-link">Flujo de Trabajo</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../casos-de-uso/" class="nav-link">Casos de Uso</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../testing/" class="nav-link">Testing</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../seguridad/" class="nav-link">Seguridad</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../preguntas-frecuentes/" class="nav-link">Preguntas Frecuentes</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#ejemplos-de-uso-suite-chuspacalc" class="nav-link">Ejemplos de Uso — Suite ChuspaCalc</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#modulo-civil" class="nav-link">Módulo Civil</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#modulo-electrica" class="nav-link">Módulo Eléctrica</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#modulo-matematicas" class="nav-link">Módulo Matemáticas</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#modulo-sistemas" class="nav-link">Módulo Sistemas</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#modulo-geometria" class="nav-link">Módulo Geometría</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="ejemplos-de-uso-suite-chuspacalc">Ejemplos de Uso — Suite ChuspaCalc</h1>
+<p>Este documento presenta ejemplos concretos de entrada y salida para las principales herramientas de ChuspaCalc.</p>
+<hr />
+<h2 id="modulo-civil">Módulo Civil</h2>
+<h3 id="ejemplo-1-reacciones-en-viga-con-carga-distribuida">Ejemplo 1: Reacciones en viga con carga distribuida</h3>
+<p><strong>Problema planteado:</strong>
+Una viga simplemente apoyada de 10 metros soporta una carga total distribuida de 100 kN. Se desea conocer las reacciones en los apoyos.</p>
+<p><strong>Código Python:</strong></p>
+<pre><code class="language-python">from chuspacalc.modulos.civil.viga import calcular_reacciones
+
+resultado = calcular_reacciones(longitud=10, carga=100)
+print(resultado)
+</code></pre>
+<p><strong>Salida esperada:</strong></p>
+<pre><code>{'Ra': 50.0, 'Rb': 50.0, 'unidad': 'kN'}
+</code></pre>
+<hr />
+<h3 id="ejemplo-2-reacciones-en-viga-con-carga-puntual-y-momento-flector">Ejemplo 2: Reacciones en viga con carga puntual y momento flector</h3>
+<p><strong>Problema planteado:</strong>
+Una viga de 6 metros tiene una carga puntual de 10 kN aplicada en el centro. Se desea conocer las reacciones y el momento flector máximo.</p>
+<p><strong>Código Python:</strong></p>
+<pre><code class="language-python">from chuspacalc.modulos.civil.viga import calcular_reacciones
+from chuspacalc.modulos.civil.momento_flector import calcular_momento_max
+
+reacciones = calcular_reacciones(longitud=6, carga=10, posicion=3)
+momento = calcular_momento_max(longitud=6, carga=10, tipo_carga='puntual_central')
+print(reacciones)
+print(momento)
+</code></pre>
+<p><strong>Salida esperada:</strong></p>
+<pre><code>{'Ra': 5.0, 'Rb': 5.0, 'unidad': 'kN'}
+{'momento_max': 15.0, 'posicion': 3.0, 'unidad': 'kN·m'}
+</code></pre>
+<hr />
+<h2 id="modulo-electrica">Módulo Eléctrica</h2>
+<h3 id="ejemplo-1-ley-de-ohm">Ejemplo 1: Ley de Ohm</h3>
+<p><strong>Problema planteado:</strong>
+Un circuito tiene una resistencia de 5 Ω y circula una corriente de 2 A. Se desea conocer el voltaje y la potencia disipada.</p>
+<p><strong>Código Python:</strong></p>
+<pre><code class="language-python">from chuspacalc.modulos.electrica.herramienta_ley_ohm import calcular_voltaje, calcular_potencia
+
+voltaje = calcular_voltaje(corriente=2, resistencia=5)
+potencia = calcular_potencia(voltaje=voltaje, corriente=2)
+print(f&quot;Voltaje: {voltaje} V&quot;)
+print(f&quot;Potencia: {potencia} W&quot;)
+</code></pre>
+<p><strong>Salida esperada:</strong></p>
+<pre><code>Voltaje: 10 V
+Potencia: 20 W
+</code></pre>
+<hr />
+<h3 id="ejemplo-2-caida-de-tension-en-conductor">Ejemplo 2: Caída de tensión en conductor</h3>
+<p><strong>Problema planteado:</strong>
+Un conductor de cobre de 100 metros y sección de 4 mm² conduce una corriente de 15 A. Se desea verificar si la caída de tensión es admisible.</p>
+<p><strong>Código Python:</strong></p>
+<pre><code class="language-python">from chuspacalc.modulos.electrica.caida_tension import calcular_caida
+
+resultado = calcular_caida(longitud=100, corriente=15, seccion=4)
+print(resultado)
+</code></pre>
+<p><strong>Salida esperada:</strong></p>
+<pre><code>{'caida_v': 12.9, 'porcentaje': 5.8636, 'admisible': False}
+</code></pre>
+<hr />
+<h2 id="modulo-matematicas">Módulo Matemáticas</h2>
+<h3 id="ejemplo-1-conversion-de-longitud">Ejemplo 1: Conversión de longitud</h3>
+<p><strong>Problema planteado:</strong>
+Un ingeniero necesita convertir 3 pies a metros para unificar datos de un informe técnico.</p>
+<p><strong>Código Python:</strong></p>
+<pre><code class="language-python">from chuspacalc.modulos.matematicas.conversor_longitud import convertir
+
+resultado = convertir(valor=3, de_unidad='ft', a_unidad='m')
+print(resultado)
+</code></pre>
+<p><strong>Salida esperada:</strong></p>
+<pre><code>{'valor_original': 3, 'unidad_original': 'ft', 'valor_convertido': 0.9144, 'unidad_destino': 'm'}
+</code></pre>
+<hr />
+<h3 id="ejemplo-2-estadisticas-de-mediciones-de-laboratorio">Ejemplo 2: Estadísticas de mediciones de laboratorio</h3>
+<p><strong>Problema planteado:</strong>
+Un estudiante realizó 5 mediciones de resistencia eléctrica: 47, 52, 49, 51, 48 Ω. Se desea calcular la media y la desviación estándar.</p>
+<p><strong>Código Python:</strong></p>
+<pre><code class="language-python">from chuspacalc.modulos.matematicas.estadisticas import calcular
+
+resultado = calcular([47, 52, 49, 51, 48])
+print(f&quot;Media: {resultado['media']} Ω&quot;)
+print(f&quot;Desviación estándar: {resultado['desviacion_estandar']:.2f} Ω&quot;)
+</code></pre>
+<p><strong>Salida esperada:</strong></p>
+<pre><code>Media: 49.4 Ω
+Desviación estándar: 1.96 Ω
+</code></pre>
+<hr />
+<h2 id="modulo-sistemas">Módulo Sistemas</h2>
+<h3 id="ejemplo-1-conversion-de-bases-numericas">Ejemplo 1: Conversión de bases numéricas</h3>
+<p><strong>Problema planteado:</strong>
+Un estudiante necesita convertir el número decimal 255 a binario, octal y hexadecimal.</p>
+<p><strong>Código Python:</strong></p>
+<pre><code class="language-python">from chuspacalc.modulos.sistemas.conversor_bases import convertir
+
+print(convertir('255', 10, 2))
+print(convertir('255', 10, 8))
+print(convertir('255', 10, 16))
+</code></pre>
+<p><strong>Salida esperada:</strong></p>
+<pre><code>{'numero_original': '255', 'base_origen': 10, 'resultado': '11111111', 'base_destino': 2}
+{'numero_original': '255', 'base_origen': 10, 'resultado': '377', 'base_destino': 8}
+{'numero_original': '255', 'base_origen': 10, 'resultado': 'FF', 'base_destino': 16}
+</code></pre>
+<hr />
+<h3 id="ejemplo-2-sistemas-de-ecuaciones-lineales">Ejemplo 2: Sistemas de ecuaciones lineales</h3>
+<p><strong>Problema planteado:</strong>
+Resolver el sistema: 2x + y = 4, x + 3y = 5.</p>
+<p><strong>Código Python:</strong></p>
+<pre><code class="language-python">from chuspacalc.modulos.matematicas.herramienta_sistemas_lineales import resolver_sistema
+
+solucion = resolver_sistema([[2, 1], [1, 3]], [4, 5])
+print(f&quot;x1 = {solucion[0]}, x2 = {solucion[1]}&quot;)
+</code></pre>
+<p><strong>Salida esperada:</strong></p>
+<pre><code>x1 = 1.4, x2 = 1.2
+</code></pre>
+<hr />
+<h2 id="modulo-geometria">Módulo Geometría</h2>
+<h3 id="ejemplo-1-area-de-un-triangulo">Ejemplo 1: Área de un triángulo</h3>
+<p><strong>Problema planteado:</strong>
+Calcular el área de un triángulo con base de 10 m y altura de 5 m.</p>
+<p><strong>Código Python:</strong></p>
+<pre><code class="language-python">from chuspacalc.modulos.geometria.calculo_area import area_triangulo
+
+resultado = area_triangulo(base=10, altura=5)
+print(f&quot;Área: {resultado} m²&quot;)
+</code></pre>
+<p><strong>Salida esperada:</strong></p>
+<pre><code>Área: 25.0 m²
+</code></pre>
+<hr />
+<h3 id="ejemplo-2-area-de-un-circulo">Ejemplo 2: Área de un círculo</h3>
+<p><strong>Problema planteado:</strong>
+Calcular el área de una sección circular de tubería con radio de 0.5 m.</p>
+<p><strong>Código Python:</strong></p>
+<pre><code class="language-python">from chuspacalc.modulos.geometria.calculo_area import area_circulo
+
+resultado = area_circulo(radio=0.5)
+print(f&quot;Área: {resultado:.4f} m²&quot;)
+</code></pre>
+<p><strong>Salida esperada:</strong></p>
+<pre><code>Área: 0.7854 m²
+</code></pre></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Módulo de Geometría - ChuspaCalc</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../../css/brands.min.css" rel="stylesheet">
+        <link href="../../css/solid.min.css" rel="stylesheet">
+        <link href="../../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">ChuspaCalc</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../../instalacion/" class="nav-link">Instalación</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../configuracion/" class="nav-link">Configuración</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../arquitectura/" class="nav-link">Arquitectura</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../desarrollo-local/" class="nav-link">Desarrollo Local</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../flujo-de-trabajo/" class="nav-link">Flujo de Trabajo</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../casos-de-uso/" class="nav-link">Casos de Uso</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../testing/" class="nav-link">Testing</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../seguridad/" class="nav-link">Seguridad</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../preguntas-frecuentes/" class="nav-link">Preguntas Frecuentes</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#modulo-de-geometria" class="nav-link">Módulo de Geometría</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#descripcion" class="nav-link">Descripción</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#figuras-planas-soportadas" class="nav-link">Figuras planas soportadas</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#solidos-geometricos-soportados" class="nav-link">Sólidos geométricos soportados</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#resolucion-de-triangulos" class="nav-link">Resolución de triángulos</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#ejemplos-de-uso" class="nav-link">Ejemplos de uso</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="modulo-de-geometria">Módulo de Geometría</h1>
+<h2 id="descripcion">Descripción</h2>
+<p>El módulo de geometría proporciona funciones para calcular áreas, perímetros y volúmenes de diferentes figuras geométricas. Además, incluye una herramienta interactiva para el cálculo de áreas de figuras planas.</p>
+<hr />
+<h2 id="figuras-planas-soportadas">Figuras planas soportadas</h2>
+<h3 id="area">Área</h3>
+<table>
+<thead>
+<tr>
+<th>Figura</th>
+<th>Función</th>
+<th>Fórmula</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Triángulo</td>
+<td><code>area_triangulo(base, altura)</code></td>
+<td>A = (base × altura) / 2</td>
+</tr>
+<tr>
+<td>Círculo</td>
+<td><code>area_circulo(radio)</code></td>
+<td>A = π × r²</td>
+</tr>
+<tr>
+<td>Rectángulo</td>
+<td><code>area_rectangulo(base, altura)</code></td>
+<td>A = base × altura</td>
+</tr>
+</tbody>
+</table>
+<h3 id="perimetro">Perímetro</h3>
+<table>
+<thead>
+<tr>
+<th>Figura</th>
+<th>Función</th>
+<th>Fórmula</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Círculo</td>
+<td><code>perimetro_circulo(radio)</code></td>
+<td>P = 2 × π × r</td>
+</tr>
+<tr>
+<td>Cuadrado</td>
+<td><code>perimetro_cuadrado(lado)</code></td>
+<td>P = 4 × lado</td>
+</tr>
+<tr>
+<td>Rectángulo</td>
+<td><code>perimetro_rectangulo(largo, ancho)</code></td>
+<td>P = 2 × (largo + ancho)</td>
+</tr>
+<tr>
+<td>Triángulo</td>
+<td><code>perimetro_triangulo(a, b, c)</code></td>
+<td>P = a + b + c</td>
+</tr>
+<tr>
+<td>Hexágono regular</td>
+<td><code>perimetro_hexagono_regular(lado)</code></td>
+<td>P = 6 × lado</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="solidos-geometricos-soportados">Sólidos geométricos soportados</h2>
+<table>
+<thead>
+<tr>
+<th>Sólido</th>
+<th>Función</th>
+<th>Fórmula</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cubo</td>
+<td><code>volumen_cubo(lado)</code></td>
+<td>V = lado³</td>
+</tr>
+<tr>
+<td>Esfera</td>
+<td><code>volumen_esfera(radio)</code></td>
+<td>V = (4/3) × π × r³</td>
+</tr>
+<tr>
+<td>Cilindro</td>
+<td><code>volumen_cilindro(radio, altura)</code></td>
+<td>V = π × r² × h</td>
+</tr>
+<tr>
+<td>Cono</td>
+<td><code>volumen_cono(radio, altura)</code></td>
+<td>V = (π × r² × h) / 3</td>
+</tr>
+<tr>
+<td>Paralelepípedo</td>
+<td><code>volumen_paralelepipedo(largo, ancho, alto)</code></td>
+<td>V = largo × ancho × alto</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="resolucion-de-triangulos">Resolución de triángulos</h2>
+<p>La herramienta <strong>Resolución de triángulos</strong> calcula los elementos faltantes de un triángulo usando la ley de cosenos y la ley de senos. Los ángulos se expresan en grados.</p>
+<table>
+<thead>
+<tr>
+<th>Caso conocido</th>
+<th>Función</th>
+<th>Resultado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Los tres lados</td>
+<td><code>resolver_triangulo_lados(a, b, c)</code></td>
+<td>Ángulos A, B y C</td>
+</tr>
+<tr>
+<td>Un lado y dos ángulos</td>
+<td><code>resolver_triangulo_lado_angulo(a, angulo_a, angulo_b)</code></td>
+<td>Lados b y c, y ángulo C</td>
+</tr>
+</tbody>
+</table>
+<p>Las funciones lanzan <code>ValueError</code> si los datos no forman un triángulo válido (lados no positivos, desigualdad triangular incumplida o ángulos que suman 180° o más).</p>
+<hr />
+<h2 id="ejemplos-de-uso">Ejemplos de uso</h2>
+<h3 id="calculo-de-areas">Cálculo de áreas</h3>
+<pre><code class="language-python">from ChuspaCalc.modulos.geometria.calculo_area import (
+    area_triangulo,
+    area_circulo,
+    area_rectangulo,
+)
+
+print(area_triangulo(10, 5))
+print(area_circulo(3))
+print(area_rectangulo(8, 4))
+</code></pre>
+<h3 id="calculo-de-perimetros">Cálculo de perímetros</h3>
+<pre><code class="language-python">from ChuspaCalc.modulos.geometria.perimetro import (
+    perimetro_circulo,
+    perimetro_cuadrado,
+)
+
+print(perimetro_circulo(5))
+print(perimetro_cuadrado(4))
+</code></pre>
+<h3 id="calculo-de-volumenes">Cálculo de volúmenes</h3>
+<pre><code class="language-python">from ChuspaCalc.modulos.geometria.volumen import (
+    volumen_cubo,
+    volumen_esfera,
+)
+
+print(volumen_cubo(3))
+print(volumen_esfera(2))
+</code></pre>
+<h3 id="resolucion-de-triangulos_1">Resolución de triángulos</h3>
+<pre><code class="language-python">from ChuspaCalc.modulos.geometria.resolucion_triangulos import (
+    resolver_triangulo_lados,
+    resolver_triangulo_lado_angulo,
+)
+
+# Tres lados conocidos: devuelve los ángulos A, B y C
+print(resolver_triangulo_lados(3, 4, 5))
+# (36.87..., 53.13..., 90.0)
+
+# Un lado y dos ángulos: devuelve los lados b y c, y el ángulo C
+print(resolver_triangulo_lado_angulo(10, 30, 60))
+# (17.32..., 20.00..., 90)
+</code></pre></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js"></script>
+        <script src="../../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

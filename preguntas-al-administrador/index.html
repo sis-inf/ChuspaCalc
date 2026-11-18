@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Preguntas Frecuentes al Administrador - ChuspaCalc</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">ChuspaCalc</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../instalacion/" class="nav-link">Instalación</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../configuracion/" class="nav-link">Configuración</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../arquitectura/" class="nav-link">Arquitectura</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../desarrollo-local/" class="nav-link">Desarrollo Local</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../flujo-de-trabajo/" class="nav-link">Flujo de Trabajo</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../casos-de-uso/" class="nav-link">Casos de Uso</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../testing/" class="nav-link">Testing</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../seguridad/" class="nav-link">Seguridad</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../preguntas-frecuentes/" class="nav-link">Preguntas Frecuentes</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#preguntas-frecuentes-al-administrador" class="nav-link">Preguntas Frecuentes al Administrador</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#fork-y-sincronizacion" class="nav-link">Fork y sincronización</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#1-como-actualizo-mi-fork-con-los-ultimos-cambios-del-repositorio-principal" class="nav-link">1. ¿Cómo actualizo mi fork con los últimos cambios del repositorio principal?</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#2-que-diferencia-hay-entre-origin-y-upstream" class="nav-link">2. ¿Qué diferencia hay entre origin y upstream?</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#3-debo-crear-mi-rama-desde-main-o-desde-dev" class="nav-link">3. ¿Debo crear mi rama desde main o desde dev?</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#4-cada-cuanto-debo-sincronizar-mi-fork" class="nav-link">4. ¿Cada cuánto debo sincronizar mi fork?</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#5-que-hago-si-olvide-sincronizar-antes-de-comenzar-a-trabajar" class="nav-link">5. ¿Qué hago si olvidé sincronizar antes de comenzar a trabajar?</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#pull-requests" class="nav-link">Pull Requests</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#6-contra-que-rama-debo-abrir-mi-pull-request" class="nav-link">6. ¿Contra qué rama debo abrir mi Pull Request?</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#7-por-que-fue-rechazado-mi-pull-request" class="nav-link">7. ¿Por qué fue rechazado mi Pull Request?</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#8-que-significa-que-mi-pr-tiene-conflictos-de-merge" class="nav-link">8. ¿Qué significa que mi PR tiene conflictos de merge?</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#9-puedo-seguir-agregando-commits-despues-de-abrir-un-pull-request" class="nav-link">9. ¿Puedo seguir agregando commits después de abrir un Pull Request?</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#10-por-que-se-solicita-que-un-pr-tenga-un-unico-objetivo" class="nav-link">10. ¿Por qué se solicita que un PR tenga un único objetivo?</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#cicd" class="nav-link">CI/CD</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#11-que-es-el-ci" class="nav-link">11. ¿Qué es el CI?</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#12-por-que-fallo-el-ci-de-mi-pull-request" class="nav-link">12. ¿Por qué falló el CI de mi Pull Request?</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#13-que-es-ruff-y-que-verifica" class="nav-link">13. ¿Qué es Ruff y qué verifica?</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#14-que-es-pytest-y-por-que-puede-hacer-fallar-el-ci" class="nav-link">14. ¿Qué es Pytest y por qué puede hacer fallar el CI?</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#15-como-puedo-verificar-localmente-lo-mismo-que-verifica-el-ci" class="nav-link">15. ¿Cómo puedo verificar localmente lo mismo que verifica el CI?</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#issues" class="nav-link">Issues</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#16-como-me-asignan-una-issue" class="nav-link">16. ¿Cómo me asignan una issue?</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#17-puedo-trabajar-en-una-issue-sin-estar-asignado" class="nav-link">17. ¿Puedo trabajar en una issue sin estar asignado?</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#18-puedo-trabajar-en-mas-de-una-issue-al-mismo-tiempo" class="nav-link">18. ¿Puedo trabajar en más de una issue al mismo tiempo?</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#19-que-hago-si-una-issue-parece-abandonada" class="nav-link">19. ¿Qué hago si una issue parece abandonada?</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#20-como-debo-referenciar-una-issue-en-mis-commits" class="nav-link">20. ¿Cómo debo referenciar una issue en mis commits?</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#21-que-hago-si-necesito-ayuda-durante-el-desarrollo" class="nav-link">21. ¿Qué hago si necesito ayuda durante el desarrollo?</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="preguntas-frecuentes-al-administrador">Preguntas Frecuentes al Administrador</h1>
+<p>Este documento reúne las preguntas más frecuentes que recibe el administrador del repositorio <strong>ChuspaCalc</strong>. Su objetivo es ayudar a los contribuidores a resolver dudas comunes sin necesidad de esperar una respuesta directa del administrador.</p>
+<p>Antes de realizar una consulta, revisa este documento, el archivo <code>README.md</code> y <code>CONTRIBUTING.md</code>. En muchos casos la respuesta ya se encuentra documentada.</p>
+<hr />
+<h1 id="fork-y-sincronizacion">Fork y sincronización</h1>
+<h2 id="1-como-actualizo-mi-fork-con-los-ultimos-cambios-del-repositorio-principal">1. ¿Cómo actualizo mi fork con los últimos cambios del repositorio principal?</h2>
+<p>Es recomendable sincronizar tu fork antes de comenzar cualquier trabajo nuevo. Esto te permite trabajar sobre la versión más reciente del proyecto y reduce la probabilidad de conflictos al momento de abrir un Pull Request.</p>
+<p>Primero verifica que tengas configurado el repositorio principal como <code>upstream</code>:</p>
+<pre><code class="language-bash">git remote -v
+</code></pre>
+<p>Deberías ver algo similar a:</p>
+<pre><code class="language-text">origin    https://github.com/TU-USUARIO/ChuspaCalc.git (fetch)
+origin    https://github.com/TU-USUARIO/ChuspaCalc.git (push)
+upstream  https://github.com/sis-inf/ChuspaCalc.git (fetch)
+upstream  https://github.com/sis-inf/ChuspaCalc.git (push)
+</code></pre>
+<p>Si <code>upstream</code> no existe, agrégalo:</p>
+<pre><code class="language-bash">git remote add upstream https://github.com/sis-inf/ChuspaCalc.git
+</code></pre>
+<p>Luego actualiza tu rama local <code>dev</code>:</p>
+<pre><code class="language-bash">git checkout dev
+git pull upstream dev
+</code></pre>
+<p>Finalmente, si deseas mantener tu fork actualizado también en GitHub:</p>
+<pre><code class="language-bash">git push origin dev
+</code></pre>
+<p>Se recomienda realizar este procedimiento antes de crear una nueva rama para trabajar en una issue.</p>
+<hr />
+<h2 id="2-que-diferencia-hay-entre-origin-y-upstream">2. ¿Qué diferencia hay entre origin y upstream?</h2>
+<p>Cuando trabajas con el Forking Workflow existen normalmente dos repositorios remotos:</p>
+<ul>
+<li><strong>origin</strong>: es tu fork personal.</li>
+<li><strong>upstream</strong>: es el repositorio oficial del proyecto.</li>
+</ul>
+<p>Por ejemplo:</p>
+<pre><code class="language-text">origin   -&gt; https://github.com/TU-USUARIO/ChuspaCalc.git
+upstream -&gt; https://github.com/sis-inf/ChuspaCalc.git
+</code></pre>
+<p>Los cambios oficiales llegan desde <code>upstream</code>, mientras que tus cambios se envían a <code>origin</code>.</p>
+<p>Comprender esta diferencia evita errores comunes, como intentar enviar cambios directamente al repositorio principal.</p>
+<hr />
+<h2 id="3-debo-crear-mi-rama-desde-main-o-desde-dev">3. ¿Debo crear mi rama desde main o desde dev?</h2>
+<p>Siempre debes crear tu rama desde <code>dev</code>.</p>
+<p>La rama <code>dev</code> contiene el trabajo de desarrollo más reciente y es la base sobre la que trabajan todos los contribuidores.</p>
+<p>Ejemplo:</p>
+<pre><code class="language-bash">git checkout dev
+git pull upstream dev
+git checkout -b docs/preguntas-al-admin
+</code></pre>
+<p>Crear ramas desde <code>main</code> puede generar conflictos y complicar la integración posterior.</p>
+<hr />
+<h2 id="4-cada-cuanto-debo-sincronizar-mi-fork">4. ¿Cada cuánto debo sincronizar mi fork?</h2>
+<p>No existe una frecuencia obligatoria, pero es recomendable hacerlo:</p>
+<ul>
+<li>Antes de comenzar una nueva issue.</li>
+<li>Antes de abrir un Pull Request.</li>
+<li>Si llevas varios días trabajando en una rama.</li>
+<li>Cuando observes que otros PR fueron integrados recientemente.</li>
+</ul>
+<p>Mantener tu fork actualizado facilita la revisión y reduce conflictos.</p>
+<hr />
+<h2 id="5-que-hago-si-olvide-sincronizar-antes-de-comenzar-a-trabajar">5. ¿Qué hago si olvidé sincronizar antes de comenzar a trabajar?</h2>
+<p>No es necesario descartar tu trabajo.</p>
+<p>Actualiza primero tu rama <code>dev</code>:</p>
+<pre><code class="language-bash">git checkout dev
+git pull upstream dev
+</code></pre>
+<p>Luego vuelve a tu rama de trabajo e incorpora los cambios:</p>
+<pre><code class="language-bash">git checkout mi-rama
+git merge dev
+</code></pre>
+<p>Si aparecen conflictos deberás resolverlos antes de continuar.</p>
+<hr />
+<h1 id="pull-requests">Pull Requests</h1>
+<h2 id="6-contra-que-rama-debo-abrir-mi-pull-request">6. ¿Contra qué rama debo abrir mi Pull Request?</h2>
+<p>Todos los Pull Requests deben abrirse contra la rama <code>dev</code>.</p>
+<p>Configuración correcta:</p>
+<pre><code class="language-text">Base repository: sis-inf/ChuspaCalc
+Base branch: dev
+Head repository: TU-USUARIO/ChuspaCalc
+Compare branch: tu-rama
+</code></pre>
+<p>No abras Pull Requests contra <code>main</code> salvo que el administrador lo solicite explícitamente.</p>
+<hr />
+<h2 id="7-por-que-fue-rechazado-mi-pull-request">7. ¿Por qué fue rechazado mi Pull Request?</h2>
+<p>Un Pull Request puede ser rechazado por diferentes motivos:</p>
+<ul>
+<li>No resuelve completamente la issue asignada.</li>
+<li>Incluye cambios no relacionados.</li>
+<li>No sigue las convenciones del proyecto.</li>
+<li>Tiene conflictos de merge.</li>
+<li>El CI está fallando.</li>
+<li>No se realizaron los cambios solicitados durante la revisión.</li>
+</ul>
+<p>Un rechazo no significa que el trabajo sea inútil; normalmente indica que necesita ajustes antes de ser aceptado.</p>
+<hr />
+<h2 id="8-que-significa-que-mi-pr-tiene-conflictos-de-merge">8. ¿Qué significa que mi PR tiene conflictos de merge?</h2>
+<p>Significa que Git no puede combinar automáticamente tus cambios con los cambios más recientes de la rama <code>dev</code>.</p>
+<p>Esto suele ocurrir cuando:</p>
+<ul>
+<li>Otro contribuidor modificó los mismos archivos.</li>
+<li>Tu rama estuvo mucho tiempo sin actualizarse.</li>
+<li>Se realizaron cambios estructurales en el proyecto.</li>
+</ul>
+<p>Para resolverlo:</p>
+<pre><code class="language-bash">git checkout dev
+git pull upstream dev
+
+git checkout mi-rama
+git merge dev
+</code></pre>
+<p>Git indicará qué archivos requieren atención.</p>
+<hr />
+<h2 id="9-puedo-seguir-agregando-commits-despues-de-abrir-un-pull-request">9. ¿Puedo seguir agregando commits después de abrir un Pull Request?</h2>
+<p>Sí.</p>
+<p>De hecho, es una práctica normal cuando el revisor solicita correcciones.</p>
+<p>Realiza los cambios necesarios y luego:</p>
+<pre><code class="language-bash">git add .
+git commit -m &quot;fix: corregir observaciones de revisión&quot;
+git push origin mi-rama
+</code></pre>
+<p>GitHub actualizará automáticamente el Pull Request existente.</p>
+<hr />
+<h2 id="10-por-que-se-solicita-que-un-pr-tenga-un-unico-objetivo">10. ¿Por qué se solicita que un PR tenga un único objetivo?</h2>
+<p>Porque facilita:</p>
+<ul>
+<li>La revisión del código.</li>
+<li>La identificación de errores.</li>
+<li>La realización de pruebas.</li>
+<li>El seguimiento del historial del proyecto.</li>
+</ul>
+<p>Por ejemplo, si una issue trata sobre documentación, el PR no debería incluir cambios de interfaz gráfica o correcciones de módulos.</p>
+<hr />
+<h1 id="cicd">CI/CD</h1>
+<h2 id="11-que-es-el-ci">11. ¿Qué es el CI?</h2>
+<p>CI significa Integración Continua.
+| Check | Qué verifica |
+|---|---|
+| <code>ruff (lint)</code> | Estilo y calidad del código Python |
+| <code>ruff (format)</code> | Formato consistente del código |
+| <code>pytest</code> | Que todas las pruebas unitarias pasen |</p>
+<p>Cada vez que envías cambios, GitHub ejecuta verificaciones automáticas para comprobar que el proyecto sigue funcionando correctamente.</p>
+<p>Estas verificaciones ayudan a detectar errores antes de que lleguen a la rama principal de desarrollo.</p>
+<p>Los checks de CI verifican automáticamente la calidad del código. Los fallos más frecuentes son:</p>
+<ul>
+<li><strong>Linter (ruff)</strong>: el código no cumple las reglas de estilo.</li>
+<li><strong>Tests (pytest)</strong>: alguna prueba falló.</li>
+<li><strong>Formato</strong>: el código no está formateado correctamente.</li>
+</ul>
+<h2 id="12-por-que-fallo-el-ci-de-mi-pull-request">12. ¿Por qué falló el CI de mi Pull Request?</h2>
+<p>Las causas más comunes son:</p>
+<ul>
+<li>Errores de sintaxis.</li>
+<li>Pruebas unitarias fallidas.</li>
+<li>Problemas de formato.</li>
+<li>Importaciones incorrectas.</li>
+<li>Archivos faltantes.</li>
+<li>Incumplimiento de reglas definidas por Ruff.</li>
+</ul>
+<p>Debes revisar los detalles del workflow para identificar la causa exacta.</p>
+<hr />
+<h2 id="13-que-es-ruff-y-que-verifica">13. ¿Qué es Ruff y qué verifica?</h2>
+<p>Ruff es una herramienta de análisis estático de código.</p>
+<p>Su función es detectar:</p>
+<ul>
+<li>Errores comunes.</li>
+<li>Código redundante.</li>
+<li>Problemas de formato.</li>
+<li>Importaciones incorrectas.</li>
+<li>Incumplimiento de estándares definidos por el proyecto.</li>
+</ul>
+<p>Puedes ejecutarlo localmente con:</p>
+<pre><code class="language-bash">ruff check .
+</code></pre>
+<hr />
+<h2 id="14-que-es-pytest-y-por-que-puede-hacer-fallar-el-ci">14. ¿Qué es Pytest y por qué puede hacer fallar el CI?</h2>
+<p>Pytest es el sistema de pruebas automatizadas utilizado por el proyecto.</p>
+<p>Su objetivo es verificar que las funcionalidades continúan funcionando correctamente después de realizar cambios.</p>
+<p>Para ejecutar las pruebas:</p>
+<pre><code class="language-bash">pytest
+</code></pre>
+<p>Si alguna prueba falla, deberás corregir el problema antes de abrir o actualizar tu Pull Request.</p>
+<hr />
+<h2 id="15-como-puedo-verificar-localmente-lo-mismo-que-verifica-el-ci">15. ¿Cómo puedo verificar localmente lo mismo que verifica el CI?</h2>
+<p>Antes de hacer push, ejecuta:</p>
+<pre><code class="language-bash">ruff check .
+pytest
+</code></pre>
+<p>Esto permite detectar muchos errores antes de que GitHub los encuentre.</p>
+<p>Realizar esta verificación reduce el tiempo de revisión y evita ciclos innecesarios de corrección.</p>
+<hr />
+<h1 id="issues">Issues</h1>
+<h2 id="16-como-me-asignan-una-issue">16. ¿Cómo me asignan una issue?</h2>
+<p>Primero debes comentar en la issue indicando tu interés en trabajar en ella.</p>
+<p>Ejemplo:</p>
+<pre><code class="language-text">Me gustaría trabajar en esta issue.
+</code></pre>
+<p>Posteriormente el administrador o un colaborador correspondiente podrá asignártela.</p>
+<p>La asignación ayuda a evitar que varias personas trabajen simultáneamente en la misma tarea.</p>
+<hr />
+<h2 id="17-puedo-trabajar-en-una-issue-sin-estar-asignado">17. ¿Puedo trabajar en una issue sin estar asignado?</h2>
+<p>No es recomendable.</p>
+<p>Podrías invertir tiempo en una solución que otra persona ya está desarrollando.</p>
+<p>Si una issue te interesa, comenta primero y espera confirmación.</p>
+<hr />
+<h2 id="18-puedo-trabajar-en-mas-de-una-issue-al-mismo-tiempo">18. ¿Puedo trabajar en más de una issue al mismo tiempo?</h2>
+<p>Sí, puedes tener un máximo de tres (3) issues asignados simultáneamente.</p>
+<p>Esta restricción tiene como objetivo:</p>
+<ul>
+<li>Promover la finalización de tareas antes de asumir nuevas responsabilidades.</li>
+<li>Evitar la acumulación de issues sin progreso.</li>
+<li>Permitir una distribución más equitativa del trabajo entre los colaboradores.</li>
+</ul>
+<p>No se realizarán excepciones a esta regla.</p>
+<p>Una vez asignada una issue, dispondrás de un máximo de 72 horas (3 días) para completar el trabajo correspondiente y abrir el Pull Request asociado.</p>
+<p>Cada issue debe tener:</p>
+<ul>
+<li>Su propia rama.</li>
+<li>Sus propios commits.</li>
+<li>Su propio Pull Request.</li>
+</ul>
+<p>Ejemplo:</p>
+<pre><code class="language-text">docs/preguntas-al-admin
+fix/error-conversion-binaria
+test/pruebas-modulo-viga
+</code></pre>
+<p>Mantener el trabajo separado facilita la revisión y evita mezclar cambios.</p>
+<hr />
+<h2 id="19-que-hago-si-una-issue-parece-abandonada">19. ¿Qué hago si una issue parece abandonada?</h2>
+<p>Si observas que una issue asignada lleva mucho tiempo sin actividad:</p>
+<ol>
+<li>Revisa los comentarios recientes.</li>
+<li>Consulta respetuosamente si sigue en desarrollo.</li>
+<li>Espera la decisión del administrador.</li>
+</ol>
+<p>La reasignación de una issue depende de la situación particular de cada caso.</p>
+<hr />
+<h2 id="20-como-debo-referenciar-una-issue-en-mis-commits">20. ¿Cómo debo referenciar una issue en mis commits?</h2>
+<p>Todos los commits principales deben incluir la referencia correspondiente cuando sea posible.</p>
+<p>Ejemplo:</p>
+<pre><code class="language-bash">git commit -m &quot;docs: actualizar como agregar modulo - Closes #67&quot;
+</code></pre>
+<p>Cuando el Pull Request sea aceptado, GitHub cerrará automáticamente la issue asociada.</p>
+<hr />
+<h2 id="21-que-hago-si-necesito-ayuda-durante-el-desarrollo">21. ¿Qué hago si necesito ayuda durante el desarrollo?</h2>
+<p>Antes de contactar al administrador:</p>
+<ol>
+<li>Lee el README del proyecto.</li>
+<li>Revisa CONTRIBUTING.md.</li>
+<li>Consulta este documento.</li>
+<li>Revisa comentarios anteriores en la issue.</li>
+<li>Busca si otro Pull Request resolvió un problema similar.</li>
+</ol>
+<p>Si después de estas verificaciones tu duda continúa, puedes comentar en la issue o en tu Pull Request proporcionando toda la información posible para facilitar la ayuda.</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

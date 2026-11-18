@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Guía de Integración Continua (CI/CD) - ChuspaCalc</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">ChuspaCalc</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../instalacion/" class="nav-link">Instalación</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../configuracion/" class="nav-link">Configuración</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../arquitectura/" class="nav-link">Arquitectura</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../desarrollo-local/" class="nav-link">Desarrollo Local</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../flujo-de-trabajo/" class="nav-link">Flujo de Trabajo</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../casos-de-uso/" class="nav-link">Casos de Uso</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../testing/" class="nav-link">Testing</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../seguridad/" class="nav-link">Seguridad</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../preguntas-frecuentes/" class="nav-link">Preguntas Frecuentes</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#guia-de-integracion-continua-cicd" class="nav-link">Guía de Integración Continua (CI/CD)</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#workflows-disponibles" class="nav-link">Workflows disponibles</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#flujo-de-un-pr" class="nav-link">Flujo de un PR</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="guia-de-integracion-continua-cicd">Guía de Integración Continua (CI/CD)</h1>
+<p>Este documento detalla el funcionamiento de la infraestructura de Integración y Despliegue Continuo (CI/CD) de nuestro proyecto, explicando cómo interactúan las herramientas de automatización con el flujo de trabajo del equipo de desarrollo.</p>
+<h2 id="workflows-disponibles">Workflows disponibles</h2>
+<p>El repositorio cuenta con tres flujos de trabajo (workflows) automatizados configurados dentro del directorio <code>.github/workflows/</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Nombre</th>
+<th>Cuándo se activa (Trigger)</th>
+<th>Qué hace</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Python CI</code> (<code>ci.yml</code>)</td>
+<td>Ante cualquier evento de <code>push</code> o <code>pull_request</code> en cualquier rama del repositorio (<code>"**"</code>).</td>
+<td>Levanta un entorno de ejecución con una matriz de versiones de Python (3.10, 3.11 y 3.12). Instala las dependencias y ejecuta el linter <code>ruff</code> y la suite de pruebas con <code>pytest</code>.</td>
+</tr>
+<tr>
+<td><code>Security scan</code> (<code>security.yml</code>)</td>
+<td>Al realizar un <code>push</code> en la rama <code>dev</code> o al abrir un <code>pull_request</code> que apunte hacia la rama <code>main</code>.</td>
+<td>Utiliza GitHub CodeQL para ejecutar un análisis estático de seguridad (SAST) buscando vulnerabilidades específicas en el código escrito en JavaScript/TypeScript.</td>
+</tr>
+<tr>
+<td><code>Deploy</code> (<code>deploy.yml</code>)</td>
+<td>Únicamente al realizar un <code>push</code> directo o fusión de rama (merge) en la rama <code>main</code>.</td>
+<td>Funciona como un esqueleto o <em>placeholder</em> preparatorio para el despliegue automático. Actualmente solo ejecuta una instrucción de impresión en consola.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="flujo-de-un-pr">Flujo de un PR</h2>
+<p>El ciclo de vida del código para cualquier contribución sigue un flujo estructurado desde que se inicia el trabajo en un entorno local hasta que se consolida en el repositorio central:</p>
+<p>```text
+1.  Fork del repositorio principal desde la interfaz de GitHub.
+2.  Clonar tu fork de forma local en tu estación de trabajo.
+3.  Crear una rama de trabajo local partiendo siempre desde 'dev'.
+4.  Realizar modificaciones en el código y asegurar los estados mediante commits.
+5. ⬆ Push de la rama de trabajo hacia tu repositorio remoto (tu fork).
+6.  Abrir un Pull Request (PR) apuntando exclusivamente a la rama 'dev' del repositorio original.
+7.  GitHub Actions intercepta el PR y ejecuta de forma automatizada los flujos del CI.
+8.  Revisión de código (Code Review) obligatoria y retroalimentación por parte del equipo.
+9. Fusión (Merge) del Pull Request aprobado dentro de la rama 'dev'.
+Cómo corregir un CI fallido
+Cuando un pipeline automatizado falla, GitHub Actions detendrá las tareas siguientes y marcará el Pull Request con una cruz roja (❌). Para solucionar el problema, debes ingresar a la pestaña "Checks" de tu PR, examinar los registros (logs) de la consola para identificar el error y proceder en tu máquina local según el tipo de fallo:</p>
+<p>Errores de Tests (Pruebas unitarias)
+Ocurren cuando la lógica modificada altera el comportamiento esperado del sistema, provocando que las aserciones de las pruebas fallen.</p>
+<p>Diagnóstico: Revisa el log de la tarea de pruebas en GitHub Actions para localizar el archivo y el nombre exacto de la función de prueba que falló (ej. test_calculo_error).</p>
+<p>Procedimiento local:</p>
+<p>Activa el entorno virtual de tu proyecto en la terminal.</p>
+<p>Instala las dependencias de desarrollo obligatorias:</p>
+<p>Bash
+pip install -r requirements-dev.txt
+Ejecuta la suite de pruebas localmente para reproducir el fallo:</p>
+<p>Bash
+pytest
+Corrige el código fuente en tu editor hasta que el comando pytest se ejecute al 100% sin errores.</p>
+<p>Errores de Lint/Formato
+El linter valida que el código cumpla estrictamente con las reglas de estilo de Python y no contenga malas prácticas (como variables declaradas que nunca se usan o importaciones duplicadas).</p>
+<p>Diagnóstico: El log de la tarea Lint (ruff) especificará el archivo, el número de línea y el identificador de la regla de estilo infringida.</p>
+<p>Procedimiento local:</p>
+<p>Ejecuta el linter en tu terminal para visualizar los problemas de formato en tu entorno local:</p>
+<p>Bash
+ruff check .
+Para solucionar de forma automatizada la mayoría de los problemas de espaciado y estilo, ejecuta:</p>
+<p>Bash
+ruff check --fix .
+Modifica manualmente las líneas de código que el formateador automático no pueda resolver por sí mismo.</p>
+<p>Errores de Seguridad
+El pipeline de seguridad inspecciona el código buscando fallas de diseño, vulnerabilidades de inyección o malas prácticas de manejo de datos.</p>
+<p>Diagnóstico: Dirígete a la alerta generada por el check Security scan. CodeQL mostrará el camino del flujo de datos inseguro directamente en la interfaz de código de GitHub.</p>
+<p>Procedimiento local:</p>
+<p>Identifica el archivo JavaScript o TypeScript que disparó la alerta.</p>
+<p>Modifica el código aplicando técnicas de sanitización de entradas, consultas parametrizadas o la refactorización recomendada por la documentación que GitHub anexa a la alerta.</p>
+<p>Asegúrate de guardar los cambios antes de confirmar.</p>
+<p>Ejecutar el CI localmente
+Para optimizar el tiempo de desarrollo y asegurar que tus cambios pasen el CI antes de subirlos a la nube, puedes validar tu entorno localmente mediante dos alternativas:</p>
+<p>Ejecución de comandos individuales: Antes de realizar un git commit, acostumbra ejecutar de manera nativa los validadores en tu terminal local:</p>
+<p>Bash
+ruff check .
+pytest
+Simulación completa con act: Si dispones de la herramienta nektos/act instalada en tu sistema y cuentas con el servicio de Docker activo, puedes emular exactamente el comportamiento de los servidores de GitHub ejecutando en la raíz de tu proyecto:</p>
+<p>Bash
+act pull_request
+Notificaciones
+GitHub Actions se encarga de alertar de manera directa y automatizada al autor del Pull Request mediante notificaciones web (el icono de la campana en GitHub) y alertas al correo electrónico asociado a la cuenta en los siguientes escenarios:</p>
+<p>Fallo en los flujos de trabajo: En el momento exacto en que cualquiera de las tareas (Python CI o Security scan) falle en sus validaciones.</p>
+<p>Actualización e interacciones: Cuando un miembro del equipo de desarrollo aprueba, comenta o solicita cambios específicos (changes requested) dentro del Pull Request.</p>
+<p>Cierre o integración: Cuando los mantenedores del proyecto completan la fusión (merge) de la rama de manera exitosa o proceden a cerrar el PR.</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

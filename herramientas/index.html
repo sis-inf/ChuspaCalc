@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Catálogo de herramientas de la suite ChuspaCalc - ChuspaCalc</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">ChuspaCalc</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../instalacion/" class="nav-link">Instalación</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../configuracion/" class="nav-link">Configuración</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../arquitectura/" class="nav-link">Arquitectura</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../desarrollo-local/" class="nav-link">Desarrollo Local</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../flujo-de-trabajo/" class="nav-link">Flujo de Trabajo</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../casos-de-uso/" class="nav-link">Casos de Uso</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../testing/" class="nav-link">Testing</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../seguridad/" class="nav-link">Seguridad</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../preguntas-frecuentes/" class="nav-link">Preguntas Frecuentes</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#catalogo-de-herramientas-de-la-suite-chuspacalc" class="nav-link">Catálogo de herramientas de la suite ChuspaCalc</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#herramientas-disponibles" class="nav-link">Herramientas disponibles</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#organizacion-por-modulo" class="nav-link">Organización por módulo</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#matematicas" class="nav-link">Matemáticas</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#ingenieria-electrica" class="nav-link">Ingeniería Eléctrica</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#ley-de-ohm" class="nav-link">Ley de Ohm</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#divisor-de-tension" class="nav-link">Divisor de tensión</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#conversion-de-unidades-electricas" class="nav-link">Conversión de unidades eléctricas</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#potencia-trifasica" class="nav-link">Potencia Trifásica</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#ingenieria-de-sistemas-e-informatica" class="nav-link">Ingeniería de Sistemas e Informática</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#complemento-a-2" class="nav-link">Complemento a 2</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#conversion-de-bases" class="nav-link">Conversión de bases</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#mapas-de-karnaugh" class="nav-link">Mapas de Karnaugh</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#tablas-de-verdad" class="nav-link">Tablas de verdad</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="catalogo-de-herramientas-de-la-suite-chuspacalc">Catálogo de herramientas de la suite ChuspaCalc</h1>
+<p>Este documento describe las herramientas actualmente disponibles en la suite ChuspaCalc.</p>
+<p>Las herramientas listadas corresponden a clases que implementan la interfaz base
+<code>Herramienta</code> y que son descubiertas correctamente por el sistema de registro
+(<code>ChuspaCalc.core.registry</code>).</p>
+<h2 id="herramientas-disponibles">Herramientas disponibles</h2>
+<table>
+<thead>
+<tr>
+<th>Herramienta</th>
+<th>Módulo</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Calculadora científica</td>
+<td>Matemáticas</td>
+<td>Calculadora con operaciones aritméticas, trigonométricas, logarítmicas y constantes.</td>
+</tr>
+<tr>
+<td>Conversión de unidades</td>
+<td>Matemáticas</td>
+<td>Convierte valores entre unidades de longitud, masa, tiempo y temperatura.</td>
+</tr>
+<tr>
+<td>Matemática financiera</td>
+<td>Matemáticas</td>
+<td>Calcula valor futuro, valor presente e interés compuesto.</td>
+</tr>
+<tr>
+<td>Sistemas de ecuaciones lineales</td>
+<td>Matemáticas</td>
+<td>Resuelve sistemas A·x = b para tamaños entre 2x2 y 5x5.</td>
+</tr>
+<tr>
+<td>Resolución de triángulos</td>
+<td>Matemáticas</td>
+<td>Calcula triángulos usando ley de senos y cosenos.</td>
+</tr>
+<tr>
+<td>Conversión de unidades eléctricas</td>
+<td>Ingeniería Eléctrica</td>
+<td>Convierte entre unidades de potencia (W, kW, HP) y unidades de energía (Wh, kWh, J).</td>
+</tr>
+<tr>
+<td>Divisor de tensión</td>
+<td>Ingeniería Eléctrica</td>
+<td>Calcula el voltaje de salida o las resistencias necesarias en un divisor de tensión.</td>
+</tr>
+<tr>
+<td>Ley de Ohm</td>
+<td>Ingeniería Eléctrica</td>
+<td>Calcula voltaje, corriente o resistencia a partir de las otras dos magnitudes.</td>
+</tr>
+<tr>
+<td>Potencia Trifásica</td>
+<td>Ingeniería Eléctrica</td>
+<td>Calcula la potencia activa, reactiva y aparente en sistemas trifásicos.</td>
+</tr>
+<tr>
+<td>Complemento a 2</td>
+<td>Ingeniería de Sistemas e Informática</td>
+<td>Convierte entre decimal con signo y representación en complemento a 2.</td>
+</tr>
+<tr>
+<td>Conversión de bases</td>
+<td>Ingeniería de Sistemas e Informática</td>
+<td>Convierte un número entre decimal, binario, octal y hexadecimal.</td>
+</tr>
+<tr>
+<td>Mapas de Karnaugh</td>
+<td>Ingeniería de Sistemas e Informática</td>
+<td>Genera mapas de Karnaugh y realiza simplificaciones básicas de expresiones booleanas.</td>
+</tr>
+<tr>
+<td>Tablas de verdad</td>
+<td>Ingeniería de Sistemas e Informática</td>
+<td>Genera la tabla de verdad de una expresión booleana con hasta 4 variables.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="organizacion-por-modulo">Organización por módulo</h1>
+<h2 id="matematicas">Matemáticas</h2>
+<h3 id="calculadora-cientifica">Calculadora científica</h3>
+<p>Permite evaluar expresiones matemáticas utilizando:</p>
+<ul>
+<li>Operaciones aritméticas básicas.</li>
+<li>Potencias y raíces.</li>
+<li>Funciones trigonométricas.</li>
+<li>Logaritmos y logaritmos naturales.</li>
+<li>Constantes matemáticas.</li>
+</ul>
+<hr />
+<h3 id="conversion-de-unidades">Conversión de unidades</h3>
+<p>Permite realizar conversiones entre diferentes categorías:</p>
+<ul>
+<li>Longitud.</li>
+<li>Masa.</li>
+<li>Tiempo.</li>
+<li>Temperatura.</li>
+</ul>
+<hr />
+<h3 id="matematica-financiera">Matemática financiera</h3>
+<p>Permite realizar cálculos financieros relacionados con:</p>
+<ul>
+<li>Valor futuro.</li>
+<li>Valor presente.</li>
+<li>Interés compuesto.</li>
+</ul>
+<hr />
+<h3 id="sistemas-de-ecuaciones-lineales">Sistemas de ecuaciones lineales</h3>
+<p>Resuelve sistemas de ecuaciones lineales mediante métodos matriciales.</p>
+<p>Características:</p>
+<ul>
+<li>Soporte para sistemas desde 2x2 hasta 5x5.</li>
+<li>Resolución del sistema A·x = b.</li>
+<li>Manejo de matrices numéricas.</li>
+</ul>
+<hr />
+<h3 id="resolucion-de-triangulos">Resolución de triángulos</h3>
+<p>Permite calcular elementos desconocidos de un triángulo utilizando:</p>
+<ul>
+<li>Ley de senos.</li>
+<li>Ley de cosenos.</li>
+</ul>
+<hr />
+<h1 id="ingenieria-electrica">Ingeniería Eléctrica</h1>
+<h2 id="ley-de-ohm">Ley de Ohm</h2>
+<p>Calcula magnitudes eléctricas a partir de valores conocidos:</p>
+<ul>
+<li>Voltaje.</li>
+<li>Corriente.</li>
+<li>Resistencia.</li>
+</ul>
+<hr />
+<h2 id="divisor-de-tension">Divisor de tensión</h2>
+<p>Permite calcular:</p>
+<ul>
+<li>Voltaje de salida.</li>
+<li>Resistencias necesarias en un divisor resistivo.</li>
+</ul>
+<p>Utiliza la relación entre resistencias y tensión de entrada.</p>
+<hr />
+<h2 id="conversion-de-unidades-electricas">Conversión de unidades eléctricas</h2>
+<p>Realiza conversiones entre unidades de:</p>
+<h3 id="potencia">Potencia</h3>
+<ul>
+<li>W.</li>
+<li>kW.</li>
+<li>HP.</li>
+</ul>
+<h3 id="energia">Energía</h3>
+<ul>
+<li>J.</li>
+<li>Wh.</li>
+<li>kWh.</li>
+</ul>
+<hr />
+<h2 id="potencia-trifasica">Potencia Trifásica</h2>
+<p>Permite calcular parámetros de sistemas trifásicos:</p>
+<ul>
+<li>Potencia activa.</li>
+<li>Potencia reactiva.</li>
+<li>Potencia aparente.</li>
+</ul>
+<hr />
+<h1 id="ingenieria-de-sistemas-e-informatica">Ingeniería de Sistemas e Informática</h1>
+<h2 id="complemento-a-2">Complemento a 2</h2>
+<p>Permite realizar conversiones entre:</p>
+<ul>
+<li>Decimal con signo.</li>
+<li>Representación binaria en complemento a 2.</li>
+</ul>
+<p>Soporta diferentes tamaños de palabra.</p>
+<hr />
+<h2 id="conversion-de-bases">Conversión de bases</h2>
+<p>Permite convertir números entre diferentes sistemas:</p>
+<ul>
+<li>Decimal.</li>
+<li>Binario.</li>
+<li>Octal.</li>
+<li>Hexadecimal.</li>
+</ul>
+<hr />
+<h2 id="mapas-de-karnaugh">Mapas de Karnaugh</h2>
+<p>Permite generar y simplificar expresiones booleanas mediante mapas de Karnaugh.</p>
+<p>Incluye soporte para simplificación de expresiones lógicas.</p>
+<hr />
+<h2 id="tablas-de-verdad">Tablas de verdad</h2>
+<p>Genera tablas de verdad para expresiones booleanas.</p>
+<p>Características:</p>
+<ul>
+<li>Soporte de hasta cuatro variables.</li>
+<li>Operadores lógicos básicos.</li>
+<li>Generación de resultados tabulados.</li>
+</ul></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

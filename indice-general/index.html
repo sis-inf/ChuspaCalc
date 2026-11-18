@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Índice General de Documentación - ChuspaCalc</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">ChuspaCalc</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../instalacion/" class="nav-link">Instalación</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../configuracion/" class="nav-link">Configuración</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../arquitectura/" class="nav-link">Arquitectura</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../desarrollo-local/" class="nav-link">Desarrollo Local</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../flujo-de-trabajo/" class="nav-link">Flujo de Trabajo</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../casos-de-uso/" class="nav-link">Casos de Uso</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../testing/" class="nav-link">Testing</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../seguridad/" class="nav-link">Seguridad</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../preguntas-frecuentes/" class="nav-link">Preguntas Frecuentes</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#indice-general-de-documentacion" class="nav-link">Índice General de Documentación</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#arquitectura-y-diseno" class="nav-link">Arquitectura y Diseño</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#instalacion-y-configuracion" class="nav-link">Instalación y Configuración</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#cli" class="nav-link">CLI</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#interfaz-de-usuario" class="nav-link">Interfaz de Usuario</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#modulos-de-calculo" class="nav-link">Módulos de Cálculo</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#herramientas-y-funcionalidades" class="nav-link">Herramientas y Funcionalidades</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#exportacion-y-empaquetado" class="nav-link">Exportación y Empaquetado</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#integraciones" class="nav-link">Integraciones</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#produccion-y-operacion" class="nav-link">Producción y Operación</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#calidad-y-testing" class="nav-link">Calidad y Testing</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#contribucion" class="nav-link">Contribución</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#guias" class="nav-link">Guías</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#seguridad" class="nav-link">Seguridad</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#referencia" class="nav-link">Referencia</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#uso-y-ejemplos" class="nav-link">Uso y Ejemplos</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#publicacion-y-distribucion" class="nav-link">Publicación y Distribución</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#historial" class="nav-link">Historial</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="indice-general-de-documentacion">Índice General de Documentación</h1>
+<p>Índice navegable maestro de la documentación del proyecto ChuspaCalc.</p>
+<hr />
+<h2 id="arquitectura-y-diseno">Arquitectura y Diseño</h2>
+<ul>
+<li><a href="../arquitectura/">arquitectura.md</a></li>
+<li><a href="../estructura-proyecto/">estructura-proyecto.md</a></li>
+<li><a href="../decisiones-arquitectura/">decisiones-arquitectura.md</a></li>
+<li><a href="../requerimientos/">requerimientos.md</a></li>
+<li><a href="../limitaciones/">limitaciones.md</a></li>
+<li><a href="../modelo-resultado-calculo/">modelo-resultado-calculo.md</a></li>
+</ul>
+<hr />
+<h2 id="instalacion-y-configuracion">Instalación y Configuración</h2>
+<ul>
+<li><a href="../instalacion/">instalacion.md</a></li>
+<li><a href="../configuracion/">configuracion.md</a></li>
+<li><a href="../dependencias/">dependencias.md</a></li>
+<li><a href="../desarrollo-local/">desarrollo-local.md</a></li>
+<li><a href="../perfiles-configuracion/">perfiles-configuracion.md</a></li>
+</ul>
+<hr />
+<h2 id="cli">CLI</h2>
+<ul>
+<li><a href="../cli-referencia/">cli-referencia.md</a></li>
+<li><a href="../cli-modo-interactivo/">cli-modo-interactivo.md</a></li>
+</ul>
+<hr />
+<h2 id="interfaz-de-usuario">Interfaz de Usuario</h2>
+<ul>
+<li><a href="ui-pestanas-multiples.md">ui-pestanas-multiples.md</a></li>
+</ul>
+<hr />
+<h2 id="modulos-de-calculo">Módulos de Cálculo</h2>
+<ul>
+<li><a href="../modulos/">modulos/README.md</a></li>
+</ul>
+<h3 id="ingenieria-civil">Ingeniería Civil</h3>
+<ul>
+<li><a href="../modulos/civil/">modulos/civil.md</a></li>
+</ul>
+<h3 id="ingenieria-electrica">Ingeniería Eléctrica</h3>
+<ul>
+<li><a href="../modulos/electrica/">modulos/electrica.md</a></li>
+</ul>
+<h3 id="matematicas">Matemáticas</h3>
+<ul>
+<li><a href="../modulos/matematicas/">modulos/matematicas.md</a></li>
+</ul>
+<h3 id="geometria">Geometría</h3>
+<ul>
+<li><a href="../modulos/geometria/">modulos/geometria.md</a></li>
+</ul>
+<h3 id="sistemas">Sistemas</h3>
+<ul>
+<li><a href="../modulos/sistemas/">modulos/sistemas.md</a></li>
+</ul>
+<h3 id="herramientas-especializadas">Herramientas Especializadas</h3>
+<ul>
+<li><a href="../modulos/herramienta-codigo-paridad/">modulos/herramienta-codigo-paridad.md</a></li>
+<li><a href="../modulos/herramienta-figuras-compuestas/">modulos/herramienta-figuras-compuestas.md</a></li>
+<li><a href="../modulos/herramienta-numeros-complejos/">modulos/herramienta-numeros-complejos.md</a></li>
+</ul>
+<hr />
+<h2 id="herramientas-y-funcionalidades">Herramientas y Funcionalidades</h2>
+<ul>
+<li><a href="../herramientas/">herramientas.md</a></li>
+<li><a href="../registro-herramientas/">registro-herramientas.md</a></li>
+<li><a href="../comparacion-herramientas/">comparacion-herramientas.md</a></li>
+</ul>
+<hr />
+<h2 id="exportacion-y-empaquetado">Exportación y Empaquetado</h2>
+<ul>
+<li><a href="../preview-exportacion/">preview-exportacion.md</a></li>
+<li><a href="../empaquetado/">empaquetado.md</a></li>
+<li><a href="../pyinstaller-ejecutables/">pyinstaller-ejecutables.md</a></li>
+</ul>
+<hr />
+<h2 id="integraciones">Integraciones</h2>
+<ul>
+<li><a href="integracion-jupyter.md">integracion-jupyter.md</a></li>
+<li><a href="../esquema-llm-tools/">esquema-llm-tools.md</a></li>
+</ul>
+<hr />
+<h2 id="produccion-y-operacion">Producción y Operación</h2>
+<ul>
+<li><a href="../despliegue/">despliegue.md</a></li>
+<li><a href="../checklist-produccion/">checklist-produccion.md</a></li>
+<li><a href="../versionado/">versionado.md</a></li>
+<li><a href="../modo-debug-trazas/">modo-debug-trazas.md</a></li>
+</ul>
+<hr />
+<h2 id="calidad-y-testing">Calidad y Testing</h2>
+<ul>
+<li><a href="../testing/">testing.md</a></li>
+<li><a href="../benchmarks/">benchmarks.md</a></li>
+<li><a href="../estandares-codigo/">estandares-codigo.md</a></li>
+<li><a href="../errores-comunes/">errores-comunes.md</a></li>
+</ul>
+<hr />
+<h2 id="contribucion">Contribución</h2>
+<ul>
+<li><a href="../guia-contribuidor-primeros-pasos/">guia-contribuidor-primeros-pasos.md</a></li>
+<li><a href="../flujo-de-trabajo/">flujo-de-trabajo.md</a></li>
+<li><a href="../estilo-commits/">estilo-commits.md</a></li>
+<li><a href="../integracion-continua/">integracion-continua.md</a></li>
+<li><a href="../como-agregar-modulo/">como-agregar-modulo.md</a></li>
+</ul>
+<hr />
+<h2 id="guias">Guías</h2>
+<ul>
+<li><a href="../guia-modulo-civil/">guia-modulo-civil.md</a></li>
+<li><a href="../guia-modulo-electrica/">guia-modulo-electrica.md</a></li>
+</ul>
+<hr />
+<h2 id="seguridad">Seguridad</h2>
+<ul>
+<li><a href="../seguridad/">seguridad.md</a></li>
+</ul>
+<hr />
+<h2 id="referencia">Referencia</h2>
+<ul>
+<li><a href="../api/">api.md</a></li>
+<li><a href="../glosario/">glosario.md</a></li>
+<li><a href="../glosario-tecnico/">glosario-tecnico.md</a></li>
+<li><a href="../referencias/">referencias.md</a></li>
+<li><a href="../preguntas-frecuentes/">preguntas-frecuentes.md</a></li>
+<li><a href="../preguntas-al-administrador/">preguntas-al-administrador.md</a></li>
+</ul>
+<hr />
+<h2 id="uso-y-ejemplos">Uso y Ejemplos</h2>
+<ul>
+<li><a href="../flujo-usuario/">flujo-usuario.md</a></li>
+<li><a href="../casos-de-uso/">casos-de-uso.md</a></li>
+<li><a href="../ejemplos/">ejemplos.md</a></li>
+<li><a href="../estadisticas-uso/">estadisticas-uso.md</a></li>
+</ul>
+<hr />
+<h2 id="publicacion-y-distribucion">Publicación y Distribución</h2>
+<ul>
+<li><a href="../publicacion-pypi/">publicacion-pypi.md</a></li>
+<li><a href="../importar-parametros-batch/">importar-parametros-batch.md</a></li>
+</ul>
+<hr />
+<h2 id="historial">Historial</h2>
+<ul>
+<li><a href="../changelog-v0.2/">changelog-v0.2.md</a></li>
+</ul></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

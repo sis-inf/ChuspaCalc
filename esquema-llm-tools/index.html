@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Esquema JSON para integración con asistentes de IA (Function Calling) - ChuspaCalc</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">ChuspaCalc</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../instalacion/" class="nav-link">Instalación</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../configuracion/" class="nav-link">Configuración</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../arquitectura/" class="nav-link">Arquitectura</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../desarrollo-local/" class="nav-link">Desarrollo Local</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../flujo-de-trabajo/" class="nav-link">Flujo de Trabajo</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../casos-de-uso/" class="nav-link">Casos de Uso</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../testing/" class="nav-link">Testing</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../seguridad/" class="nav-link">Seguridad</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../preguntas-frecuentes/" class="nav-link">Preguntas Frecuentes</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#esquema-json-para-integracion-con-asistentes-de-ia-function-calling" class="nav-link">Esquema JSON para integración con asistentes de IA (Function Calling)</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#introduccion" class="nav-link">Introducción</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#formato-estandar-de-function-calling" class="nav-link">Formato estándar de function calling</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#ejemplo-esquema-generado-para-herramientacalculoarea" class="nav-link">Ejemplo: esquema generado para HerramientaCalculoArea</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#mapeo-entre-herramienta-y-el-esquema" class="nav-link">Mapeo entre Herramienta y el esquema</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#flujo-de-invocacion-propuesto" class="nav-link">Flujo de invocación propuesto</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#consideraciones-para-la-implementacion-futura" class="nav-link">Consideraciones para la implementación futura</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#referencias" class="nav-link">Referencias</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="esquema-json-para-integracion-con-asistentes-de-ia-function-calling">Esquema JSON para integración con asistentes de IA (Function Calling)</h1>
+<h2 id="introduccion">Introducción</h2>
+<p>Este documento describe el esquema JSON propuesto para exponer las
+herramientas de ChuspaCalc a asistentes de IA mediante function calling,
+permitiendo que un LLM invoque directamente las funciones de cálculo
+del proyecto a partir de su descripción estructurada.</p>
+<blockquote>
+<p><strong>Nota:</strong> Al momento de escribir este documento, este esquema <strong>no
+está implementado</strong> en el código del proyecto. Las herramientas
+actuales (clases que heredan de <code>Herramienta</code>) solo exponen
+<code>nombre</code>, <code>carrera</code>, <code>descripcion</code> y <code>crear_widget()</code>, pensados para
+la interfaz gráfica, no para function calling. Este documento
+describe la propuesta de diseño para una futura implementación.</p>
+</blockquote>
+<hr />
+<h2 id="formato-estandar-de-function-calling">Formato estándar de function calling</h2>
+<p>Los asistentes de IA (OpenAI, Anthropic, etc.) usan un formato común
+basado en JSON Schema para describir funciones invocables:</p>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;nombre_de_la_funcion&quot;,
+  &quot;description&quot;: &quot;Qué hace la función&quot;,
+  &quot;parameters&quot;: {
+    &quot;type&quot;: &quot;object&quot;,
+    &quot;properties&quot;: {
+      &quot;parametro1&quot;: {
+        &quot;type&quot;: &quot;number&quot;,
+        &quot;description&quot;: &quot;Descripción del parámetro&quot;
+      }
+    },
+    &quot;required&quot;: [&quot;parametro1&quot;]
+  }
+}
+</code></pre>
+<hr />
+<h2 id="ejemplo-esquema-generado-para-herramientacalculoarea">Ejemplo: esquema generado para <code>HerramientaCalculoArea</code></h2>
+<p>Tomando como referencia la herramienta real
+<code>src/chuspacalc/modulos/geometria/herramienta_calculo_area.py</code>, que
+calcula el área de triángulos, círculos, rectángulos y trapecios, el
+esquema JSON propuesto para una de sus variantes (triángulo) sería:</p>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;calcular_area_triangulo&quot;,
+  &quot;description&quot;: &quot;Calcula el área de un triángulo dada su base y altura.&quot;,
+  &quot;parameters&quot;: {
+    &quot;type&quot;: &quot;object&quot;,
+    &quot;properties&quot;: {
+      &quot;base&quot;: {
+        &quot;type&quot;: &quot;number&quot;,
+        &quot;description&quot;: &quot;Base del triángulo en metros. Debe ser mayor que 0.&quot;
+      },
+      &quot;altura&quot;: {
+        &quot;type&quot;: &quot;number&quot;,
+        &quot;description&quot;: &quot;Altura del triángulo en metros. Debe ser mayor que 0.&quot;
+      }
+    },
+    &quot;required&quot;: [&quot;base&quot;, &quot;altura&quot;]
+  }
+}
+</code></pre>
+<p>Y para la variante de círculo:</p>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;calcular_area_circulo&quot;,
+  &quot;description&quot;: &quot;Calcula el área de un círculo dado su radio.&quot;,
+  &quot;parameters&quot;: {
+    &quot;type&quot;: &quot;object&quot;,
+    &quot;properties&quot;: {
+      &quot;radio&quot;: {
+        &quot;type&quot;: &quot;number&quot;,
+        &quot;description&quot;: &quot;Radio del círculo en metros. Debe ser mayor que 0.&quot;
+      }
+    },
+    &quot;required&quot;: [&quot;radio&quot;]
+  }
+}
+</code></pre>
+<hr />
+<h2 id="mapeo-entre-herramienta-y-el-esquema">Mapeo entre <code>Herramienta</code> y el esquema</h2>
+<table>
+<thead>
+<tr>
+<th>Elemento de <code>Herramienta</code></th>
+<th>Elemento del esquema JSON</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>nombre</code></td>
+<td>usado para derivar <code>name</code> (en snake_case)</td>
+</tr>
+<tr>
+<td><code>descripcion</code></td>
+<td>usado como <code>description</code></td>
+</tr>
+<tr>
+<td>Campos del formulario (ej. "Base", "Altura")</td>
+<td><code>properties</code> del esquema, uno por campo</td>
+</tr>
+<tr>
+<td>Validaciones de la función de cálculo (ej. <code>&gt; 0</code>)</td>
+<td>reflejadas en la <code>description</code> de cada propiedad</td>
+</tr>
+<tr>
+<td>Función <code>calcular</code> interna (ej. <code>area_triangulo</code>)</td>
+<td>función real invocada al ejecutar la llamada</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="flujo-de-invocacion-propuesto">Flujo de invocación propuesto</h2>
+<ol>
+<li>El asistente de IA recibe la lista de esquemas de todas las herramientas disponibles.</li>
+<li>El usuario hace una solicitud en lenguaje natural (ej. "calcula el área de un triángulo de base 10 y altura 5").</li>
+<li>El LLM selecciona la función <code>calcular_area_triangulo</code> y construye los argumentos <code>{"base": 10, "altura": 5}</code>.</li>
+<li>La aplicación valida los argumentos y llama internamente a <code>area_triangulo(10, 5)</code>.</li>
+<li>El resultado se devuelve al asistente para que lo presente al usuario.</li>
+</ol>
+<hr />
+<h2 id="consideraciones-para-la-implementacion-futura">Consideraciones para la implementación futura</h2>
+<ul>
+<li>Cada figura dentro de una herramienta multi-figura (como <code>HerramientaCalculoArea</code>) debería exponerse como una función independiente en el esquema, no como una sola función con un parámetro de "tipo de figura", para que el LLM pueda elegir directamente la operación correcta.</li>
+<li>Las validaciones que hoy viven en la función de cálculo (ej. lanzar <code>ValueError</code> si un valor es negativo) deben reflejarse en el esquema (<code>minimum</code>, descripciones claras) para reducir llamadas inválidas del LLM.</li>
+<li>Se recomienda generar el esquema de forma automática a partir de los metadatos de cada <code>Herramienta</code>, en lugar de mantenerlo escrito a mano por cada módulo.</li>
+</ul>
+<hr />
+<h2 id="referencias">Referencias</h2>
+<ul>
+<li><code>src/chuspacalc/core/herramienta.py</code> — clase base de las herramientas actuales.</li>
+<li><code>src/chuspacalc/modulos/geometria/herramienta_calculo_area.py</code> — ejemplo de herramienta usada como base para este documento.</li>
+<li><code>docs/como-agregar-modulo.md</code> — guía general para agregar nuevos módulos.</li>
+</ul></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

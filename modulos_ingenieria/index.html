@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Fundamentos matemáticos de los módulos de ingeniería - ChuspaCalc</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">ChuspaCalc</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../instalacion/" class="nav-link">Instalación</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../configuracion/" class="nav-link">Configuración</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../arquitectura/" class="nav-link">Arquitectura</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../desarrollo-local/" class="nav-link">Desarrollo Local</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../flujo-de-trabajo/" class="nav-link">Flujo de Trabajo</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../casos-de-uso/" class="nav-link">Casos de Uso</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../testing/" class="nav-link">Testing</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../seguridad/" class="nav-link">Seguridad</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../preguntas-frecuentes/" class="nav-link">Preguntas Frecuentes</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#fundamentos-matematicos-de-los-modulos-de-ingenieria" class="nav-link">Fundamentos matemáticos de los módulos de ingeniería</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#1-proposito-y-alcance" class="nav-link">1. Propósito y alcance</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#2-convenciones-generales-de-unidades" class="nav-link">2. Convenciones generales de unidades</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#3-modulo-de-vigas" class="nav-link">3. Módulo de vigas</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#4-modulo-de-circuitos-electricos" class="nav-link">4. Módulo de circuitos eléctricos</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#5-modulo-de-figuras-geometricas" class="nav-link">5. Módulo de figuras geométricas</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#6-modulo-de-conversores" class="nav-link">6. Módulo de conversores</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#7-modulo-de-subredes-ip" class="nav-link">7. Módulo de subredes IP</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#8-consideraciones-generales-y-limites-de-uso" class="nav-link">8. Consideraciones generales y límites de uso</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="fundamentos-matematicos-de-los-modulos-de-ingenieria">Fundamentos matemáticos de los módulos de ingeniería</h1>
+<h2 id="1-proposito-y-alcance">1. Propósito y alcance</h2>
+<p>Este documento describe las ecuaciones, magnitudes, unidades y supuestos de los módulos de cálculo de <strong>vigas, circuitos eléctricos, figuras geométricas, conversores y subredes IP</strong> de ChuspaCalc.</p>
+<p>La documentación se elaboró tomando como referencia la implementación disponible en <code>src/chuspacalc/modulos/</code>. Cuando una función no valida ni convierte explícitamente las unidades, se indica la convención de uso recomendada. El usuario debe introducir magnitudes compatibles entre sí: una fórmula numéricamente correcta puede producir un resultado incorrecto si se mezclan unidades.</p>
+<h2 id="2-convenciones-generales-de-unidades">2. Convenciones generales de unidades</h2>
+<p>Se recomienda utilizar el Sistema Internacional (SI) como sistema principal:</p>
+<table>
+<thead>
+<tr>
+<th>Magnitud</th>
+<th style="text-align: right;">Símbolo</th>
+<th>Unidad SI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Longitud</td>
+<td style="text-align: right;">(L, x, h, r)</td>
+<td>metro (m)</td>
+</tr>
+<tr>
+<td>Área</td>
+<td style="text-align: right;">(A)</td>
+<td>metro cuadrado (m²)</td>
+</tr>
+<tr>
+<td>Volumen</td>
+<td style="text-align: right;">(V)</td>
+<td>metro cúbico (m³)</td>
+</tr>
+<tr>
+<td>Fuerza o carga puntual</td>
+<td style="text-align: right;">(P, F)</td>
+<td>newton (N)</td>
+</tr>
+<tr>
+<td>Carga distribuida</td>
+<td style="text-align: right;">(w)</td>
+<td>newton por metro (N/m)</td>
+</tr>
+<tr>
+<td>Momento flector</td>
+<td style="text-align: right;">(M)</td>
+<td>newton metro (N·m)</td>
+</tr>
+<tr>
+<td>Módulo de elasticidad</td>
+<td style="text-align: right;">(E)</td>
+<td>pascal (Pa = N/m²)</td>
+</tr>
+<tr>
+<td>Segundo momento de área</td>
+<td style="text-align: right;">(I)</td>
+<td>metro a la cuarta (m⁴)</td>
+</tr>
+<tr>
+<td>Voltaje</td>
+<td style="text-align: right;">(V)</td>
+<td>voltio (V)</td>
+</tr>
+<tr>
+<td>Corriente</td>
+<td style="text-align: right;">(I)</td>
+<td>amperio (A)</td>
+</tr>
+<tr>
+<td>Resistencia</td>
+<td style="text-align: right;">(R)</td>
+<td>ohmio (Ω)</td>
+</tr>
+<tr>
+<td>Potencia</td>
+<td style="text-align: right;">(P)</td>
+<td>vatio (W)</td>
+</tr>
+<tr>
+<td>Energía</td>
+<td style="text-align: right;">(E)</td>
+<td>julio (J)</td>
+</tr>
+<tr>
+<td>Presión</td>
+<td style="text-align: right;">(p)</td>
+<td>pascal (Pa)</td>
+</tr>
+<tr>
+<td>Masa</td>
+<td style="text-align: right;">(m)</td>
+<td>kilogramo (kg)</td>
+</tr>
+<tr>
+<td>Velocidad</td>
+<td style="text-align: right;">(v)</td>
+<td>metro por segundo (m/s)</td>
+</tr>
+<tr>
+<td>Temperatura</td>
+<td style="text-align: right;">(T)</td>
+<td>kelvin (K)</td>
+</tr>
+</tbody>
+</table>
+<p>Algunas funciones civiles existentes devuelven resultados rotulados en kN o kN·m. En esos casos debe respetarse la convención específica indicada en cada apartado. No se debe interpretar automáticamente que todas las funciones convierten desde o hacia SI: varias reciben números sin metadatos de unidad.</p>
+<hr />
+<h2 id="3-modulo-de-vigas">3. Módulo de vigas</h2>
+<h3 id="31-modelo-estructural-considerado">3.1. Modelo estructural considerado</h3>
+<p>Las funciones revisadas trabajan con una <strong>viga recta, simplemente apoyada</strong>, con apoyos en sus extremos y cargas estáticas. Los cálculos descritos corresponden a casos ideales de resistencia de materiales y estática; no constituyen por sí solos un diseño estructural completo.</p>
+<h3 id="32-reacciones-en-los-apoyos">3.2. Reacciones en los apoyos</h3>
+<p>Implementación de referencia: <code>civil/viga.py</code>, función <code>calcular_reacciones</code>.</p>
+<p>Para una viga de longitud (L), con una carga puntual (P) aplicada a una distancia (a) desde el apoyo izquierdo:</p>
+<p>[
+R_B = \frac{P a}{L}
+]</p>
+<p>[
+R_A = P - R_B = \frac{P(L-a)}{L}
+]</p>
+<p>Donde:</p>
+<ul>
+<li>(R_A): reacción vertical en el apoyo izquierdo.</li>
+<li>(R_B): reacción vertical en el apoyo derecho.</li>
+<li>(P): carga puntual total.</li>
+<li>(L): longitud entre apoyos.</li>
+<li>(a): distancia desde el apoyo izquierdo hasta la carga.</li>
+</ul>
+<p>Si <code>posicion</code> no se proporciona, la función supone una carga distribuida uniforme y simétrica, y calcula:</p>
+<p>[
+R_A = R_B = \frac{P}{2}
+]</p>
+<p><strong>Unidades:</strong> la función devuelve <code>unidad: "kN"</code>; por coherencia, <code>carga</code> debe expresarse como fuerza total en kN. <code>longitud</code> y <code>posicion</code> deben usar la misma unidad de longitud (preferentemente m). En el caso distribuido, <code>carga</code> representa la resultante total de la carga distribuida, no su intensidad por metro.</p>
+<p><strong>Supuestos y límites:</strong></p>
+<ul>
+<li>La viga está simplemente apoyada y se encuentra en equilibrio estático.</li>
+<li>Solo se consideran cargas verticales.</li>
+<li>La carga puntual debe ubicarse entre los apoyos, incluidos sus extremos.</li>
+<li>La rama sin <code>posicion</code> representa una resultante uniformemente distribuida y simétrica.</li>
+<li>La función no calcula esfuerzos, deformaciones ni combinaciones de carga.</li>
+</ul>
+<h3 id="33-momento-flector-maximo">3.3. Momento flector máximo</h3>
+<p>Implementación de referencia: <code>civil/momento_flector.py</code>, función <code>calcular_momento_max</code>.</p>
+<p>Para una carga puntual centrada:</p>
+<p>[
+M_{\max} = \frac{P L}{4}
+]</p>
+<p>Para una carga uniformemente distribuida a lo largo de toda la viga:</p>
+<p>[
+M_{\max} = \frac{w L^2}{8}
+]</p>
+<p>Donde:</p>
+<ul>
+<li>(M_{\max}): momento flector máximo, en el centro del vano.</li>
+<li>(P): carga puntual central.</li>
+<li>(w): intensidad de carga distribuida por unidad de longitud.</li>
+<li>(L): longitud de la viga.</li>
+</ul>
+<p><strong>Unidades:</strong> el resultado se identifica como kN·m. Para obtenerlo directamente, usar (P) en kN y (L) en m en el caso puntual; para el caso distribuido, usar (w) en kN/m y (L) en m.</p>
+<p><strong>Supuestos y límites:</strong></p>
+<ul>
+<li>Viga simplemente apoyada.</li>
+<li>Carga puntual aplicada exactamente en el centro o carga uniforme sobre todo el vano.</li>
+<li>No se contemplan cargas excéntricas, momentos aplicados ni varios tipos de carga simultáneos.</li>
+<li>La posición informada del máximo es (L/2).</li>
+</ul>
+<h3 id="34-deflexion-maxima">3.4. Deflexión máxima</h3>
+<p>Implementación de referencia: <code>civil/deflexion_viga.py</code>, función <code>calcular_deflexion_max</code>.</p>
+<p>Para una carga puntual centrada:</p>
+<p>[
+\delta_{\max} = \frac{P L^3}{48 E I}
+]</p>
+<p>Para una carga uniformemente distribuida:</p>
+<p>[
+\delta_{\max} = \frac{5 w L^4}{384 E I}
+]</p>
+<p>Donde:</p>
+<ul>
+<li>(\delta_{\max}): deflexión máxima.</li>
+<li>(P): carga puntual central, en N.</li>
+<li>(w): intensidad de carga distribuida, en N/m.</li>
+<li>(L): longitud, en m.</li>
+<li>(E): módulo de elasticidad, en Pa.</li>
+<li>(I): segundo momento de área de la sección, en m⁴.</li>
+</ul>
+<p>La función calcula la deflexión en unidades de metro a partir de entradas SI y multiplica el resultado por 1000 para devolver <code>deflexion_max</code> en <strong>milímetros (mm)</strong>. También informa la posición (L/2), expresada en metros.</p>
+<p><strong>Supuestos y límites:</strong></p>
+<ul>
+<li>Viga simplemente apoyada, prismática y con comportamiento elástico lineal.</li>
+<li>Material homogéneo y módulo de elasticidad constante.</li>
+<li>Se supone teoría de pequeñas deformaciones y se desprecia la deformación por cortante.</li>
+<li>Los casos soportados son únicamente <code>puntual_central</code> y <code>distribuida</code>.</li>
+<li>La intensidad de carga distribuida debe introducirse en N/m, no como carga total.</li>
+<li>La función valida que los parámetros sean positivos, pero no puede detectar si se introdujeron unidades incompatibles.</li>
+</ul>
+<h3 id="35-carga-distribuida-parcial">3.5. Carga distribuida parcial</h3>
+<p>Implementación de referencia: <code>civil/carga_distribuida.py</code>, función <code>calcular_reacciones_carga_parcial</code>.</p>
+<p>Para una carga uniforme de intensidad (w), aplicada desde (x_i) hasta (x_f):</p>
+<p>[
+\ell_c = x_f - x_i
+]</p>
+<p>[
+F_R = w \ell_c
+]</p>
+<p>[
+x_R = \frac{x_i+x_f}{2}
+]</p>
+<p>[
+R_B = \frac{F_R x_R}{L}
+\qquad
+R_A = F_R - R_B
+]</p>
+<p>Donde (F_R) es la resultante equivalente y (x_R) su posición medida desde el apoyo izquierdo.</p>
+<p><strong>Unidades recomendadas:</strong> (w) en N/m, longitudes en m y reacciones en N. La función no añade una etiqueta de unidad ni realiza conversiones.</p>
+<p><strong>Supuestos y límites:</strong> carga uniforme en un único tramo, viga simplemente apoyada y equilibrio estático. Se requiere (0 \leq x_i &lt; x_f \leq L).</p>
+<hr />
+<h2 id="4-modulo-de-circuitos-electricos">4. Módulo de circuitos eléctricos</h2>
+<h3 id="41-ley-de-ohm">4.1. Ley de Ohm</h3>
+<p>Implementación de referencia: <code>electrica/ley_ohm.py</code>, función <code>calcular_ohm</code>.</p>
+<p>[
+V = I R
+]</p>
+<p>Despejes implementados:</p>
+<p>[
+I = \frac{V}{R}
+\qquad
+R = \frac{V}{I}
+]</p>
+<p>Donde:</p>
+<ul>
+<li>(V): diferencia de potencial o voltaje, en V.</li>
+<li>(I): corriente eléctrica, en A.</li>
+<li>(R): resistencia, en Ω.</li>
+</ul>
+<p>La función requiere exactamente dos de los tres parámetros para calcular el tercero. No admite resistencia igual a cero y, al calcular resistencia, tampoco admite corriente igual a cero.</p>
+<p><strong>Supuestos y límites:</strong> modelo de elemento óhmico con resistencia constante. La relación se aplica directamente a magnitudes eléctricas compatibles; no modela por sí sola componentes no lineales ni transitorios.</p>
+<h3 id="42-resistencias-en-serie">4.2. Resistencias en serie</h3>
+<p>Implementación de referencia: <code>electrica/circuito_serie_paralelo.py</code>, función <code>resistencia_serie</code>.</p>
+<p>[
+R_{eq} = R_1 + R_2 + \cdots + R_n
+]</p>
+<p>La corriente es la misma a través de todos los elementos conectados en serie y las caídas de tensión se suman.</p>
+<p><strong>Unidades:</strong> todas las resistencias en Ω; el resultado (R_{eq}) queda en Ω.</p>
+<h3 id="43-resistencias-en-paralelo">4.3. Resistencias en paralelo</h3>
+<p>Implementación de referencia: <code>electrica/circuito_serie_paralelo.py</code>, función <code>resistencia_paralelo</code>.</p>
+<p>[
+\frac{1}{R_{eq}} =
+\frac{1}{R_1}+\frac{1}{R_2}+\cdots+\frac{1}{R_n}
+]</p>
+<p>Para dos resistencias:</p>
+<p>[
+R_{eq} = \frac{R_1 R_2}{R_1+R_2}
+]</p>
+<p><strong>Unidades:</strong> resistencias de entrada y resultado en Ω. Se requieren al menos dos resistencias y todas deben ser positivas.</p>
+<p><strong>Supuestos y límites de serie/paralelo:</strong> los componentes deben estar conectados realmente en la topología indicada; las funciones no analizan redes arbitrarias ni incluyen resistencias internas o tolerancias.</p>
+<h3 id="44-divisor-resistivo-de-tension">4.4. Divisor resistivo de tensión</h3>
+<p>Implementación de referencia: <code>electrica/divisor_tension.py</code>.</p>
+<p>Para dos resistencias en serie, con salida tomada sobre (R_2):</p>
+<p>[
+V_{out}=V_{in}\frac{R_2}{R_1+R_2}
+]</p>
+<p>Para calcular (R_2) a partir de una tensión de salida deseada:</p>
+<p>[
+R_2=\frac{V_{out}R_1}{V_{in}-V_{out}}
+]</p>
+<p>Donde (V_{in}) y (V_{out}) se expresan en V, y (R_1) y (R_2) en Ω.</p>
+<p><strong>Supuestos y límites:</strong> divisor ideal sin carga conectada a la salida. Si se conecta una carga, esta queda en paralelo con (R_2) y modifica la tensión de salida; el modelo implementado no contempla ese efecto.</p>
+<h3 id="45-potencia-electrica">4.5. Potencia eléctrica</h3>
+<p>Implementación de referencia: <code>electrica/potencia.py</code>.</p>
+<p>Se implementan tres expresiones equivalentes para un elemento resistivo:</p>
+<p>[
+P=VI
+]</p>
+<p>[
+P=I^2R
+]</p>
+<p>[
+P=\frac{V^2}{R}
+]</p>
+<p>Donde (P) se obtiene en W cuando (V) está en V, (I) en A y (R) en Ω.</p>
+<p><strong>Supuestos y límites:</strong> las expresiones se aplican a condiciones resistivas y valores compatibles. En corriente alterna, el cálculo de potencia activa requiere considerar valores eficaces y factor de potencia; estas funciones no calculan explícitamente ese factor.</p>
+<hr />
+<h2 id="5-modulo-de-figuras-geometricas">5. Módulo de figuras geométricas</h2>
+<p>Las funciones geométricas operan con dimensiones lineales. Si las dimensiones se ingresan en metros, las áreas se obtienen en m² y los volúmenes en m³. Si se utiliza otra unidad lineal, el resultado queda expresado en la unidad correspondiente elevada al cuadrado o al cubo.</p>
+<h3 id="51-areas-planas">5.1. Áreas planas</h3>
+<p>Implementación de referencia: <code>geometria/calculo_area.py</code>.</p>
+<p><strong>Triángulo:</strong></p>
+<p>[
+A=\frac{b h}{2}
+]</p>
+<p>(b): base; (h): altura perpendicular a la base.</p>
+<p><strong>Círculo:</strong></p>
+<p>[
+A=\pi r^2
+]</p>
+<p>(r): radio. La implementación utiliza la aproximación (\pi \approx 3.1416).</p>
+<p><strong>Rectángulo:</strong></p>
+<p>[
+A=b h
+]</p>
+<p>(b): base; (h): altura.</p>
+<p><strong>Unidades:</strong> entradas en m y salidas en m² si se emplea SI.</p>
+<p><strong>Supuestos y límites:</strong> figuras planas ideales. La función de área de círculo usa una aproximación decimal de π, por lo que puede diferir ligeramente de un cálculo con precisión completa. Las funciones de área simples no incorporan validaciones de dimensiones positivas en el propio archivo revisado; se recomienda ingresar medidas mayores que cero.</p>
+<h3 id="52-perimetros">5.2. Perímetros</h3>
+<p>Implementación de referencia: <code>geometria/perimetro.py</code>.</p>
+<p><strong>Círculo:</strong></p>
+<p>[
+P=2\pi r
+]</p>
+<p><strong>Cuadrado:</strong></p>
+<p>[
+P=4l
+]</p>
+<p><strong>Rectángulo:</strong></p>
+<p>[
+P=2(a+b)
+]</p>
+<p><strong>Triángulo:</strong></p>
+<p>[
+P=a+b+c
+]</p>
+<p>La función verifica la desigualdad triangular:</p>
+<p>[
+a+b&gt;c,\quad a+c&gt;b,\quad b+c&gt;a
+]</p>
+<p><strong>Hexágono regular:</strong></p>
+<p>[
+P=6l
+]</p>
+<p>Donde (r) es el radio, (l) el lado y (a,b,c) las longitudes de los lados o dimensiones correspondientes.</p>
+<p><strong>Unidades:</strong> entradas y resultado en la misma unidad lineal; con SI, metros (m).</p>
+<p><strong>Supuestos y límites:</strong> el hexágono considerado es regular; el perímetro del triángulo requiere lados que formen un triángulo válido. Las funciones del archivo validan dimensiones positivas.</p>
+<h3 id="53-volumenes">5.3. Volúmenes</h3>
+<p>Implementación de referencia: <code>geometria/volumen.py</code>.</p>
+<p><strong>Cubo:</strong></p>
+<p>[
+V=l^3
+]</p>
+<p><strong>Esfera:</strong></p>
+<p>[
+V=\frac{4}{3}\pi r^3
+]</p>
+<p><strong>Cilindro:</strong></p>
+<p>[
+V=\pi r^2 h
+]</p>
+<p><strong>Cono:</strong></p>
+<p>[
+V=\frac{1}{3}\pi r^2 h
+]</p>
+<p><strong>Paralelepípedo rectangular:</strong></p>
+<p>[
+V=a b c
+]</p>
+<p>Donde (l) es el lado, (r) el radio, (h) la altura y (a,b,c) las dimensiones ortogonales.</p>
+<p><strong>Unidades:</strong> dimensiones en m y volumen en m³.</p>
+<p><strong>Supuestos y límites:</strong> sólidos geométricos ideales; cilindro y cono circulares rectos, esfera perfecta y paralelepípedo definido por tres dimensiones perpendiculares. Las dimensiones deben ser positivas.</p>
+<h3 id="54-areas-de-secciones">5.4. Áreas de secciones</h3>
+<p>Implementación de referencia: <code>civil/area_seccion.py</code>.</p>
+<p>También se calculan áreas de secciones transversales:</p>
+<ul>
+<li>Rectangular: (A=bh).</li>
+<li>Circular maciza: (A=\pi r^2).</li>
+<li>Circular hueca: (A=\pi(r_e^2-r_i^2)).</li>
+<li>Perfil I simplificado: (A=2b_f t_f+h_w t_w).</li>
+<li>Perfil T simplificado: (A=b_f t_f+h_w t_w).</li>
+</ul>
+<p>Las dimensiones deben expresarse en la misma unidad lineal. Con dimensiones en metros, el área queda en m². Para la sección circular hueca se exige (r_i&lt;r_e).</p>
+<p><strong>Limitación:</strong> las expresiones de perfiles I y T representan la suma de rectángulos definida por los parámetros del código; no sustituyen la consulta de dimensiones normalizadas ni consideran radios de acuerdo, chaflanes u otras particularidades de perfiles comerciales.</p>
+<hr />
+<h2 id="6-modulo-de-conversores">6. Módulo de conversores</h2>
+<h3 id="61-principio-general">6.1. Principio general</h3>
+<p>Los conversores multiplican el valor de entrada por un factor para llevarlo a una unidad de referencia y luego dividen por el factor de la unidad destino:</p>
+<p>[
+x_{base}=x_{origen}\,f_{origen}
+]</p>
+<p>[
+x_{destino}=\frac{x_{base}}{f_{destino}}
+]</p>
+<p>Los factores se encuentran definidos en los respectivos módulos. El conversor no realiza mediciones físicas: transforma valores numéricos entre unidades conocidas.</p>
+<h3 id="62-longitud">6.2. Longitud</h3>
+<p>Implementación de referencia: <code>matematicas/conversor_longitud.py</code> y <code>conversor_longitud_extendido.py</code>.</p>
+<p>Unidad base: metro (m).</p>
+<table>
+<thead>
+<tr>
+<th>Unidad</th>
+<th style="text-align: right;">Equivalencia en metros</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>m</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr>
+<td>cm</td>
+<td style="text-align: right;">0.01</td>
+</tr>
+<tr>
+<td>mm</td>
+<td style="text-align: right;">0.001</td>
+</tr>
+<tr>
+<td>km</td>
+<td style="text-align: right;">1000</td>
+</tr>
+<tr>
+<td>in (pulgada)</td>
+<td style="text-align: right;">0.0254</td>
+</tr>
+<tr>
+<td>ft (pie)</td>
+<td style="text-align: right;">0.3048</td>
+</tr>
+<tr>
+<td>ua (unidad astronómica)</td>
+<td style="text-align: right;">(1.496 \times 10^{11})</td>
+</tr>
+<tr>
+<td>al (año luz)</td>
+<td style="text-align: right;">(9.461 \times 10^{15})</td>
+</tr>
+<tr>
+<td>mn (milla náutica)</td>
+<td style="text-align: right;">1852</td>
+</tr>
+<tr>
+<td>pc (parsec)</td>
+<td style="text-align: right;">(3.086 \times 10^{16})</td>
+</tr>
+</tbody>
+</table>
+<p>La conversión sigue (x_m=x f) y (x_d=x_m/f_d). El valor se devuelve en la unidad destino seleccionada.</p>
+<h3 id="63-masa">6.3. Masa</h3>
+<p>Implementación de referencia: <code>matematicas/conversor_masa.py</code>.</p>
+<p>Unidad base: kilogramo (kg).</p>
+<table>
+<thead>
+<tr>
+<th>Unidad</th>
+<th style="text-align: right;">Equivalencia en kg</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>kg</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr>
+<td>g</td>
+<td style="text-align: right;">0.001</td>
+</tr>
+<tr>
+<td>mg</td>
+<td style="text-align: right;">0.000001</td>
+</tr>
+<tr>
+<td>lb (libra)</td>
+<td style="text-align: right;">0.453592</td>
+</tr>
+<tr>
+<td>oz (onza)</td>
+<td style="text-align: right;">0.0283495</td>
+</tr>
+<tr>
+<td>t (tonelada métrica)</td>
+<td style="text-align: right;">1000</td>
+</tr>
+<tr>
+<td>slug</td>
+<td style="text-align: right;">14.5939</td>
+</tr>
+</tbody>
+</table>
+<p>La conversión se realiza primero a kg y luego a la unidad de destino.</p>
+<h3 id="64-temperatura">6.4. Temperatura</h3>
+<p>Implementación de referencia: <code>matematicas/conversor_temperatura.py</code>.</p>
+<p>Las escalas Celsius, Fahrenheit y Kelvin requieren transformaciones afines, no solo factores multiplicativos:</p>
+<p>[
+F=C\frac{9}{5}+32
+]</p>
+<p>[
+C=(F-32)\frac{5}{9}
+]</p>
+<p>[
+K=C+273.15
+]</p>
+<p>[
+C=K-273.15
+]</p>
+<p>Las temperaturas se expresan en °C, °F y K, respectivamente. El código rechaza valores por debajo del cero absoluto: −273.15 °C, −459.67 °F o 0 K.</p>
+<h3 id="65-energia">6.5. Energía</h3>
+<p>Implementación de referencia: <code>matematicas/conversor_energia.py</code>.</p>
+<p>Unidad base: julio (J).</p>
+<table>
+<thead>
+<tr>
+<th>Unidad</th>
+<th style="text-align: right;">Equivalencia en J</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>J</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr>
+<td>kJ</td>
+<td style="text-align: right;">1000</td>
+</tr>
+<tr>
+<td>MJ</td>
+<td style="text-align: right;">1 000 000</td>
+</tr>
+<tr>
+<td>Wh</td>
+<td style="text-align: right;">3600</td>
+</tr>
+<tr>
+<td>kWh</td>
+<td style="text-align: right;">3 600 000</td>
+</tr>
+<tr>
+<td>cal</td>
+<td style="text-align: right;">4.184</td>
+</tr>
+<tr>
+<td>kcal</td>
+<td style="text-align: right;">4184</td>
+</tr>
+<tr>
+<td>BTU</td>
+<td style="text-align: right;">1055.06</td>
+</tr>
+<tr>
+<td>eV</td>
+<td style="text-align: right;">(1.602176634 \times 10^{-19})</td>
+</tr>
+</tbody>
+</table>
+<h3 id="66-presion">6.6. Presión</h3>
+<p>Implementación de referencia: <code>matematicas/conversor_presion.py</code>.</p>
+<p>Unidad base: pascal (Pa).</p>
+<table>
+<thead>
+<tr>
+<th>Unidad</th>
+<th style="text-align: right;">Equivalencia en Pa</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pa</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr>
+<td>kPa</td>
+<td style="text-align: right;">1000</td>
+</tr>
+<tr>
+<td>MPa</td>
+<td style="text-align: right;">1 000 000</td>
+</tr>
+<tr>
+<td>bar</td>
+<td style="text-align: right;">100 000</td>
+</tr>
+<tr>
+<td>atm</td>
+<td style="text-align: right;">101 325</td>
+</tr>
+<tr>
+<td>psi</td>
+<td style="text-align: right;">6894.76</td>
+</tr>
+<tr>
+<td>mmHg</td>
+<td style="text-align: right;">133.322</td>
+</tr>
+</tbody>
+</table>
+<h3 id="67-velocidad">6.7. Velocidad</h3>
+<p>Implementación de referencia: <code>matematicas/conversor_velocidad.py</code>.</p>
+<p>Unidad base: metro por segundo (m/s).</p>
+<table>
+<thead>
+<tr>
+<th>Unidad</th>
+<th style="text-align: right;">Equivalencia en m/s</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>m/s</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr>
+<td>km/h</td>
+<td style="text-align: right;">(1/3.6)</td>
+</tr>
+<tr>
+<td>mph</td>
+<td style="text-align: right;">0.44704</td>
+</tr>
+<tr>
+<td>nudos</td>
+<td style="text-align: right;">0.514444</td>
+</tr>
+<tr>
+<td>ft/s</td>
+<td style="text-align: right;">0.3048</td>
+</tr>
+</tbody>
+</table>
+<h3 id="68-angulos">6.8. Ángulos</h3>
+<p>Implementación de referencia: <code>matematicas/conversor_angulo.py</code>.</p>
+<p>Las unidades soportadas son grados, radianes y gradianes:</p>
+<p>[
+180^\circ=\pi\ \text{rad}=200\ \text{grad}
+]</p>
+<p>Por tanto:</p>
+<p>[
+\text{radianes}=\text{grados}\frac{\pi}{180}
+]</p>
+<p>[
+\text{gradianes}=\text{grados}\frac{10}{9}
+]</p>
+<p>El radián es la unidad coherente del SI para ángulos planos; grados y gradianes se admiten como unidades alternativas.</p>
+<h3 id="69-validaciones-y-limitaciones-de-los-conversores">6.9. Validaciones y limitaciones de los conversores</h3>
+<ul>
+<li>Los conversores de longitud, masa, energía, presión y velocidad revisados rechazan valores negativos.</li>
+<li>El conversor de temperatura valida el límite del cero absoluto.</li>
+<li>Las unidades deben coincidir exactamente con las claves aceptadas por cada función; algunas funciones normalizan espacios y mayúsculas/minúsculas y otras no.</li>
+<li>Los factores almacenados son constantes numéricas; algunos están redondeados, por lo que puede haber pequeñas diferencias frente a tablas de mayor precisión.</li>
+<li>La conversión no verifica si una unidad es apropiada para una aplicación física concreta.</li>
+<li>Los conversores de magnitudes escalares no deben confundirse con conversiones de magnitudes vectoriales.</li>
+</ul>
+<hr />
+<h2 id="7-modulo-de-subredes-ip">7. Módulo de subredes IP</h2>
+<h3 id="71-direccionamiento-ipv4-y-prefijo-cidr">7.1. Direccionamiento IPv4 y prefijo CIDR</h3>
+<p>Implementación de referencia: <code>sistemas/calculadora_subred.py</code>, función <code>calcular_subred</code>.</p>
+<p>El módulo utiliza la biblioteca estándar <code>ipaddress</code> de Python para interpretar direcciones IPv4 y prefijos CIDR.</p>
+<p>Una dirección IPv4 tiene 32 bits. Un prefijo <code>/p</code> indica cuántos bits iniciales corresponden a la parte de red. El número de bits de host es:</p>
+<p>[
+h=32-p
+]</p>
+<p>La máscara de subred contiene (p) bits en 1 seguidos por (32-p) bits en 0.</p>
+<p>Ejemplo conceptual: <code>/24</code> equivale a 24 bits de red y 8 bits de host, con máscara <code>255.255.255.0</code>.</p>
+<h3 id="72-direccion-de-red-y-broadcast">7.2. Dirección de red y broadcast</h3>
+<p>La dirección de red se obtiene aplicando una operación AND bit a bit entre la dirección IP y la máscara:</p>
+<p>[
+\text{Red}=\text{IP}\ \text{AND}\ \text{Máscara}
+]</p>
+<p>La dirección de broadcast se obtiene colocando en 1 todos los bits de host de la dirección de red. Para una subred IPv4 convencional:</p>
+<p>[
+\text{Broadcast}=\text{Red}\ \text{OR}\ \text{Wildcard}
+]</p>
+<p>donde la wildcard es el complemento de la máscara.</p>
+<p>La implementación devuelve:</p>
+<ul>
+<li><code>red</code>: dirección de red.</li>
+<li><code>broadcast</code>: dirección de difusión.</li>
+<li><code>mascara</code>: máscara IPv4.</li>
+<li><code>primer_host</code>: primera dirección que la biblioteca considera utilizable.</li>
+<li><code>ultimo_host</code>: última dirección que la biblioteca considera utilizable.</li>
+<li><code>total_hosts</code>: cantidad de direcciones devueltas por <code>red.hosts()</code>.</li>
+</ul>
+<h3 id="73-cantidad-de-hosts">7.3. Cantidad de hosts</h3>
+<p>Para subredes IPv4 tradicionales con prefijos entre <code>/0</code> y <code>/30</code>, la cantidad habitual de hosts utilizables es:</p>
+<p>[
+N=2^{32-p}-2
+]</p>
+<p>La resta excluye la dirección de red y la dirección de broadcast. Sin embargo, esta regla no se aplica de la misma manera a los prefijos <code>/31</code> y <code>/32</code>: la biblioteca <code>ipaddress</code> aplica el tratamiento especial definido para esos casos. Por esa razón, el programa obtiene la cantidad mediante <code>len(red.hosts())</code> en lugar de aplicar manualmente la fórmula anterior.</p>
+<h3 id="74-entradas-salidas-y-validaciones">7.4. Entradas, salidas y validaciones</h3>
+<ul>
+<li><strong>Entrada <code>ip</code>:</strong> dirección IPv4 en notación decimal punteada, por ejemplo <code>192.168.1.10</code>.</li>
+<li><strong>Entrada <code>prefijo_cidr</code>:</strong> entero entre 0 y 32, escrito como texto o convertible a entero.</li>
+<li><strong>Salidas:</strong> direcciones IPv4 y máscara en texto; <code>total_hosts</code> como entero sin unidad física.</li>
+</ul>
+<p>La función acepta direcciones con bits de host activos y utiliza <code>strict=False</code>; por ello, normaliza la dirección ingresada a la dirección de red correspondiente al prefijo. Rechaza direcciones o prefijos con formato inválido.</p>
+<p><strong>Supuestos y límites:</strong></p>
+<ul>
+<li>El cálculo está limitado a IPv4 (32 bits); no implementa IPv6.</li>
+<li>No comprueba disponibilidad real de direcciones en una red ni detecta conflictos.</li>
+<li>No considera VLAN, rutas, DHCP, reglas de firewall ni topología física.</li>
+<li>La validez de una dirección como host depende del prefijo; los casos <code>/31</code> y <code>/32</code> tienen tratamiento particular.</li>
+<li>El módulo calcula información de direccionamiento, no configura dispositivos de red.</li>
+</ul>
+<hr />
+<h2 id="8-consideraciones-generales-y-limites-de-uso">8. Consideraciones generales y límites de uso</h2>
+<ol>
+<li><strong>Unidades coherentes:</strong> antes de calcular, convertir todas las entradas a un sistema compatible. Por ejemplo, no combinar longitud en milímetros con módulo de elasticidad en Pa e inercia en m⁴ sin conversión.</li>
+<li><strong>Precisión numérica:</strong> los cálculos utilizan números de punto flotante. Los resultados pueden contener pequeñas diferencias de redondeo.</li>
+<li><strong>Validación de entradas:</strong> las validaciones varían entre módulos. Que una función acepte un número no garantiza que la magnitud tenga una unidad correcta o sea físicamente razonable.</li>
+<li><strong>Modelos ideales:</strong> las fórmulas de vigas, circuitos y geometría representan modelos simplificados. Para decisiones de ingeniería reales deben contrastarse con normas aplicables, condiciones de operación, propiedades verificadas y revisión profesional.</li>
+<li><strong>Alcance de la documentación:</strong> se describen las operaciones identificadas en los archivos fuente citados; no se afirma que el programa implemente análisis más avanzados que los indicados.</li>
+</ol></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

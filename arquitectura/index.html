@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Arquitectura - ChuspaCalc</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">ChuspaCalc</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../instalacion/" class="nav-link">Instalación</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../configuracion/" class="nav-link">Configuración</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="./" class="nav-link active" aria-current="page">Arquitectura</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../desarrollo-local/" class="nav-link">Desarrollo Local</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../flujo-de-trabajo/" class="nav-link">Flujo de Trabajo</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../casos-de-uso/" class="nav-link">Casos de Uso</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../testing/" class="nav-link">Testing</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../seguridad/" class="nav-link">Seguridad</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../preguntas-frecuentes/" class="nav-link">Preguntas Frecuentes</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../configuracion/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../desarrollo-local/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#arquitectura-del-sistema-proyecto-chuspacalc" class="nav-link">Arquitectura del Sistema - Proyecto ChuspaCalc</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#1-vision-general" class="nav-link">1. Visión General</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#2-stack-tecnologico" class="nav-link">2. Stack Tecnológico</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#3-por-que-python-y-no-nodejs" class="nav-link">3. Por qué Python y no Node.js</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#4-componentes-principales" class="nav-link">4. Componentes Principales</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#5-organizacion-por-ramas-de-ingenieria" class="nav-link">5. Organización por Ramas de Ingeniería</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#6-decisiones-de-diseno" class="nav-link">6. Decisiones de Diseño</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#7-flujo-de-datos" class="nav-link">7. Flujo de Datos</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="arquitectura-del-sistema-proyecto-chuspacalc">Arquitectura del Sistema - Proyecto ChuspaCalc</h1>
+<h2 id="1-vision-general">1. Visión General</h2>
+<p>El proyecto <strong>ChuspaCalc</strong> está diseñado como una plataforma modular de herramientas orientadas a distintas ramas de la ingeniería. La arquitectura sigue un principio de <strong>Separación de Responsabilidades</strong>, permitiendo que cada área de ingeniería implemente sus propias soluciones de forma independiente.</p>
+<p>El sistema prioriza la escalabilidad, permitiendo agregar nuevas herramientas sin afectar el funcionamiento general.</p>
+<hr />
+<h2 id="2-stack-tecnologico">2. Stack Tecnológico</h2>
+<table>
+<thead>
+<tr>
+<th>Componente</th>
+<th>Tecnología</th>
+<th>Versión</th>
+<th>Justificación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Lenguaje Base</strong></td>
+<td>Python</td>
+<td>3.10+</td>
+<td>Amplio soporte para cálculo numérico y facilidad de uso</td>
+</tr>
+<tr>
+<td><strong>Interfaz gráfica</strong></td>
+<td>PySide6</td>
+<td>6.6+</td>
+<td>Framework Qt oficial para Python; permite crear UIs de escritorio multiplataforma</td>
+</tr>
+<tr>
+<td><strong>Testing</strong></td>
+<td>pytest</td>
+<td>8+</td>
+<td>Framework estándar para pruebas en Python</td>
+</tr>
+<tr>
+<td><strong>Linter</strong></td>
+<td>ruff</td>
+<td>0.4+</td>
+<td>Análisis estático y formateo de código rápido</td>
+</tr>
+<tr>
+<td><strong>Gestión de deps</strong></td>
+<td>pip</td>
+<td>---</td>
+<td>Manejo de dependencias mediante requirements.txt y pyproject.toml</td>
+</tr>
+<tr>
+<td><strong>Documentación</strong></td>
+<td>Markdown</td>
+<td>---</td>
+<td>Estándar para documentación en repositorios Git</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="3-por-que-python-y-no-nodejs">3. Por qué Python y no Node.js</h2>
+<p>El repositorio fue inicialmente documentado con instrucciones de Node.js (npm install, node index.js), lo que generaba ambigüedad. La decisión de usar Python se basa en:</p>
+<ul>
+<li>Todo el código fuente del proyecto (src/ChuspaCalc/) está escrito en Python.</li>
+<li>Los módulos de cálculo de ingeniería (civil, eléctrica, matemáticas, sistemas) utilizan Python puro.</li>
+<li>El sistema de empaquetado usa pyproject.toml y setuptools, herramientas del ecosistema Python.</li>
+<li>PySide6 es una librería Python para interfaces gráficas, sin dependencia de Node.js.</li>
+<li>Los tests están escritos con pytest, no con ningún framework de JavaScript.</li>
+</ul>
+<hr />
+<h2 id="4-componentes-principales">4. Componentes Principales</h2>
+<ul>
+<li>Core (src/ChuspaCalc/core/): Lógica central del sistema, dispatcher y registro de herramientas.</li>
+<li>Módulos de ingeniería (src/ChuspaCalc/modulos/): Cada rama de ingeniería tiene su propio subdirectorio con herramientas independientes.</li>
+<li>Interfaz de usuario (src/ChuspaCalc/ui/): Componentes visuales basados en PySide6.</li>
+<li>Utilidades (src/ChuspaCalc/utils/): Funciones auxiliares, validaciones y helpers compartidos.</li>
+<li>Configuración (src/ChuspaCalc/config/): Carga y gestión de configuración del proyecto.</li>
+<li>IO (src/ChuspaCalc/io/): Parsers para leer archivos de entrada como CSV.</li>
+<li>Matemáticas (src/ChuspaCalc/math/): Operaciones matemáticas reutilizables como matrices, estadísticas y sistemas lineales.</li>
+<li>CLI (src/ChuspaCalc/cli.py): Interfaz de línea de comandos para acceder a las herramientas.</li>
+</ul>
+<hr />
+<h2 id="5-organizacion-por-ramas-de-ingenieria">5. Organización por Ramas de Ingeniería</h2>
+<p><strong>El sistema está estructurado en módulos independientes según cada área:</strong></p>
+<pre><code class="language-text">ChuspaCalc/
+├── src/
+│   └── ChuspaCalc/
+│       ├── core/           # Dispatcher y registro de herramientas
+│       ├── io/             # Parsers de archivos de entrada (CSV, etc.)
+│       ├── math/           # Operaciones matemáticas reutilizables
+│       ├── modulos/
+│       │   ├── civil/      # Herramientas de ingeniería civil
+│       │   ├── electrica/  # Herramientas de ingeniería eléctrica
+│       │   ├── geometria/  # Herramientas de geometría
+│       │   ├── matematicas/# Herramientas matemáticas
+│       │   └── sistemas/   # Herramientas de ingeniería de sistemas
+│       ├── ui/             # Componentes de interfaz (PySide6)
+│       ├── utils/          # Utilidades compartidas
+│       └── config/         # Configuración
+├── docs/                   # Documentación del proyecto
+├── tests/                  # Pruebas automatizadas
+├── requirements.txt        # Dependencias de producción
+├── requirements-dev.txt    # Dependencias de desarrollo
+└── pyproject.toml          # Metadatos y configuración del paquete
+</code></pre>
+<hr />
+<h2 id="6-decisiones-de-diseno">6. Decisiones de Diseño</h2>
+<h3 id="decision-1-arquitectura-modular-por-rama-de-ingenieria">Decisión 1: Arquitectura Modular por rama de Ingeniería</h3>
+<p><strong>Contexto:</strong> El proyecto cubre múltiples áreas de ingeniería con necesidades distintas.<br />
+<strong>Decisión:</strong> Separar cada rama en módulos independientes dentro de src/ChuspaCalc/modulos/<br />
+<strong>Consecuencias:</strong> Permite desarrollo paralelo sin conflictos y facilita agregar nuevas herramientas.</p>
+<hr />
+<h3 id="decision-2-interfaz-grafica-con-pyside6">Decisión 2: Interfaz gráfica con PySide6</h3>
+<p><strong>Contexto:</strong> Se requiere una aplicación de escritorio accesible para estudiantes y profesionales.<br />
+<strong>Decisión:</strong> Usar PySide6 como framework de UI, con componentes reutilizables en src/ChuspaCalc/ui/.<br />
+<strong>Consecuencias:</strong> Interfaz multiplataforma (Windows, Linux, macOS) con el binding oficial de Qt para Python.</p>
+<hr />
+<h3 id="decision-3-modulos-de-calculo-independientes-de-la-ui">Decisión 3: Módulos de cálculo independientes de la UI</h3>
+<p><strong>Contexto:</strong> Las funciones de cálculo deben poder usarse desde la UI, la CLI o directamente como librería.<br />
+<strong>Decisión:</strong> Separar la lógica de cálculo (módulos) de la capa de presentación (ui, cli).<br />
+<strong>Consecuencias:</strong> Código reutilizable y más fácil de testear de forma aislada.</p>
+<hr />
+<h2 id="7-flujo-de-datos">7. Flujo de Datos</h2>
+<ol>
+<li>El usuario interactúa con la UI (PySide6) o la CLI.</li>
+<li>La interfaz recibe los parámetros de entrada y los valida.</li>
+<li>Se invoca la función del módulo correspondiente (ej. calcular_reacciones).</li>
+<li>El módulo procesa los datos usando matemática pura de Python.</li>
+<li>El resultado se devuelve a la interfaz y se muestra al usuario.</li>
+</ol></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

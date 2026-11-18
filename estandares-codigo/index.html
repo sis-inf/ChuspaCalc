@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>📘 Estandarización de código en Python - ChuspaCalc</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">ChuspaCalc</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../instalacion/" class="nav-link">Instalación</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../configuracion/" class="nav-link">Configuración</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../arquitectura/" class="nav-link">Arquitectura</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../desarrollo-local/" class="nav-link">Desarrollo Local</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../flujo-de-trabajo/" class="nav-link">Flujo de Trabajo</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../casos-de-uso/" class="nav-link">Casos de Uso</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../testing/" class="nav-link">Testing</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../seguridad/" class="nav-link">Seguridad</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../preguntas-frecuentes/" class="nav-link">Preguntas Frecuentes</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#estandarizacion-de-codigo-en-python" class="nav-link">📘 Estandarización de código en Python</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#objetivo" class="nav-link">🎯 Objetivo</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#1-nombres-de-variables-y-funciones" class="nav-link">🧾 1. Nombres de variables y funciones</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#2-nombres-de-archivos-y-modulos" class="nav-link">📁 2. Nombres de archivos y módulos</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#3-indentacion-y-formato" class="nav-link">📐 3. Indentación y formato</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#4-comentarios-y-docstrings" class="nav-link">💬 4. Comentarios y docstrings</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#5-ejemplo-de-funcion-bien-documentada" class="nav-link">🧩 5. Ejemplo de función bien documentada</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#6-type-hints" class="nav-link">🚫 6. Type hints</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#7-manejo-de-errores" class="nav-link">🚫 7. Manejo de errores</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#8-estructura-de-herramientas-tools" class="nav-link">🚫 8. Estructura de herramientas (tools)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#9-buenas-practicas-clave" class="nav-link">🚫 9. Buenas prácticas clave</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#conclusion-rapida" class="nav-link">🔥 Conclusión rápida</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="estandarizacion-de-codigo-en-python">📘 Estandarización de código en Python</h1>
+<h2 id="objetivo">🎯 Objetivo</h2>
+<p>Esta guía define convenciones para escribir código Python limpio, consistente y mantenible, siguiendo buenas prácticas.</p>
+<h2 id="1-nombres-de-variables-y-funciones">🧾 1. Nombres de variables y funciones</h2>
+<ul>
+<li>Usar <code>snake_case</code> (minúsculas con <code>_</code>).</li>
+<li>Los nombres deben ser descriptivos.</li>
+<li>Evitar abreviaciones innecesarias.</li>
+<li>Constantes en <code>UPPER_SNAKE_CASE</code>.</li>
+</ul>
+<h3 id="ejemplos">✅ Ejemplos:</h3>
+<pre><code class="language-py">user_age = 25
+total_price = 100.5
+is_valid = True
+
+def calculate_total(price, quantity):
+    return price * quantity
+</code></pre>
+<h3 id="correcto-snake_case-en-nombres-de-funciones">✓ Correcto (snake_case en nombres de funciones):</h3>
+<pre><code class="language-py">def calculate_total(price, quantity):
+    return price * quantity
+
+def get_user_data(user_id):
+    return {&quot;name&quot;: &quot;Juan&quot;, &quot;age&quot;: 30}
+</code></pre>
+<h3 id="incorrecto-camelcase-o-nombres-no-descriptivos">❌ Incorrecto (camelCase o nombres no descriptivos):</h3>
+<pre><code class="language-py">def calculateTotal(price, quantity):
+    return price * quantity
+
+def get_data(uid):
+    return {&quot;name&quot;: &quot;Juan&quot;, &quot;age&quot;: 30}
+</code></pre>
+<h2 id="2-nombres-de-archivos-y-modulos">📁 2. Nombres de archivos y módulos</h2>
+<ul>
+<li>Usar <code>snake_case</code>.</li>
+<li>Archivos en minúsculas.</li>
+<li>Evitar nombres genéricos como utils.py.</li>
+</ul>
+<h3 id="ejemplos_1">✅ Ejemplos:</h3>
+<pre><code class="language-bash">user_service.py
+payment_processor.py
+data_validator.py
+</code></pre>
+<h2 id="3-indentacion-y-formato">📐 3. Indentación y formato</h2>
+<ul>
+<li>Usar 4 espacios por nivel.</li>
+<li>No usar tabs.</li>
+<li>Máximo recomendado: 79 caracteres por línea.</li>
+<li>Dejar líneas en blanco para separar funciones.</li>
+</ul>
+<h3 id="ejemplo">✅ Ejemplo:</h3>
+<pre><code class="language-py">if is_valid:
+    process_data()
+</code></pre>
+<h2 id="4-comentarios-y-docstrings">💬 4. Comentarios y docstrings</h2>
+<ul>
+<li>Usar <code>#</code> para comentarios simples.</li>
+<li>Explicar el por qué, no el qué.</li>
+<li>Usar docstrings (<code>""" """</code>) para documentar funciones y módulos.</li>
+<li>Seguir formato claro y consistente.</li>
+</ul>
+<h3 id="ejemplo_1">✅ Ejemplo:</h3>
+<pre><code class="language-py"># Evita división por cero
+if value != 0:
+    result = total / value
+</code></pre>
+<h2 id="5-ejemplo-de-funcion-bien-documentada">🧩 5. Ejemplo de función bien documentada</h2>
+<pre><code class="language-py">def calculate_total(price, quantity):
+    &quot;&quot;&quot;
+    Calcula el precio total de una compra.
+
+    Args:
+        price (float): Precio unitario del producto.
+        quantity (int): Cantidad de productos.
+
+    Returns:
+        float: Precio total calculado.
+    &quot;&quot;&quot;
+    return price * quantity
+</code></pre>
+<h3 id="correcto-docstrings-en-formato-numpy">✓ Correcto (Docstrings en formato NumPy):</h3>
+<pre><code class="language-py">def calculate_total(price, quantity):
+    &quot;&quot;&quot;
+    Calcula el precio total de una compra.
+
+    Parameters
+    ----------
+    price : float
+        Precio unitario del producto.
+    quantity : int
+        Cantidad de productos.
+
+    Returns
+    -------
+    float
+        Precio total calculado.
+    &quot;&quot;&quot;
+    return price * quantity
+</code></pre>
+<h3 id="correcto-docstrings-en-formato-google">✓ Correcto (Docstrings en formato Google):</h3>
+<pre><code class="language-py">def calculate_total(price, quantity):
+    &quot;&quot;&quot;
+    Calcula el precio total de una compra.
+
+    Args:
+        price (float): Precio unitario del producto.
+        quantity (int): Cantidad de productos.
+
+    Returns:
+        float: Precio total calculado.
+    &quot;&quot;&quot;
+    return price * quantity
+</code></pre>
+<h3 id="incorrecto-sin-docstring-o-formato-incorrecto">❌ Incorrecto (Sin docstring o formato incorrecto):</h3>
+<pre><code class="language-py">def calculate_total(price, quantity):
+    return price * quantity
+
+def calculate_total(price, quantity):
+    # Calcula el total
+    return price * quantity
+</code></pre>
+<h2 id="6-type-hints">🚫 6. Type hints</h2>
+<ul>
+<li>Usar type hints para mejorar la legibilidad y facilitar el mantenimiento.</li>
+<li>Especificar tipos de parámetros y valores de retorno.</li>
+<li>Importar tipos desde <code>typing</code> cuando sea necesario.</li>
+</ul>
+<h3 id="correcto-con-type-hints">✓ Correcto (Con type hints):</h3>
+<pre><code class="language-py">def calculate_total(price: float, quantity: int) -&gt; float:
+    return price * quantity
+
+def get_user_data(user_id: int) -&gt; dict[str, str | int]:
+    return {&quot;name&quot;: &quot;Juan&quot;, &quot;age&quot;: 30}
+
+from typing import Optional
+
+def find_user(user_id: int) -&gt; Optional[dict]:
+    return None
+</code></pre>
+<h3 id="incorrecto-sin-type-hints">❌ Incorrecto (Sin type hints):</h3>
+<pre><code class="language-py">def calculate_total(price, quantity):
+    return price * quantity
+
+def get_user_data(user_id):
+    return {&quot;name&quot;: &quot;Juan&quot;, &quot;age&quot;: 30}
+</code></pre>
+<h2 id="7-manejo-de-errores">🚫 7. Manejo de errores</h2>
+<ul>
+<li>Usar <code>ValueError</code> con mensajes descriptivos para validaciones.</li>
+<li>Incluir contexto claro en el mensaje de error.</li>
+<li>Evitar mensajes genéricos como "Error" o "Invalid input".</li>
+</ul>
+<h3 id="correcto-valueerror-con-mensajes-descriptivos">✓ Correcto (ValueError con mensajes descriptivos):</h3>
+<pre><code class="language-py">def calculate_total(price: float, quantity: int) -&gt; float:
+    if price &lt; 0:
+        raise ValueError(f&quot;El precio no puede ser negativo: {price}&quot;)
+    if quantity &lt; 0:
+        raise ValueError(f&quot;La cantidad no puede ser negativa: {quantity}&quot;)
+    return price * quantity
+
+def set_age(age: int) -&gt; None:
+    if age &lt; 0 or age &gt; 150:
+        raise ValueError(f&quot;Edad inválida: {age}. Debe estar entre 0 y 150.&quot;)
+</code></pre>
+<h3 id="incorrecto-sin-mensajes-descriptivos">❌ Incorrecto (Sin mensajes descriptivos):</h3>
+<pre><code class="language-py">def calculate_total(price: float, quantity: int) -&gt; float:
+    if price &lt; 0:
+        raise ValueError(&quot;Error&quot;)
+    if quantity &lt; 0:
+        raise ValueError(&quot;Invalid input&quot;)
+    return price * quantity
+</code></pre>
+<h2 id="8-estructura-de-herramientas-tools">🚫 8. Estructura de herramientas (tools)</h2>
+<ul>
+<li>Organizar funciones relacionadas en módulos coherentes.</li>
+<li>Separar lógica de negocio de la interfaz.</li>
+<li>Usar clases cuando sea apropiado para encapsular estado.</li>
+</ul>
+<h3 id="correcto-estructura-organizada">✓ Correcto (Estructura organizada):</h3>
+<pre><code class="language-py"># user_service.py
+from typing import Optional
+
+class UserService:
+    &quot;&quot;&quot;Servicio para gestionar usuarios.&quot;&quot;&quot;
+
+    def __init__(self, db_connection):
+        self.db = db_connection
+
+    def get_user(self, user_id: int) -&gt; Optional[dict]:
+        &quot;&quot;&quot;
+        Obtiene un usuario por su ID.
+
+        Args:
+            user_id: ID del usuario a buscar.
+
+        Returns:
+            Diccionario con datos del usuario o None si no existe.
+        &quot;&quot;&quot;
+        return self.db.query(&quot;SELECT * FROM users WHERE id = ?&quot;, user_id)
+
+    def create_user(self, name: str, email: str) -&gt; int:
+        &quot;&quot;&quot;
+        Crea un nuevo usuario.
+
+        Args:
+            name: Nombre del usuario.
+            email: Email del usuario.
+
+        Returns:
+            ID del usuario creado.
+
+        Raises:
+            ValueError: Si el email es inválido.
+        &quot;&quot;&quot;
+        if &quot;@&quot; not in email:
+            raise ValueError(f&quot;Email inválido: {email}&quot;)
+        return self.db.insert(&quot;INSERT INTO users (name, email) VALUES (?, ?)&quot;, name, email)
+</code></pre>
+<h3 id="incorrecto-estructura-desorganizada">❌ Incorrecto (Estructura desorganizada):</h3>
+<pre><code class="language-py"># utils.py
+def get_user(db, user_id):
+    return db.query(&quot;SELECT * FROM users WHERE id = ?&quot;, user_id)
+
+def create_user(db, name, email):
+    if &quot;@&quot; not in email:
+        raise ValueError(&quot;Error&quot;)
+    return db.insert(&quot;INSERT INTO users (name, email) VALUES (?, ?)&quot;, name, email)
+
+def calculate_total(price, quantity):
+    return price * quantity
+</code></pre>
+<h2 id="9-buenas-practicas-clave">🚫 9. Buenas prácticas clave</h2>
+<ul>
+<li>Usar <code>is</code> para comparar con <code>None</code></li>
+<li>Evitar líneas demasiado largas</li>
+<li>Mantener funciones pequeñas y claras</li>
+<li>Usar nombres significativos</li>
+<li>Evitar código duplicado</li>
+<li>Seguir el principio de legibilidad (<code>Pythonic</code>)</li>
+</ul>
+<h2 id="conclusion-rapida">🔥 Conclusión rápida</h2>
+<ul>
+<li><code>snake_case</code> → variables y funciones</li>
+<li><code>snake_case</code> → archivos</li>
+<li>4 espacios → indentación</li>
+<li>docstrings → documentación</li>
+<li>79 caracteres → límite por línea</li>
+<li>Consistencia &gt; preferencias personales</li>
+<li>Código → Español</li>
+</ul>
+<blockquote>
+<p>[!NOTE]
+Los ejemplos presentados son ilustrativos.
+No es necesario que el código sea exactamente igual, pero sí que respete las buenas prácticas descritas.</p>
+</blockquote></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

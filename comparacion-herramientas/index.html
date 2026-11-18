@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Comparación de ChuspaCalc con otras herramientas de ingeniería - ChuspaCalc</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">ChuspaCalc</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../instalacion/" class="nav-link">Instalación</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../configuracion/" class="nav-link">Configuración</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../arquitectura/" class="nav-link">Arquitectura</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../desarrollo-local/" class="nav-link">Desarrollo Local</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../flujo-de-trabajo/" class="nav-link">Flujo de Trabajo</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../casos-de-uso/" class="nav-link">Casos de Uso</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../testing/" class="nav-link">Testing</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../seguridad/" class="nav-link">Seguridad</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../preguntas-frecuentes/" class="nav-link">Preguntas Frecuentes</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#comparacion-de-chuspacalc-con-otras-herramientas-de-ingenieria" class="nav-link">Comparación de ChuspaCalc con otras herramientas de ingeniería</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#introduccion" class="nav-link">Introducción</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#que-es-chuspacalc" class="nav-link">¿Qué es ChuspaCalc?</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#chuspacalc-vs-wolfram-alpha" class="nav-link">ChuspaCalc vs. Wolfram Alpha</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#comparacion-general" class="nav-link">Comparación general</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#cuando-conviene-utilizar-wolfram-alpha" class="nav-link">¿Cuándo conviene utilizar Wolfram Alpha?</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#cuando-conviene-utilizar-chuspacalc" class="nav-link">¿Cuándo conviene utilizar ChuspaCalc?</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#chuspacalc-vs-calculadoras-especializadas-en-linea" class="nav-link">ChuspaCalc vs. calculadoras especializadas en línea</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#comparacion-general_1" class="nav-link">Comparación general</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#cuando-conviene-utilizar-una-calculadora-en-linea" class="nav-link">¿Cuándo conviene utilizar una calculadora en línea?</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#cuando-conviene-utilizar-chuspacalc_1" class="nav-link">¿Cuándo conviene utilizar ChuspaCalc?</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#ventajas-de-chuspacalc" class="nav-link">Ventajas de ChuspaCalc</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#limitaciones-actuales-de-chuspacalc" class="nav-link">Limitaciones actuales de ChuspaCalc</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#que-herramienta-elegir" class="nav-link">¿Qué herramienta elegir?</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#nota" class="nav-link">Nota</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#resumen-por-escenario-de-uso" class="nav-link">Resumen por escenario de uso</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#factores-para-elegir-una-herramienta" class="nav-link">Factores para elegir una herramienta</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#ejemplos-de-casos-de-uso" class="nav-link">Ejemplos de casos de uso</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#conclusion" class="nav-link">Conclusión</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="comparacion-de-chuspacalc-con-otras-herramientas-de-ingenieria">Comparación de ChuspaCalc con otras herramientas de ingeniería</h1>
+<h2 id="introduccion">Introducción</h2>
+<p>Existen numerosas herramientas orientadas al cálculo y análisis en ingeniería. Algunas son plataformas de propósito general capaces de resolver una gran variedad de problemas, mientras que otras están especializadas en un único tipo de cálculo.</p>
+<p>Este documento compara <strong>ChuspaCalc</strong> con dos alternativas ampliamente utilizadas por estudiantes y profesionales: <strong>Wolfram Alpha</strong> y las <strong>calculadoras especializadas en línea</strong>. El objetivo es mostrar las fortalezas, limitaciones y casos de uso de cada una, de forma objetiva y sin asumir que una herramienta sea mejor que otra en todos los escenarios.</p>
+<hr />
+<h1 id="que-es-chuspacalc">¿Qué es ChuspaCalc?</h1>
+<p>ChuspaCalc es una aplicación desarrollada en <strong>Python</strong> con <strong>PySide6</strong> que reúne herramientas orientadas a distintas áreas de la ingeniería dentro de una sola aplicación.</p>
+<p>Actualmente el proyecto incluye módulos relacionados con áreas como:</p>
+<ul>
+<li>Ingeniería civil.</li>
+<li>Ingeniería eléctrica.</li>
+<li>Geometría.</li>
+<li>Matemáticas.</li>
+<li>Sistemas.</li>
+</ul>
+<p>Dependiendo de la versión del proyecto, estos módulos incorporan herramientas para resolver cálculos como análisis de vigas, ley de Ohm, circuitos eléctricos, conversión de unidades, sistemas de ecuaciones, conversión entre bases numéricas, áreas y volúmenes, entre otros.</p>
+<p>A diferencia de muchas herramientas similares, ChuspaCalc es un proyecto <strong>de código abierto</strong>, puede ejecutarse <strong>localmente</strong> una vez instalado y está pensado principalmente como apoyo académico para estudiantes y docentes de ingeniería.</p>
+<hr />
+<h1 id="chuspacalc-vs-wolfram-alpha">ChuspaCalc vs. Wolfram Alpha</h1>
+<p><strong>Wolfram Alpha</strong> es un motor de conocimiento computacional capaz de resolver problemas de matemáticas, física, química, ingeniería y muchas otras disciplinas mediante consultas en lenguaje natural.</p>
+<h2 id="comparacion-general">Comparación general</h2>
+<table>
+<thead>
+<tr>
+<th>Aspecto</th>
+<th>ChuspaCalc</th>
+<th>Wolfram Alpha</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Alcance</td>
+<td>Herramientas organizadas por módulos de ingeniería</td>
+<td>Plataforma multidisciplinaria con cientos de dominios</td>
+</tr>
+<tr>
+<td>Entrada de datos</td>
+<td>Formularios específicos para cada herramienta</td>
+<td>Lenguaje natural y notación matemática</td>
+</tr>
+<tr>
+<td>Conexión a Internet</td>
+<td>Las herramientas locales pueden utilizarse sin conexión una vez instalado</td>
+<td>Requiere conexión a Internet</td>
+</tr>
+<tr>
+<td>Licencia</td>
+<td>Código abierto</td>
+<td>Software propietario</td>
+</tr>
+<tr>
+<td>Costo</td>
+<td>Gratuito</td>
+<td>Plan gratuito con limitaciones y plan Pro de pago</td>
+</tr>
+<tr>
+<td>Procedimiento mostrado</td>
+<td>Depende de cada herramienta implementada</td>
+<td>En muchos casos ofrece resolución paso a paso</td>
+</tr>
+<tr>
+<td>Cálculo simbólico</td>
+<td>Orientado principalmente a cálculos numéricos</td>
+<td>Amplio soporte para cálculo simbólico</td>
+</tr>
+<tr>
+<td>Privacidad</td>
+<td>Los cálculos se ejecutan localmente</td>
+<td>Las consultas se procesan en servidores externos</td>
+</tr>
+<tr>
+<td>Extensibilidad</td>
+<td>Puede ampliarse mediante nuevos módulos</td>
+<td>No permite modificar su funcionamiento interno</td>
+</tr>
+</tbody>
+</table>
+<h2 id="cuando-conviene-utilizar-wolfram-alpha">¿Cuándo conviene utilizar Wolfram Alpha?</h2>
+<ul>
+<li>Resolver derivadas, integrales, ecuaciones diferenciales o problemas de cálculo simbólico.</li>
+<li>Consultar información científica fuera del alcance actual de ChuspaCalc.</li>
+<li>Obtener procedimientos detallados para numerosos ejercicios.</li>
+<li>Resolver consultas rápidas desde cualquier navegador.</li>
+</ul>
+<h2 id="cuando-conviene-utilizar-chuspacalc">¿Cuándo conviene utilizar ChuspaCalc?</h2>
+<ul>
+<li>Trabajar sin depender de una conexión a Internet.</li>
+<li>Repetir cálculos específicos mediante interfaces dedicadas.</li>
+<li>Utilizar una herramienta abierta y auditable.</li>
+<li>Contribuir con nuevos módulos al proyecto.</li>
+</ul>
+<hr />
+<h1 id="chuspacalc-vs-calculadoras-especializadas-en-linea">ChuspaCalc vs. calculadoras especializadas en línea</h1>
+<p>Existen numerosas calculadoras web enfocadas en un único problema de ingeniería, por ejemplo, cálculo de vigas, ley de Ohm, conversión de bases o áreas de figuras geométricas.</p>
+<h2 id="comparacion-general_1">Comparación general</h2>
+<table>
+<thead>
+<tr>
+<th>Aspecto</th>
+<th>ChuspaCalc</th>
+<th>Calculadoras especializadas</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cobertura</td>
+<td>Diversos módulos integrados</td>
+<td>Generalmente una herramienta por sitio</td>
+</tr>
+<tr>
+<td>Conexión</td>
+<td>Puede utilizarse localmente</td>
+<td>Requieren Internet</td>
+</tr>
+<tr>
+<td>Publicidad</td>
+<td>No incorpora publicidad</td>
+<td>Muchas incluyen anuncios</td>
+</tr>
+<tr>
+<td>Transparencia</td>
+<td>Los algoritmos pueden revisarse al ser código abierto</td>
+<td>Habitualmente no muestran su implementación</td>
+</tr>
+<tr>
+<td>Interfaz</td>
+<td>Consistente entre herramientas</td>
+<td>Varía según el sitio web</td>
+</tr>
+<tr>
+<td>Actualizaciones</td>
+<td>Dependen del desarrollo del proyecto</td>
+<td>Dependen del mantenimiento de cada página</td>
+</tr>
+<tr>
+<td>Disponibilidad</td>
+<td>Mientras el proyecto esté instalado</td>
+<td>Algunos sitios pueden dejar de existir o cambiar</td>
+</tr>
+</tbody>
+</table>
+<h2 id="cuando-conviene-utilizar-una-calculadora-en-linea">¿Cuándo conviene utilizar una calculadora en línea?</h2>
+<ul>
+<li>Cuando se necesita un cálculo muy específico que ChuspaCalc todavía no implementa.</li>
+<li>Cuando se desea realizar un cálculo rápido sin instalar software.</li>
+</ul>
+<h2 id="cuando-conviene-utilizar-chuspacalc_1">¿Cuándo conviene utilizar ChuspaCalc?</h2>
+<ul>
+<li>Cuando se utilizan frecuentemente distintas herramientas de ingeniería.</li>
+<li>Cuando se prefiere una única aplicación con una interfaz consistente.</li>
+<li>Cuando se desea trabajar sin depender de múltiples sitios web.</li>
+<li>Cuando se quiere revisar cómo están implementados los algoritmos utilizados.</li>
+</ul>
+<hr />
+<h1 id="ventajas-de-chuspacalc">Ventajas de ChuspaCalc</h1>
+<ul>
+<li>Proyecto de código abierto.</li>
+<li>Ejecución local una vez instalado.</li>
+<li>Arquitectura modular que facilita incorporar nuevas herramientas.</li>
+<li>Interfaz unificada para diferentes áreas de la ingeniería.</li>
+<li>Orientado al aprendizaje y a la colaboración entre estudiantes.</li>
+</ul>
+<hr />
+<h1 id="limitaciones-actuales-de-chuspacalc">Limitaciones actuales de ChuspaCalc</h1>
+<p>Como cualquier proyecto en desarrollo, ChuspaCalc también presenta limitaciones.</p>
+<ul>
+<li>Está orientado principalmente a cálculos numéricos.</li>
+<li>Su cobertura depende de los módulos implementados en cada versión.</li>
+<li>No incorpora servicios en la nube para sincronizar información entre dispositivos.</li>
+<li>Su comunidad y cantidad de herramientas aún es menor que la de plataformas comerciales ampliamente consolidadas.</li>
+</ul>
+<p>Estas limitaciones no representan errores del proyecto, sino oportunidades de crecimiento mediante futuras contribuciones.</p>
+<hr />
+<h1 id="que-herramienta-elegir">¿Qué herramienta elegir?</h1>
+<p>No existe una única herramienta adecuada para todos los escenarios.</p>
+<ul>
+<li><strong>ChuspaCalc</strong> resulta especialmente útil para estudiantes que desean una aplicación local, gratuita y extensible con herramientas específicas de ingeniería.</li>
+<li><strong>Wolfram Alpha</strong> es una excelente opción cuando se necesitan capacidades avanzadas de cálculo simbólico, consultas multidisciplinarias o procedimientos detallados.</li>
+<li><strong>Las calculadoras especializadas en línea</strong> son apropiadas para resolver rápidamente un cálculo puntual sin instalar software.</li>
+</ul>
+<p>La elección dependerá del tipo de problema, del entorno de trabajo y de las necesidades de cada usuario.</p>
+<hr />
+<h1 id="nota">Nota</h1>
+<p>La comparación presentada en este documento tiene fines informativos y refleja las características generales de las herramientas al momento de redactar esta documentación. Las funcionalidades de cualquiera de los proyectos comparados pueden cambiar con futuras versiones.</p>
+<hr />
+<h1 id="resumen-por-escenario-de-uso">Resumen por escenario de uso</h1>
+<p>La siguiente tabla resume qué herramienta puede resultar más adecuada según el tipo de necesidad.</p>
+<table>
+<thead>
+<tr>
+<th>Escenario</th>
+<th>Herramienta recomendada</th>
+<th>Motivo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Resolver cálculos incluidos en los módulos de ChuspaCalc</td>
+<td>ChuspaCalc</td>
+<td>Proporciona herramientas específicas en una única aplicación y puede utilizarse localmente.</td>
+</tr>
+<tr>
+<td>Resolver problemas de distintas disciplinas o realizar cálculo simbólico avanzado</td>
+<td>Wolfram Alpha</td>
+<td>Ofrece un amplio conjunto de capacidades para diferentes áreas del conocimiento.</td>
+</tr>
+<tr>
+<td>Realizar un cálculo muy específico disponible en una página especializada</td>
+<td>Calculadora especializada</td>
+<td>Está diseñada para resolver un problema concreto de forma rápida.</td>
+</tr>
+<tr>
+<td>Trabajar sin conexión a Internet</td>
+<td>ChuspaCalc</td>
+<td>Una vez instalada, puede ejecutarse sin depender de una conexión.</td>
+</tr>
+<tr>
+<td>Estudiar, adaptar o ampliar la implementación de una herramienta</td>
+<td>ChuspaCalc</td>
+<td>Al ser un proyecto de código abierto, permite revisar y modificar su funcionamiento.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="factores-para-elegir-una-herramienta">Factores para elegir una herramienta</h1>
+<p>La elección de una herramienta depende del contexto y de los objetivos de cada usuario. Antes de decidir cuál utilizar, conviene considerar aspectos como:</p>
+<ul>
+<li>El tipo de problema que se desea resolver.</li>
+<li>La disponibilidad de conexión a Internet.</li>
+<li>La necesidad de obtener explicaciones o procedimientos detallados.</li>
+<li>La posibilidad de revisar o modificar los algoritmos utilizados.</li>
+<li>La frecuencia con la que se utilizarán las herramientas disponibles.</li>
+<li>Si se requiere una solución de propósito general o una enfocada en un área específica de la ingeniería.</li>
+</ul>
+<hr />
+<h2 id="ejemplos-de-casos-de-uso">Ejemplos de casos de uso</h2>
+<p>A continuación se presentan algunos ejemplos de situaciones en las que cada alternativa puede resultar apropiada.</p>
+<table>
+<thead>
+<tr>
+<th>Situación</th>
+<th>Herramienta sugerida</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Un estudiante necesita utilizar varias herramientas de ingeniería durante una práctica o laboratorio.</td>
+<td>ChuspaCalc</td>
+</tr>
+<tr>
+<td>Un usuario requiere resolver una integral, una ecuación diferencial o una expresión simbólica compleja.</td>
+<td>Wolfram Alpha</td>
+</tr>
+<tr>
+<td>Se necesita realizar rápidamente un cálculo puntual desde un navegador sin instalar software.</td>
+<td>Calculadora especializada en línea</td>
+</tr>
+<tr>
+<td>Un desarrollador desea comprender, verificar o ampliar la implementación de una herramienta de cálculo.</td>
+<td>ChuspaCalc</td>
+</tr>
+</tbody>
+</table>
+<p>Estas recomendaciones son orientativas. La herramienta más adecuada dependerá del problema que se quiera resolver y de las funcionalidades disponibles en cada momento.</p>
+<h1 id="conclusion">Conclusión</h1>
+<p>ChuspaCalc no busca reemplazar plataformas consolidadas como Wolfram Alpha ni a las numerosas calculadoras especializadas disponibles en Internet. Su propósito es ofrecer una alternativa <strong>gratuita, de código abierto, modular y orientada al ámbito académico</strong>, concentrando en una sola aplicación herramientas útiles para distintas ramas de la ingeniería.</p>
+<p>Para necesidades como cálculo simbólico avanzado o dominios fuera del alcance actual del proyecto, herramientas como Wolfram Alpha pueden resultar más adecuadas. En cambio, para el uso cotidiano en cursos de ingeniería, trabajo sin conexión y aprendizaje de los algoritmos implementados, ChuspaCalc constituye una alternativa sólida y en constante evolución gracias a las contribuciones de su comunidad.</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

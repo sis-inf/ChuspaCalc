@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Testing - ChuspaCalc</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">ChuspaCalc</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../instalacion/" class="nav-link">Instalación</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../configuracion/" class="nav-link">Configuración</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../arquitectura/" class="nav-link">Arquitectura</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../desarrollo-local/" class="nav-link">Desarrollo Local</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../flujo-de-trabajo/" class="nav-link">Flujo de Trabajo</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../casos-de-uso/" class="nav-link">Casos de Uso</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="./" class="nav-link active" aria-current="page">Testing</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../seguridad/" class="nav-link">Seguridad</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../preguntas-frecuentes/" class="nav-link">Preguntas Frecuentes</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../casos-de-uso/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../seguridad/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#guia-de-testing" class="nav-link">Guía de Testing</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#introduccion" class="nav-link">Introducción</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#configuracion-del-entorno-de-test" class="nav-link">Configuración del entorno de test</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#ejecutar-los-tests" class="nav-link">Ejecutar los tests</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#estructura-de-un-test-unitario" class="nav-link">Estructura de un test unitario</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#fixtures-disponibles" class="nav-link">Fixtures disponibles</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#convenciones-de-nomenclatura" class="nav-link">Convenciones de nomenclatura</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#cobertura-minima-requerida" class="nav-link">Cobertura mínima requerida</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#buenas-practicas" class="nav-link">Buenas prácticas</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#conclusion" class="nav-link">Conclusión</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="guia-de-testing">Guía de Testing</h1>
+<h2 id="introduccion">Introducción</h2>
+<p>Las pruebas automatizadas son una parte fundamental del desarrollo en ChuspaCalc. Permiten verificar que los cambios realizados no introduzcan errores y facilitan el mantenimiento del código a largo plazo.</p>
+<p>Esta guía explica cómo configurar el entorno de pruebas, ejecutar los distintos tipos de tests, escribir nuevas pruebas y seguir las convenciones utilizadas por el proyecto.</p>
+<hr />
+<h2 id="configuracion-del-entorno-de-test">Configuración del entorno de test</h2>
+<p>Antes de ejecutar las pruebas es necesario instalar las dependencias de desarrollo.</p>
+<h3 id="crear-entorno-virtual">Crear entorno virtual</h3>
+<pre><code class="language-bash">python -m venv .venv
+</code></pre>
+<p>Activar el entorno:</p>
+<h3 id="windows">Windows</h3>
+<pre><code class="language-bash">.venv\Scripts\activate
+</code></pre>
+<h3 id="linuxmacos">Linux/macOS</h3>
+<pre><code class="language-bash">source .venv/bin/activate
+</code></pre>
+<h3 id="instalar-dependencias">Instalar dependencias</h3>
+<pre><code class="language-bash">pip install -r requirements.txt
+pip install -r requirements-dev.txt
+</code></pre>
+<h3 id="instalar-pytest">Instalar pytest</h3>
+<pre><code class="language-bash">pip install pytest
+</code></pre>
+<h3 id="instalar-cobertura">Instalar cobertura</h3>
+<pre><code class="language-bash">pip install pytest-cov
+</code></pre>
+<hr />
+<h2 id="ejecutar-los-tests">Ejecutar los tests</h2>
+<h3 id="ejecutar-todas-las-pruebas">Ejecutar todas las pruebas</h3>
+<pre><code class="language-bash">pytest
+</code></pre>
+<h3 id="ejecutar-unicamente-pruebas-unitarias">Ejecutar únicamente pruebas unitarias</h3>
+<pre><code class="language-bash">pytest tests/unit
+</code></pre>
+<h3 id="ejecutar-unicamente-pruebas-de-integracion">Ejecutar únicamente pruebas de integración</h3>
+<pre><code class="language-bash">pytest tests/integration
+</code></pre>
+<h3 id="ejecutar-una-prueba-especifica">Ejecutar una prueba específica</h3>
+<pre><code class="language-bash">pytest tests/unit/test_calculadora.py
+</code></pre>
+<h3 id="ejecutar-una-funcion-especifica">Ejecutar una función específica</h3>
+<pre><code class="language-bash">pytest tests/unit/test_calculadora.py::test_sumar_dos_numeros
+</code></pre>
+<h3 id="ejecutar-con-cobertura">Ejecutar con cobertura</h3>
+<pre><code class="language-bash">pytest --cov=src
+</code></pre>
+<h3 id="generar-reporte-html-de-cobertura">Generar reporte HTML de cobertura</h3>
+<pre><code class="language-bash">pytest --cov=src --cov-report=html
+</code></pre>
+<hr />
+<h2 id="estructura-de-un-test-unitario">Estructura de un test unitario</h2>
+<p>Se recomienda utilizar el patrón Given / When / Then.</p>
+<h3 id="given">Given</h3>
+<p>Preparación de datos y dependencias.</p>
+<h3 id="when">When</h3>
+<p>Ejecución de la acción que se desea probar.</p>
+<h3 id="then">Then</h3>
+<p>Verificación de los resultados esperados.</p>
+<h3 id="ejemplo-completo">Ejemplo completo</h3>
+<pre><code class="language-python">import pytest
+
+def sumar(a, b):
+    return a + b
+
+def test_sumar_dos_numeros():
+    # Given
+    numero_a = 10
+    numero_b = 5
+
+    # When
+    resultado = sumar(numero_a, numero_b)
+
+    # Then
+    assert resultado == 15
+</code></pre>
+<p>Este patrón facilita la lectura y comprensión de las pruebas.</p>
+<hr />
+<h2 id="fixtures-disponibles">Fixtures disponibles</h2>
+<p>Las fixtures permiten reutilizar objetos y configuraciones entre múltiples pruebas.</p>
+<p>Generalmente se encuentran definidas en:</p>
+<pre><code class="language-text">tests/conftest.py
+</code></pre>
+<p>Ejemplos comunes:</p>
+<table>
+<thead>
+<tr>
+<th>Fixture</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>app</td>
+<td>Instancia principal de la aplicación para pruebas.</td>
+</tr>
+<tr>
+<td>cliente</td>
+<td>Cliente de prueba utilizado para solicitudes simuladas.</td>
+</tr>
+<tr>
+<td>datos_prueba</td>
+<td>Conjunto de datos reutilizable para distintos escenarios.</td>
+</tr>
+<tr>
+<td>directorio_temporal</td>
+<td>Directorio temporal para pruebas con archivos.</td>
+</tr>
+<tr>
+<td>configuracion_mock</td>
+<td>Configuración simulada para entornos controlados.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ejemplo-de-uso">Ejemplo de uso</h3>
+<pre><code class="language-python">def test_usuario_valido(datos_prueba):
+    assert datos_prueba is not None
+</code></pre>
+<p>Las fixtures ayudan a reducir código duplicado y mejoran la mantenibilidad de las pruebas.</p>
+<hr />
+<h2 id="convenciones-de-nomenclatura">Convenciones de nomenclatura</h2>
+<h3 id="archivos">Archivos</h3>
+<p>Los archivos deben comenzar con:</p>
+<pre><code class="language-text">test_
+</code></pre>
+<p>Ejemplos:</p>
+<pre><code class="language-text">test_calculadora.py
+test_usuario.py
+test_configuracion.py
+</code></pre>
+<h3 id="funciones">Funciones</h3>
+<p>Se recomienda utilizar el formato:</p>
+<pre><code class="language-text">test_nombre_funcion_escenario
+</code></pre>
+<p>Ejemplos:</p>
+<pre><code class="language-text">test_sumar_dos_numeros_validos
+test_login_usuario_existente
+test_cargar_configuracion_archivo_valido
+</code></pre>
+<h3 id="clases">Clases</h3>
+<p>Cuando se utilicen clases para agrupar pruebas:</p>
+<pre><code class="language-python">class TestCalculadora:
+    pass
+</code></pre>
+<hr />
+<h2 id="cobertura-minima-requerida">Cobertura mínima requerida</h2>
+<p>La cobertura ayuda a medir qué porcentaje del código está siendo ejecutado por las pruebas.</p>
+<p>Se recomienda mantener los siguientes mínimos:</p>
+<table>
+<thead>
+<tr>
+<th>Módulo</th>
+<th>Cobertura mínima</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Core</td>
+<td>90%</td>
+</tr>
+<tr>
+<td>Servicios</td>
+<td>85%</td>
+</tr>
+<tr>
+<td>Utilidades</td>
+<td>80%</td>
+</tr>
+<tr>
+<td>Interfaces</td>
+<td>70%</td>
+</tr>
+<tr>
+<td>Integración</td>
+<td>70%</td>
+</tr>
+</tbody>
+</table>
+<p>Cuando sea posible, se debe aumentar la cobertura sin sacrificar la calidad de las pruebas.</p>
+<hr />
+<h2 id="buenas-practicas">Buenas prácticas</h2>
+<ul>
+<li>Mantener cada prueba enfocada en un único comportamiento.</li>
+<li>Evitar dependencias entre pruebas.</li>
+<li>Utilizar fixtures para reutilizar configuraciones.</li>
+<li>Nombrar claramente los escenarios evaluados.</li>
+<li>Ejecutar todas las pruebas antes de crear un Pull Request.</li>
+<li>Revisar periódicamente los reportes de cobertura.</li>
+</ul>
+<hr />
+<h2 id="conclusion">Conclusión</h2>
+<p>Las pruebas automatizadas permiten mantener la estabilidad del proyecto y detectar errores tempranamente. Siguiendo las convenciones descritas en esta guía, los contribuyentes podrán ejecutar, escribir y mantener pruebas de forma consistente utilizando pytest y las herramientas de cobertura del proyecto.</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

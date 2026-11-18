@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Guía Teórica del Módulo Civil - ChuspaCalc</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">ChuspaCalc</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../instalacion/" class="nav-link">Instalación</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../configuracion/" class="nav-link">Configuración</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../arquitectura/" class="nav-link">Arquitectura</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../desarrollo-local/" class="nav-link">Desarrollo Local</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../flujo-de-trabajo/" class="nav-link">Flujo de Trabajo</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../casos-de-uso/" class="nav-link">Casos de Uso</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../testing/" class="nav-link">Testing</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../seguridad/" class="nav-link">Seguridad</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../preguntas-frecuentes/" class="nav-link">Preguntas Frecuentes</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#guia-teorica-del-modulo-civil" class="nav-link">Guía Teórica del Módulo Civil</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#viga-simplemente-apoyada" class="nav-link">Viga Simplemente Apoyada</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#carga-puntual-central" class="nav-link">Carga Puntual Central</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#carga-distribuida-uniforme" class="nav-link">Carga Distribuida Uniforme</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#deflexion-elastica" class="nav-link">Deflexión Elástica</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#area-de-seccion-transversal" class="nav-link">Área de Sección Transversal</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="guia-teorica-del-modulo-civil">Guía Teórica del Módulo Civil</h1>
+<p>Este documento presenta los fundamentos teóricos utilizados en el módulo civil para el cálculo estructural de vigas y elementos de construcción. Las fórmulas y conceptos presentados se basan en la teoría clásica de resistencia de materiales y constituyen la base para los cálculos implementados en el software.</p>
+<h2 id="viga-simplemente-apoyada">Viga Simplemente Apoyada</h2>
+<p>Una viga simplemente apoyada es un elemento estructural horizontal soportado en sus extremos mediante apoyos simples que permiten rotación pero restringen la traslación vertical. Esta configuración es fundamental en el análisis estructural debido a su simplicidad y amplia aplicación en la construcción.</p>
+<p><strong>Condiciones de apoyo:</strong>
+- Apoyo izquierdo: restricción de desplazamiento vertical, libre rotación
+- Apoyo derecho: restricción de desplazamiento vertical, libre rotación
+- No existe restricción al desplazamiento horizontal (a menos que se considere fricción)</p>
+<p><strong>Diagrama de apoyos:</strong></p>
+<pre><code>    ◯─────────────────────────◯
+    ↑                         ↑
+   R1                        R2
+</code></pre>
+<p>Donde los círculos representan apoyos simples y las flechas indican las reacciones verticales. Esta configuración permite que la viga se flexione bajo carga sin generar momentos flectores en los apoyos.</p>
+<h2 id="carga-puntual-central">Carga Puntual Central</h2>
+<p>Cuando se aplica una carga puntual $P$ en el centro de una viga simplemente apoyada de longitud $L$, se generan esfuerzos internos que pueden calcularse mediante las siguientes expresiones:</p>
+<p><strong>Momento flector máximo:</strong>
+$$ M_{max} = \frac{P \cdot L}{4} $$</p>
+<p>Este momento se presenta en el punto medio de la viga, donde la carga es aplicada. El momento flector es el responsable principal de las tensiones de flexión en la sección transversal.</p>
+<p><strong>Fuerza cortante:</strong>
+$$ V = \frac{P}{2} $$</p>
+<p>La fuerza cortante es constante en cada tramo de la viga y cambia de signo en el punto de aplicación de la carga. En los apoyos, la cortante es igual a las reacciones verticales.</p>
+<p><strong>Diagrama de cortante:</strong></p>
+<pre><code>    P/2 │           │ P/2
+        │           │
+        │     ↓     │
+   ─────┼───────────┼────
+        │           │
+   -P/2 │           │ -P/2
+</code></pre>
+<p><strong>Diagrama de momento:</strong></p>
+<pre><code>    M_max
+      │
+      │     ╱╲
+      │    ╱  ╲
+   ───┼───╱────╲───
+      │  ╱      ╲
+      │ ╱        ╲
+      0
+</code></pre>
+<p><strong>Limitaciones:</strong> Estas fórmulas asumen que la carga se aplica exactamente en el centro de la viga y que el material se comporta de manera lineal elástica. No consideran efectos de segundo orden ni deformaciones grandes.</p>
+<h2 id="carga-distribuida-uniforme">Carga Distribuida Uniforme</h2>
+<p>Para una carga distribuida uniforme $w$ (fuerza por unidad de longitud) que actúa sobre toda la longitud de la viga, las expresiones de cálculo son:</p>
+<p><strong>Reacciones en los apoyos:</strong>
+$$ R_1 = R_2 = \frac{w \cdot L}{2} $$</p>
+<p>Las reacciones son iguales debido a la simetría de la carga y la configuración de apoyos. Cada apoyo soporta exactamente la mitad de la carga total aplicada.</p>
+<p><strong>Momento flector máximo:</strong>
+$$ M_{max} = \frac{w \cdot L^2}{8} $$</p>
+<p>El momento máximo se presenta en el centro de la viga, al igual que en el caso de carga puntual central. Esta expresión se obtiene integrando la ecuación diferencial de la elástica.</p>
+<p><strong>Fuerza cortante:</strong> La cortante varía linealmente desde $+\frac{w \cdot L}{2}$ en el apoyo izquierdo hasta $-\frac{w \cdot L}{2}$ en el apoyo derecho, siendo nula en el centro de la viga.</p>
+<p><strong>Diagrama de cortante:</strong></p>
+<pre><code>    wL/2│
+       │╲
+       │ ╲
+   ────┼──╲────
+       │   ╲
+       │    ╲
+   -wL/2│
+</code></pre>
+<p><strong>Diagrama de momento:</strong></p>
+<pre><code>    M_max
+      │
+      │   ╱──╲
+      │  ╱    ╲
+   ───┼─╱──────╲──
+      │╱        ╲
+      0
+</code></pre>
+<h2 id="deflexion-elastica">Deflexión Elástica</h2>
+<p>La deflexión elástica de una viga se basa en la hipótesis de Euler-Bernoulli, que establece las siguientes suposiciones fundamentales:</p>
+<p><strong>Hipótesis de Euler-Bernoulli:</strong>
+1. Las secciones transversales planas permanecen planas después de la deformación
+2. Las secciones transversales permanecen perpendiculares al eje neutro de la viga
+3. El material es homogéneo, isotrópico y se comporta de manera lineal elástica
+4. Las deformaciones son pequeñas (teoría de primer orden)
+5. No se consideran efectos de cortante en la deflexión (vigas esbeltas)</p>
+<p><strong>Deflexión máxima para carga puntual central:</strong>
+$$ \delta_{max} = \frac{P \cdot L^3}{48 \cdot E \cdot I} $$</p>
+<p><strong>Deflexión máxima para carga distribuida uniforme:</strong>
+$$ \delta_{max} = \frac{5 \cdot w \cdot L^4}{384 \cdot E \cdot I} $$</p>
+<p>Donde:
+- $E$ es el módulo de elasticidad del material (Pa)
+- $I$ es el momento de inercia de la sección transversal (m⁴)
+- $\delta_{max}$ es la deflexión máxima en el centro de la viga (m)</p>
+<p><strong>Limitaciones:</strong> Estas fórmulas no son válidas para vigas cortas donde los efectos de cortante son significativos, ni para materiales con comportamiento no lineal. Tampoco consideran la deformación por cortante ni los efectos de segundo orden (P-delta).</p>
+<h2 id="area-de-seccion-transversal">Área de Sección Transversal</h2>
+<p>El área de la sección transversal $A$ es un parámetro geométrico fundamental en el diseño estructural que influye en múltiples aspectos del comportamiento del elemento:</p>
+<p><strong>Importancia en el diseño:</strong></p>
+<ol>
+<li>
+<p><strong>Resistencia axial:</strong> El área determina la capacidad del elemento para resistir cargas axiales de compresión o tracción. El esfuerzo axial se calcula como:
+$$ \sigma = \frac{N}{A} $$
+donde $N$ es la fuerza axial y $\sigma$ es el esfuerzo normal.</p>
+</li>
+<li>
+<p><strong>Rigidez axial:</strong> La rigidez axial del elemento depende directamente del área y del módulo de elasticidad:
+$$ k_{axial} = \frac{E \cdot A}{L} $$</p>
+</li>
+<li>
+<p><strong>Peso propio:</strong> El área de la sección, junto con la densidad del material $\rho$, determina el peso por unidad de longitud:
+$$ w_{propio} = \rho \cdot A \cdot g $$</p>
+</li>
+<li>
+<p><strong>Interacción con otros parámetros:</strong> Aunque el área no aparece directamente en las fórmulas de momento flector o deflexión, influye indirectamente a través del momento de inercia $I$, que depende de la distribución del área alrededor del eje neutro.</p>
+</li>
+</ol>
+<p><strong>Consideraciones de diseño:</strong> Al seleccionar el área de la sección, se debe buscar un equilibrio entre resistencia, rigidez y peso. Un área excesiva puede resultar en un elemento sobredimensionado con mayor costo y peso, mientras que un área insuficiente puede comprometer la seguridad estructural.</p>
+<p><strong>Limitaciones:</strong> El área por sí sola no es suficiente para caracterizar completamente el comportamiento a flexión de una sección. Para análisis de flexión, es necesario considerar también el momento de inercia y el módulo de sección, que dependen de la forma y distribución del área, no solo de su magnitud.</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

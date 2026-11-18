@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Registro de herramientas (subcomandos CLI) - ChuspaCalc</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">ChuspaCalc</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../instalacion/" class="nav-link">Instalación</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../configuracion/" class="nav-link">Configuración</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../arquitectura/" class="nav-link">Arquitectura</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../desarrollo-local/" class="nav-link">Desarrollo Local</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../flujo-de-trabajo/" class="nav-link">Flujo de Trabajo</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../casos-de-uso/" class="nav-link">Casos de Uso</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../testing/" class="nav-link">Testing</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../seguridad/" class="nav-link">Seguridad</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../preguntas-frecuentes/" class="nav-link">Preguntas Frecuentes</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#registro-de-herramientas-subcomandos-cli" class="nav-link">Registro de herramientas (subcomandos CLI)</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#1-crear-el-modulo-del-comando" class="nav-link">🧩 1. Crear el módulo del comando</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#2-definir-el-comando-y-su-parser" class="nav-link">🧩 2. Definir el comando y su parser</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#registro-de-herramientas" class="nav-link">Registro de herramientas</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="registro-de-herramientas-subcomandos-cli">Registro de herramientas (subcomandos CLI)</h1>
+<p>Este documento describe el proceso para agregar nuevos subcomandos al CLI del proyecto.</p>
+<hr />
+<h2 id="1-crear-el-modulo-del-comando">🧩 1. Crear el módulo del comando</h2>
+<p>Cada subcomando debe implementarse en un archivo independiente dentro de la carpeta de comandos.</p>
+<p>Ejemplo:</p>
+<p>cli/commands/nuevo_comando.py</p>
+<hr />
+<h2 id="2-definir-el-comando-y-su-parser">🧩 2. Definir el comando y su parser</h2>
+<p>Dentro del módulo se define la lógica del comando y su configuración:</p>
+<pre><code class="language-python">import argparse
+
+def ejecutar(args):
+    print(&quot;Ejecutando nuevo comando&quot;)
+
+
+def add_parser(subparsers):
+    parser = subparsers.add_parser(
+        &quot;nuevo-comando&quot;,
+        help=&quot;Descripción del nuevo comando&quot;
+    )
+
+    parser.add_argument(
+        &quot;--opcion&quot;,
+        help=&quot;Descripción de la opción&quot;
+    )
+
+    parser.set_defaults(func=ejecutar)
+</code></pre>
+<h2 id="registro-de-herramientas">Registro de herramientas</h2>
+<table>
+<thead>
+<tr>
+<th>Nombre de herramienta</th>
+<th>Módulo</th>
+<th>Archivo</th>
+<th>PR</th>
+<th>Estado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>herramienta_divisor_tension</td>
+<td>electrica</td>
+<td>herramienta_divisor_tension.py</td>
+<td>#269</td>
+<td>implementada</td>
+</tr>
+<tr>
+<td>herramienta_ley_ohm</td>
+<td>electrica</td>
+<td>herramienta_ley_ohm.py</td>
+<td>#423</td>
+<td>implementada</td>
+</tr>
+<tr>
+<td>herramienta_calculo_area</td>
+<td>geometria</td>
+<td>herramienta_calculo_area.py</td>
+<td>#205</td>
+<td>implementada</td>
+</tr>
+<tr>
+<td>herramienta_calculadora_cientifica</td>
+<td>matematicas</td>
+<td>herramienta_calculadora_cientifica.py</td>
+<td>#390</td>
+<td>implementada</td>
+</tr>
+<tr>
+<td>herramienta_conversion_unidades</td>
+<td>matematicas</td>
+<td>herramienta_conversion_unidades.py</td>
+<td>#151</td>
+<td>implementada</td>
+</tr>
+<tr>
+<td>herramienta_sistemas_lineales</td>
+<td>matematicas</td>
+<td>herramienta_sistemas_lineales.py</td>
+<td>#375</td>
+<td>implementada</td>
+</tr>
+<tr>
+<td>herramienta_complemento_a_2</td>
+<td>sistemas</td>
+<td>herramienta_complemento_a_2.py</td>
+<td>#270</td>
+<td>implementada</td>
+</tr>
+<tr>
+<td>herramienta_conversion_bases</td>
+<td>sistemas</td>
+<td>herramienta_conversion_bases.py</td>
+<td>#372</td>
+<td>implementada</td>
+</tr>
+<tr>
+<td>herramienta_tablas_verdad</td>
+<td>sistemas</td>
+<td>herramienta_tablas_verdad.py</td>
+<td>#149</td>
+<td>implementada</td>
+</tr>
+</tbody>
+</table></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Guía Teórica del Módulo Eléctrica - ChuspaCalc</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">ChuspaCalc</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../instalacion/" class="nav-link">Instalación</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../configuracion/" class="nav-link">Configuración</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../arquitectura/" class="nav-link">Arquitectura</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../desarrollo-local/" class="nav-link">Desarrollo Local</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../flujo-de-trabajo/" class="nav-link">Flujo de Trabajo</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../casos-de-uso/" class="nav-link">Casos de Uso</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../testing/" class="nav-link">Testing</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../seguridad/" class="nav-link">Seguridad</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../preguntas-frecuentes/" class="nav-link">Preguntas Frecuentes</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#guia-teorica-del-modulo-electrica" class="nav-link">Guía Teórica del Módulo Eléctrica</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#alcance-solo-circuitos-dc" class="nav-link">Alcance: Solo Circuitos DC</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#ley-de-ohm" class="nav-link">Ley de Ohm</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#potencia-electrica" class="nav-link">Potencia Eléctrica</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#circuitos-en-serie" class="nav-link">Circuitos en Serie</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#circuitos-en-paralelo" class="nav-link">Circuitos en Paralelo</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#divisor-de-tension" class="nav-link">Divisor de Tensión</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#limitaciones-conocidas" class="nav-link">Limitaciones Conocidas</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="guia-teorica-del-modulo-electrica">Guía Teórica del Módulo Eléctrica</h1>
+<p>Este documento presenta los fundamentos teóricos utilizados en el módulo eléctrica para el análisis de circuitos de corriente continua (DC). Es importante destacar que este módulo está diseñado exclusivamente para circuitos DC y no implementa funcionalidades para corriente alterna (CA).</p>
+<h2 id="alcance-solo-circuitos-dc">Alcance: Solo Circuitos DC</h2>
+<p>El módulo eléctrica de ChuspaCalc está limitado al análisis de circuitos de corriente continua (DC, por sus siglas en inglés: Direct Current). Esta restricción es intencional y se fundamenta en las siguientes razones:</p>
+<p><strong>Diferencias fundamentales entre DC y CA:</strong>
+- <strong>DC:</strong> La corriente fluye en una sola dirección constante en el tiempo. El voltaje es constante (o variable lentamente). Los cálculos se realizan con valores instantáneos y no hay consideraciones de fase o frecuencia.
+- <strong>CA:</strong> La corriente cambia periódicamente de dirección. El voltaje varía sinusoidalmente con el tiempo. Requiere análisis fasorial, consideraciones de impedancia (no solo resistencia), y cálculos de potencia compleja.</p>
+<p><strong>Por qué el módulo NO implementa CA:</strong>
+1. <strong>Complejidad matemática:</strong> El análisis de CA requiere números complejos, fasores y transformaciones de Fourier, lo cual aumenta significativamente la complejidad del módulo.
+2. <strong>Elementos reactivos:</strong> Los circuitos CA típicamente incluyen capacitores e inductores, cuyo comportamiento depende de la frecuencia. El módulo actual asume solo resistencias puras.
+3. <strong>Régimen transitorio:</strong> La respuesta transitoria en circuitos CA con elementos reactivos requiere ecuaciones diferenciales, mientras que en DC con resistencias puras el análisis es algebraico.
+4. <strong>Enfoque educativo:</strong> El módulo está diseñado como una introducción a los circuitos eléctricos, comenzando con el caso más simple de DC.</p>
+<h2 id="ley-de-ohm">Ley de Ohm</h2>
+<p>La Ley de Ohm es la relación fundamental que describe el comportamiento de los componentes resistivos en circuitos eléctricos. Establece una relación lineal entre voltaje, corriente y resistencia.</p>
+<p><strong>Formulación matemática:</strong>
+$$ V = I \cdot R $$</p>
+<p>Donde:
+- $ V $ es el voltaje o diferencia de potencial, medido en voltios (V)
+- $ I $ es la corriente eléctrica, medida en amperios (A)
+- $ R $ es la resistencia eléctrica, medida en ohmios (Ω)</p>
+<p><strong>Relación entre las variables:</strong>
+- <strong>Voltaje:</strong> Es la "presión" eléctrica que impulsa el flujo de electrones. Un mayor voltaje produce una mayor corriente para una resistencia dada.
+- <strong>Corriente:</strong> Es el flujo de carga eléctrica a través del conductor. Es proporcional al voltaje e inversamente proporcional a la resistencia.
+- <strong>Resistencia:</strong> Es la oposición al flujo de corriente. Una mayor resistencia reduce la corriente para un voltaje dado.</p>
+<p><strong>Formas alternativas de la Ley de Ohm:</strong>
+$$ I = \frac{V}{R} $$
+$$ R = \frac{V}{I} $$</p>
+<p>La Ley de Ohm es válida para materiales óhmicos (conductores metálicos típicos) en condiciones normales de temperatura y presión. No se aplica a componentes no lineales como diodos o transistores.</p>
+<h2 id="potencia-electrica">Potencia Eléctrica</h2>
+<p>La potencia eléctrica es la tasa a la cual se transfiere energía eléctrica en un circuito. En circuitos DC con resistencias puras, la potencia puede calcularse de tres formas equivalentes.</p>
+<p><strong>Primera forma (definición básica):</strong>
+$$ P = V \cdot I $$</p>
+<p>Esta es la definición fundamental de potencia eléctrica: el producto del voltaje entre dos puntos y la corriente que fluye entre ellos. Se deriva directamente de la definición de potencia como trabajo por unidad de tiempo.</p>
+<p><strong>Segunda forma (usando la Ley de Ohm):</strong>
+$$ P = I^2 \cdot R $$</p>
+<p><strong>Derivación:</strong> Partiendo de $ P = V \cdot I $ y sustituyendo $ V = I \cdot R $ (Ley de Ohm):
+$$ P = (I \cdot R) \cdot I = I^2 \cdot R $$</p>
+<p>Esta forma es útil cuando se conoce la corriente y la resistencia, y muestra que la potencia disipada en una resistencia es proporcional al cuadrado de la corriente.</p>
+<p><strong>Tercera forma (eliminando la corriente):</strong>
+$$ P = \frac{V^2}{R} $$</p>
+<p><strong>Derivación:</strong> Partiendo de $ P = V \cdot I $ y sustituyendo $ I = \frac{V}{R} $ (Ley de Ohm despejada):
+$$ P = V \cdot \left(\frac{V}{R}\right) = \frac{V^2}{R} $$</p>
+<p>Esta forma es útil cuando se conoce el voltaje y la resistencia, y muestra que la potencia es proporcional al cuadrado del voltaje e inversamente proporcional a la resistencia.</p>
+<p><strong>Unidades:</strong> La potencia se mide en vatios (W), donde 1 W = 1 V × 1 A.</p>
+<h2 id="circuitos-en-serie">Circuitos en Serie</h2>
+<p>Un circuito en serie es aquel donde los componentes están conectados uno después del otro, de modo que la misma corriente fluye a través de todos ellos.</p>
+<p><strong>Resistencia equivalente:</strong>
+$$ R_{eq} = R_1 + R_2 + R_3 + \dots + R_n $$</p>
+<p><strong>Demostración:</strong> En un circuito serie, la misma corriente $ I $ fluye a través de todas las resistencias. Aplicando la Ley de Ohm a cada resistencia:
+$$ V_1 = I \cdot R_1 $$
+$$ V_2 = I \cdot R_2 $$
+$$ V_3 = I \cdot R_3 $$</p>
+<p>El voltaje total es la suma de los voltajes individuales (Ley de Voltaje de Kirchhoff):
+$$ V_{total} = V_1 + V_2 + V_3 = I \cdot R_1 + I \cdot R_2 + I \cdot R_3 = I \cdot (R_1 + R_2 + R_3) $$</p>
+<p>La resistencia equivalente se define como $ R_{eq} = \frac{V_{total}}{I} $, por lo que:
+$$ R_{eq} = R_1 + R_2 + R_3 $$</p>
+<p>Generalizando para $ n $ resistencias:
+$$ R_{eq} = \sum_{i=1}^{n} R_i $$</p>
+<p><strong>Características importantes:</strong>
+- La corriente es la misma en todos los componentes
+- El voltaje se divide entre los componentes
+- La resistencia equivalente es mayor que cualquier resistencia individual
+- Si un componente falla (circuito abierto), toda la corriente se interrumpe</p>
+<h2 id="circuitos-en-paralelo">Circuitos en Paralelo</h2>
+<p>Un circuito en paralelo es aquel donde los componentes están conectados entre los mismos dos nodos, de modo que el voltaje es el mismo across todos ellos.</p>
+<p><strong>Resistencia equivalente:</strong>
+$$ \frac{1}{R_{eq}} = \frac{1}{R_1} + \frac{1}{R_2} + \frac{1}{R_3} + \dots + \frac{1}{R_n} $$</p>
+<p><strong>Demostración:</strong> En un circuito paralelo, el mismo voltaje $ V $ se aplica across todas las resistencias. Aplicando la Ley de Ohm a cada resistencia:
+$$ I_1 = \frac{V}{R_1} $$
+$$ I_2 = \frac{V}{R_2} $$
+$$ I_3 = \frac{V}{R_3} $$</p>
+<p>La corriente total es la suma de las corrientes individuales (Ley de Corriente de Kirchhoff):
+$$ I_{total} = I_1 + I_2 + I_3 = \frac{V}{R_1} + \frac{V}{R_2} + \frac{V}{R_3} = V \cdot \left(\frac{1}{R_1} + \frac{1}{R_2} + \frac{1}{R_3}\right) $$</p>
+<p>La resistencia equivalente se define como $ R_{eq} = \frac{V}{I_{total}} $, por lo que:
+$$ \frac{1}{R_{eq}} = \frac{1}{R_1} + \frac{1}{R_2} + \frac{1}{R_3} $$</p>
+<p>Generalizando para $ n $ resistencias:
+$$ \frac{1}{R_{eq}} = \sum_{i=1}^{n} \frac{1}{R_i} $$</p>
+<p><strong>Para dos resistencias en paralelo (caso especial):</strong>
+$$ R_{eq} = \frac{R_1 \cdot R_2}{R_1 + R_2} $$</p>
+<p><strong>Características importantes:</strong>
+- El voltaje es el mismo en todos los componentes
+- La corriente se divide entre los componentes
+- La resistencia equivalente es menor que cualquier resistencia individual
+- Si un componente falla, los demás continúan funcionando</p>
+<h2 id="divisor-de-tension">Divisor de Tensión</h2>
+<p>El divisor de tensión es un circuito fundamental que permite obtener un voltaje menor a partir de un voltaje de entrada, utilizando dos resistencias en serie.</p>
+<p><strong>Fórmula del divisor de tensión:</strong>
+$$ V_{out} = V_{in} \cdot \frac{R_2}{R_1 + R_2} $$</p>
+<p><strong>Derivación:</strong> Considerando dos resistencias $ R_1 $ y $ R_2 $ en serie con un voltaje de entrada $ V_{in} $:</p>
+<p>La corriente que fluye por el circuito es:
+$$ I = \frac{V_{in}}{R_1 + R_2} $$</p>
+<p>El voltaje de salida se toma across $ R_2 $, por lo que:
+$$ V_{out} = I \cdot R_2 = \frac{V_{in}}{R_1 + R_2} \cdot R_2 = V_{in} \cdot \frac{R_2}{R_1 + R_2} $$</p>
+<p><strong>Aplicaciones prácticas:</strong></p>
+<ol>
+<li>
+<p><strong>Potenciómetros:</strong> Un potenciómetro es esencialmente un divisor de tensión ajustable donde la relación $ \frac{R_2}{R_1 + R_2} $ puede variar de 0 a 1 mediante un control mecánico.</p>
+</li>
+<li>
+<p><strong>Sensores resistivos:</strong> Muchos sensores (como termistores, fotoresistores, sensores de fuerza) cambian su resistencia con la variable física que miden. Al usarlos como $ R_2 $ en un divisor de tensión, se convierte el cambio de resistencia en un cambio de voltaje que puede leer un microcontrolador.</p>
+</li>
+<li>
+<p><strong>Referencias de voltaje:</strong> Para crear voltajes de referencia estables a partir de una fuente de alimentación mayor.</p>
+</li>
+<li>
+<p><strong>Atenuación de señales:</strong> Para reducir la amplitud de señales analógicas sin distorsión significativa.</p>
+</li>
+</ol>
+<p><strong>Consideraciones de diseño:</strong>
+- El divisor de tensión no es ideal si la carga conectada a $ V_{out} $ tiene una resistencia comparable a $ R_2 $, ya que esto afectará la división.
+- Para aplicaciones de precisión, se debe considerar el efecto de carga y posiblemente usar un seguidor de voltaje (amplificador operacional).</p>
+<h2 id="limitaciones-conocidas">Limitaciones Conocidas</h2>
+<p>El módulo eléctrica de ChuspaCalc tiene varias limitaciones importantes que los usuarios deben tener en cuenta:</p>
+<p><strong>1. Solo resistencias puras:</strong>
+El módulo asume que todos los componentes son resistencias puras. No considera capacitores, inductores ni otros componentes reactivos. Esto significa que:
+- No se pueden modelar circuitos con filtros RC, RL o RLC
+- No hay análisis de respuesta en frecuencia
+- No se consideran efectos de desfase entre voltaje y corriente</p>
+<p><strong>2. Sin elementos reactivos:</strong>
+Los elementos reactivos (capacitores e inductores) tienen comportamiento que depende del tiempo y la frecuencia:
+- <strong>Capacitores:</strong> Se oponen a cambios de voltaje, almacenan energía en campo eléctrico
+- <strong>Inductores:</strong> Se oponen a cambios de corriente, almacenan energía en campo magnético
+- Estos elementos requieren análisis con ecuaciones diferenciales y números complejos en CA</p>
+<p><strong>3. Solo régimen permanente DC:</strong>
+El módulo calcula el estado estacionario del circuito, no la respuesta transitoria:
+- No se modela cómo el circuito evoluciona desde el momento en que se conecta la fuente
+- No se consideran tiempos de establecimiento
+- No se analiza la respuesta a cambios súbitos en el circuito</p>
+<p><strong>4. Sin consideraciones térmicas:</strong>
+Las resistencias cambian su valor con la temperatura. El módulo asume resistencias constantes:
+- No se modela el auto-calentamiento de componentes
+- No se consideran coeficientes de temperatura
+- Los cálculos de potencia asumen disipación ideal</p>
+<p><strong>5. Circuitos lineales solamente:</strong>
+El módulo no maneja componentes no lineales:
+- No se pueden modelar diodos, transistores, LEDs
+- No se consideran efectos de saturación
+- No hay análisis de puntos de operación (Q-point)</p>
+<p><strong>6. Sin análisis de redes complejas:</strong>
+El módulo está limitado a configuraciones básicas:
+- No implementa análisis nodal o mallas completo
+- No maneja transformadores
+- No considera acoplamiento magnético entre componentes</p>
+<p><strong>Recomendación:</strong> Para aplicaciones que requieran alguna de estas funcionalidades, se recomienda utilizar software especializado en análisis de circuitos como SPICE, o extender el módulo con las capacidades necesarias.</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

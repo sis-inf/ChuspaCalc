@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Limitaciones de ChuspaCalc - Versión Inicial (v1) - ChuspaCalc</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">ChuspaCalc</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../instalacion/" class="nav-link">Instalación</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../configuracion/" class="nav-link">Configuración</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../arquitectura/" class="nav-link">Arquitectura</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../desarrollo-local/" class="nav-link">Desarrollo Local</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../flujo-de-trabajo/" class="nav-link">Flujo de Trabajo</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../casos-de-uso/" class="nav-link">Casos de Uso</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../testing/" class="nav-link">Testing</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../seguridad/" class="nav-link">Seguridad</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../preguntas-frecuentes/" class="nav-link">Preguntas Frecuentes</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#limitaciones-de-chuspacalc-version-inicial-v1" class="nav-link">Limitaciones de ChuspaCalc - Versión Inicial (v1)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#_1" class="nav-link"></a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#_2" class="nav-link"></a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#1-falta-de-integracion-con-herramientas-de-diseno-grafico" class="nav-link">1. Falta de integración con herramientas de diseño gráfico</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#_3" class="nav-link"></a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#_4" class="nav-link"></a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#_6" class="nav-link"></a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#2-no-soporta-sistemas-operativos-moviles" class="nav-link">2. No soporta sistemas operativos móviles</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#_7" class="nav-link"></a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#_10" class="nav-link"></a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#3-no-gestiona-proyectos-colaborativos-simultaneos" class="nav-link">3. No gestiona proyectos colaborativos simultáneos</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#_11" class="nav-link"></a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#4-sin-soporte-para-bases-de-datos-externas" class="nav-link">4. Sin soporte para bases de datos externas</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#5-limitaciones-por-modulo" class="nav-link">5. Limitaciones por módulo</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#_17" class="nav-link"></a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#51-modulo-civil" class="nav-link">5.1 Módulo Civil</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#52-modulo-electrica" class="nav-link">5.2 Módulo Eléctrica</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#53-modulo-matematicas" class="nav-link">5.3 Módulo Matemáticas</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#54-modulo-geometria" class="nav-link">5.4 Módulo Geometría</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#55-modulo-sistemas" class="nav-link">5.5 Módulo Sistemas</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#56-alcance-educativo-de-formulas-y-procedimientos-simplificados" class="nav-link">5.6 Alcance educativo de fórmulas y procedimientos simplificados</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="limitaciones-de-chuspacalc-version-inicial-v1">Limitaciones de ChuspaCalc - Versión Inicial (v1)</h1>
+<h1 id="_1"></h1>
+<h5 id="a-continuacion-se-detallan-las-limitaciones-conocidas-y-esperadas-de-chuspacalc-en-su-version-inicial-asi-como-algunas-funcionalidades-previstas-para-futuras-versiones">A continuación, se detallan las limitaciones conocidas y esperadas de ChuspaCalc en su versión inicial, así como algunas funcionalidades previstas para futuras versiones.</h5>
+<h1 id="_2"></h1>
+<h1 id="1-falta-de-integracion-con-herramientas-de-diseno-grafico">1. Falta de integración con herramientas de diseño gráfico</h1>
+<h1 id="_3"></h1>
+<h5 id="descripcion-en-esta-version-no-se-incluye-soporte-para-importar-ni-exportar-archivos-de-herramientas-como-adobe-illustrator-figma-o-inkscape-no-es-posible-trabajar-directamente-con-estos-formatos">Descripción: En esta versión no se incluye soporte para importar ni exportar archivos de herramientas como Adobe Illustrator, Figma o Inkscape. No es posible trabajar directamente con estos formatos.</h5>
+<h1 id="_4"></h1>
+<h5 id="solucion-temporal-si-los-archivos-deben-exportarse-o-convertirse-a-formatos-compatibles-png-jpg-o-svg-simple-antes-de-utilizarlos-en-chuspacalc">¿Solución temporal? Sí. Los archivos deben exportarse o convertirse a formatos compatibles (PNG, JPG o SVG simple) antes de utilizarlos en ChuspaCalc.</h5>
+<h5 id="_5"></h5>
+<h5 id="planeado-para-futuras-versiones-si-se-tiene-previsto-integrar-soporte-para-estos-formatos-en-la-version-v12">¿Planeado para futuras versiones? Sí. Se tiene previsto integrar soporte para estos formatos en la versión v1.2.</h5>
+<h1 id="_6"></h1>
+<h1 id="2-no-soporta-sistemas-operativos-moviles">2. No soporta sistemas operativos móviles</h1>
+<h1 id="_7"></h1>
+<h5 id="descripcion-la-herramienta-solo-funciona-en-sistemas-operativos-de-escritorio-como-windows-linux-y-macos-no-es-posible-utilizarla-en-android-ni-ios">Descripción: La herramienta solo funciona en sistemas operativos de escritorio como Windows, Linux y macOS. No es posible utilizarla en Android ni iOS.</h5>
+<h5 id="_8"></h5>
+<h5 id="solucion-temporal-no-actualmente-no-existe-una-forma-oficial-de-ejecutarla-en-dispositivos-moviles">¿Solución temporal? No. Actualmente no existe una forma oficial de ejecutarla en dispositivos móviles.</h5>
+<h5 id="_9"></h5>
+<h5 id="planeado-para-futuras-versiones-no-esta-funcionalidad-no-se-encuentra-dentro-de-los-planes-a-corto-o-mediano-plazo-ya-que-se-priorizaran-otras-caracteristicas">¿Planeado para futuras versiones? No. Esta funcionalidad no se encuentra dentro de los planes a corto o mediano plazo, ya que se priorizarán otras características.</h5>
+<h1 id="_10"></h1>
+<h1 id="3-no-gestiona-proyectos-colaborativos-simultaneos">3. No gestiona proyectos colaborativos simultáneos</h1>
+<h1 id="_11"></h1>
+<h5 id="descripcion-la-herramienta-solo-permite-trabajar-con-un-usuario-a-la-vez-en-un-mismo-proyecto-no-cuenta-con-edicion-en-tiempo-real-ni-control-de-versiones-compartido">Descripción: La herramienta solo permite trabajar con un usuario a la vez en un mismo proyecto. No cuenta con edición en tiempo real ni control de versiones compartido.</h5>
+<h5 id="_12"></h5>
+<h5 id="solucion-temporal-si-los-usuarios-pueden-compartir-archivos-manualmente-y-fusionar-los-cambios-mediante-herramientas-externas">¿Solución temporal? Sí. Los usuarios pueden compartir archivos manualmente y fusionar los cambios mediante herramientas externas.</h5>
+<h5 id="_13"></h5>
+<h5 id="planeado-para-futuras-versiones-si-esta-funcionalidad-esta-prevista-para-la-version-v20">¿Planeado para futuras versiones? Sí. Esta funcionalidad está prevista para la versión v2.0.</h5>
+<h1 id="4-sin-soporte-para-bases-de-datos-externas">4. Sin soporte para bases de datos externas</h1>
+<h5 id="descripcion-actualmente-no-es-posible-conectar-leer-ni-escribir-informacion-en-bases-de-datos-externas-como-mysql-postgresql-o-mongodb-la-herramienta-unicamente-trabaja-con-archivos-locales">Descripción: Actualmente no es posible conectar, leer ni escribir información en bases de datos externas como MySQL, PostgreSQL o MongoDB. La herramienta únicamente trabaja con archivos locales.</h5>
+<h5 id="_14"></h5>
+<h5 id="solucion-temporal-no-por-el-momento-no-existe-una-forma-de-conectarse-a-fuentes-de-datos-externas">¿Solución temporal? No. Por el momento no existe una forma de conectarse a fuentes de datos externas.</h5>
+<h5 id="_15"></h5>
+<h5 id="planeado-para-futuras-versiones-si-se-agregara-conectividad-basica-con-bases-de-datos-en-la-version-v15">¿Planeado para futuras versiones? Sí. Se agregará conectividad básica con bases de datos en la versión v1.5.</h5>
+<h5 id="_16"></h5>
+<h1 id="5-limitaciones-por-modulo">5. Limitaciones por módulo</h1>
+<h1 id="_17"></h1>
+<h1 id="51-modulo-civil">5.1 Módulo Civil</h1>
+<h5 id="_18"></h5>
+<h5 id="descripcion-el-modulo-civil-implementa-un-conjunto-limitado-de-funcionalidades-para-el-analisis-estructural">Descripción: El módulo Civil implementa un conjunto limitado de funcionalidades para el análisis estructural.</h5>
+<h5 id="_19"></h5>
+<h5 id="limitaciones-conocidas">Limitaciones conocidas</h5>
+<h5 id="_20"></h5>
+<h5 id="-solo-soporta-vigas-simplemente-apoyadas">- Solo soporta vigas simplemente apoyadas.</h5>
+<h5 id="-no-soporta-vigas-continuas">- No soporta vigas continuas.</h5>
+<h5 id="-no-soporta-marcos-estructurales-complejos">- No soporta marcos estructurales complejos.</h5>
+<h5 id="-no-realiza-analisis-sismico">- No realiza análisis sísmico.</h5>
+<h5 id="-no-contempla-cargas-dinamicas-avanzadas">- No contempla cargas dinámicas avanzadas.</h5>
+<h5 id="-los-resultados-deben-considerarse-aproximaciones-para-escenarios-basicos">- Los resultados deben considerarse aproximaciones para escenarios básicos.</h5>
+<h5 id="_21"></h5>
+<h1 id="52-modulo-electrica">5.2 Módulo Eléctrica</h1>
+<h5 id="_22"></h5>
+<h5 id="descripcion-el-modulo-electrica-cubre-circuitos-resistivos-de-corriente-continua-ley-de-ohm-potencia-resistencias-en-serie-y-en-paralelo-divisor-de-tension-capacitancias-en-serie-y-en-paralelo-algunos-calculos-de-corriente-alterna-potencia-trifasica-correccion-del-factor-de-potencia-y-caida-de-tension-con-factor-de-potencia-y-transitorios-de-primer-orden-en-circuitos-rc-y-rl">Descripción: El módulo Eléctrica cubre circuitos resistivos de corriente continua (ley de Ohm, potencia, resistencias en serie y en paralelo, divisor de tensión), capacitancias en serie y en paralelo, algunos cálculos de corriente alterna (potencia trifásica, corrección del factor de potencia y caída de tensión con factor de potencia) y transitorios de primer orden en circuitos RC y RL.</h5>
+<h5 id="_23"></h5>
+<h5 id="alcance-actual-de-potencia-trifasica">Alcance actual de potencia trifásica</h5>
+<h5 id="_24"></h5>
+<h5 id="-calcula-la-potencia-aparente-s-3-v_linea-i_linea-va-la-potencia-activa-p-s-cos-w-y-la-potencia-reactiva-q-s-sin-var-a-partir-del-voltaje-de-linea-la-corriente-de-linea-y-el-factor-de-potencia">- Calcula la potencia aparente S = √3 · V_línea · I_línea (VA), la potencia activa P = S · cos(φ) (W) y la potencia reactiva Q = S · sin(φ) (VAR) a partir del voltaje de línea, la corriente de línea y el factor de potencia.</h5>
+<h5 id="-acepta-conexion-en-estrella-o-en-triangulo-pero-en-ambos-casos-aplica-la-misma-formula-con-valores-de-linea-no-calcula-valores-de-fase">- Acepta conexión en estrella o en triángulo, pero en ambos casos aplica la misma fórmula con valores de línea; no calcula valores de fase.</h5>
+<h5 id="-supone-un-sistema-equilibrado-no-analiza-cargas-desbalanceadas">- Supone un sistema equilibrado; no analiza cargas desbalanceadas.</h5>
+<h5 id="-el-factor-de-potencia-debe-ser-mayor-que-0-y-menor-o-igual-que-1-no-distingue-entre-carga-inductiva-y-capacitiva-por-lo-que-q-siempre-resulta-positiva">- El factor de potencia debe ser mayor que 0 y menor o igual que 1; no distingue entre carga inductiva y capacitiva, por lo que Q siempre resulta positiva.</h5>
+<h5 id="_25"></h5>
+<h5 id="alcance-actual-de-circuitos-rc-y-rl">Alcance actual de circuitos RC y RL</h5>
+<h5 id="_26"></h5>
+<h5 id="-calcula-la-constante-de-tiempo-r-c-en-circuitos-rc-y-l-r-en-circuitos-rl">- Calcula la constante de tiempo τ = R · C en circuitos RC y τ = L / R en circuitos RL.</h5>
+<h5 id="-calcula-el-voltaje-del-capacitor-durante-la-carga-vct-v-1-et">- Calcula el voltaje del capacitor durante la carga: Vc(t) = V · (1 − e^(−t/τ)).</h5>
+<h5 id="-calcula-la-energia-almacenada-en-estado-estacionario-12-c-v2-en-rc-12-l-i2-con-i-v-r-en-rl-y-el-tiempo-de-estabilizacion-aproximado-5">- Calcula la energía almacenada en estado estacionario (½ · C · V² en RC; ½ · L · I² con I = V / R en RL) y el tiempo de estabilización aproximado (5 · τ).</h5>
+<h5 id="-solo-trata-circuitos-de-primer-orden-alimentados-por-una-fuente-de-tension-continua-aplicada-en-escalon">- Solo trata circuitos de primer orden alimentados por una fuente de tensión continua aplicada en escalón.</h5>
+<h5 id="-no-calcula-la-descarga-del-capacitor-ni-la-evolucion-de-la-corriente-en-el-tiempo-en-circuitos-rl">- No calcula la descarga del capacitor ni la evolución de la corriente en el tiempo en circuitos RL.</h5>
+<h5 id="-no-analiza-circuitos-rlc-ni-respuesta-en-frecuencia">- No analiza circuitos RLC ni respuesta en frecuencia.</h5>
+<h5 id="_27"></h5>
+<h5 id="limitaciones-conocidas_1">Limitaciones conocidas</h5>
+<h5 id="_28"></h5>
+<h5 id="-no-realiza-analisis-fasorial-no-trabaja-con-numeros-complejos-impedancias-ni-angulos-de-fase-de-voltajes-y-corrientes">- No realiza análisis fasorial: no trabaja con números complejos, impedancias ni ángulos de fase de voltajes y corrientes.</h5>
+<h5 id="-no-resuelve-circuitos-de-corriente-alterna-en-general-el-soporte-de-ac-se-limita-a-potencia-trifasica-correccion-del-factor-de-potencia-y-caida-de-tension">- No resuelve circuitos de corriente alterna en general; el soporte de AC se limita a potencia trifásica, corrección del factor de potencia y caída de tensión.</h5>
+<h5 id="-la-ley-de-ohm-las-resistencias-en-serie-y-en-paralelo-y-el-divisor-de-tension-consideran-solo-resistencias-puras">- La ley de Ohm, las resistencias en serie y en paralelo y el divisor de tensión consideran solo resistencias puras.</h5>
+<h5 id="-no-contempla-fenomenos-avanzados-de-potencia-electrica-como-armonicos-flujo-de-carga-o-cortocircuitos">- No contempla fenómenos avanzados de potencia eléctrica, como armónicos, flujo de carga o cortocircuitos.</h5>
+<h1 id="53-modulo-matematicas">5.3 Módulo Matemáticas</h1>
+<h5 id="_29"></h5>
+<h5 id="descripcion-el-modulo-matematicas-utiliza-la-precision-numerica-estandar-del-lenguaje">Descripción: El módulo Matemáticas utiliza la precisión numérica estándar del lenguaje.</h5>
+<h5 id="_30"></h5>
+<h5 id="limitaciones-conocidas_2">Limitaciones conocidas</h5>
+<h5 id="_31"></h5>
+<h5 id="-no-utiliza-bibliotecas-de-alta-precision-numerica">- No utiliza bibliotecas de alta precisión numérica.</h5>
+<h5 id="-pueden-existir-errores-de-redondeo">- Pueden existir errores de redondeo.</h5>
+<h5 id="-pueden-existir-errores-de-punto-flotante">- Pueden existir errores de punto flotante.</h5>
+<h5 id="-las-operaciones-repetidas-pueden-acumular-pequenas-diferencias-numericas">- Las operaciones repetidas pueden acumular pequeñas diferencias numéricas.</h5>
+<h5 id="-algunos-resultados-pueden-variar-ligeramente-dependiendo-de-la-plataforma-utilizada">- Algunos resultados pueden variar ligeramente dependiendo de la plataforma utilizada.</h5>
+<h5 id="_32"></h5>
+<h1 id="54-modulo-geometria">5.4 Módulo Geometría</h1>
+<h5 id="_33"></h5>
+<h5 id="descripcion-el-modulo-geometria-se-enfoca-en-operaciones-geometricas-basicas">Descripción: El módulo Geometría se enfoca en operaciones geométricas básicas.</h5>
+<h5 id="_34"></h5>
+<h5 id="limitaciones-conocidas_3">Limitaciones conocidas</h5>
+<h5 id="_35"></h5>
+<h5 id="-solo-soporta-figuras-regulares">- Solo soporta figuras regulares.</h5>
+<h5 id="-no-soporta-figuras-irregulares-complejas">- No soporta figuras irregulares complejas.</h5>
+<h5 id="-no-incluye-modelado-tridimensional-avanzado">- No incluye modelado tridimensional avanzado.</h5>
+<h5 id="-algunas-formulas-asumen-condiciones-ideales">- Algunas fórmulas asumen condiciones ideales.</h5>
+<h5 id="-no-contempla-geometria-computacional-avanzada">- No contempla geometría computacional avanzada.</h5>
+<h1 id="55-modulo-sistemas">5.5 Módulo Sistemas</h1>
+<h5 id="_36"></h5>
+<h5 id="descripcion-el-modulo-sistemas-implementa-soporte-limitado-para-el-manejo-de-caracteres">Descripción: El módulo Sistemas implementa soporte limitado para el manejo de caracteres.</h5>
+<h5 id="_37"></h5>
+<h5 id="limitaciones-conocidas_4">Limitaciones conocidas</h5>
+<h5 id="_38"></h5>
+<h5 id="-solo-soporta-caracteres-ascii-en-el-rango-de-0-a-127">- Solo soporta caracteres ASCII en el rango de 0 a 127.</h5>
+<h5 id="-no-soporta-completamente-unicode">- No soporta completamente Unicode.</h5>
+<h5 id="-los-caracteres-especiales-pueden-producir-resultados-inesperados">- Los caracteres especiales pueden producir resultados inesperados.</h5>
+<h5 id="-no-existe-soporte-completo-para-alfabetos-internacionales">- No existe soporte completo para alfabetos internacionales.</h5>
+<h5 id="-el-procesamiento-avanzado-de-texto-no-esta-implementado">- El procesamiento avanzado de texto no está implementado.</h5>
+<h1 id="56-alcance-educativo-de-formulas-y-procedimientos-simplificados">5.6 Alcance educativo de fórmulas y procedimientos simplificados</h1>
+<h5 id="descripcion-algunas-herramientas-implementadas-en-chuspacalc-tienen-un-proposito-principalmente-educativo-y-utilizan-modelos-simplificados-los-resultados-obtenidos-deben-interpretarse-como-aproximaciones-para-aprendizaje-practica-academica-o-validaciones-preliminares-y-no-sustituyen-procedimientos-profesionales-software-especializado-ni-normativa-tecnica-vigente">Descripción: Algunas herramientas implementadas en ChuspaCalc tienen un propósito principalmente educativo y utilizan modelos simplificados. Los resultados obtenidos deben interpretarse como aproximaciones para aprendizaje, práctica académica o validaciones preliminares, y no sustituyen procedimientos profesionales, software especializado ni normativa técnica vigente.</h5>
+<h5 id="simplificacion-de-mapas-de-karnaugh">Simplificación de mapas de Karnaugh</h5>
+<h5 id="limitaciones-conocidas_5">Limitaciones conocidas</h5>
+<h5 id="-la-simplificacion-se-realiza-mediante-agrupaciones-tipicas-de-mapas-de-karnaugh">- La simplificación se realiza mediante agrupaciones típicas de mapas de Karnaugh.</h5>
+<h5 id="-no-implementa-necesariamente-algoritmos-completos-de-minimizacion-como-quine-mccluskey-ni-metodos-avanzados-de-optimizacion-logica">- No implementa necesariamente algoritmos completos de minimización como Quine-McCluskey ni métodos avanzados de optimización lógica.</h5>
+<h5 id="-puede-no-ser-adecuada-para-funciones-de-gran-tamano-o-para-procesos-de-sintesis-logica-industrial">- Puede no ser adecuada para funciones de gran tamaño o para procesos de síntesis lógica industrial.</h5>
+<h5 id="simplificaciones-lrfd">Simplificaciones LRFD</h5>
+<h5 id="limitaciones-conocidas_6">Limitaciones conocidas</h5>
+<h5 id="-las-combinaciones-de-carga-utilizan-expresiones-simplificadas-con-fines-educativos">- Las combinaciones de carga utilizan expresiones simplificadas con fines educativos.</h5>
+<h5 id="-no-reemplazan-la-aplicacion-directa-de-normas-de-diseno-estructural-vigentes">- No reemplazan la aplicación directa de normas de diseño estructural vigentes.</h5>
+<h5 id="-no-contemplan-todas-las-combinaciones-especiales-factores-de-ajuste-o-requisitos-normativos-especificos-de-cada-jurisdiccion">- No contemplan todas las combinaciones especiales, factores de ajuste o requisitos normativos específicos de cada jurisdicción.</h5>
+<h5 id="-los-resultados-deben-utilizarse-unicamente-como-referencia-conceptual-o-academica">- Los resultados deben utilizarse únicamente como referencia conceptual o académica.</h5>
+<h5 id="pandeo-de-euler">Pandeo de Euler</h5>
+<h5 id="limitaciones-conocidas_7">Limitaciones conocidas</h5>
+<h5 id="-el-calculo-se-basa-en-las-hipotesis-clasicas-del-modelo-de-euler">- El cálculo se basa en las hipótesis clásicas del modelo de Euler.</h5>
+<h5 id="-es-valido-principalmente-para-columnas-esbeltas-sometidas-a-compresion-axial">- Es válido principalmente para columnas esbeltas sometidas a compresión axial.</h5>
+<h5 id="-supone-comportamiento-elastico-lineal-del-material">- Supone comportamiento elástico lineal del material.</h5>
+<h5 id="-no-considera-imperfecciones-geometricas-excentricidades-de-carga-efectos-inelasticos-ni-condiciones-reales-complejas-de-apoyo">- No considera imperfecciones geométricas, excentricidades de carga, efectos inelásticos ni condiciones reales complejas de apoyo.</h5>
+<h5 id="-su-aplicacion-fuera-de-los-rangos-de-validez-fisica-del-modelo-puede-producir-resultados-no-representativos">- Su aplicación fuera de los rangos de validez física del modelo puede producir resultados no representativos.</h5>
+<h5 id="uso-academico-de-los-resultados">Uso académico de los resultados</h5>
+<h5 id="-las-herramientas-que-indiquen-explicitamente-el-uso-de-aproximaciones-o-modelos-idealizados-deben-considerarse-de-caracter-educativo">- Las herramientas que indiquen explícitamente el uso de aproximaciones o modelos idealizados deben considerarse de carácter educativo.</h5>
+<h5 id="-los-resultados-no-deben-utilizarse-como-unico-criterio-para-decisiones-de-diseno-construccion-seguridad-o-certificacion-profesional">- Los resultados no deben utilizarse como único criterio para decisiones de diseño, construcción, seguridad o certificación profesional.</h5></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Exportación de resultados a LaTeX - ChuspaCalc</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">ChuspaCalc</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../instalacion/" class="nav-link">Instalación</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../configuracion/" class="nav-link">Configuración</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../arquitectura/" class="nav-link">Arquitectura</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../desarrollo-local/" class="nav-link">Desarrollo Local</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../flujo-de-trabajo/" class="nav-link">Flujo de Trabajo</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../casos-de-uso/" class="nav-link">Casos de Uso</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../testing/" class="nav-link">Testing</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../seguridad/" class="nav-link">Seguridad</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../preguntas-frecuentes/" class="nav-link">Preguntas Frecuentes</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#exportacion-de-resultados-a-latex" class="nav-link">Exportación de resultados a LaTeX</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#introduccion" class="nav-link">Introducción</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#que-se-exporta" class="nav-link">¿Qué se exporta?</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#como-exportar-un-resultado" class="nav-link">Cómo exportar un resultado</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#ejemplo-de-tabla-latex-generada" class="nav-link">Ejemplo de tabla LaTeX generada</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#ejemplo-de-uso-en-un-documento" class="nav-link">Ejemplo de uso en un documento</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#casos-de-uso" class="nav-link">Casos de uso</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#consideraciones" class="nav-link">Consideraciones</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="exportacion-de-resultados-a-latex">Exportación de resultados a LaTeX</h1>
+<h2 id="introduccion">Introducción</h2>
+<p>ChuspaCalc permite exportar los resultados de los cálculos en formato <strong>LaTeX</strong>, facilitando su incorporación en informes técnicos, artículos científicos, tesis y otros documentos académicos.</p>
+<p>La exportación genera código compatible con LaTeX, listo para copiar e insertar en un documento <code>.tex</code>.</p>
+<hr />
+<h2 id="que-se-exporta">¿Qué se exporta?</h2>
+<p>La exportación puede incluir la siguiente información:</p>
+<ul>
+<li>Nombre de la herramienta utilizada.</li>
+<li>Parámetros de entrada.</li>
+<li>Resultados obtenidos.</li>
+<li>Tabla con los valores calculados.</li>
+</ul>
+<p>El contenido generado puede incorporarse directamente a un documento académico sin necesidad de modificaciones adicionales.</p>
+<hr />
+<h2 id="como-exportar-un-resultado">Cómo exportar un resultado</h2>
+<ol>
+<li>Ejecutar un cálculo desde la interfaz gráfica.</li>
+<li>Verificar los resultados mostrados.</li>
+<li>Seleccionar la opción <strong>Exportar</strong>.</li>
+<li>Elegir el formato <strong>LaTeX (.tex)</strong>.</li>
+<li>Indicar la ubicación donde se guardará el archivo.</li>
+<li>Confirmar la exportación.</li>
+</ol>
+<hr />
+<h2 id="ejemplo-de-tabla-latex-generada">Ejemplo de tabla LaTeX generada</h2>
+<pre><code class="language-latex">\begin{table}[h]
+\centering
+\begin{tabular}{|l|c|}
+\hline
+\textbf{Parámetro} &amp; \textbf{Valor} \\
+\hline
+Longitud &amp; 12.50 \\
+Ancho &amp; 8.00 \\
+Área &amp; 100.00 \\
+\hline
+\end{tabular}
+\caption{Resultado del cálculo de un área rectangular}
+\label{tab:area_rectangular}
+\end{table}
+</code></pre>
+<p>La tabla anterior puede copiarse directamente dentro de un documento LaTeX y compilarse sin modificaciones.</p>
+<hr />
+<h2 id="ejemplo-de-uso-en-un-documento">Ejemplo de uso en un documento</h2>
+<pre><code class="language-latex">\documentclass{article}
+
+\begin{document}
+
+Los resultados del cálculo se presentan en la Tabla~\ref{tab:area_rectangular}.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|c|}
+\hline
+\textbf{Parámetro} &amp; \textbf{Valor} \\
+\hline
+Longitud &amp; 12.50 \\
+Ancho &amp; 8.00 \\
+Área &amp; 100.00 \\
+\hline
+\end{tabular}
+\caption{Resultado del cálculo de un área rectangular}
+\label{tab:area_rectangular}
+\end{table}
+
+\end{document}
+</code></pre>
+<hr />
+<h2 id="casos-de-uso">Casos de uso</h2>
+<p>La exportación a LaTeX resulta útil para:</p>
+<ul>
+<li>Elaboración de informes técnicos.</li>
+<li>Redacción de artículos científicos.</li>
+<li>Desarrollo de tesis y proyectos de investigación.</li>
+<li>Preparación de material académico.</li>
+<li>Generación de documentación profesional.</li>
+</ul>
+<hr />
+<h2 id="consideraciones">Consideraciones</h2>
+<ul>
+<li>El código generado utiliza sintaxis estándar de LaTeX.</li>
+<li>Puede integrarse en cualquier documento <code>.tex</code>.</li>
+<li>Es compatible con distribuciones habituales como <strong>TeX Live</strong> y <strong>MiKTeX</strong>.</li>
+<li>Se recomienda revisar el contenido antes de la compilación final del documento cuando se combinen múltiples tablas o resultados.</li>
+</ul></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

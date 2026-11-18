@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Decisiones de Arquitectura (ADR) - ChuspaCalc</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">ChuspaCalc</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../instalacion/" class="nav-link">Instalación</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../configuracion/" class="nav-link">Configuración</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../arquitectura/" class="nav-link">Arquitectura</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../desarrollo-local/" class="nav-link">Desarrollo Local</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../flujo-de-trabajo/" class="nav-link">Flujo de Trabajo</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../casos-de-uso/" class="nav-link">Casos de Uso</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../testing/" class="nav-link">Testing</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../seguridad/" class="nav-link">Seguridad</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../preguntas-frecuentes/" class="nav-link">Preguntas Frecuentes</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#decisiones-de-arquitectura-adr" class="nav-link">Decisiones de Arquitectura (ADR)</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#indice" class="nav-link">Índice</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#adr-001-uso-de-argparse-para-el-cli" class="nav-link">ADR-001: Uso de argparse para el CLI</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#adr-002-patron-registrydispatcher-para-modulos" class="nav-link">ADR-002: Patrón Registry+Dispatcher para módulos</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#adr-003-separacion-de-modulos-de-calculo-del-core" class="nav-link">ADR-003: Separación de módulos de cálculo del core</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#adr-004-implementacion-manual-de-calculos-sin-numpy" class="nav-link">ADR-004: Implementación manual de cálculos sin numpy</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#historial-de-cambios" class="nav-link">Historial de cambios</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="decisiones-de-arquitectura-adr">Decisiones de Arquitectura (ADR)</h1>
+<p>Este documento registra las decisiones arquitectónicas clave del proyecto ChuspaCalc. Cada ADR documenta el contexto, la decisión tomada y sus consecuencias.</p>
+<h2 id="indice">Índice</h2>
+<ul>
+<li><a href="#adr-001-uso-de-argparse-para-el-cli">ADR-001: Uso de argparse para el CLI</a></li>
+<li><a href="#adr-002-patrón-registrydispatcher-para-módulos">ADR-002: Patrón Registry+Dispatcher para módulos</a></li>
+<li><a href="#adr-003-separación-de-módulos-de-cálculo-del-core">ADR-003: Separación de módulos de cálculo del core</a></li>
+<li><a href="#adr-004-implementación-manual-de-cálculos-sin-numpy">ADR-004: Implementación manual de cálculos sin numpy</a></li>
+</ul>
+<hr />
+<h2 id="adr-001-uso-de-argparse-para-el-cli">ADR-001: Uso de argparse para el CLI</h2>
+<p><strong>Estado:</strong> Aceptado</p>
+<p><strong>Contexto:</strong>
+- El proyecto necesita una interfaz CLI para invocar los diferentes módulos (matemáticas, civil, eléctrica)
+- Existen múltiples opciones en el ecosistema Python: <code>argparse</code> (biblioteca estándar), <code>click</code> (terceros, más declarativo), <code>typer</code> (moderno, basado en type hints), <code>docopt</code> (basado en documentación)
+- El proyecto debe mantener cero dependencias externas innecesarias
+- Los colaboradores tienen diferentes niveles de experiencia</p>
+<p><strong>Decisión:</strong>
+Usar <code>argparse</code> de la biblioteca estándar de Python para implementar el CLI.</p>
+<p><strong>Consecuencias:</strong>
+- ✅ Positivas: Sin dependencias externas, disponible en cualquier instalación de Python, curva de aprendizaje baja, suficiente para las necesidades actuales
+- ❌ Negativas: Código más verboso que <code>click</code> o <code>typer</code>, menos características declarativas
+- 📝 Neutral: Requiere escribir más líneas de código para comandos complejos</p>
+<hr />
+<h2 id="adr-002-patron-registrydispatcher-para-modulos">ADR-002: Patrón Registry+Dispatcher para módulos</h2>
+<p><strong>Estado:</strong> Aceptado</p>
+<p><strong>Contexto:</strong>
+- El sistema debe soportar múltiples módulos de cálculo (matemáticas, civil, eléctrica)
+- Cada módulo tiene múltiples herramientas/funciones
+- Se necesita descubrir módulos automáticamente sin modificar el núcleo
+- Es común que contribuidores agreguen nuevos módulos
+- Alternativas evaluadas: importación estática (hardcoding), plugin system complejo (entry_points de setuptools), registro manual en archivo central</p>
+<p><strong>Decisión:</strong>
+Implementar un patrón Registry + Dispatcher donde:
+- Cada módulo se auto-registra en un registro central
+- El dispatcher resuelve qué módulo/herramienta ejecutar basado en argumentos CLI
+- El descubrimiento es por convención: escanear el directorio <code>modulos/</code></p>
+<p><strong>Consecuencias:</strong>
+- ✅ Positivas: Alta cohesión interna en cada módulo, bajo acoplamiento con el core, fácil agregar nuevos módulos sin tocar código existente, registro explícito que ayuda a depuración
+- ❌ Negativas: Complejidad adicional al inicio, requiere que los desarrolladores sigan la convención de registro
+- 📝 Neutral: Se necesita documentación clara sobre cómo registrar nuevos módulos</p>
+<hr />
+<h2 id="adr-003-separacion-de-modulos-de-calculo-del-core">ADR-003: Separación de módulos de cálculo del core</h2>
+<p><strong>Estado:</strong> Aceptado</p>
+<p><strong>Contexto:</strong>
+- El proyecto tiene funcionalidades de cálculo muy diversas (matemáticas, ingeniería civil, eléctrica)
+- Cada área tiene sus propias fórmulas, unidades y casos de uso
+- El core (<code>main.py</code>, <code>cli.py</code>) debe ser simple y estable
+- Los módulos cambian con mayor frecuencia que el core
+- Riesgo de que el core se convierta en un "god object" con toda la lógica</p>
+<p><strong>Decisión:</strong>
+Separar físicamente los módulos de cálculo en el directorio <code>modulos/</code>, cada uno en su propio archivo. El core solo maneja el descubrimiento, dispatcher y orquestación básica. Cada módulo es independiente y autocontenido.</p>
+<p><strong>Consecuencias:</strong>
+- ✅ Positivas: Core pequeño y mantenible, módulos pueden desarrollarse en paralelo por diferentes personas, pruebas aisladas por módulo, facilidad para eliminar o agregar módulos
+- ❌ Negativas: Mayor complejidad inicial para entender la arquitectura, overhead de comunicación entre core y módulos
+- 📝 Neutral: Se deben definir interfaces claras entre core y módulos</p>
+<hr />
+<h2 id="adr-004-implementacion-manual-de-calculos-sin-numpy">ADR-004: Implementación manual de cálculos sin numpy</h2>
+<p><strong>Estado:</strong> Aceptado</p>
+<p><strong>Contexto:</strong>
+- El proyecto realiza cálculos matemáticos, estadísticos, trigonométricos y de ingeniería
+- <code>numpy</code> es el estándar de facto para cálculos numéricos en Python
+- <code>numpy</code> tiene un peso significativo (~30-40 MB)
+- El proyecto está diseñado para ser liviano y fácil de instalar
+- Los cálculos requeridos son relativamente simples (no matrices grandes ni operaciones vectorizadas complejas)</p>
+<p><strong>Decisión:</strong>
+Implementar todos los cálculos manualmente usando solo funciones nativas de Python (<code>math</code> para trigonometría, operadores básicos para aritmética). No incluir <code>numpy</code> como dependencia.</p>
+<p><strong>Consecuencias:</strong>
+- ✅ Positivas: Cero dependencias externas, instalación ultraligera, tiempo de importación mínimo, mayor comprensión de los algoritmos subyacentes
+- ❌ Negativas: Mayor código a mantener, pérdida de optimizaciones de numpy (relevante solo para datos muy grandes), implementaciones manuales pueden tener bugs
+- 📝 Neutral: El módulo <code>math</code> de Python sí está permitido (es parte de la stdlib)</p>
+<hr />
+<h2 id="historial-de-cambios">Historial de cambios</h2>
+<table>
+<thead>
+<tr>
+<th>Fecha</th>
+<th>ADR</th>
+<th>Cambio</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2026-06-13</td>
+<td>ADR-001 a ADR-004</td>
+<td>Documentación inicial</td>
+</tr>
+</tbody>
+</table></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Módulo Eléctrico - ChuspaCalc</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../../css/brands.min.css" rel="stylesheet">
+        <link href="../../css/solid.min.css" rel="stylesheet">
+        <link href="../../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">ChuspaCalc</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../../instalacion/" class="nav-link">Instalación</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../configuracion/" class="nav-link">Configuración</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../arquitectura/" class="nav-link">Arquitectura</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../desarrollo-local/" class="nav-link">Desarrollo Local</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../flujo-de-trabajo/" class="nav-link">Flujo de Trabajo</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../casos-de-uso/" class="nav-link">Casos de Uso</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../testing/" class="nav-link">Testing</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../seguridad/" class="nav-link">Seguridad</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../preguntas-frecuentes/" class="nav-link">Preguntas Frecuentes</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#modulo-electrico" class="nav-link">Módulo Eléctrico</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#descripcion" class="nav-link">Descripción</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#ley-de-ohm" class="nav-link">Ley de Ohm</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#analisis-de-circuitos-dc" class="nav-link">Análisis de circuitos DC</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#potencia-electrica" class="nav-link">Potencia eléctrica</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#herramientas-disponibles" class="nav-link">Herramientas disponibles</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#potencia-trifasica" class="nav-link">Potencia trifásica</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#unidades-y-conversiones" class="nav-link">Unidades y conversiones</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#ejemplo-practico-completo" class="nav-link">Ejemplo práctico completo</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="modulo-electrico">Módulo Eléctrico</h1>
+<h2 id="descripcion">Descripción</h2>
+<p>Este módulo proporciona herramientas fundamentales para el análisis y cálculo de circuitos eléctricos en corriente continua (DC). Está diseñado para ingenieros, estudiantes y técnicos que necesitan realizar cálculos rápidos y precisos en el diseño y análisis de sistemas eléctricos. El módulo cubre desde los conceptos básicos como la Ley de Ohm hasta análisis más complejos de circuitos serie y paralelo, cálculo de potencia eléctrica, caída de tensión en conductores y divisores de tensión. Estas herramientas son esenciales para el diseño de circuitos electrónicos, sistemas de alimentación, instalaciones eléctricas residenciales e industriales, y cualquier aplicación que requiera análisis de circuitos eléctricos.</p>
+<h2 id="ley-de-ohm">Ley de Ohm</h2>
+<p>La Ley de Ohm es uno de los principios fundamentales de la electricidad y establece la relación entre voltaje, corriente y resistencia en un circuito eléctrico. Fue formulada por el físico alemán Georg Simon Ohm en 1827 y se expresa matemáticamente como:</p>
+<p><strong>V = I · R</strong></p>
+<p>Donde:
+- <strong>V</strong> es el voltaje o diferencia de potencial, medido en voltios (V)
+- <strong>I</strong> es la corriente eléctrica, medido en amperios (A)
+- <strong>R</strong> es la resistencia eléctrica, medido en ohmios (Ω)</p>
+<p>Esta ley indica que la corriente que fluye a través de un conductor es directamente proporcional al voltaje aplicado e inversamente proporcional a la resistencia del conductor. Es decir, si aumentamos el voltaje, la corriente aumentará proporcionalmente, y si aumentamos la resistencia, la corriente disminuirá proporcionalmente.</p>
+<p>El triángulo de Ohm es una herramienta mnemotécnica útil para recordar las tres formas de la ley:</p>
+<pre><code>    V
+   /|\
+  / | \
+ /  |  \
+I---R--- 
+</code></pre>
+<ul>
+<li>Para calcular V: cubre V → V = I · R</li>
+<li>Para calcular I: cubre I → I = V / R</li>
+<li>Para calcular R: cubre R → R = V / I</li>
+</ul>
+<p><strong>Ejemplos de uso:</strong>
+- Si tenemos una resistencia de 100 Ω con una corriente de 0.5 A, el voltaje es: V = 0.5 A · 100 Ω = 50 V
+- Si aplicamos 12 V a una resistencia de 24 Ω, la corriente es: I = 12 V / 24 Ω = 0.5 A
+- Si circula una corriente de 2 A a través de un componente con 10 V, la resistencia es: R = 10 V / 2 A = 5 Ω</p>
+<h2 id="analisis-de-circuitos-dc">Análisis de circuitos DC</h2>
+<p>El análisis de circuitos en corriente continua (DC) se basa en entender cómo se comportan los componentes cuando están conectados en diferentes configuraciones. Las dos configuraciones fundamentales son los circuitos en serie y en paralelo, cada una con características distintivas que afectan el voltaje, la corriente y la resistencia total del circuito.</p>
+<h3 id="circuitos-en-serie">Circuitos en serie</h3>
+<p>En un circuito en serie, los componentes están conectados uno después del otro, formando un único camino para la corriente eléctrica. Las características principales son:</p>
+<ul>
+<li><strong>La corriente es la misma en todos los componentes:</strong> La corriente que sale de la fuente es la misma que fluye a través de cada componente. Esto se debe a que no hay puntos donde la corriente pueda dividirse.</li>
+<li>
+<p>I_total = I₁ = I₂ = I₃ = ...</p>
+</li>
+<li>
+<p><strong>El voltaje total se divide entre los componentes:</strong> La suma de los voltajes individuales es igual al voltaje de la fuente.</p>
+</li>
+<li>
+<p>V_total = V₁ + V₂ + V₃ + ...</p>
+</li>
+<li>
+<p><strong>Resistencia total:</strong> La resistencia total es la suma de todas las resistencias individuales.</p>
+</li>
+<li>
+<p>R_total = R₁ + R₂ + R₃ + ...</p>
+</li>
+<li>
+<p><strong>Si un componente falla (se abre), todo el circuito se interrumpe:</strong> Esto es una desventaja importante en aplicaciones críticas.</p>
+</li>
+</ul>
+<p><strong>Ejemplo:</strong> Tres resistencias de 10 Ω, 20 Ω y 30 Ω conectadas en serie tienen una resistencia total de 60 Ω. Si se aplican 12 V, la corriente es I = 12 V / 60 Ω = 0.2 A, y esta misma corriente fluye a través de cada resistencia.</p>
+<h3 id="circuitos-en-paralelo">Circuitos en paralelo</h3>
+<p>En un circuito en paralelo, los componentes están conectados entre los mismos dos puntos, creando múltiples caminos para la corriente eléctrica. Las características principales son:</p>
+<ul>
+<li><strong>El voltaje es el mismo en todos los componentes:</strong> Cada componente tiene el mismo voltaje que la fuente.</li>
+<li>
+<p>V_total = V₁ = V₂ = V₃ = ...</p>
+</li>
+<li>
+<p><strong>La corriente total se divide entre las ramas:</strong> La suma de las corrientes individuales es igual a la corriente total de la fuente.</p>
+</li>
+<li>
+<p>I_total = I₁ + I₂ + I₃ + ...</p>
+</li>
+<li>
+<p><strong>Resistencia total:</strong> La resistencia total se calcula mediante la recíproca de la suma de las recíprocas.</p>
+</li>
+<li>1/R_total = 1/R₁ + 1/R₂ + 1/R₃ + ...</li>
+<li>
+<p>Para dos resistencias: R_total = (R₁ · R₂) / (R₁ + R₂)</p>
+</li>
+<li>
+<p><strong>Si una rama falla, las otras continúan funcionando:</strong> Esto es una ventaja importante en aplicaciones que requieren redundancia.</p>
+</li>
+<li>
+<p><strong>La resistencia total es siempre menor que la menor resistencia individual:</strong> Agregar más ramas en paralelo siempre reduce la resistencia total.</p>
+</li>
+</ul>
+<p><strong>Ejemplo:</strong> Dos resistencias de 10 Ω y 20 Ω en paralelo tienen una resistencia total de R_total = (10 · 20) / (10 + 20) = 200/30 = 6.67 Ω. Si se aplican 12 V, la corriente total es I = 12 V / 6.67 Ω = 1.8 A, que se divide entre las dos ramas.</p>
+<h2 id="potencia-electrica">Potencia eléctrica</h2>
+<p>La potencia eléctrica es la tasa a la que se transfiere energía eléctrica en un circuito. Se mide en vatios (W) y se puede calcular de tres formas diferentes, dependiendo de qué variables se conocen:</p>
+<p><strong>1. Potencia en función de voltaje y corriente:</strong>
+P = V · I</p>
+<p>Esta es la forma más básica y se usa cuando conocemos el voltaje aplicado y la corriente que circula. Es útil para calcular la potencia consumida por cualquier dispositivo eléctrico.</p>
+<p><strong>2. Potencia en función de corriente y resistencia:</strong>
+P = I² · R</p>
+<p>Esta forma se deriva de sustituir V = I · R en la primera ecuación. Es útil cuando conocemos la corriente y la resistencia, pero no el voltaje directamente. Muestra que la potencia disipada como calor en una resistencia es proporcional al cuadrado de la corriente.</p>
+<p><strong>3. Potencia en función de voltaje y resistencia:</strong>
+P = V² / R</p>
+<p>Esta forma se deriva de sustituir I = V / R en la primera ecuación. Es útil cuando conocemos el voltaje y la resistencia, pero no la corriente directamente. Muestra que para un voltaje fijo, menor resistencia significa mayor potencia.</p>
+<p><strong>Relación entre las tres formas:</strong>
+Las tres ecuaciones son equivalentes y se pueden derivar unas de otras usando la Ley de Ohm. La elección de cuál usar depende de qué variables son conocidas o más fáciles de medir en una situación específica.</p>
+<p><strong>Ejemplos:</strong>
+- Una resistencia de 100 Ω con 0.5 A: P = (0.5)² · 100 = 25 W
+- Un componente con 12 V y 2 A: P = 12 · 2 = 24 W
+- Una carga de 50 Ω con 10 V: P = 10² / 50 = 2 W</p>
+<h2 id="herramientas-disponibles">Herramientas disponibles</h2>
+<table>
+<thead>
+<tr>
+<th>Herramienta</th>
+<th>Fórmulas usadas</th>
+<th>Parámetros de entrada</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ley_ohm</code></td>
+<td>V = I · R, I = V / R, R = V / I</td>
+<td>Dos de: voltaje, corriente, resistencia</td>
+</tr>
+<tr>
+<td><code>potencia</code></td>
+<td>P = V · I, P = I² · R, P = V² / R</td>
+<td>Dos de: voltaje, corriente, resistencia</td>
+</tr>
+<tr>
+<td><code>circuito_serie</code></td>
+<td>R_total = R₁ + R₂ + ..., V_total = V₁ + V₂ + ..., I_total = I₁ = I₂ = ...</td>
+<td>Lista de resistencias, voltaje de fuente</td>
+</tr>
+<tr>
+<td><code>circuito_paralelo</code></td>
+<td>1/R_total = 1/R₁ + 1/R₂ + ..., V_total = V₁ = V₂ = ..., I_total = I₁ + I₂ + ...</td>
+<td>Lista de resistencias, voltaje de fuente</td>
+</tr>
+<tr>
+<td><code>caida_tension</code></td>
+<td>V_caida = I · R_conductor</td>
+<td>Corriente, resistencia del conductor</td>
+</tr>
+<tr>
+<td><code>divisor_tension</code></td>
+<td>V_salida = V_entrada · (R₂ / (R₁ + R₂))</td>
+<td>Voltaje de entrada, resistencias R₁ y R₂</td>
+</tr>
+</tbody>
+</table>
+<h2 id="potencia-trifasica">Potencia trifásica</h2>
+<p>La potencia trifásica es la que entrega un sistema de <strong>tres corrientes alternas</strong> desfasadas 120° entre sí. Es el sistema más usado en instalaciones industriales y comerciales por su mayor eficiencia y capacidad de transmisión.</p>
+<table>
+<thead>
+<tr>
+<th>Característica</th>
+<th>Monofásica</th>
+<th>Trifásica</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Número de fases</td>
+<td>1</td>
+<td>3</td>
+</tr>
+<tr>
+<td>Aplicación típica</td>
+<td>Residencial</td>
+<td>Industrial / comercial</td>
+</tr>
+<tr>
+<td>Potencia</td>
+<td>Menor</td>
+<td>Mayor</td>
+</tr>
+<tr>
+<td>Eficiencia</td>
+<td>Menor</td>
+<td>Mayor</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Fórmulas (con valores de línea, iguales para estrella y triángulo):</strong></p>
+<ul>
+<li>Potencia activa: <strong>P = √3 · V_L · I_L · cos(φ)</strong> (W)</li>
+<li>Potencia reactiva: <strong>Q = √3 · V_L · I_L · sen(φ)</strong> (VAR)</li>
+<li>Potencia aparente: <strong>S = √3 · V_L · I_L</strong> (VA)</li>
+</ul>
+<p>Donde <strong>V_L</strong> es el voltaje de línea (V), <strong>I_L</strong> la corriente de línea (A) y <strong>cos(φ)</strong> el factor de potencia (entre 0 y 1).</p>
+<p><strong>Estrella (Y) vs triángulo (Δ):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Característica</th>
+<th>Estrella (Y)</th>
+<th>Triángulo (Δ)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Voltaje de fase</td>
+<td>V_f = V_L / √3</td>
+<td>V_f = V_L</td>
+</tr>
+<tr>
+<td>Corriente de fase</td>
+<td>I_f = I_L</td>
+<td>I_f = I_L / √3</td>
+</tr>
+<tr>
+<td>Potencia activa</td>
+<td>P = √3 · V_L · I_L · cos(φ)</td>
+<td>P = √3 · V_L · I_L · cos(φ)</td>
+</tr>
+<tr>
+<td>Ventaja</td>
+<td>Menor voltaje por fase</td>
+<td>Menor corriente por fase</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Ejemplos:</strong></p>
+<ul>
+<li>Estrella, V_L = 400 V, I_L = 10 A, cos(φ) = 0.85: P = 1.732 · 400 · 10 · 0.85 ≈ 5889 W ≈ 5.89 kW</li>
+<li>Triángulo, V_L = 220 V, I_L = 15 A, cos(φ) = 0.90: P = 1.732 · 220 · 15 · 0.90 ≈ 5144 W ≈ 5.14 kW</li>
+</ul>
+<p><strong>Uso desde código:</strong></p>
+<pre><code class="language-python">from chuspacalc.modulos.electrica.potencia_trifasica import calcular_potencia_trifasica
+
+calcular_potencia_trifasica(400, 10, 0.85, conexion=&quot;estrella&quot;)
+# {&quot;potencia_activa&quot;: 5888.97..., &quot;potencia_reactiva&quot;: 3649.66..., &quot;potencia_aparente&quot;: 6928.20...}
+</code></pre>
+<p><code>conexion</code> acepta <code>"estrella"</code> (por defecto) o <code>"triangulo"</code>. Se lanza <code>ValueError</code> si el voltaje o la corriente no son mayores que 0 y finitos, o si el factor de potencia no está entre 0 y 1.</p>
+<p><strong>Solución de problemas:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Problema</th>
+<th>Solución</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>El resultado no coincide</td>
+<td>Verificar que el factor de potencia esté entre 0 y 1</td>
+</tr>
+<tr>
+<td>Error en el cálculo</td>
+<td>Verificar que se usen valores de <strong>línea</strong> (no de fase) de voltaje y corriente</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Referencias:</strong></p>
+<ul>
+<li><a href="https://es.wikipedia.org/wiki/Sistema_trif%C3%A1sico">Sistema trifásico</a></li>
+<li><a href="https://es.wikipedia.org/wiki/Diagrama_estrella-tri%C3%A1ngulo">Conexión estrella-triángulo</a></li>
+</ul>
+<h2 id="unidades-y-conversiones">Unidades y conversiones</h2>
+<p>En el análisis de circuitos eléctricos es fundamental comprender las unidades básicas y sus prefijos para realizar cálculos correctos y evitar errores de magnitud.</p>
+<p><strong>Unidades básicas del SI:</strong>
+- <strong>Voltio (V):</strong> Unidad de diferencia de potencial o fuerza electromotriz. Un voltio es la diferencia de potencial que, aplicada a una resistencia de un ohmio, produce una corriente de un amperio.
+- <strong>Amperio (A):</strong> Unidad de corriente eléctrica. Un amperio es la corriente que, fluyendo a través de dos conductores paralelos de longitud infinita, separados por un metro en el vacío, produce una fuerza de 2×10⁻⁷ newtons por metro de longitud.
+- <strong>Ohmio (Ω):</strong> Unidad de resistencia eléctrica. Un ohmio es la resistencia que, al aplicarle un voltio, permite el paso de un amperio de corriente.
+- <strong>Vatio (W):</strong> Unidad de potencia eléctrica. Un vatio es la potencia que corresponde a una energía de un julio por segundo.</p>
+<p><strong>Prefijos del SI más comunes en electricidad:</strong>
+- <strong>mili (m):</strong> 10⁻³ = 0.001
+  - 1 mV = 0.001 V
+  - 1 mA = 0.001 A
+  - 1 mΩ = 0.001 Ω
+  - 1 mW = 0.001 W</p>
+<ul>
+<li><strong>kilo (k):</strong> 10³ = 1,000</li>
+<li>1 kV = 1,000 V</li>
+<li>1 kA = 1,000 A</li>
+<li>1 kΩ = 1,000 Ω</li>
+<li>
+<p>1 kW = 1,000 W</p>
+</li>
+<li>
+<p><strong>mega (M):</strong> 10⁶ = 1,000,000</p>
+</li>
+<li>1 MV = 1,000,000 V</li>
+<li>1 MA = 1,000,000 A</li>
+<li>1 MΩ = 1,000,000 Ω</li>
+<li>1 MW = 1,000,000 W</li>
+</ul>
+<p><strong>Conversiones útiles:</strong>
+- Para convertir a unidades base: multiplicar por el factor del prefijo
+  - 5 kΩ = 5 × 1,000 = 5,000 Ω
+  - 250 mA = 250 × 0.001 = 0.25 A</p>
+<ul>
+<li>Para convertir a prefijos: dividir por el factor del prefijo</li>
+<li>4,700 Ω = 4,700 / 1,000 = 4.7 kΩ</li>
+<li>0.015 A = 0.015 / 0.001 = 15 mA</li>
+</ul>
+<p><strong>Importancia de las unidades:</strong> Es crucial mantener la consistencia de unidades en todos los cálculos. Por ejemplo, al usar la Ley de Ohm, si la resistencia está en kilo-ohmios, el resultado de la corriente estará en miliamperios si el voltaje está en voltios. Siempre es recomendable convertir todas las cantidades a unidades base (V, A, Ω, W) antes de realizar cálculos complejos.</p>
+<h2 id="ejemplo-practico-completo">Ejemplo práctico completo</h2>
+<p><strong>Enunciado:</strong> Diseñe un circuito que alimente tres LEDs desde una fuente de 12 V DC. Cada LED requiere aproximadamente 2 V y 20 mA para operar correctamente. Se debe incluir una resistencia limitadora de corriente para cada LED. Calcule el valor de las resistencias, la corriente total del circuito, la potencia total consumida y la caída de tensión en el conductor principal si tiene una resistencia de 0.1 Ω.</p>
+<p><strong>Datos:</strong>
+- Voltaje de la fuente (V_fuente): 12 V
+- Voltaje de cada LED (V_LED): 2 V
+- Corriente de cada LED (I_LED): 20 mA = 0.02 A
+- Resistencia del conductor principal (R_conductor): 0.1 Ω
+- Número de LEDs: 3</p>
+<p><strong>Desarrollo:</strong></p>
+<ol>
+<li>
+<p><strong>Configuración del circuito:</strong>
+   Dado que los LEDs tienen el mismo voltaje y corriente requerida, los conectaremos en paralelo para que cada uno reciba el voltaje completo de la fuente (menos la caída en el conductor). Cada LED tendrá su propia resistencia limitadora en serie.</p>
+</li>
+<li>
+<p><strong>Cálculo de la resistencia limitadora para cada LED:</strong>
+   Usamos la Ley de Ohm: R = V / I</p>
+</li>
+<li>Voltaje que debe caer en la resistencia: V_R = V_fuente - V_LED = 12 V - 2 V = 10 V</li>
+<li>Corriente deseada: I = 20 mA = 0.02 A</li>
+<li>R_limitadora = V_R / I = 10 V / 0.02 A = 500 Ω</li>
+</ol>
+<p>Cada LED requiere una resistencia de 500 Ω en serie.</p>
+<ol>
+<li><strong>Cálculo de la corriente total del circuito:</strong>
+   En configuración paralelo, la corriente total es la suma de las corrientes de cada rama:</li>
+<li>
+<p>I_total = 3 × I_LED = 3 × 0.02 A = 0.06 A = 60 mA</p>
+</li>
+<li>
+<p><strong>Cálculo de la potencia consumida por cada LED y su resistencia:</strong></p>
+</li>
+<li>Potencia del LED: P_LED = V_LED × I_LED = 2 V × 0.02 A = 0.04 W = 40 mW</li>
+<li>Potencia de la resistencia: P_R = V_R × I = 10 V × 0.02 A = 0.2 W = 200 mW</li>
+<li>
+<p>Potencia total por rama: P_rama = P_LED + P_R = 0.04 W + 0.2 W = 0.24 W</p>
+</li>
+<li>
+<p><strong>Cálculo de la potencia total del circuito:</strong></p>
+</li>
+<li>P_total = 3 × P_rama = 3 × 0.24 W = 0.72 W</li>
+</ol>
+<p>Alternativamente, usando la fuente: P_total = V_fuente × I_total = 12 V × 0.06 A = 0.72 W</p>
+<ol>
+<li><strong>Cálculo de la caída de tensión en el conductor principal:</strong></li>
+<li>V_caida = I_total × R_conductor = 0.06 A × 0.1 Ω = 0.006 V = 6 mV</li>
+</ol>
+<p>Esta caída es despreciable en este caso, pero en circuitos de mayor corriente podría ser significativa.</p>
+<ol>
+<li><strong>Verificación del voltaje real en los LEDs:</strong></li>
+<li>Voltaje disponible en los LEDs: V_LED_real = V_fuente - V_caida = 12 V - 0.006 V = 11.994 V</li>
+<li>La diferencia es mínima, por lo que el diseño es adecuado.</li>
+</ol>
+<p><strong>Resultado esperado:</strong>
+- Resistencia limitadora por LED: 500 Ω
+- Corriente total del circuito: 60 mA
+- Potencia total consumida: 0.72 W
+- Caída de tensión en el conductor: 6 mV (despreciable)</p>
+<p><strong>Código Python:</strong></p>
+<pre><code class="language-python"># Ejemplo práctico completo: Circuito con tres LEDs
+import numpy as np
+
+# Datos de entrada
+V_fuente = 12.0  # Voltaje de la fuente en V
+V_LED = 2.0  # Voltaje de cada LED en V
+I_LED = 0.02  # Corriente de cada LED en A (20 mA)
+R_conductor = 0.1  # Resistencia del conductor principal en Ω
+n_LEDs = 3  # Número de LEDs
+
+# 1. Cálculo de la resistencia limitadora para cada LED
+V_R = V_fuente - V_LED  # Voltaje que debe caer en la resistencia
+R_limitadora = V_R / I_LED  # Resistencia en Ω
+
+# 2. Cálculo de la corriente total del circuito
+I_total = n_LEDs * I_LED  # Corriente total en A
+
+# 3. Cálculo de la potencia consumida por cada LED y su resistencia
+P_LED = V_LED * I_LED  # Potencia del LED en W
+P_R = V_R * I_LED  # Potencia de la resistencia en W
+P_rama = P_LED + P_R  # Potencia total por rama en W
+
+# 4. Cálculo de la potencia total del circuito
+P_total = n_LEDs * P_rama  # Potencia total en W
+
+# Verificación usando la fuente
+P_total_verif = V_fuente * I_total  # Potencia total verificada en W
+
+# 5. Cálculo de la caída de tensión en el conductor principal
+V_caida = I_total * R_conductor  # Caída de tensión en V
+
+# 6. Verificación del voltaje real en los LEDs
+V_LED_real = V_fuente - V_caida  # Voltaje real en los LEDs en V
+
+# Resultados
+print(f&quot;=== Resultados del Ejemplo Práctico ===&quot;)
+print(f&quot;\n1. Resistencia limitadora por LED:&quot;)
+print(f&quot;   R_limitadora = {R_limitadora:.2f} Ω&quot;)
+print(f&quot;   Valor comercial más cercano: {round(R_limitadora/100)*100} Ω&quot;)
+
+print(f&quot;\n2. Corriente total del circuito:&quot;)
+print(f&quot;   I_total = {I_total*1000:.2f} mA&quot;)
+
+print(f&quot;\n3. Potencia por rama:&quot;)
+print(f&quot;   P_LED = {P_LED*1000:.2f} mW&quot;)
+print(f&quot;   P_R = {P_R*1000:.2f} mW&quot;)
+print(f&quot;   P_rama = {P_rama*1000:.2f} mW&quot;)
+
+print(f&quot;\n4. Potencia total del circuito:&quot;)
+print(f&quot;   P_total = {P_total:.3f} W&quot;)
+print(f&quot;   P_total (verificación) = {P_total_verif:.3f} W&quot;)
+
+print(f&quot;\n5. Caída de tensión en el conductor principal:&quot;)
+print(f&quot;   V_caida = {V_caida*1000:.3f} mV&quot;)
+
+print(f&quot;\n6. Voltaje real en los LEDs:&quot;)
+print(f&quot;   V_LED_real = {V_LED_real:.4f} V&quot;)
+print(f&quot;   Diferencia con el diseño: {abs(V_LED_real - V_fuente)*1000:.3f} mV&quot;)
+
+print(f&quot;\n=== Resumen del diseño ===&quot;)
+print(f&quot;Se requieren {n_LEDs} resistencias de {R_limitadora:.0f} Ω&quot;)
+print(f&quot;Potencia total de la fuente: {P_total:.3f} W&quot;)
+print(f&quot;Corriente total: {I_total*1000:.2f} mA&quot;)
+print(f&quot;El diseño es adecuado (caída de tensión despreciable)&quot;)
+</code></pre></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js"></script>
+        <script src="../../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

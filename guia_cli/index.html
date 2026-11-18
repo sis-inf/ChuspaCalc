@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Guía rápida de comandos del CLI - ChuspaCalc</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">ChuspaCalc</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../instalacion/" class="nav-link">Instalación</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../configuracion/" class="nav-link">Configuración</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../arquitectura/" class="nav-link">Arquitectura</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../desarrollo-local/" class="nav-link">Desarrollo Local</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../flujo-de-trabajo/" class="nav-link">Flujo de Trabajo</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../casos-de-uso/" class="nav-link">Casos de Uso</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../testing/" class="nav-link">Testing</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../seguridad/" class="nav-link">Seguridad</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../preguntas-frecuentes/" class="nav-link">Preguntas Frecuentes</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#guia-rapida-de-comandos-del-cli" class="nav-link">Guía rápida de comandos del CLI</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#sintaxis-general" class="nav-link">Sintaxis general</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#ayuda-help" class="nav-link">Ayuda (--help)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#comandos-por-especialidad" class="nav-link">Comandos por especialidad</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#formatos-de-salida-y-exportacion" class="nav-link">Formatos de salida y exportación</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#ejemplos" class="nav-link">Ejemplos</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#codigos-de-salida" class="nav-link">Códigos de salida</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="guia-rapida-de-comandos-del-cli">Guía rápida de comandos del CLI</h1>
+<p>Referencia rápida para invocar las herramientas de ChuspaCalc desde la terminal.
+Complementa a <a href="../cli-referencia/">cli-referencia.md</a>, <a href="../cli-modo-interactivo/">cli-modo-interactivo.md</a>
+y <a href="../cli-autocompletado/">cli-autocompletado.md</a>.</p>
+<blockquote>
+<p><strong>Estado actual:</strong> el CLI utiliza el paquete <code>chuspacalc</code> y permite
+consultar la ayuda general y los comandos disponibles.
+Algunas herramientas todavía presentan errores de importación,
+por lo que no todas están disponibles.</p>
+</blockquote>
+<h2 id="sintaxis-general">Sintaxis general</h2>
+<pre><code class="language-bash">chuspacalc [--help] [--version] [--json] &lt;comando&gt; [opciones del comando]
+</code></pre>
+<ul>
+<li>El ejecutable se llama <code>chuspacalc</code> (sección <code>[project.scripts]</code> de <code>pyproject.toml</code>)
+  y se instala con <code>pip install -e .</code>.</li>
+<li>Las opciones globales (<code>--json</code>, <code>--version</code>) van <strong>antes</strong> del comando.</li>
+<li>Sin comando, el CLI muestra la ayuda general y termina con código 0.</li>
+</ul>
+<h3 id="opciones-globales">Opciones globales</h3>
+<table>
+<thead>
+<tr>
+<th>Opción</th>
+<th>Corto</th>
+<th>Qué hace</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--help</code></td>
+<td><code>-h</code></td>
+<td>Muestra la ayuda general y sale</td>
+</tr>
+<tr>
+<td><code>--version</code></td>
+<td><code>-v</code></td>
+<td>Muestra <code>chuspacalc 0.1.0</code> y sale</td>
+</tr>
+<tr>
+<td><code>--json</code></td>
+<td></td>
+<td>Devuelve el resultado de una herramienta en formato JSON</td>
+</tr>
+</tbody>
+</table>
+<h3 id="comandos-generales">Comandos generales</h3>
+<table>
+<thead>
+<tr>
+<th>Comando</th>
+<th>Opciones</th>
+<th>Qué hace</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>listar</code></td>
+<td><code>--carrera CARRERA</code> (opcional)</td>
+<td>Lista las herramientas agrupadas por especialidad</td>
+</tr>
+<tr>
+<td><code>version</code></td>
+<td></td>
+<td>Muestra la versión de ChuspaCalc, Python, PySide6 y la plataforma</td>
+</tr>
+<tr>
+<td><code>interactivo</code></td>
+<td></td>
+<td>Abre el modo interactivo paso a paso (REPL)</td>
+</tr>
+<tr>
+<td><code>&lt;herramienta&gt;</code></td>
+<td></td>
+<td>Ejecuta una herramienta por su nombre (ver tabla de abajo)</td>
+</tr>
+</tbody>
+</table>
+<p>Valores de <code>--carrera</code>: <code>civil</code>, <code>electrica</code>, <code>geometria</code>, <code>matematicas</code>, <code>sistemas</code>.</p>
+<h2 id="ayuda-help">Ayuda (<code>--help</code>)</h2>
+<pre><code class="language-bash">chuspacalc --help            # ayuda general: opciones globales y lista de comandos
+chuspacalc listar --help     # ayuda de un comando concreto
+</code></pre>
+<p>Cada herramienta también acepta <code>--help</code>. Como hoy las herramientas no definen
+parámetros propios en el CLI, su ayuda solo muestra la opción <code>-h, --help</code>.</p>
+<h2 id="comandos-por-especialidad">Comandos por especialidad</h2>
+<p>Cada herramienta se registra como un comando con su nombre exacto, que lleva
+espacios y tildes: hay que escribirlo <strong>entre comillas</strong>. Hoy los comandos de
+herramienta no reciben parámetros por la terminal; para ingresar datos está
+pensado <code>chuspacalc interactivo</code>, y mientras tanto se usa la interfaz gráfica.</p>
+<table>
+<thead>
+<tr>
+<th>Especialidad (<code>--carrera</code>)</th>
+<th>Comandos</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ingeniería Civil (<code>civil</code>)</td>
+<td><code>"Carga Crítica de Euler"</code>, <code>"Combinación de cargas"</code>, <code>"Diseño Vial"</code></td>
+</tr>
+<tr>
+<td>Ingeniería Eléctrica (<code>electrica</code>)</td>
+<td><code>"Conversión de unidades eléctricas"</code>, <code>"Divisor de tensión"</code>, <code>"Ley de Ohm"</code>, <code>"Potencia Trifásica"</code></td>
+</tr>
+<tr>
+<td>Geometría (<code>geometria</code>)</td>
+<td><code>"Cálculo de áreas"</code>, <code>"Figuras Compuestas"</code>, <code>"Resolución de triángulos"</code>, <code>"Transformaciones Geométricas"</code></td>
+</tr>
+<tr>
+<td>Matemáticas (<code>matematicas</code>)</td>
+<td><code>"Calculadora científica"</code>, <code>"Conversión de unidades"</code>, <code>"Matemática financiera"</code>, <code>"Números complejos"</code>, <code>"Sistemas de ecuaciones lineales"</code></td>
+</tr>
+<tr>
+<td>Ingeniería de Sistemas e Informática (<code>sistemas</code>)</td>
+<td><code>"Complemento a 2"</code>, <code>"Conversión de bases"</code>, <code>"Mapas de Karnaugh"</code>, <code>"Tabla ASCII"</code>, <code>"Tablas de verdad"</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>chuspacalc listar</code> siempre muestra la lista actualizada, porque se arma al vuelo
+con las clases <code>Herramienta</code> de los archivos <code>herramienta_*.py</code> de <code>src/chuspacalc/modulos/</code>.</p>
+<h2 id="formatos-de-salida-y-exportacion">Formatos de salida y exportación</h2>
+<ul>
+<li><strong>Texto</strong> (por defecto): el resultado se imprime tal cual en la terminal.</li>
+<li><strong>JSON</strong> (<code>--json</code>): imprime un objeto con las claves <code>herramienta</code>,
+  <code>parametros</code> y <code>resultado</code>. Es el único formato de exportación del CLI y solo
+  se aplica cuando una herramienta llega a ejecutarse; <code>listar</code> y <code>version</code> lo ignoran.</li>
+</ul>
+<pre><code class="language-bash">chuspacalc --json &quot;Ley de Ohm&quot;
+</code></pre>
+<p>Desde la interfaz gráfica se puede exportar además a Markdown y LaTeX
+(<a href="../exportar-markdown/">exportar-markdown.md</a>, <a href="../exportar-latex/">exportar-latex.md</a>).</p>
+<h2 id="ejemplos">Ejemplos</h2>
+<h3 id="listar-las-herramientas-de-una-especialidad">Listar las herramientas de una especialidad</h3>
+<pre><code class="language-bash">chuspacalc listar --carrera civil
+</code></pre>
+<p>Salida esperada:</p>
+<pre><code class="language-text">
+Ingeniería Civil
+────────────────
+  Carga Crítica de Euler         Calcula la carga crítica de pandeo para columnas a compresión.
+  Combinación de cargas          Calcula una combinación simplificada de cargas vivas y muertas.
+  Diseño Vial                    Calcula pendiente y peralte de curva para diseño vial.
+</code></pre>
+<p>Con una carrera que no existe:</p>
+<pre><code class="language-bash">chuspacalc listar --carrera quimica
+</code></pre>
+<pre><code class="language-text">No se encontraron herramientas para la carrera 'quimica'.
+Carreras disponibles: civil, electrica, geometria, matematicas, sistemas
+</code></pre>
+<h3 id="ver-la-version">Ver la versión</h3>
+<pre><code class="language-bash">chuspacalc --version
+</code></pre>
+<pre><code class="language-text">chuspacalc 0.1.0
+</code></pre>
+<pre><code class="language-bash">chuspacalc version
+</code></pre>
+<pre><code class="language-text">ChuspaCalc:      0.1.0
+Python:        3.12.3
+PySide6:       6.x.x
+Plataforma:    Linux-...
+</code></pre>
+<p>Los valores de Python, PySide6 y Plataforma dependen del equipo.</p>
+<h3 id="ejecutar-una-herramienta-de-cada-especialidad">Ejecutar una herramienta de cada especialidad</h3>
+<pre><code class="language-bash">chuspacalc &quot;Diseño Vial&quot;                  # civil
+chuspacalc &quot;Ley de Ohm&quot;                   # electrica
+chuspacalc &quot;Cálculo de áreas&quot;             # geometria
+chuspacalc &quot;Números complejos&quot;            # matematicas
+chuspacalc &quot;Conversión de bases&quot;          # sistemas
+</code></pre>
+<p>Salida esperada, en el mismo orden:</p>
+<pre><code class="language-text">La herramienta 'Diseño Vial' aún está en construcción y no está disponible.
+La herramienta 'Ley de Ohm' aún está en construcción y no está disponible.
+La herramienta 'Cálculo de áreas' aún está en construcción y no está disponible.
+La herramienta 'Números complejos' aún está en construcción y no está disponible.
+La herramienta 'Conversión de bases' aún está en construcción y no está disponible.
+</code></pre>
+<p>El CLI reconoce el nombre, pero todavía no puede ejecutar la herramienta: busca
+un módulo <code>chuspacalc.modulos.&lt;nombre&gt;</code> que no existe. Por ahora, el cálculo
+completo se hace desde la interfaz gráfica.</p>
+<h3 id="modo-interactivo">Modo interactivo</h3>
+<pre><code class="language-bash">chuspacalc interactivo
+</code></pre>
+<p>Cuando esté disponible, muestra la lista numerada de herramientas y pide los
+parámetros uno por uno:</p>
+<pre><code class="language-text">
+=== ChuspaCalc MODO INTERACTIVO ===
+
+1. ...
+0. Salir
+
+Selecciona una herramienta:
+</code></pre>
+<h2 id="codigos-de-salida">Códigos de salida</h2>
+<table>
+<thead>
+<tr>
+<th>Código</th>
+<th>Cuándo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0</code></td>
+<td>Ejecución normal, o se llamó sin comando (muestra la ayuda)</td>
+</tr>
+<tr>
+<td><code>1</code></td>
+<td>Python menor a 3.10 o PySide6 no instalado</td>
+</tr>
+<tr>
+<td><code>2</code></td>
+<td>Opción o comando inválido (error de <code>argparse</code>)</td>
+</tr>
+<tr>
+<td><code>130</code></td>
+<td>Operación cancelada con Ctrl+C</td>
+</tr>
+</tbody>
+</table></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

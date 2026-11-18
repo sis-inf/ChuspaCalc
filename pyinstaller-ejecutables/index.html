@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Generación de ejecutables standalone con PyInstaller - ChuspaCalc</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">ChuspaCalc</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../instalacion/" class="nav-link">Instalación</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../configuracion/" class="nav-link">Configuración</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../arquitectura/" class="nav-link">Arquitectura</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../desarrollo-local/" class="nav-link">Desarrollo Local</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../flujo-de-trabajo/" class="nav-link">Flujo de Trabajo</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../casos-de-uso/" class="nav-link">Casos de Uso</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../testing/" class="nav-link">Testing</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../seguridad/" class="nav-link">Seguridad</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../preguntas-frecuentes/" class="nav-link">Preguntas Frecuentes</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#generacion-de-ejecutables-standalone-con-pyinstaller" class="nav-link">Generación de ejecutables standalone con PyInstaller</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#requisitos-previos" class="nav-link">Requisitos previos</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#archivos-utilizados" class="nav-link">Archivos utilizados</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#comando-exacto" class="nav-link">Comando exacto</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#configuracion-incluida-en-chuspacalcspec" class="nav-link">Configuración incluida en ChuspaCalc.spec</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#resultado-de-la-compilacion" class="nav-link">Resultado de la compilación</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#plataformas-soportadas" class="nav-link">Plataformas soportadas</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#solucion-de-problemas" class="nav-link">Solución de problemas</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#documentacion-relacionada" class="nav-link">Documentación relacionada</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="generacion-de-ejecutables-standalone-con-pyinstaller">Generación de ejecutables standalone con PyInstaller</h1>
+<p>Esta guía describe cómo generar un ejecutable standalone de ChuspaCalc utilizando
+PyInstaller y el archivo de configuración <code>ChuspaCalc.spec</code> incluido en la raíz
+del proyecto.</p>
+<h2 id="requisitos-previos">Requisitos previos</h2>
+<p>Antes de generar el ejecutable, asegúrese de contar con:</p>
+<ul>
+<li>Python 3.10 o superior.</li>
+<li>Un entorno virtual activo.</li>
+<li>Las dependencias de desarrollo instaladas.</li>
+</ul>
+<p>Si aún no ha instalado las dependencias del proyecto, ejecute:</p>
+<pre><code class="language-bash">pip install -e &quot;.[dev]&quot;
+</code></pre>
+<p>Esta instalación incluye PyInstaller como dependencia de desarrollo.</p>
+<h2 id="archivos-utilizados">Archivos utilizados</h2>
+<p>El proceso de compilación utiliza los siguientes archivos del proyecto:</p>
+<table>
+<thead>
+<tr>
+<th>Archivo</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ChuspaCalc.spec</code></td>
+<td>Configuración utilizada por PyInstaller para generar el ejecutable.</td>
+</tr>
+<tr>
+<td><code>build_app.py</code></td>
+<td>Script auxiliar que ejecuta PyInstaller utilizando el archivo <code>.spec</code>.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="comando-exacto">Comando exacto</h2>
+<p>Desde la raíz del repositorio ejecute:</p>
+<pre><code class="language-bash">pyinstaller ChuspaCalc.spec
+</code></pre>
+<p>También es posible utilizar el script incluido en el proyecto:</p>
+<pre><code class="language-bash">python build_app.py
+</code></pre>
+<p>Este script ejecuta internamente el comando anterior utilizando el archivo
+<code>ChuspaCalc.spec</code>.</p>
+<blockquote>
+<p><strong>Importante:</strong> Ejecute cualquiera de los comandos desde la raíz del
+repositorio para que PyInstaller pueda localizar correctamente el archivo
+<code>ChuspaCalc.spec</code>.</p>
+</blockquote>
+<h2 id="configuracion-incluida-en-chuspacalcspec">Configuración incluida en <code>ChuspaCalc.spec</code></h2>
+<p>El archivo <code>ChuspaCalc.spec</code> define la configuración utilizada durante la
+compilación, incluyendo:</p>
+<ul>
+<li>El punto de entrada de la aplicación (<code>src/ChuspaCalc/app.py</code>).</li>
+<li>Los módulos adicionales (<code>hiddenimports</code>) necesarios para PySide6.</li>
+<li>El nombre del ejecutable generado (<code>ChuspaCalc</code>).</li>
+<li>La ejecución como aplicación gráfica (<code>console=False</code>).</li>
+</ul>
+<h2 id="resultado-de-la-compilacion">Resultado de la compilación</h2>
+<p>Al finalizar correctamente el proceso, PyInstaller crea los archivos generados
+en el directorio:</p>
+<pre><code class="language-text">dist/
+</code></pre>
+<p>El ejecutable generado tendrá el nombre <strong>ChuspaCalc</strong> (o <strong>ChuspaCalc.exe</strong> en
+Windows).</p>
+<h2 id="plataformas-soportadas">Plataformas soportadas</h2>
+<p>PyInstaller genera ejecutables para el sistema operativo donde se ejecuta la
+compilación. No realiza compilación cruzada entre plataformas.</p>
+<table>
+<thead>
+<tr>
+<th>Plataforma</th>
+<th>Soporte</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Windows</td>
+<td>✅ Compatible</td>
+</tr>
+<tr>
+<td>Linux</td>
+<td>✅ Compatible</td>
+</tr>
+<tr>
+<td>macOS</td>
+<td>✅ Compatible</td>
+</tr>
+</tbody>
+</table>
+<p>Para distribuir ChuspaCalc en varias plataformas es necesario ejecutar el proceso
+de compilación por separado en cada una de ellas.</p>
+<h2 id="solucion-de-problemas">Solución de problemas</h2>
+<h3 id="pyinstaller-no-esta-disponible">PyInstaller no está disponible</h3>
+<p>Instale las dependencias de desarrollo:</p>
+<pre><code class="language-bash">pip install -e &quot;.[dev]&quot;
+</code></pre>
+<p>o instale PyInstaller manualmente:</p>
+<pre><code class="language-bash">pip install pyinstaller
+</code></pre>
+<h3 id="no-se-genera-el-directorio-dist">No se genera el directorio <code>dist</code></h3>
+<p>Verifique que:</p>
+<ul>
+<li>Está ejecutando el comando desde la raíz del proyecto.</li>
+<li>El archivo <code>ChuspaCalc.spec</code> existe.</li>
+<li>No hubo errores durante la compilación.</li>
+</ul>
+<h2 id="documentacion-relacionada">Documentación relacionada</h2>
+<ul>
+<li><a href="../empaquetado/">Empaquetado</a></li>
+<li><a href="../instalacion/">Instalación</a></li>
+<li><a href="../despliegue/">Despliegue</a></li>
+</ul></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Módulo de Resolución de Triángulos - ChuspaCalc</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../../css/brands.min.css" rel="stylesheet">
+        <link href="../../css/solid.min.css" rel="stylesheet">
+        <link href="../../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">ChuspaCalc</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../../instalacion/" class="nav-link">Instalación</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../configuracion/" class="nav-link">Configuración</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../arquitectura/" class="nav-link">Arquitectura</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../desarrollo-local/" class="nav-link">Desarrollo Local</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../flujo-de-trabajo/" class="nav-link">Flujo de Trabajo</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../casos-de-uso/" class="nav-link">Casos de Uso</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../testing/" class="nav-link">Testing</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../seguridad/" class="nav-link">Seguridad</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../preguntas-frecuentes/" class="nav-link">Preguntas Frecuentes</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#modulo-de-resolucion-de-triangulos" class="nav-link">Módulo de Resolución de Triángulos</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#descripcion" class="nav-link">Descripción</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#formulas" class="nav-link">Fórmulas</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#ejemplos-de-uso" class="nav-link">Ejemplos de uso</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#uso-en-el-sistema" class="nav-link">Uso en el sistema</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="modulo-de-resolucion-de-triangulos">Módulo de Resolución de Triángulos</h1>
+<h2 id="descripcion">Descripción</h2>
+<p>La <strong>resolución de triángulos</strong> consiste en encontrar los lados y ángulos desconocidos de un triángulo a partir de datos conocidos. Este módulo implementa dos leyes fundamentales:</p>
+<ul>
+<li><strong>Ley de cosenos:</strong> para cuando se conocen 3 lados (SSS) o 2 lados y el ángulo entre ellos (SAS).</li>
+<li><strong>Ley de senos:</strong> para cuando se conoce 1 lado y 2 ángulos (AAS o ASA).</li>
+</ul>
+<hr />
+<h2 id="formulas">Fórmulas</h2>
+<h3 id="ley-de-cosenos">Ley de Cosenos</h3>
+<p>a² = b² + c² - 2·b·c·cos(A)
+b² = a² + c² - 2·a·c·cos(B)
+c² = a² + b² - 2·a·b·cos(C)</p>
+<h3 id="ley-de-senos">Ley de Senos</h3>
+<p>a / sen(A) = b / sen(B) = c / sen(C)</p>
+<hr />
+<h2 id="ejemplos-de-uso">Ejemplos de uso</h2>
+<h3 id="ejemplo-1-3-lados-conocidos-sss-ley-de-cosenos">Ejemplo 1: 3 lados conocidos (SSS) — Ley de Cosenos</h3>
+<p><strong>Enunciado:</strong> Dado un triángulo con lados <code>a = 7</code>, <code>b = 5</code>, <code>c = 8</code>, encontrar todos los ángulos.</p>
+<p><strong>Datos:</strong>
+- a = 7, b = 5, c = 8</p>
+<p><strong>Desarrollo:</strong></p>
+<ol>
+<li><strong>Calcular ángulo A:</strong></li>
+<li><code>cos(A) = (b² + c² - a²) / (2·b·c)</code></li>
+<li><code>cos(A) = (25 + 64 - 49) / (2·5·8) = 40 / 80 = 0.5</code></li>
+<li>
+<p><code>A = arccos(0.5) = 60°</code></p>
+</li>
+<li>
+<p><strong>Calcular ángulo B:</strong></p>
+</li>
+<li><code>cos(B) = (a² + c² - b²) / (2·a·c)</code></li>
+<li><code>cos(B) = (49 + 64 - 25) / (2·7·8) = 88 / 112 ≈ 0.7857</code></li>
+<li>
+<p><code>B = arccos(0.7857) ≈ 38.21°</code></p>
+</li>
+<li>
+<p><strong>Calcular ángulo C:</strong></p>
+</li>
+<li><code>C = 180° - A - B = 180° - 60° - 38.21° = 81.79°</code></li>
+</ol>
+<p><strong>Resultados:</strong> <code>A = 60°</code>, <code>B ≈ 38.21°</code>, <code>C ≈ 81.79°</code></p>
+<hr />
+<h3 id="ejemplo-2-1-lado-y-2-angulos-conocidos-aas-ley-de-senos">Ejemplo 2: 1 lado y 2 ángulos conocidos (AAS) — Ley de Senos</h3>
+<p><strong>Enunciado:</strong> Dado un triángulo con <code>a = 10</code>, <code>A = 45°</code>, <code>B = 60°</code>, encontrar los lados y ángulo restantes.</p>
+<p><strong>Datos:</strong>
+- a = 10, A = 45°, B = 60°</p>
+<p><strong>Desarrollo:</strong></p>
+<ol>
+<li><strong>Calcular ángulo C:</strong></li>
+<li>
+<p><code>C = 180° - A - B = 180° - 45° - 60° = 75°</code></p>
+</li>
+<li>
+<p><strong>Calcular lado b:</strong></p>
+</li>
+<li><code>b / sen(B) = a / sen(A)</code></li>
+<li><code>b = a · sen(B) / sen(A)</code></li>
+<li><code>b = 10 · sen(60°) / sen(45°)</code></li>
+<li>
+<p><code>b = 10 · 0.8660 / 0.7071 ≈ 12.25</code></p>
+</li>
+<li>
+<p><strong>Calcular lado c:</strong></p>
+</li>
+<li><code>c = a · sen(C) / sen(A)</code></li>
+<li><code>c = 10 · sen(75°) / sen(45°)</code></li>
+<li><code>c = 10 · 0.9659 / 0.7071 ≈ 13.66</code></li>
+</ol>
+<p><strong>Resultados:</strong> <code>C = 75°</code>, <code>b ≈ 12.25</code>, <code>c ≈ 13.66</code></p>
+<hr />
+<h2 id="uso-en-el-sistema">Uso en el sistema</h2>
+<pre><code class="language-python">from herramientas import resolucion_triangulos
+
+# SSS: 3 lados conocidos
+resultado = resolucion_triangulos.sss(a=7, b=5, c=8)
+print(resultado)  # → {A: 60°, B: 38.21°, C: 81.79°}
+
+# AAS: 1 lado y 2 ángulos conocidos
+resultado = resolucion_triangulos.aas(a=10, A=45, B=60)
+print(resultado)  # → {C: 75°, b: 12.25, c: 13.66}
+</code></pre></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js"></script>
+        <script src="../../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

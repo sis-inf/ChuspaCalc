@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Casos de Uso - ChuspaCalc</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">ChuspaCalc</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../instalacion/" class="nav-link">Instalación</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../configuracion/" class="nav-link">Configuración</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../arquitectura/" class="nav-link">Arquitectura</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../desarrollo-local/" class="nav-link">Desarrollo Local</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../flujo-de-trabajo/" class="nav-link">Flujo de Trabajo</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="./" class="nav-link active" aria-current="page">Casos de Uso</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../testing/" class="nav-link">Testing</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../seguridad/" class="nav-link">Seguridad</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../preguntas-frecuentes/" class="nav-link">Preguntas Frecuentes</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../flujo-de-trabajo/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../testing/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="2"><a href="#casos-de-uso-chuspacalc" class="nav-link">Casos de Uso — ChuspaCalc</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#cu-01-calcular-propiedades-geometricas-de-una-figura" class="nav-link">CU-01: Calcular propiedades geométricas de una figura</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#cu-02-resolver-un-sistema-de-ecuaciones-lineales" class="nav-link">CU-02: Resolver un sistema de ecuaciones lineales</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#cu-03-consultar-formulas-tecnicas-por-area-de-ingenieria" class="nav-link">CU-03: Consultar fórmulas técnicas por área de ingeniería</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#cu-04-convertir-unidades-de-medida-entre-sistemas" class="nav-link">CU-04: Convertir unidades de medida entre sistemas</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#cu-05-analizar-un-circuito-electrico-basico" class="nav-link">CU-05: Analizar un circuito eléctrico básico</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#cu-geo-01-calcular-area-de-figura-geometrica" class="nav-link">CU-Geo-01: Calcular área de figura geométrica</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#cu-elec-02-analizar-circuito-resistivo-simple" class="nav-link">CU-Elec-02: Analizar circuito resistivo simple</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#cu-civ-03-verificar-momento-maximo-en-viga" class="nav-link">CU-Civ-03: Verificar momento máximo en viga</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#cu-sis-01-convertir-numero-entre-bases" class="nav-link">CU-Sis-01: Convertir número entre bases</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h2 id="casos-de-uso-chuspacalc">Casos de Uso — ChuspaCalc</h2>
+<h3 id="actores-del-sistema">Actores del sistema</h3>
+<p><strong>1. Estudiante de ingeniería:</strong> Persona que cursa una carrera de ingeniería y utiliza ChuspaCalc como apoyo académico para resolver ejercicios, verificar cálculos y aplicar conceptos teóricos vistos en clase. Puede tener conocimientos básicos o intermedios según el semestre en curso.</p>
+<p><strong>2. Docente:</strong>Profesional del área de ingeniería que imparte clases y utiliza ChuspaCalc como recurso didáctico para demostrar procedimientos, plantear ejemplos prácticos y apoyar la enseñanza de conceptos técnicos.</p>
+<h3 id="casos-de-uso">Casos de uso</h3>
+<h2 id="cu-01-calcular-propiedades-geometricas-de-una-figura">CU-01: Calcular propiedades geométricas de una figura</h2>
+<p><strong>Actor:</strong> Estudiantes
+<strong>Descripcion:</strong> El usuario selecciona una figura geométrica (triángulo, círculo, rectángulo, etc.), ingresa sus dimensiones y obtiene propiedades como área, perímetro o volumen.
+<strong>Flujo principal:</strong> 
+1. El usuario accede a la herramienta de geometría.<br />
+2. Selecciona el tipo de figura.<br />
+3. Ingresa los valores de las dimensiones requeridas.<br />
+4. El sistema calcula y muestra los resultados (área, perímetro, etc.).<br />
+5. El usuario puede copiar o reingresar nuevos valores.</p>
+<h2 id="cu-02-resolver-un-sistema-de-ecuaciones-lineales">CU-02: Resolver un sistema de ecuaciones lineales</h2>
+<p><strong>Actor:</strong> Estudiante de ingeniería / Docente
+<strong>Descripcion:</strong> El usuario ingresa los coeficientes de un sistema de ecuaciones lineales y el sistema devuelve la solución mediante métodos como Gauss-Jordan o sustitución.
+<strong>Flujo principal:</strong>
+1. El usuario accede a la herramienta de álgebra lineal.<br />
+2. Selecciona el número de ecuaciones e incógnitas.<br />
+3. Ingresa los coeficientes de cada ecuación.<br />
+4. El sistema aplica el método seleccionado y muestra la solución paso a paso.<br />
+5. El usuario revisa el procedimiento y el resultado final.</p>
+<h2 id="cu-03-consultar-formulas-tecnicas-por-area-de-ingenieria">CU-03: Consultar fórmulas técnicas por área de ingeniería</h2>
+<p><strong>Actor:</strong> Docente / Estudiante de ingeniería
+<strong>Descripcion:</strong> El usuario navega por un repositorio de fórmulas organizadas por rama de ingeniería (civil, mecánica, sistemas, etc.) para consultar, entender y aplicar las expresiones matemáticas relevantes a su área.
+<strong>Flujo principal:</strong> 
+1. El usuario accede al módulo de referencia técnica.<br />
+2. Selecciona la rama de ingeniería de interés.<br />
+3. Explora las categorías de fórmulas disponibles.<br />
+4. Selecciona una fórmula para ver su descripción, variables y ejemplo de aplicación.<br />
+5. Puede usar la fórmula directamente en una herramienta de cálculo vinculada.</p>
+<h2 id="cu-04-convertir-unidades-de-medida-entre-sistemas">CU-04: Convertir unidades de medida entre sistemas</h2>
+<p><strong>Actor:</strong> Estudiante de ingeniería
+<strong>Descripcion:</strong> El usuario ingresa un valor con su unidad de origen y selecciona la unidad destino. El sistema realiza la conversión de forma inmediata (longitud, masa, presión, temperatura, etc.).
+<strong>Flujo principal:</strong> 
+1. El usuario accede a la herramienta de conversión de unidades.<br />
+2. Selecciona la categoría (longitud, masa, temperatura, etc.).<br />
+3. Ingresa el valor y la unidad de origen.<br />
+4. Selecciona la unidad destino.<br />
+5. El sistema muestra el resultado convertido.</p>
+<h2 id="cu-05-analizar-un-circuito-electrico-basico">CU-05: Analizar un circuito eléctrico básico</h2>
+<p><strong>Actor:</strong> Estudiante de ingeniería 
+<strong>Descripcion:</strong>El usuario ingresa los componentes de un circuito (resistencias, voltaje, corriente) y el sistema calcula magnitudes como resistencia equivalente, corriente total y caída de tensión, aplicando las leyes de Ohm y Kirchhoff.
+<strong>Flujo principal:</strong> 
+1. El usuario accede a la herramienta de ingeniería electrónica.<br />
+2. Selecciona el tipo de circuito (serie, paralelo o mixto).<br />
+3. Ingresa los valores de los componentes.<br />
+4. El sistema calcula las magnitudes eléctricas correspondientes.<br />
+5. El usuario visualiza los resultados y puede modificar los valores para nuevos análisis.</p>
+<h2 id="cu-geo-01-calcular-area-de-figura-geometrica">CU-Geo-01: Calcular área de figura geométrica</h2>
+<p>Actor: Estudiante de ingeniería</p>
+<p>Descripción: El usuario selecciona una figura geométrica del módulo de geometría, ingresa sus dimensiones y obtiene el área calculada de forma inmediata.</p>
+<p>Precondición: El usuario tiene acceso al módulo de geometría y conoce las dimensiones de la figura a calcular.</p>
+<p>Flujo principal:</p>
+<ol>
+<li>El usuario accede al módulo de geometría.</li>
+<li>Selecciona el tipo de figura (triángulo, círculo, rectángulo, trapecio, etc.).</li>
+<li>Ingresa los valores de las dimensiones requeridas según la figura seleccionada.</li>
+<li>El sistema valida que los valores ingresados sean numéricos y positivos.</li>
+<li>El sistema calcula y muestra el área de la figura.</li>
+<li>El usuario puede copiar el resultado o reingresar nuevos valores.</li>
+</ol>
+<p>Flujo alternativo:</p>
+<ul>
+<li>A1 (valor inválido): Si el usuario ingresa un valor no numérico, negativo o igual a cero en algún campo, el sistema muestra un mensaje de error indicando el campo afectado y no realiza el cálculo hasta que el valor sea corregido.</li>
+<li>A2 (figura sin todos los parámetros): Si la figura seleccionada requiere un parámetro adicional (por ejemplo, un trapecio con dos bases distintas) y el usuario no lo ingresa, el sistema solicita el dato faltante antes de calcular.</li>
+</ul>
+<p>Postcondición: El área de la figura geométrica es calculada y mostrada al usuario, con la posibilidad de reiniciar el cálculo con nuevos valores.</p>
+<h2 id="cu-elec-02-analizar-circuito-resistivo-simple">CU-Elec-02: Analizar circuito resistivo simple</h2>
+<p>Actor: Estudiante de ingeniería</p>
+<p>Descripción: El usuario ingresa los valores de un circuito resistivo (resistencias y fuente de tensión) configurado en serie o en paralelo, y el sistema calcula la resistencia equivalente, la corriente total y la caída de tensión en cada componente aplicando la ley de Ohm.</p>
+<p>Precondición: El usuario tiene acceso al módulo eléctrico y conoce los valores de tensión de la fuente y de las resistencias del circuito.</p>
+<p>Flujo principal:</p>
+<ol>
+<li>El usuario accede al módulo eléctrico.</li>
+<li>Selecciona la configuración del circuito (serie o paralelo).</li>
+<li>Ingresa el valor de la tensión de la fuente.</li>
+<li>Ingresa los valores de cada resistencia del circuito.</li>
+<li>El sistema calcula la resistencia equivalente del circuito.</li>
+<li>El sistema calcula la corriente total aplicando la ley de Ohm.</li>
+<li>El sistema muestra la caída de tensión y la corriente en cada resistencia.</li>
+</ol>
+<p>Flujo alternativo:</p>
+<ul>
+<li>A1 (resistencia con valor cero o negativo): Si el usuario ingresa una resistencia con valor cero o negativo, el sistema muestra un mensaje de error y no realiza el cálculo.</li>
+<li>A2 (circuito sin resistencias): Si el usuario intenta calcular sin haber ingresado al menos una resistencia, el sistema solicita agregar al menos un componente antes de continuar.</li>
+</ul>
+<p>Postcondición: Las magnitudes eléctricas del circuito (resistencia equivalente, corriente total y caídas de tensión) son calculadas y mostradas al usuario.</p>
+<h2 id="cu-civ-03-verificar-momento-maximo-en-viga">CU-Civ-03: Verificar momento máximo en viga</h2>
+<p>Actor: Estudiante de ingeniería / Docente</p>
+<p>Descripción: El usuario ingresa los datos de una viga simplemente apoyada (longitud, tipo y magnitud de carga) y el sistema calcula el momento flector máximo a lo largo del elemento, indicando la posición donde ocurre.</p>
+<p>Precondición: El usuario tiene acceso al módulo civil y conoce la longitud de la viga, así como el tipo y magnitud de la carga aplicada.</p>
+<p>Flujo principal:</p>
+<ol>
+<li>El usuario accede al módulo civil.</li>
+<li>Selecciona la herramienta de análisis de vigas.</li>
+<li>Ingresa la longitud de la viga.</li>
+<li>Selecciona el tipo de carga (puntual, distribuida uniforme, etc.) y su magnitud.</li>
+<li>El sistema calcula las reacciones en los apoyos.</li>
+<li>El sistema calcula el momento flector máximo y la posición a lo largo de la viga donde se produce.</li>
+<li>El sistema muestra el resultado, incluyendo el diagrama de momento flector.</li>
+</ol>
+<p>Flujo alternativo:</p>
+<ul>
+<li>A1 (longitud no válida): Si el usuario ingresa una longitud igual o menor a cero, el sistema muestra un mensaje de error y no realiza el cálculo.</li>
+<li>A2 (carga fuera del rango de la viga): Si el usuario ingresa la posición de una carga puntual fuera de los límites de la longitud de la viga, el sistema solicita corregir la posición antes de continuar.</li>
+</ul>
+<p>Postcondición: El momento flector máximo de la viga es calculado y mostrado junto con su posición, permitiendo al usuario verificar si la sección cumple con los requisitos de diseño.</p>
+<h2 id="cu-sis-01-convertir-numero-entre-bases">CU-Sis-01: Convertir número entre bases</h2>
+<p>Actor: Estudiante de ingeniería</p>
+<p>Descripción: El usuario ingresa un número en una base numérica de origen (binaria, decimal, octal o hexadecimal) y el sistema lo convierte a la base destino seleccionada.</p>
+<p>Precondición: El usuario tiene acceso al módulo de sistemas y conoce el número a convertir junto con su base de origen.</p>
+<p>Flujo principal:</p>
+<ol>
+<li>El usuario accede al módulo de sistemas.</li>
+<li>Selecciona la herramienta de conversión entre bases.</li>
+<li>Selecciona la base de origen (binaria, decimal, octal o hexadecimal).</li>
+<li>Ingresa el número a convertir.</li>
+<li>Selecciona la base destino.</li>
+<li>El sistema valida que el número ingresado sea válido para la base de origen seleccionada.</li>
+<li>El sistema realiza la conversión y muestra el resultado en la base destino.</li>
+</ol>
+<p>Flujo alternativo:</p>
+<ul>
+<li>A1 (dígito no válido para la base): Si el usuario ingresa un dígito que no corresponde a la base de origen seleccionada (por ejemplo, un "2" en un número binario), el sistema muestra un mensaje de error indicando el dígito inválido.</li>
+<li>A2 (campo vacío): Si el usuario intenta convertir sin haber ingresado ningún número, el sistema solicita completar el campo antes de continuar.</li>
+</ul>
+<p>Postcondición: El número es convertido correctamente a la base destino y mostrado al usuario, quien puede realizar una nueva conversión con otros valores o bases.</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>❓ Preguntas Frecuentes - Fórmulas y Cálculos Matemáticos - ChuspaCalc</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">ChuspaCalc</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../instalacion/" class="nav-link">Instalación</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../configuracion/" class="nav-link">Configuración</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../arquitectura/" class="nav-link">Arquitectura</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../desarrollo-local/" class="nav-link">Desarrollo Local</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../flujo-de-trabajo/" class="nav-link">Flujo de Trabajo</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../casos-de-uso/" class="nav-link">Casos de Uso</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../testing/" class="nav-link">Testing</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../seguridad/" class="nav-link">Seguridad</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../preguntas-frecuentes/" class="nav-link">Preguntas Frecuentes</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#preguntas-frecuentes-formulas-y-calculos-matematicos" class="nav-link">❓ Preguntas Frecuentes - Fórmulas y Cálculos Matemáticos</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#preguntas-frecuentes" class="nav-link">📋 Preguntas Frecuentes</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#referencias" class="nav-link">📚 Referencias</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="preguntas-frecuentes-formulas-y-calculos-matematicos">❓ Preguntas Frecuentes - Fórmulas y Cálculos Matemáticos</h1>
+<p>Este documento responde a las dudas más comunes sobre el uso de las herramientas de cálculo de ChuspaCalc, especialmente aquellas relacionadas con <strong>fórmulas matemáticas, resultados numéricos y advertencias</strong>.</p>
+<blockquote>
+<p><strong>Nota:</strong> Este FAQ está orientado a <strong>dudas de uso de las herramientas de cálculo</strong>. Si buscás información sobre cómo contribuir al proyecto, consultá <a href="../preguntas-frecuentes/">preguntas-frecuentes.md</a>.</p>
+</blockquote>
+<hr />
+<h2 id="preguntas-frecuentes">📋 Preguntas Frecuentes</h2>
+<h3 id="1-por-que-mi-calculo-de-pandeo-de-euler-muestra-una-advertencia">1. ¿Por qué mi cálculo de pandeo de Euler muestra una advertencia?</h3>
+<p><strong>Respuesta:</strong> La advertencia aparece cuando la relación de esbeltez de la columna está fuera del rango de validez de la fórmula de Euler (generalmente cuando la relación esbeltez &lt; 50). En ese caso, se recomienda utilizar la fórmula de Johnson para materiales con esbeltez intermedia.</p>
+<p><strong>Solución:</strong> Verificar que la longitud efectiva y el radio de giro de la columna sean correctos. Si la esbeltez es baja, considerá usar la fórmula de Johnson.</p>
+<hr />
+<h3 id="2-que-significa-que-mi-sistema-lineal-nxn-no-tenga-solucion-unica">2. ¿Qué significa que mi sistema lineal NxN no tenga solución única?</h3>
+<p><strong>Respuesta:</strong> Un sistema lineal no tiene solución única cuando el determinante de la matriz de coeficientes es igual a cero (matriz singular). Esto puede deberse a:</p>
+<ul>
+<li>Ecuaciones redundantes (linealmente dependientes).</li>
+<li>Número de ecuaciones menor que el número de incógnitas.</li>
+</ul>
+<p><strong>Solución:</strong> Revisar los coeficientes del sistema. Asegurarse de que todas las ecuaciones sean independientes.</p>
+<hr />
+<h3 id="3-por-que-el-resultado-de-mi-viga-muestra-un-error-de-convergencia">3. ¿Por qué el resultado de mi viga muestra un error de convergencia?</h3>
+<p><strong>Respuesta:</strong> El error de convergencia ocurre cuando el método numérico utilizado (ej. iterativo) no logra alcanzar una solución dentro del número máximo de iteraciones permitido.</p>
+<p><strong>Solución:</strong> Verificar que los parámetros de entrada sean realistas y que el modelo sea adecuado para el método seleccionado.</p>
+<hr />
+<h3 id="4-como-interpreto-una-advertencia-de-rango-de-validez">4. ¿Cómo interpreto una advertencia de rango de validez?</h3>
+<p><strong>Respuesta:</strong> Las advertencias de rango de validez indican que los parámetros ingresados están fuera del rango para el cual la fórmula es precisa. Por ejemplo, una fórmula de resistencia de materiales puede no ser precisa para cargas extremadamente altas.</p>
+<p><strong>Solución:</strong> Revisar los valores de entrada y ajustarlos a rangos razonables. Consultar la documentación de la herramienta para conocer los límites recomendados.</p>
+<hr />
+<h3 id="5-que-significa-que-mi-resultado-sea-inf-o-nan">5. ¿Qué significa que mi resultado sea <code>inf</code> o <code>NaN</code>?</h3>
+<p><strong>Respuesta:</strong></p>
+<ul>
+<li><code>inf</code> (infinito) indica que el resultado es demasiado grande para ser representado (ej. división por un número muy cercano a cero).</li>
+<li><code>NaN</code> (Not a Number) indica un resultado indefinido (ej. raíz cuadrada de un número negativo).</li>
+</ul>
+<p><strong>Solución:</strong> Verificar los parámetros de entrada. Asegurarse de que no haya divisiones por cero o raíces de números negativos.</p>
+<hr />
+<h3 id="6-por-que-mi-calculo-de-factor-de-potencia-no-se-puede-realizar">6. ¿Por qué mi cálculo de factor de potencia no se puede realizar?</h3>
+<p><strong>Respuesta:</strong> El cálculo de factor de potencia requiere que el sistema tenga una carga activa y reactiva definida. Si alguna de ellas es cero o negativa, el cálculo puede fallar.</p>
+<p><strong>Solución:</strong> Verificar que la potencia activa (P) y reactiva (Q) sean valores positivos y realistas.</p>
+<hr />
+<h3 id="7-que-hacer-si-el-resultado-de-mi-integracion-numerica-es-inexacto">7. ¿Qué hacer si el resultado de mi integración numérica es inexacto?</h3>
+<p><strong>Respuesta:</strong> La precisión de la integración numérica depende del método utilizado (ej. Simpson, trapecios) y del número de intervalos. Si el resultado parece impreciso, se recomienda:</p>
+<ul>
+<li>Aumentar el número de intervalos.</li>
+<li>Utilizar un método más preciso (ej. Simpson en lugar de trapecios).</li>
+</ul>
+<p><strong>Solución:</strong> Ajustar los parámetros de integración y verificar que la función sea continua en el intervalo.</p>
+<hr />
+<h3 id="8-como-se-si-el-resultado-de-mi-calculo-es-confiable">8. ¿Cómo sé si el resultado de mi cálculo es confiable?</h3>
+<p><strong>Respuesta:</strong> Para verificar la confiabilidad de un resultado, se recomienda:</p>
+<ol>
+<li>Realizar una estimación de orden de magnitud (ej. ¿tiene sentido el resultado?).</li>
+<li>Comparar con resultados de otros métodos (ej. solución analítica vs. numérica).</li>
+<li>Verificar que no haya advertencias o errores en el cálculo.</li>
+</ol>
+<p><strong>Solución:</strong> Usar el sentido común y, si es posible, validar con una herramienta externa (ej. Excel, MATLAB).</p>
+<hr />
+<h3 id="9-que-debo-hacer-si-recibo-un-mensaje-de-error-de-convergencia-en-sistemas-no-lineales">9. ¿Qué debo hacer si recibo un mensaje de error de convergencia en sistemas no lineales?</h3>
+<p><strong>Respuesta:</strong> Los sistemas no lineales pueden requerir una buena estimación inicial para converger. Si el método no converge, se recomienda:</p>
+<ul>
+<li>Probar con diferentes valores iniciales.</li>
+<li>Verificar que las ecuaciones estén bien definidas.</li>
+<li>Reducir la tolerancia del método.</li>
+</ul>
+<p><strong>Solución:</strong> Ajustar los parámetros de entrada y las opciones del método numérico.</p>
+<hr />
+<h3 id="10-por-que-mi-calculo-de-carga-critica-de-euler-varia-entre-diferentes-secciones">10. ¿Por qué mi cálculo de carga crítica de Euler varía entre diferentes secciones?</h3>
+<p><strong>Respuesta:</strong> La carga crítica de Euler depende del momento de inercia de la sección (<code>I</code>) y de la longitud efectiva (<code>L</code>). Diferentes secciones tienen diferentes momentos de inercia, lo que afecta el resultado.</p>
+<p><strong>Solución:</strong> Asegurarse de que la sección seleccionada tenga el momento de inercia correcto (ej. IPN, HEB, etc.). Consultar la documentación de la herramienta para más detalles.</p>
+<hr />
+<h2 id="referencias">📚 Referencias</h2>
+<ul>
+<li><a href="../herramientas/">Guía de herramientas disponibles</a></li>
+<li><a href="../modulos/">Documentación de módulos de cálculo</a></li>
+<li><a href="../preguntas-frecuentes/">FAQ de contribución</a></li>
+</ul></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

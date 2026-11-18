@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Herramienta: Cálculo de carga crítica de pandeo de Euler - ChuspaCalc</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../../css/brands.min.css" rel="stylesheet">
+        <link href="../../css/solid.min.css" rel="stylesheet">
+        <link href="../../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">ChuspaCalc</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../../instalacion/" class="nav-link">Instalación</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../configuracion/" class="nav-link">Configuración</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../arquitectura/" class="nav-link">Arquitectura</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../desarrollo-local/" class="nav-link">Desarrollo Local</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../flujo-de-trabajo/" class="nav-link">Flujo de Trabajo</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../casos-de-uso/" class="nav-link">Casos de Uso</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../testing/" class="nav-link">Testing</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../seguridad/" class="nav-link">Seguridad</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../preguntas-frecuentes/" class="nav-link">Preguntas Frecuentes</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#herramienta-calculo-de-carga-critica-de-pandeo-de-euler" class="nav-link">Herramienta: Cálculo de carga crítica de pandeo de Euler</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#introduccion" class="nav-link">Introducción</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#formula-de-euler" class="nav-link">Fórmula de Euler</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#condiciones-de-apoyo-soportadas" class="nav-link">Condiciones de apoyo soportadas</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#1-articulada-articulada" class="nav-link">1. Articulada - Articulada</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#2-empotrada-libre" class="nav-link">2. Empotrada - Libre</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#3-empotrada-articulada" class="nav-link">3. Empotrada - Articulada</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#4-empotrada-empotrada" class="nav-link">4. Empotrada - Empotrada</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#ejemplo-de-uso" class="nav-link">Ejemplo de uso</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#resultado-esperado" class="nav-link">Resultado esperado</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#aplicaciones" class="nav-link">Aplicaciones</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#observaciones" class="nav-link">Observaciones</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="herramienta-calculo-de-carga-critica-de-pandeo-de-euler">Herramienta: Cálculo de carga crítica de pandeo de Euler</h1>
+<h2 id="introduccion">Introducción</h2>
+<p>En el ámbito de ingeniería y mecánica de sólidos, la herramienta de cálculo de carga crítica de pandeo permite determinar la carga máxima que puede soportar una columna antes de perder estabilidad por pandeo.</p>
+<p>Esta carga es el límite máximo que una pieza puede soportar antes de sufrir deformaciones laterales severas e inestabilidad elástica.</p>
+<p>Este cálculo se basa en la teoría de Euler, utilizada para columnas largas sometidas a compresión axial.</p>
+<hr />
+<h1 id="formula-de-euler">Fórmula de Euler</h1>
+<p>La carga crítica se calcula mediante:</p>
+<p>[
+P_{cr}=\frac{\pi^2EI}{(KL)^2}
+]</p>
+<p>Donde:</p>
+<ul>
+<li><strong>Pcr:</strong> carga crítica.</li>
+<li><strong>E:</strong> módulo de elasticidad del material.</li>
+<li><strong>I:</strong> momento de inercia de la sección.</li>
+<li><strong>L:</strong> longitud de la columna.</li>
+<li><strong>K:</strong> factor de longitud efectiva según el tipo de apoyo.</li>
+</ul>
+<hr />
+<h1 id="condiciones-de-apoyo-soportadas">Condiciones de apoyo soportadas</h1>
+<h2 id="1-articulada-articulada">1. Articulada - Articulada</h2>
+<ul>
+<li>Factor K = 1.0</li>
+<li>Es la condición clásica utilizada por Euler.</li>
+</ul>
+<hr />
+<h2 id="2-empotrada-libre">2. Empotrada - Libre</h2>
+<ul>
+<li>Factor K = 2.0</li>
+<li>Representa una columna en voladizo.</li>
+</ul>
+<hr />
+<h2 id="3-empotrada-articulada">3. Empotrada - Articulada</h2>
+<ul>
+<li>Factor K ≈ 0.7</li>
+<li>La columna posee un extremo fijo y otro articulado.</li>
+</ul>
+<hr />
+<h2 id="4-empotrada-empotrada">4. Empotrada - Empotrada</h2>
+<ul>
+<li>Factor K = 0.5</li>
+<li>Presenta la mayor resistencia al pandeo.</li>
+</ul>
+<hr />
+<h1 id="ejemplo-de-uso">Ejemplo de uso</h1>
+<p>Supóngase una columna con:</p>
+<ul>
+<li>Longitud: 3 m</li>
+<li>Módulo de elasticidad: 200 GPa</li>
+<li>Momento de inercia: 8 × 10⁻⁶ m⁴</li>
+<li>Apoyos articulados</li>
+</ul>
+<p>La herramienta aplica la fórmula de Euler para obtener la carga crítica correspondiente.</p>
+<hr />
+<h1 id="resultado-esperado">Resultado esperado</h1>
+<p>La herramienta muestra:</p>
+<ul>
+<li>Carga crítica de pandeo.</li>
+<li>Tipo de apoyo seleccionado.</li>
+<li>Factor K utilizado.</li>
+<li>Datos ingresados por el usuario.</li>
+</ul>
+<hr />
+<h1 id="aplicaciones">Aplicaciones</h1>
+<p>Este cálculo puede utilizarse en:</p>
+<ul>
+<li>Diseño estructural.</li>
+<li>Ingeniería civil.</li>
+<li>Diseño de columnas metálicas.</li>
+<li>Diseño de columnas de hormigón.</li>
+<li>Análisis de estabilidad estructural.</li>
+</ul>
+<hr />
+<h1 id="observaciones">Observaciones</h1>
+<p>La fórmula de Euler es válida principalmente para columnas largas y esbeltas sometidas a carga axial de compresión. </p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js"></script>
+        <script src="../../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Instalación - ChuspaCalc</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">ChuspaCalc</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="./" class="nav-link active" aria-current="page">Instalación</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../configuracion/" class="nav-link">Configuración</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../arquitectura/" class="nav-link">Arquitectura</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../desarrollo-local/" class="nav-link">Desarrollo Local</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../flujo-de-trabajo/" class="nav-link">Flujo de Trabajo</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../casos-de-uso/" class="nav-link">Casos de Uso</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../testing/" class="nav-link">Testing</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../seguridad/" class="nav-link">Seguridad</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../preguntas-frecuentes/" class="nav-link">Preguntas Frecuentes</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" class="nav-link disabled">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../configuracion/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#guia-de-instalacion-de-la-suite-chuspacalc" class="nav-link">Guía de instalación de la suite ChuspaCalc</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#requisitos-previos" class="nav-link">Requisitos previos</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#2-instalar-dependencias" class="nav-link">2. Instalar dependencias</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#3-ejecutar-la-aplicacion" class="nav-link">3. Ejecutar la aplicación</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#instalacion-para-desarrollo" class="nav-link">Instalación para desarrollo</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#1-crear-un-fork" class="nav-link">1. Crear un fork</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#2-configurar-el-repositorio-original-como-upstream" class="nav-link">2. Configurar el repositorio original como upstream</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#3-crear-un-entorno-virtual" class="nav-link">3. Crear un entorno virtual</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#4-activar-el-entorno-virtual" class="nav-link">4. Activar el entorno virtual</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#5-instalar-el-proyecto-en-modo-editable" class="nav-link">5. Instalar el proyecto en modo editable</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#6-instalar-dependencias-de-desarrollo" class="nav-link">6. Instalar dependencias de desarrollo</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#7-instalar-hooks-de-pre-commit" class="nav-link">7. Instalar hooks de pre-commit</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#verificacion-de-la-instalacion" class="nav-link">Verificación de la instalación</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#verificar-que-la-aplicacion-responde" class="nav-link">Verificar que la aplicación responde</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#ejecutar-las-pruebas" class="nav-link">Ejecutar las pruebas</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#verificar-calidad-del-codigo" class="nav-link">Verificar calidad del código</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#desinstalacion" class="nav-link">Desinstalación</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#desinstalar-el-paquete" class="nav-link">Desinstalar el paquete</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#eliminar-el-entorno-virtual" class="nav-link">Eliminar el entorno virtual</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#eliminar-el-repositorio-local" class="nav-link">Eliminar el repositorio local</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#solucion-de-problemas-comunes" class="nav-link">Solución de problemas comunes</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#instalacion-con-pipx-recomendada-para-cli" class="nav-link">📦 Instalación con pipx (recomendada para CLI)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="guia-de-instalacion-de-la-suite-chuspacalc">Guía de instalación de la suite ChuspaCalc</h1>
+<p>Esta guía cubre todos los pasos necesarios para instalar <strong>ChuspaCalc</strong>, tanto para usuarios que desean utilizar las herramientas disponibles como para colaboradores que desean contribuir al desarrollo del proyecto.</p>
+<h2 id="requisitos-previos">Requisitos previos</h2>
+<p>Antes de instalar la suite ChuspaCalc, asegúrate de tener instalado lo siguiente:</p>
+<ul>
+<li><strong>Sistema operativo:</strong> Linux (Ubuntu/Debian recomendado), macOS o Windows (con WSL2)</li>
+<li><strong>Python:</strong> Versión 3.10 o superior</li>
+<li><strong>pip:</strong> Versión 22 o superior</li>
+<li><strong>Git:</strong> Para clonar y sincronizar el repositorio</li>
+</ul>
+<h3 id="verificar-versiones-instaladas">Verificar versiones instaladas</h3>
+<pre><code class="language-bash">python --version   # debe ser v3.10 o superior
+pip --version      # debe ser v22 o superior
+git --version      # debe estar instalado
+
+Los resultados deben indicar versiones compatibles con los requisitos mínimos del proyecto.
+
+&gt; **Nota:** En algunos sistemas Linux y macOS, el comando puede ser `python3` en lugar de `python`.
+
+---
+
+# Instalación rápida
+
+Esta modalidad está orientada a usuarios que únicamente desean utilizar la aplicación sin realizar modificaciones al código fuente.
+
+## 1. Clonar el repositorio
+
+```bash
+git clone https://github.com/sis-inf/ChuspaCalc.git
+cd ChuspaCalc
+</code></pre>
+<h2 id="2-instalar-dependencias">2. Instalar dependencias</h2>
+<pre><code class="language-bash">pip install -r requirements.txt
+</code></pre>
+<p>Este comando instalará todas las dependencias necesarias para ejecutar la aplicación.</p>
+<h2 id="3-ejecutar-la-aplicacion">3. Ejecutar la aplicación</h2>
+<pre><code class="language-bash">python -m ChuspaCalc
+</code></pre>
+<p>Si el paquete está disponible como comando ejecutable:</p>
+<pre><code class="language-bash">ChuspaCalc
+</code></pre>
+<hr />
+<h1 id="instalacion-para-desarrollo">Instalación para desarrollo</h1>
+<p>Esta modalidad está dirigida a estudiantes y colaboradores que desean contribuir al proyecto.</p>
+<h2 id="1-crear-un-fork">1. Crear un fork</h2>
+<p>Desde GitHub, crea un fork del repositorio principal en tu cuenta.</p>
+<p>Posteriormente clona tu fork:</p>
+<pre><code class="language-bash">git clone https://github.com/TU-USUARIO/ChuspaCalc.git
+cd ChuspaCalc
+</code></pre>
+<h2 id="2-configurar-el-repositorio-original-como-upstream">2. Configurar el repositorio original como upstream</h2>
+<p>Para poder sincronizar los cambios realizados en el repositorio principal, agrega el repositorio original como remoto adicional:</p>
+<pre><code class="language-bash">git remote add upstream https://github.com/sis-inf/ChuspaCalc.git
+</code></pre>
+<p>Verifica la configuración:</p>
+<pre><code class="language-bash">git remote -v
+</code></pre>
+<p>Deberías observar referencias tanto a tu fork (<code>origin</code>) como al repositorio principal (<code>upstream</code>).</p>
+<h2 id="3-crear-un-entorno-virtual">3. Crear un entorno virtual</h2>
+<p>Se recomienda utilizar un entorno virtual para aislar las dependencias del proyecto y evitar conflictos con otras instalaciones de Python.</p>
+<pre><code class="language-bash">python -m venv .venv
+</code></pre>
+<h2 id="4-activar-el-entorno-virtual">4. Activar el entorno virtual</h2>
+<h3 id="linux-y-macos">Linux y macOS</h3>
+<pre><code class="language-bash">source .venv/bin/activate
+</code></pre>
+<h3 id="windows-cmd">Windows (CMD)</h3>
+<pre><code class="language-cmd">.venv\Scripts\activate
+</code></pre>
+<h3 id="windows-powershell">Windows (PowerShell)</h3>
+<pre><code class="language-powershell">.venv\Scripts\Activate.ps1
+</code></pre>
+<p>Cuando el entorno esté activo, la terminal mostrará un prefijo similar a:</p>
+<pre><code class="language-text">(.venv)
+</code></pre>
+<h2 id="5-instalar-el-proyecto-en-modo-editable">5. Instalar el proyecto en modo editable</h2>
+<pre><code class="language-bash">pip install -e .
+</code></pre>
+<p>El modo editable permite que los cambios realizados en el código fuente se reflejen inmediatamente sin necesidad de reinstalar el paquete.</p>
+<h2 id="6-instalar-dependencias-de-desarrollo">6. Instalar dependencias de desarrollo</h2>
+<pre><code class="language-bash">pip install -e &quot;.[dev]&quot;
+</code></pre>
+<p>Este comando instala las dependencias utilizadas para pruebas, validación de código y herramientas de apoyo al desarrollo.</p>
+<h2 id="7-instalar-hooks-de-pre-commit">7. Instalar hooks de pre-commit</h2>
+<pre><code class="language-bash">pre-commit install
+</code></pre>
+<p>Los hooks de pre-commit ejecutan verificaciones automáticas antes de cada commit, ayudando a detectar problemas de formato o calidad de código antes de enviar cambios al repositorio.</p>
+<hr />
+<h1 id="verificacion-de-la-instalacion">Verificación de la instalación</h1>
+<p>Una vez finalizada la instalación, es recomendable verificar que todo funciona correctamente.</p>
+<h2 id="verificar-que-la-aplicacion-responde">Verificar que la aplicación responde</h2>
+<pre><code class="language-bash">ChuspaCalc --help
+</code></pre>
+<p>o</p>
+<pre><code class="language-bash">python -m ChuspaCalc
+</code></pre>
+<p>La aplicación debería iniciarse sin errores.</p>
+<h2 id="ejecutar-las-pruebas">Ejecutar las pruebas</h2>
+<pre><code class="language-bash">python -m pytest
+</code></pre>
+<p>Si todas las pruebas finalizan correctamente, el entorno está configurado adecuadamente.</p>
+<h2 id="verificar-calidad-del-codigo">Verificar calidad del código</h2>
+<pre><code class="language-bash">ruff check .
+</code></pre>
+<p>Este comando valida que el código cumple con los estándares definidos por el proyecto.</p>
+<hr />
+<h1 id="desinstalacion">Desinstalación</h1>
+<h2 id="desinstalar-el-paquete">Desinstalar el paquete</h2>
+<pre><code class="language-bash">pip uninstall ChuspaCalc
+</code></pre>
+<h2 id="eliminar-el-entorno-virtual">Eliminar el entorno virtual</h2>
+<p>Si utilizaste un entorno virtual, también puedes eliminarlo junto con todas las dependencias instaladas.</p>
+<h3 id="linux-y-macos_1">Linux y macOS</h3>
+<pre><code class="language-bash">deactivate
+rm -rf .venv
+</code></pre>
+<h3 id="windows">Windows</h3>
+<pre><code class="language-cmd">deactivate
+rmdir /s /q .venv
+</code></pre>
+<h2 id="eliminar-el-repositorio-local">Eliminar el repositorio local</h2>
+<p>Si ya no necesitas el código fuente:</p>
+<h3 id="linux-y-macos_2">Linux y macOS</h3>
+<pre><code class="language-bash">cd ..
+rm -rf ChuspaCalc
+</code></pre>
+<h3 id="windows_1">Windows</h3>
+<pre><code class="language-cmd">cd ..
+rmdir /s /q ChuspaCalc
+</code></pre>
+<hr />
+<h1 id="solucion-de-problemas-comunes">Solución de problemas comunes</h1>
+<h3 id="python-command-not-found"><code>python: command not found</code></h3>
+<p>Verifica que Python esté instalado correctamente y agregado al PATH del sistema. En algunos sistemas puede ser necesario utilizar:</p>
+<pre><code class="language-bash">python3 --version
+</code></pre>
+<h3 id="pip-install-e-dev-falla"><code>pip install -e ".[dev]"</code> falla</h3>
+<p>Asegúrate de que el entorno virtual esté activo antes de instalar dependencias y verifica que tu versión de pip esté actualizada.</p>
+<h3 id="chuspacalc-help-no-funciona"><code>ChuspaCalc --help</code> no funciona</h3>
+<p>Comprueba que la instalación haya finalizado correctamente y que el entorno virtual se encuentre activo.</p>
+<h3 id="los-hooks-de-pre-commit-fallan">Los hooks de pre-commit fallan</h3>
+<p>Ejecuta manualmente las herramientas de validación para identificar el problema:</p>
+<pre><code class="language-bash">ruff check .
+</code></pre>
+<h2 id="instalacion-con-pipx-recomendada-para-cli">📦 Instalación con pipx (recomendada para CLI)</h2>
+<p><a href="https://pipx.pypa.io/">pipx</a> instala el paquete en un entorno virtual aislado, evitando conflictos de dependencias con otros paquetes del sistema.</p>
+<h3 id="requisitos-previos_1">Requisitos previos</h3>
+<ul>
+<li>Python 3.8 o superior</li>
+<li>pipx instalado</li>
+</ul>
+<p>```bash
+pip install pipx
+pipx ensurepath</p>
+<p>Instalación de ChuspaCalc
+bash
+pipx install ChuspaCalc
+Verificar la instalación
+bash
+ChuspaCalc --version
+Ejecutar el CLI
+bash
+ChuspaCalc --help</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

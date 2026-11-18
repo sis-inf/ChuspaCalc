@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Modelo ResultadoCalculo — Contrato de retorno para módulos de cálculo - ChuspaCalc</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">ChuspaCalc</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../instalacion/" class="nav-link">Instalación</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../configuracion/" class="nav-link">Configuración</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../arquitectura/" class="nav-link">Arquitectura</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../desarrollo-local/" class="nav-link">Desarrollo Local</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../flujo-de-trabajo/" class="nav-link">Flujo de Trabajo</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../casos-de-uso/" class="nav-link">Casos de Uso</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../testing/" class="nav-link">Testing</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../seguridad/" class="nav-link">Seguridad</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../preguntas-frecuentes/" class="nav-link">Preguntas Frecuentes</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#modelo-resultadocalculo-contrato-de-retorno-para-modulos-de-calculo" class="nav-link">Modelo ResultadoCalculo — Contrato de retorno para módulos de cálculo</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#introduccion" class="nav-link">Introducción</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#estado-actual-diccionarios-ad-hoc" class="nav-link">Estado actual: diccionarios ad-hoc</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#contrato-propuesto-resultadocalculo" class="nav-link">Contrato propuesto: ResultadoCalculo</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#transicion-gradual" class="nav-link">Transición gradual</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#referencias" class="nav-link">Referencias</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="modelo-resultadocalculo-contrato-de-retorno-para-modulos-de-calculo">Modelo ResultadoCalculo — Contrato de retorno para módulos de cálculo</h1>
+<h2 id="introduccion">Introducción</h2>
+<p>Este documento define el contrato formal <code>ResultadoCalculo</code> que los módulos
+de cálculo de ChuspaCalc deben seguir al retornar sus resultados, y describe
+la transición gradual desde el estado actual hacia este contrato uniforme.</p>
+<hr />
+<h2 id="estado-actual-diccionarios-ad-hoc">Estado actual: diccionarios ad-hoc</h2>
+<p>Actualmente los módulos de cálculo retornan diccionarios con campos
+específicos de cada dominio, sin una estructura común entre ellos.</p>
+<h3 id="ejemplo-1-civilvigapy">Ejemplo 1: <code>civil/viga.py</code></h3>
+<pre><code class="language-python">def calcular_reacciones(longitud, carga, posicion=None) -&gt; dict:
+    ...
+    return {
+        &quot;Ra&quot;: round(Ra, 4),
+        &quot;Rb&quot;: round(Rb, 4),
+        &quot;unidad&quot;: &quot;kN&quot;
+    }
+</code></pre>
+<h3 id="ejemplo-2-electricacaida_tensionpy">Ejemplo 2: <code>electrica/caida_tension.py</code></h3>
+<pre><code class="language-python">def calcular_caida(longitud, corriente, seccion, material=&quot;cobre&quot;) -&gt; dict:
+    ...
+    return {
+        &quot;caida_v&quot;: round(caida_v, 4),
+        &quot;porcentaje&quot;: round(porcentaje, 4),
+        &quot;admisible&quot;: admisible,
+    }
+</code></pre>
+<p>Cada módulo define sus propios nombres de campo según el dominio. Esto
+funciona pero dificulta:</p>
+<ul>
+<li>Mostrar resultados de forma genérica en la UI.</li>
+<li>Comparar o serializar resultados de distintos módulos de manera uniforme.</li>
+<li>Detectar errores o casos de "no aplicable" de forma consistente.</li>
+</ul>
+<hr />
+<h2 id="contrato-propuesto-resultadocalculo">Contrato propuesto: <code>ResultadoCalculo</code></h2>
+<p>Para resolver esto, se propone un contrato uniforme que envuelva el
+resultado específico del dominio dentro de una estructura común.</p>
+<h3 id="campos">Campos</h3>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>valores</code></td>
+<td><code>dict</code></td>
+<td>Diccionario con los campos específicos del cálculo (lo que hoy retornan los módulos, ej. <code>Ra</code>, <code>Rb</code>, <code>caida_v</code>).</td>
+</tr>
+<tr>
+<td><code>unidad</code></td>
+<td><code>str \| None</code></td>
+<td>Unidad principal del resultado, si aplica (ej. <code>"kN"</code>, <code>"V"</code>).</td>
+</tr>
+<tr>
+<td><code>valido</code></td>
+<td><code>bool</code></td>
+<td>Indica si el resultado es válido/admisible según las reglas del dominio.</td>
+</tr>
+<tr>
+<td><code>mensaje</code></td>
+<td><code>str \| None</code></td>
+<td>Mensaje descriptivo opcional (advertencias, aclaraciones).</td>
+</tr>
+<tr>
+<td><code>metadatos</code></td>
+<td><code>dict</code></td>
+<td>Información adicional: nombre del módulo, parámetros usados, etc.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ejemplo-de-uso-forma-propuesta">Ejemplo de uso (forma propuesta)</h3>
+<pre><code class="language-python">from ChuspaCalc.core.resultado import ResultadoCalculo
+
+def calcular_reacciones(longitud, carga, posicion=None) -&gt; ResultadoCalculo:
+    ...
+    return ResultadoCalculo(
+        valores={&quot;Ra&quot;: round(Ra, 4), &quot;Rb&quot;: round(Rb, 4)},
+        unidad=&quot;kN&quot;,
+        valido=True,
+        mensaje=None,
+        metadatos={&quot;modulo&quot;: &quot;civil.viga&quot;, &quot;longitud&quot;: longitud, &quot;carga&quot;: carga}
+    )
+</code></pre>
+<pre><code class="language-python">def calcular_caida(longitud, corriente, seccion, material=&quot;cobre&quot;) -&gt; ResultadoCalculo:
+    ...
+    return ResultadoCalculo(
+        valores={&quot;caida_v&quot;: round(caida_v, 4), &quot;porcentaje&quot;: round(porcentaje, 4)},
+        unidad=&quot;V&quot;,
+        valido=admisible,
+        mensaje=&quot;Caída de tensión fuera del rango admisible&quot; if not admisible else None,
+        metadatos={&quot;modulo&quot;: &quot;electrica.caida_tension&quot;, &quot;material&quot;: material}
+    )
+</code></pre>
+<hr />
+<h2 id="transicion-gradual">Transición gradual</h2>
+<p>La migración hacia <code>ResultadoCalculo</code> no requiere reescribir todos los
+módulos de golpe. Se sugiere el siguiente enfoque incremental:</p>
+<ol>
+<li><strong>Fase 1 — Convivencia:</strong> los módulos nuevos adoptan <code>ResultadoCalculo</code>
+   desde el inicio; los módulos existentes (<code>viga.py</code>, <code>caida_tension.py</code>,
+   etc.) continúan retornando sus diccionarios ad-hoc sin cambios.</li>
+<li><strong>Fase 2 — Adaptador:</strong> se crea una función auxiliar que envuelve el
+   diccionario ad-hoc de un módulo viejo en un <code>ResultadoCalculo</code>, sin
+   modificar el módulo original. Esto permite que la UI consuma ambos
+   tipos de forma uniforme.</li>
+<li><strong>Fase 3 — Migración del módulo:</strong> cuando se toca un módulo viejo por
+   otro motivo (bugfix, nueva feature), se aprovecha para migrar su
+   <code>return</code> directamente a <code>ResultadoCalculo</code>.</li>
+<li><strong>Fase 4 — Deprecación del formato viejo:</strong> una vez que todos los
+   módulos estén migrados, se puede exigir <code>ResultadoCalculo</code> como
+   tipo de retorno obligatorio para nuevos módulos vía revisión de PR.</li>
+</ol>
+<blockquote>
+<p><strong>Nota:</strong> Al momento de escribir este documento, el contrato
+<code>ResultadoCalculo</code> aún no está implementado en el código del proyecto
+(no existe en <code>src/ChuspaCalc/core/</code>). Este documento describe la
+propuesta de diseño para guiar su futura implementación y la
+migración de los módulos existentes.</p>
+</blockquote>
+<hr />
+<h2 id="referencias">Referencias</h2>
+<ul>
+<li><code>docs/como-agregar-modulo.md</code> — guía general para agregar nuevos módulos.</li>
+<li><code>src/ChuspaCalc/modulos/civil/viga.py</code> — ejemplo de módulo con diccionario ad-hoc.</li>
+<li><code>src/ChuspaCalc/modulos/electrica/caida_tension.py</code> — ejemplo de módulo con diccionario ad-hoc.</li>
+</ul></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Módulo de Sistemas e Informática - ChuspaCalc</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../../css/brands.min.css" rel="stylesheet">
+        <link href="../../css/solid.min.css" rel="stylesheet">
+        <link href="../../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">ChuspaCalc</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../../instalacion/" class="nav-link">Instalación</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../configuracion/" class="nav-link">Configuración</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../arquitectura/" class="nav-link">Arquitectura</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../desarrollo-local/" class="nav-link">Desarrollo Local</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../flujo-de-trabajo/" class="nav-link">Flujo de Trabajo</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../casos-de-uso/" class="nav-link">Casos de Uso</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../testing/" class="nav-link">Testing</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../seguridad/" class="nav-link">Seguridad</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../preguntas-frecuentes/" class="nav-link">Preguntas Frecuentes</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#modulo-de-sistemas-e-informatica" class="nav-link">Módulo de Sistemas e Informática</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#descripcion" class="nav-link">Descripción</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#herramientas-de-sistemas-de-numeracion" class="nav-link">Herramientas de sistemas de numeración</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#herramientas-de-logica-digital" class="nav-link">Herramientas de lógica digital</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#herramientas-de-codigo-ascii" class="nav-link">Herramientas de código ASCII</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#conversion-de-colores" class="nav-link">Conversión de colores</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#redes" class="nav-link">Redes</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#ejemplos-de-casos-de-uso-en-programacion-de-sistemas" class="nav-link">Ejemplos de casos de uso en programación de sistemas</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="modulo-de-sistemas-e-informatica">Módulo de Sistemas e Informática</h1>
+<h2 id="descripcion">Descripción</h2>
+<p>El módulo <code>sistemas</code> agrupa las herramientas orientadas a informática y computación. Sus herramientas son especialmente útiles en cursos de <strong>arquitectura de computadoras</strong>, <strong>lógica digital</strong> y <strong>programación de sistemas</strong>, ya que cubren los fundamentos numéricos y lógicos sobre los que se construye el software y el hardware.</p>
+<p>El módulo contiene las siguientes herramientas principales:</p>
+<ul>
+<li><code>conversor_bases</code> — conversión entre sistemas de numeración (binario, octal, decimal, hexadecimal)</li>
+<li><code>herramienta_tablas_verdad</code> — generación de tablas de verdad para expresiones booleanas</li>
+<li><code>tabla_ascii</code> — consulta y conversión de caracteres y códigos ASCII</li>
+<li><code>conversor_color</code> — conversión de colores entre los modelos RGB, HEX y HSL</li>
+<li><code>calculadora_subred</code> — cálculo de red, broadcast, máscara y rango de hosts de una subred IPv4/CIDR</li>
+</ul>
+<hr />
+<h2 id="herramientas-de-sistemas-de-numeracion">Herramientas de sistemas de numeración</h2>
+<h3 id="conversor_bases"><code>conversor_bases</code></h3>
+<p>Convierte números entre las bases 2, 8, 10 y 16. Acepta el número de entrada en cualquiera de las cuatro bases y entrega el resultado en la base de destino.</p>
+<p><strong>Bases soportadas:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Base</th>
+<th>Nombre</th>
+<th>Dígitos válidos</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2</td>
+<td>Binario</td>
+<td><code>0</code>, <code>1</code></td>
+</tr>
+<tr>
+<td>8</td>
+<td>Octal</td>
+<td><code>0</code> – <code>7</code></td>
+</tr>
+<tr>
+<td>10</td>
+<td>Decimal</td>
+<td><code>0</code> – <code>9</code></td>
+</tr>
+<tr>
+<td>16</td>
+<td>Hexadecimal</td>
+<td><code>0</code> – <code>9</code>, <code>A</code> – <code>F</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Ejemplos de conversión:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Número original</th>
+<th>Base origen</th>
+<th>Resultado</th>
+<th>Base destino</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>255</code></td>
+<td>10</td>
+<td><code>FF</code></td>
+<td>16</td>
+</tr>
+<tr>
+<td><code>255</code></td>
+<td>10</td>
+<td><code>11111111</code></td>
+<td>2</td>
+</tr>
+<tr>
+<td><code>255</code></td>
+<td>10</td>
+<td><code>377</code></td>
+<td>8</td>
+</tr>
+<tr>
+<td><code>FF</code></td>
+<td>16</td>
+<td><code>255</code></td>
+<td>10</td>
+</tr>
+<tr>
+<td><code>11111111</code></td>
+<td>2</td>
+<td><code>FF</code></td>
+<td>16</td>
+</tr>
+<tr>
+<td><code>1A3</code></td>
+<td>16</td>
+<td><code>419</code></td>
+<td>10</td>
+</tr>
+<tr>
+<td><code>644</code></td>
+<td>8</td>
+<td><code>420</code></td>
+<td>10</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Uso desde código:</strong></p>
+<pre><code class="language-python">from ChuspaCalc.modulos.sistemas.conversor_bases import convertir
+
+# Decimal a hexadecimal
+resultado = convertir(&quot;255&quot;, base_origen=10, base_destino=16)
+# {&quot;numero_original&quot;: &quot;255&quot;, &quot;base_origen&quot;: 10, &quot;resultado&quot;: &quot;FF&quot;, &quot;base_destino&quot;: 16}
+
+# Hexadecimal a binario
+resultado = convertir(&quot;FF&quot;, base_origen=16, base_destino=2)
+# {&quot;numero_original&quot;: &quot;FF&quot;, &quot;base_origen&quot;: 16, &quot;resultado&quot;: &quot;11111111&quot;, &quot;base_destino&quot;: 2}
+
+# Binario a octal
+resultado = convertir(&quot;11111111&quot;, base_origen=2, base_destino=8)
+# {&quot;numero_original&quot;: &quot;11111111&quot;, &quot;base_origen&quot;: 2, &quot;resultado&quot;: &quot;377&quot;, &quot;base_destino&quot;: 8}
+</code></pre>
+<hr />
+<h2 id="herramientas-de-logica-digital">Herramientas de lógica digital</h2>
+<h3 id="herramienta_tablas_verdad"><code>herramienta_tablas_verdad</code></h3>
+<p>Genera la tabla de verdad completa de cualquier expresión booleana con hasta <strong>4 variables</strong> (A–Z en mayúsculas). Evalúa todas las combinaciones posibles de valores de entrada (0 y 1) y muestra el resultado de la expresión para cada una.</p>
+<p><strong>Operadores soportados:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Operación</th>
+<th>Notaciones aceptadas</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AND</td>
+<td><code>AND</code>, <code>&amp;</code>, <code>*</code>, <code>∧</code></td>
+</tr>
+<tr>
+<td>OR</td>
+<td><code>OR</code>, <code>\|</code>, <code>+</code>, <code>∨</code></td>
+</tr>
+<tr>
+<td>NOT</td>
+<td><code>NOT</code>, <code>!</code>, <code>~</code>, <code>¬</code></td>
+</tr>
+<tr>
+<td>XOR</td>
+<td><code>XOR</code>, <code>^</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Ejemplos de tablas de verdad:</strong></p>
+<p>Expresión <code>A AND B</code>:</p>
+<table>
+<thead>
+<tr>
+<th>A</th>
+<th>B</th>
+<th>Resultado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>Expresión <code>A OR B</code>:</p>
+<table>
+<thead>
+<tr>
+<th>A</th>
+<th>B</th>
+<th>Resultado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>Expresión <code>NOT A</code>:</p>
+<table>
+<thead>
+<tr>
+<th>A</th>
+<th>Resultado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>Expresión <code>A XOR B</code>:</p>
+<table>
+<thead>
+<tr>
+<th>A</th>
+<th>B</th>
+<th>Resultado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>Expresión <code>A AND (B OR C)</code> (3 variables):</p>
+<table>
+<thead>
+<tr>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>Resultado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Ejemplos de expresiones válidas:</strong></p>
+<pre><code>A AND B
+A OR (NOT B)
+(A AND B) OR (NOT A AND C)
+A XOR B XOR C
+NOT (A AND B)
+A &amp; B | ~C
+</code></pre>
+<hr />
+<h2 id="herramientas-de-codigo-ascii">Herramientas de código ASCII</h2>
+<h3 id="tabla_ascii"><code>tabla_ascii</code></h3>
+<p>Permite consultar y convertir caracteres ASCII (rango 0–127) entre sus distintas representaciones: carácter, decimal, hexadecimal, octal y binario.</p>
+<p><strong>Funciones disponibles:</strong></p>
+<ul>
+<li><code>caracter_a_ascii(char)</code> — recibe un carácter y devuelve todas sus representaciones</li>
+<li><code>ascii_a_caracter(codigo)</code> — recibe un código decimal y devuelve el carácter y sus representaciones</li>
+<li><code>listar_ascii_rango(inicio, fin)</code> — retorna una lista de entradas para un rango de códigos</li>
+</ul>
+<p><strong>Ejemplos:</strong></p>
+<pre><code class="language-python">from ChuspaCalc.modulos.sistemas.tabla_ascii import caracter_a_ascii, ascii_a_caracter, listar_ascii_rango
+
+# Carácter a código
+caracter_a_ascii(&quot;A&quot;)
+# {&quot;caracter&quot;: &quot;A&quot;, &quot;decimal&quot;: 65, &quot;hexadecimal&quot;: &quot;0x41&quot;, &quot;octal&quot;: &quot;0o101&quot;, &quot;binario&quot;: &quot;0b1000001&quot;}
+
+caracter_a_ascii(&quot;a&quot;)
+# {&quot;caracter&quot;: &quot;a&quot;, &quot;decimal&quot;: 97, &quot;hexadecimal&quot;: &quot;0x61&quot;, &quot;octal&quot;: &quot;0o141&quot;, &quot;binario&quot;: &quot;0b1100001&quot;}
+
+caracter_a_ascii(&quot; &quot;)
+# {&quot;caracter&quot;: &quot; &quot;, &quot;decimal&quot;: 32, &quot;hexadecimal&quot;: &quot;0x20&quot;, &quot;octal&quot;: &quot;0o40&quot;, &quot;binario&quot;: &quot;0b100000&quot;}
+
+# Código a carácter
+ascii_a_caracter(65)
+# {&quot;caracter&quot;: &quot;A&quot;, &quot;decimal&quot;: 65, &quot;hexadecimal&quot;: &quot;0x41&quot;, &quot;octal&quot;: &quot;0o101&quot;, &quot;binario&quot;: &quot;0b1000001&quot;}
+
+# Rango de caracteres (letras mayúsculas)
+listar_ascii_rango(65, 90)
+# Lista con las 26 entradas de A (65) a Z (90)
+</code></pre>
+<p><strong>Rangos ASCII de referencia:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Rango decimal</th>
+<th>Contenido</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 – 31</td>
+<td>Caracteres de control</td>
+</tr>
+<tr>
+<td>32 – 47</td>
+<td>Espacios y signos de puntuación</td>
+</tr>
+<tr>
+<td>48 – 57</td>
+<td>Dígitos <code>0</code> – <code>9</code></td>
+</tr>
+<tr>
+<td>65 – 90</td>
+<td>Letras mayúsculas <code>A</code> – <code>Z</code></td>
+</tr>
+<tr>
+<td>97 – 122</td>
+<td>Letras minúsculas <code>a</code> – <code>z</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="conversion-de-colores">Conversión de colores</h2>
+<h3 id="conversor_color"><code>conversor_color</code></h3>
+<p>Convierte colores entre los modelos RGB, HEX y HSL. Útil para comprender cómo se representan los colores en sistemas digitales y en desarrollo web.</p>
+<p><strong>Funciones disponibles:</strong></p>
+<ul>
+<li><code>rgb_a_hex(r, g, b)</code> — convierte RGB (0–255) a cadena hexadecimal <code>#RRGGBB</code></li>
+<li><code>hex_a_rgb(hex_str)</code> — convierte <code>#RRGGBB</code> (o <code>RRGGBB</code>) a tupla <code>(r, g, b)</code></li>
+<li><code>rgb_a_hsl(r, g, b)</code> — convierte RGB a tupla HSL <code>(h, s, l)</code> donde H ∈ [0, 360] y S, L ∈ [0, 100]</li>
+</ul>
+<p><strong>Ejemplos:</strong></p>
+<pre><code class="language-python">from ChuspaCalc.modulos.sistemas.conversor_color import rgb_a_hex, hex_a_rgb, rgb_a_hsl
+
+# RGB a HEX
+rgb_a_hex(255, 0, 0)      # &quot;#FF0000&quot;  — rojo puro
+rgb_a_hex(0, 255, 0)      # &quot;#00FF00&quot;  — verde puro
+rgb_a_hex(0, 0, 255)      # &quot;#0000FF&quot;  — azul puro
+rgb_a_hex(255, 255, 255)  # &quot;#FFFFFF&quot;  — blanco
+rgb_a_hex(0, 0, 0)        # &quot;#000000&quot;  — negro
+
+# HEX a RGB
+hex_a_rgb(&quot;#FF0000&quot;)      # (255, 0, 0)
+hex_a_rgb(&quot;1A2B3C&quot;)       # (26, 43, 60)
+
+# RGB a HSL
+rgb_a_hsl(255, 0, 0)      # (0, 100, 50)   — rojo: matiz 0°, saturación 100%, luminosidad 50%
+rgb_a_hsl(0, 128, 0)      # (120, 100, 25) — verde oscuro
+rgb_a_hsl(128, 128, 128)  # (0, 0, 50)     — gris neutro
+</code></pre>
+<hr />
+<h2 id="redes">Redes</h2>
+<h3 id="calculadora_subred"><code>calculadora_subred</code></h3>
+<p>Calcula la <strong>dirección de red</strong>, la <strong>dirección de broadcast</strong>, la <strong>máscara de subred</strong>, el <strong>rango de hosts</strong> y el <strong>número total de hosts</strong> de una dirección IPv4 con su prefijo CIDR (1 a 32).</p>
+<p><strong>Fórmulas utilizadas:</strong></p>
+<pre><code>Red       = IP AND Máscara
+Broadcast = IP OR (NOT Máscara)
+Hosts     = Red + 1  →  Broadcast - 1
+Total     = 2^(32 - prefijo) - 2
+</code></pre>
+<p>Para los prefijos <code>/31</code> y <code>/32</code> no hay hosts asignables: <code>primer_host</code> y <code>ultimo_host</code> valen <code>"N/A"</code> y <code>total_hosts</code> es <code>0</code>.</p>
+<p><strong>Ejemplos:</strong></p>
+<table>
+<thead>
+<tr>
+<th>IP / CIDR</th>
+<th>Máscara</th>
+<th>Red</th>
+<th>Primer host</th>
+<th>Último host</th>
+<th>Broadcast</th>
+<th>Hosts</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>192.168.1.0/24</code></td>
+<td><code>255.255.255.0</code></td>
+<td><code>192.168.1.0</code></td>
+<td><code>192.168.1.1</code></td>
+<td><code>192.168.1.254</code></td>
+<td><code>192.168.1.255</code></td>
+<td>254</td>
+</tr>
+<tr>
+<td><code>10.0.0.0/16</code></td>
+<td><code>255.255.0.0</code></td>
+<td><code>10.0.0.0</code></td>
+<td><code>10.0.0.1</code></td>
+<td><code>10.0.255.254</code></td>
+<td><code>10.0.255.255</code></td>
+<td>65 534</td>
+</tr>
+</tbody>
+</table>
+<p>Desarrollo del primer ejemplo (<code>192.168.1.0/24</code>):</p>
+<pre><code>Máscara   = 255.255.255.0   (wildcard: 0.0.0.255)
+Red       = 192.168.1.0 AND 255.255.255.0 = 192.168.1.0
+Broadcast = 192.168.1.0 OR  0.0.0.255     = 192.168.1.255
+Hosts     = 192.168.1.1 → 192.168.1.254
+Total     = 2^(32 - 24) - 2 = 254
+</code></pre>
+<p><strong>Uso desde código:</strong></p>
+<pre><code class="language-python">from chuspacalc.modulos.sistemas.calculadora_subred import calcular_subred
+
+calcular_subred(&quot;192.168.1.0&quot;, &quot;24&quot;)
+# {&quot;red&quot;: &quot;192.168.1.0&quot;, &quot;broadcast&quot;: &quot;192.168.1.255&quot;, &quot;mascara&quot;: &quot;255.255.255.0&quot;,
+#  &quot;primer_host&quot;: &quot;192.168.1.1&quot;, &quot;ultimo_host&quot;: &quot;192.168.1.254&quot;, &quot;total_hosts&quot;: 254}
+</code></pre>
+<p>Si la IP no tiene cuatro octetos entre 0 y 255, o el prefijo no es un entero entre 1 y 32, se lanza <code>ErrorCIDR</code> (subclase de <code>ValueError</code>).</p>
+<p><strong>Solución de problemas:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Problema</th>
+<th>Solución</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>El resultado no coincide</td>
+<td>Verificar que el prefijo CIDR sea el correcto (ej. <code>/24</code> = <code>255.255.255.0</code>)</td>
+</tr>
+<tr>
+<td>Error en el cálculo</td>
+<td>Verificar que la IP tenga cuatro octetos numéricos y que el prefijo sea un entero</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Referencias:</strong></p>
+<ul>
+<li><a href="https://es.wikipedia.org/wiki/Subred">Subred</a></li>
+<li><a href="https://es.wikipedia.org/wiki/Classless_Inter-Domain_Routing">Notación CIDR</a></li>
+<li><a href="https://es.wikipedia.org/wiki/Direcci%C3%B3n_IP">Dirección IP</a></li>
+</ul>
+<hr />
+<h2 id="ejemplos-de-casos-de-uso-en-programacion-de-sistemas">Ejemplos de casos de uso en programación de sistemas</h2>
+<h3 id="depuracion-a-nivel-de-bits">Depuración a nivel de bits</h3>
+<p>Al trabajar con registros de hardware o protocolos de comunicación, los valores suelen expresarse en hexadecimal o binario. Con <code>conversor_bases</code> es posible inspeccionar el valor de un registro en todas las bases simultáneamente:</p>
+<pre><code class="language-python"># Un registro de estado devuelve 0xA3; ¿qué bits están activos?
+convertir(&quot;A3&quot;, base_origen=16, base_destino=2)
+# resultado: &quot;10100011&quot;
+# → bits 7, 5, 1 y 0 están en 1
+</code></pre>
+<h3 id="analisis-de-permisos-en-sistemas-de-archivos">Análisis de permisos en sistemas de archivos</h3>
+<p>Los permisos Unix se expresan en octal. Con <code>conversor_bases</code> se puede convertir un permiso a binario para ver exactamente qué bits están activos:</p>
+<pre><code class="language-python">convertir(&quot;755&quot;, base_origen=8, base_destino=2)
+# resultado: &quot;111101101&quot;
+# rwxr-xr-x → propietario: 111, grupo: 101, otros: 101
+</code></pre>
+<h3 id="verificacion-de-compuertas-logicas">Verificación de compuertas lógicas</h3>
+<p>Para verificar el comportamiento de una compuerta NAND (NOT AND) se puede expresar como <code>NOT (A AND B)</code> en la herramienta de tablas de verdad:</p>
+<pre><code>Expresión: NOT (A AND B)
+
+| A | B | Resultado |
+|---|---|-----------|
+| 0 | 0 | 1         |
+| 0 | 1 | 1         |
+| 1 | 0 | 1         |
+| 1 | 1 | 0         |
+</code></pre>
+<h3 id="localizacion-de-caracteres-en-memoria">Localización de caracteres en memoria</h3>
+<p>En programación de bajo nivel, los caracteres se almacenan como enteros. Con <code>tabla_ascii</code> se puede verificar el valor numérico de cualquier carácter y su representación en distintas bases:</p>
+<pre><code class="language-python">caracter_a_ascii(&quot;Z&quot;)
+# decimal: 90, hexadecimal: 0x5A, binario: 0b1011010
+
+# Diferencia entre mayúscula y minúscula en binario:
+caracter_a_ascii(&quot;A&quot;)  # decimal: 65  → 0b1000001
+caracter_a_ascii(&quot;a&quot;)  # decimal: 97  → 0b1100001
+# El bit 5 (valor 32) distingue mayúsculas de minúsculas en ASCII
+</code></pre>
+<h3 id="colores-en-desarrollo-de-interfaces">Colores en desarrollo de interfaces</h3>
+<p>Al diseñar interfaces de bajo nivel o para sistemas embebidos con pantallas de color, la conversión entre modelos es frecuente:</p>
+<pre><code class="language-python"># El diseño especifica un color como HSL; el hardware necesita RGB y HEX
+hex_a_rgb(&quot;#1E90FF&quot;)   # (30, 144, 255) — dodger blue
+rgb_a_hsl(30, 144, 255)  # (210, 100, 56) — matiz azul, saturación plena
+</code></pre></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js"></script>
+        <script src="../../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

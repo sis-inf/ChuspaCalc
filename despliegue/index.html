@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Guía de Despliegue - ChuspaCalc</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">ChuspaCalc</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../instalacion/" class="nav-link">Instalación</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../configuracion/" class="nav-link">Configuración</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../arquitectura/" class="nav-link">Arquitectura</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../desarrollo-local/" class="nav-link">Desarrollo Local</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../flujo-de-trabajo/" class="nav-link">Flujo de Trabajo</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../casos-de-uso/" class="nav-link">Casos de Uso</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../testing/" class="nav-link">Testing</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../seguridad/" class="nav-link">Seguridad</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../preguntas-frecuentes/" class="nav-link">Preguntas Frecuentes</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#guia-de-despliegue" class="nav-link">Guía de Despliegue</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#prerrequisitos" class="nav-link">Prerrequisitos</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#obtener-el-codigo-fuente" class="nav-link">Obtener el código fuente</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#clonar-el-repositorio" class="nav-link">Clonar el repositorio</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#entorno-virtual-en-linuxmacos" class="nav-link">Entorno virtual en Linux/macOS</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#entorno-virtual-en-windows" class="nav-link">Entorno virtual en Windows</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#instalacion-con-pip" class="nav-link">Instalación con pip</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#dependencias-de-desarrollo-opcional" class="nav-link">Dependencias de desarrollo (opcional)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#verificar-la-instalacion" class="nav-link">Verificar la instalación</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#ejecucion" class="nav-link">Ejecución</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#desactivar-el-entorno-virtual" class="nav-link">Desactivar el entorno virtual</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#problemas-comunes" class="nav-link">Problemas comunes</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#el-comando-python-no-es-reconocido" class="nav-link">El comando python no es reconocido</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#el-comando-pip-no-es-reconocido" class="nav-link">El comando pip no es reconocido</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#el-comando-chuspacalc-no-funciona" class="nav-link">El comando chuspacalc no funciona</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#error-por-dependencias-faltantes" class="nav-link">Error por dependencias faltantes</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#verificacion-de-integridad-de-los-ejecutables" class="nav-link">Verificación de integridad de los ejecutables</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#linux" class="nav-link">Linux</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#macos" class="nav-link">macOS</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#windows-powershell" class="nav-link">Windows (PowerShell)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#documentacion-relacionada" class="nav-link">Documentación relacionada</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="guia-de-despliegue">Guía de Despliegue</h1>
+<p>Esta guía describe el proceso de instalación y ejecución de ChuspaCalc en sistemas Windows, Linux y macOS. Incluye la configuración del entorno virtual, la instalación del proyecto mediante pip y la verificación del funcionamiento de la interfaz de línea de comandos (CLI).</p>
+<hr />
+<h1 id="prerrequisitos">Prerrequisitos</h1>
+<p>Antes de instalar ChuspaCalc, asegúrese de tener instalado:</p>
+<ul>
+<li>Python 3.10 o superior</li>
+<li>pip (incluido con Python)</li>
+<li>Git</li>
+</ul>
+<blockquote>
+<p>ChuspaCalc requiere Python 3.10 o superior. Versiones anteriores no están soportadas.</p>
+</blockquote>
+<p>Verificar las versiones instaladas:</p>
+<pre><code class="language-bash">python --version
+pip --version
+git --version
+</code></pre>
+<blockquote>
+<p>En algunos sistemas Linux o macOS puede ser necesario utilizar <code>python3</code> en lugar de <code>python</code>.</p>
+</blockquote>
+<hr />
+<h1 id="obtener-el-codigo-fuente">Obtener el código fuente</h1>
+<h2 id="clonar-el-repositorio">Clonar el repositorio</h2>
+<p>Si desea utilizar ChuspaCalc como usuario:</p>
+<pre><code class="language-bash">git clone https://github.com/sis-inf/ChuspaCalc.git
+cd ChuspaCalc
+</code></pre>
+<p>Si trabaja mediante el flujo de contribución del proyecto, clone primero su fork personal:</p>
+<pre><code class="language-bash">git clone https://github.com/TU-USUARIO/ChuspaCalc.git
+cd ChuspaCalc
+</code></pre>
+<p>Para más detalles sobre el flujo de contribución consulte:</p>
+<pre><code class="language-text">docs/guia-contribuidor-primeros-pasos.md
+</code></pre>
+<hr />
+<h1 id="entorno-virtual-en-linuxmacos">Entorno virtual en Linux/macOS</h1>
+<p>Crear el entorno virtual:</p>
+<pre><code class="language-bash">python -m venv .venv
+</code></pre>
+<p>Activarlo:</p>
+<pre><code class="language-bash">source .venv/bin/activate
+</code></pre>
+<p>Cuando el entorno esté activo, la terminal mostrará un prefijo similar a:</p>
+<pre><code class="language-text">(.venv)
+</code></pre>
+<hr />
+<h1 id="entorno-virtual-en-windows">Entorno virtual en Windows</h1>
+<p>Crear el entorno virtual:</p>
+<pre><code class="language-powershell">python -m venv .venv
+</code></pre>
+<p>Activar en PowerShell:</p>
+<pre><code class="language-powershell">.venv\Scripts\Activate.ps1
+</code></pre>
+<p>Activar en CMD:</p>
+<pre><code class="language-cmd">.venv\Scripts\activate
+</code></pre>
+<p>Cuando el entorno esté activo, la terminal mostrará un prefijo similar a:</p>
+<pre><code class="language-text">(.venv)
+</code></pre>
+<hr />
+<h1 id="instalacion-con-pip">Instalación con pip</h1>
+<p>Desde el directorio raíz del proyecto ejecutar:</p>
+<pre><code class="language-bash">pip install -e .
+</code></pre>
+<p>La opción <code>-e</code> (<em>editable</em>) instala el proyecto enlazándolo al código fuente local. Esto permite que los cambios realizados en el código se reflejen inmediatamente sin necesidad de reinstalar el paquete.</p>
+<p>La instalación registra además el comando:</p>
+<pre><code class="language-bash">chuspacalc
+</code></pre>
+<p>definido en el archivo <code>pyproject.toml</code>.</p>
+<hr />
+<h1 id="dependencias-de-desarrollo-opcional">Dependencias de desarrollo (opcional)</h1>
+<p>Si va a contribuir al proyecto o ejecutar pruebas, instale también las dependencias de desarrollo:</p>
+<pre><code class="language-bash">pip install -e &quot;.[dev]&quot;
+</code></pre>
+<p>Estas dependencias incluyen herramientas para pruebas, validación de código y empaquetado.</p>
+<hr />
+<h1 id="verificar-la-instalacion">Verificar la instalación</h1>
+<p>Verificar que ChuspaCalc esté disponible:</p>
+<pre><code class="language-bash">chuspacalc --help
+</code></pre>
+<p>Consultar la versión instalada:</p>
+<pre><code class="language-bash">chuspacalc --version
+</code></pre>
+<p>También es posible ejecutar la aplicación mediante:</p>
+<pre><code class="language-bash">python -m chuspacalc --help
+</code></pre>
+<p>Si la instalación fue exitosa, se mostrará la ayuda de la aplicación o la versión instalada.</p>
+<hr />
+<h1 id="ejecucion">Ejecución</h1>
+<p>Mostrar la ayuda general:</p>
+<pre><code class="language-bash">chuspacalc --help
+</code></pre>
+<p>Ejecutar el paquete directamente:</p>
+<pre><code class="language-bash">python -m chuspacalc
+</code></pre>
+<hr />
+<h1 id="desactivar-el-entorno-virtual">Desactivar el entorno virtual</h1>
+<p>Cuando finalice su sesión de trabajo:</p>
+<pre><code class="language-bash">deactivate
+</code></pre>
+<hr />
+<h1 id="problemas-comunes">Problemas comunes</h1>
+<h2 id="el-comando-python-no-es-reconocido">El comando <code>python</code> no es reconocido</h2>
+<p>Verifique que Python esté instalado correctamente y agregado al PATH del sistema.</p>
+<h2 id="el-comando-pip-no-es-reconocido">El comando <code>pip</code> no es reconocido</h2>
+<p>Reinstale Python asegurándose de habilitar la opción:</p>
+<pre><code class="language-text">Add Python to PATH
+</code></pre>
+<p>durante la instalación.</p>
+<h2 id="el-comando-chuspacalc-no-funciona">El comando <code>chuspacalc</code> no funciona</h2>
+<p>Verifique que:</p>
+<ol>
+<li>El entorno virtual esté activo.</li>
+<li>La instalación se haya realizado correctamente.</li>
+<li>Se haya ejecutado:</li>
+</ol>
+<pre><code class="language-bash">pip install -e .
+</code></pre>
+<h2 id="error-por-dependencias-faltantes">Error por dependencias faltantes</h2>
+<p>Reinstale las dependencias del proyecto:</p>
+<pre><code class="language-bash">pip install -e .
+</code></pre>
+<hr />
+<h1 id="verificacion-de-integridad-de-los-ejecutables">Verificación de integridad de los ejecutables</h1>
+<p>Las versiones publicadas mediante GitHub Releases incluyen un archivo <code>SHA256SUMS.txt</code> junto al ejecutable. Este archivo contiene el checksum SHA256 del ejecutable distribuido y permite verificar que la descarga no haya sido modificada o corrompida.</p>
+<h2 id="linux">Linux</h2>
+<p>Ejecute el siguiente comando desde el directorio donde se encuentran el ejecutable y <code>SHA256SUMS.txt</code>:</p>
+<pre><code class="language-bash">sha256sum -c SHA256SUMS.txt
+</code></pre>
+<p>Si la verificación es correcta, se mostrará un resultado similar a:</p>
+<pre><code class="language-text">chuspacalc: OK
+</code></pre>
+<h2 id="macos">macOS</h2>
+<p>Calcule el checksum del ejecutable:</p>
+<pre><code class="language-bash">shasum -a 256 chuspacalc
+</code></pre>
+<p>Compare el valor obtenido con el correspondiente en <code>SHA256SUMS.txt</code>.</p>
+<h2 id="windows-powershell">Windows (PowerShell)</h2>
+<p>Calcule el checksum mediante:</p>
+<pre><code class="language-powershell">Get-FileHash .\chuspacalc -Algorithm SHA256
+</code></pre>
+<p>Compare el valor mostrado con el registrado en <code>SHA256SUMS.txt</code>.</p>
+<hr />
+<h1 id="documentacion-relacionada">Documentación relacionada</h1>
+<ul>
+<li>README.md</li>
+<li>docs/guia-contribuidor-primeros-pasos.md</li>
+<li>docs/arquitectura.md</li>
+<li>pyproject.toml</li>
+</ul></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

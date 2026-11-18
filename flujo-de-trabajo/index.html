@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Flujo de Trabajo - ChuspaCalc</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">ChuspaCalc</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../instalacion/" class="nav-link">Instalación</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../configuracion/" class="nav-link">Configuración</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../arquitectura/" class="nav-link">Arquitectura</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../desarrollo-local/" class="nav-link">Desarrollo Local</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="./" class="nav-link active" aria-current="page">Flujo de Trabajo</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../casos-de-uso/" class="nav-link">Casos de Uso</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../testing/" class="nav-link">Testing</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../seguridad/" class="nav-link">Seguridad</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../preguntas-frecuentes/" class="nav-link">Preguntas Frecuentes</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../desarrollo-local/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../casos-de-uso/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#flujo-de-trabajo-con-git-forking-workflow-para-chuspacalc" class="nav-link">Flujo de trabajo con Git: Forking Workflow para ChuspaCalc</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#introduccion" class="nav-link">Introducción</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#diagrama-del-flujo-de-ramas" class="nav-link">Diagrama del flujo de ramas</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#1-hacer-fork-del-repositorio" class="nav-link">1. Hacer fork del repositorio</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#2-clonar-el-fork-en-la-computadora" class="nav-link">2. Clonar el fork en la computadora</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#3-sincronizar-el-proyecto-con-la-rama-dev" class="nav-link">3. Sincronizar el proyecto con la rama dev</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#4-crear-una-rama-de-trabajo" class="nav-link">4. Crear una rama de trabajo</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#5-crear-o-modificar-archivos" class="nav-link">5. Crear o modificar archivos</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#6-hacer-commit-de-los-cambios" class="nav-link">6. Hacer commit de los cambios</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#7-hacer-push-de-la-rama" class="nav-link">7. Hacer push de la rama</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#8-abrir-un-pull-request" class="nav-link">8. Abrir un Pull Request</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#9-errores-comunes-y-como-resolverlos" class="nav-link">9. Errores comunes y cómo resolverlos</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#10-recomendaciones-finales" class="nav-link">10. Recomendaciones finales</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#conclusion" class="nav-link">Conclusión</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="flujo-de-trabajo-con-git-forking-workflow-para-chuspacalc">Flujo de trabajo con Git: Forking Workflow para ChuspaCalc</h1>
+<h2 id="introduccion">Introducción</h2>
+<p>El <strong>Forking Workflow</strong> es una forma de trabajo colaborativo en GitHub donde cada integrante realiza una copia del repositorio principal, llamada <strong>fork</strong>.<br />
+Desde ese fork, cada persona puede trabajar en una rama propia, hacer cambios, subirlos a GitHub y proponerlos al proyecto principal mediante un <strong>Pull Request</strong>.</p>
+<p>Este flujo ayuda a mantener ordenado el trabajo del equipo y evita modificar directamente las ramas principales del repositorio original.</p>
+<hr />
+<h2 id="diagrama-del-flujo-de-ramas">Diagrama del flujo de ramas</h2>
+<pre><code class="language-text">Fork
+  ↓
+Rama feature/fix/docs
+  ↓
+Pull Request
+  ↓
+dev
+  ↓
+main
+</code></pre>
+<p>El flujo actual del proyecto sigue el recorrido:</p>
+<pre><code class="language-text">fork → rama-feature → PR → dev → main
+</code></pre>
+<hr />
+<h2 id="1-hacer-fork-del-repositorio">1. Hacer fork del repositorio</h2>
+<p>El primer paso es crear una copia del repositorio principal en nuestra cuenta de GitHub.</p>
+<h3 id="pasos">Pasos</h3>
+<ol>
+<li>Ingresar al repositorio principal del proyecto.</li>
+<li>Hacer clic en el botón <strong>Fork</strong>.</li>
+<li>Seleccionar nuestra cuenta como destino.</li>
+<li>Hacer clic en <strong>Create fork</strong>.</li>
+</ol>
+<p>Después de este paso, GitHub creará una copia del repositorio en nuestra cuenta personal.</p>
+<p><img alt="Captura del fork" src="../img/01-fork.png" /></p>
+<p><strong>Figura 1.</strong> Creación del fork del repositorio principal.</p>
+<hr />
+<h2 id="2-clonar-el-fork-en-la-computadora">2. Clonar el fork en la computadora</h2>
+<p>Una vez creado el fork, se debe clonar el repositorio en la computadora.</p>
+<pre><code class="language-bash">git clone https://github.com/TU-USUARIO/NOMBRE-DEL-REPOSITORIO.git
+</code></pre>
+<p>Luego se ingresa a la carpeta del proyecto:</p>
+<pre><code class="language-bash">cd NOMBRE-DEL-REPOSITORIO
+</code></pre>
+<p>También se recomienda agregar el repositorio original como remoto <code>upstream</code>:</p>
+<pre><code class="language-bash">git remote add upstream https://github.com/ORGANIZACION/NOMBRE-DEL-REPOSITORIO.git
+</code></pre>
+<hr />
+<h2 id="3-sincronizar-el-proyecto-con-la-rama-dev">3. Sincronizar el proyecto con la rama <code>dev</code></h2>
+<p>Antes de crear una nueva rama, es importante actualizar el proyecto con los últimos cambios del repositorio original.</p>
+<pre><code class="language-bash">git checkout dev
+git pull upstream dev
+</code></pre>
+<p>Esto permite trabajar sobre una base actualizada y evita conflictos innecesarios.</p>
+<hr />
+<h2 id="4-crear-una-rama-de-trabajo">4. Crear una rama de trabajo</h2>
+<p>La rama se crea con el siguiente comando:</p>
+<pre><code class="language-bash">git checkout -b docs/flujo-de-trabajo
+</code></pre>
+<p>Ejemplos de ramas según el tipo de tarea:</p>
+<pre><code class="language-bash">git checkout -b feat/calculadora
+git checkout -b fix/error-conversion
+git checkout -b docs/flujo-de-trabajo
+</code></pre>
+<p>Para verificar que estamos en la rama correcta:</p>
+<pre><code class="language-bash">git branch
+</code></pre>
+<p>Debe aparecer marcada con un asterisco:</p>
+<pre><code class="language-bash">* docs/flujo-de-trabajo
+</code></pre>
+<p><img alt="Captura de creación de rama" src="../img/02-crear-rama.png" /></p>
+<p><strong>Figura 2.</strong> Creación y verificación de la rama <code>docs/flujo-de-trabajo</code>.</p>
+<hr />
+<h2 id="5-crear-o-modificar-archivos">5. Crear o modificar archivos</h2>
+<p>En este caso, se debe crear el archivo:</p>
+<pre><code class="language-text">docs/flujo-de-trabajo.md
+</code></pre>
+<h2 id="6-hacer-commit-de-los-cambios">6. Hacer commit de los cambios</h2>
+<p>Primero se agregan los archivos modificados:</p>
+<pre><code class="language-bash">git add docs/flujo-de-trabajo.md docs/img/
+</code></pre>
+<p>Antes de realizar el commit, ejecutar las verificaciones automáticas:</p>
+<pre><code class="language-bash">pre-commit run --all-files
+</code></pre>
+<p>Si pre-commit realiza correcciones automáticas, volver a agregar los archivos:</p>
+<pre><code class="language-bash">git add docs/flujo-de-trabajo.md docs/img/
+</code></pre>
+<p>Luego se realiza el commit:</p>
+<pre><code class="language-bash">git commit -m &quot;chore: documentar el flujo de trabajo con Git&quot;
+</code></pre>
+<p>El commit guarda los cambios de forma local con un mensaje que describe lo realizado.</p>
+<hr />
+<h2 id="7-hacer-push-de-la-rama">7. Hacer push de la rama</h2>
+<p>Después de hacer el commit, se debe subir la rama al repositorio remoto.</p>
+<pre><code class="language-bash">git push -u origin docs/flujo-de-trabajo
+</code></pre>
+<p>El comando <code>push</code> envía los cambios desde la computadora hacia GitHub.</p>
+<p><img alt="Captura de commit y push" src="../img/03-commit-push.png" /></p>
+<p><strong>Figura 3.</strong> Commit de los cambios y subida de la rama a GitHub.</p>
+<hr />
+<h2 id="8-abrir-un-pull-request">8. Abrir un Pull Request</h2>
+<p>Cuando la rama ya está subida a GitHub, se debe abrir un <strong>Pull Request</strong> para proponer los cambios al repositorio principal.</p>
+<h3 id="pasos_1">Pasos</h3>
+<ol>
+<li>Entrar al repositorio en GitHub.</li>
+<li>Hacer clic en <strong>Compare &amp; pull request</strong>.</li>
+<li>Verificar que la rama destino sea <code>dev</code>.</li>
+<li>Verificar que la rama de origen sea:</li>
+</ol>
+<pre><code class="language-text">docs/flujo-de-trabajo
+</code></pre>
+<ol>
+<li>Completar la descripción del Pull Request.</li>
+<li>
+<p>Hacer clic en <strong>Create pull request</strong>.</p>
+</li>
+<li>
+<p>Verificar que las comprobaciones automáticas de CI se ejecuten correctamente.</p>
+</li>
+<li>Corregir cualquier error reportado por CI antes de solicitar la revisión del Pull Request.</li>
+</ol>
+<p><img alt="Captura del Pull Request" src="../img/04-pull-request.png" /></p>
+<p><strong>Figura 4.</strong> Creación del Pull Request desde la rama <code>docs/flujo-de-trabajo</code>.</p>
+<hr />
+<h2 id="9-errores-comunes-y-como-resolverlos">9. Errores comunes y cómo resolverlos</h2>
+<h3 id="error-1-trabajar-directamente-en-la-rama-dev-o-main">Error 1: Trabajar directamente en la rama <code>dev</code> o <code>main</code></h3>
+<p>Uno de los errores más comunes es hacer cambios directamente en una rama principal, como <code>dev</code> o <code>main</code>.</p>
+<p>Para verificar la rama actual:</p>
+<pre><code class="language-bash">git branch
+</code></pre>
+<p>Si estás en <code>dev</code> o <code>main</code>, crea una rama nueva antes de continuar:</p>
+<pre><code class="language-bash">git checkout -b docs/flujo-de-trabajo
+</code></pre>
+<p>De esta manera, los cambios quedan separados y se evita modificar directamente una rama principal.</p>
+<hr />
+<h3 id="error-2-olvidar-hacer-git-add-antes-del-commit">Error 2: Olvidar hacer <code>git add</code> antes del commit</h3>
+<p>A veces se intenta hacer commit, pero Git indica que no hay cambios agregados.</p>
+<p>Ejemplo del problema:</p>
+<pre><code class="language-bash">nothing added to commit
+</code></pre>
+<p>Solución:</p>
+<pre><code class="language-bash">git status
+git add docs/flujo-de-trabajo.md docs/img/
+git commit -m &quot;chore: documentar el flujo de trabajo con Git&quot;
+</code></pre>
+<p>El comando <code>git add</code> prepara los archivos para que puedan ser incluidos en el commit.</p>
+<hr />
+<h3 id="error-3-el-push-falla-porque-la-rama-no-existe-en-github">Error 3: El push falla porque la rama no existe en GitHub</h3>
+<p>Cuando se sube una rama nueva por primera vez, puede ser necesario usar <code>-u</code>.</p>
+<p>Solución:</p>
+<pre><code class="language-bash">git push -u origin docs/flujo-de-trabajo
+</code></pre>
+<p>La opción <code>-u</code> conecta la rama local con la rama remota, haciendo más fácil usar <code>git push</code> en el futuro.</p>
+<hr />
+<h3 id="error-4-el-fork-esta-desactualizado">Error 4: El fork está desactualizado</h3>
+<p>Si el repositorio principal tuvo cambios nuevos, el fork puede quedar desactualizado.</p>
+<p>Solución:</p>
+<pre><code class="language-bash">git checkout dev
+git pull upstream dev
+</code></pre>
+<p>Luego se puede crear una nueva rama actualizada:</p>
+<pre><code class="language-bash">git checkout -b docs/flujo-de-trabajo
+</code></pre>
+<p>Esto ayuda a evitar conflictos al momento de abrir el Pull Request.</p>
+<hr />
+<h2 id="10-recomendaciones-finales">10. Recomendaciones finales</h2>
+<ul>
+<li>Crear una rama nueva para cada issue.</li>
+<li>Usar nombres de ramas claros y relacionados con la tarea.</li>
+<li>Revisar los cambios con <code>git status</code> antes de hacer commit.</li>
+<li>Escribir mensajes de commit descriptivos.</li>
+<li>Subir la rama al fork usando <code>git push</code>.</li>
+<li>Abrir un Pull Request para que el equipo revise los cambios.</li>
+<li>No trabajar directamente sobre <code>dev</code> o <code>main</code>.</li>
+</ul>
+<hr />
+<h2 id="conclusion">Conclusión</h2>
+<p>El Forking Workflow permite colaborar de manera ordenada en ChuspaCalc.<br />
+Cada integrante trabaja desde su propio fork, crea una rama para cada tarea, realiza sus cambios, los sube a GitHub y finalmente abre un Pull Request para que el equipo pueda revisarlos antes de integrarlos al proyecto principal.</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
