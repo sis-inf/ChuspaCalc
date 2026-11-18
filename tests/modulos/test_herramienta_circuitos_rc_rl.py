@@ -4,7 +4,7 @@ Tests unitarios para las funciones de cálculo de circuitos RC y RL.
 
 import pytest
 
-from escuadra.modulos.electrica.herramienta_circuitos_rc_rl import (
+from chuspacalc.modulos.electrica.herramienta_circuitos_rc_rl import (
     herramienta_calcular_constante_tiempo_rc,
     herramienta_calcular_constante_tiempo_rl,
     herramienta_calcular_voltaje_carga_capacitor,
