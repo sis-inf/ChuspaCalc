@@ -1,6 +1,6 @@
 import pytest
 
-from escuadra.modulos.matematicas.financiera import (
+from chuspacalc.modulos.matematicas.financiera import (
     calcular_interes_compuesto,
     calcular_valor_futuro,
     calcular_valor_presente,

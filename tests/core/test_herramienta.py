@@ -3,9 +3,10 @@ Tests unitarios para la clase base Herramienta.
 """
 
 import pytest
+from PySide6.QtWidgets import QLabel, QWidget
+
 from chuspacalc.core.carrera import Carrera
 from chuspacalc.core.herramienta import Herramienta
-from PySide6.QtWidgets import QLabel, QWidget
 
 
 # Subclase válida para pruebas
@@ -33,6 +34,7 @@ def test_subclase_valida_instanciable():
 def test_subclase_sin_nombre_falla():
     # Omitir nombre debe lanzar error al definir la subclase
     with pytest.raises(ValueError):
+
         class HerramientaSinNombre(Herramienta):
             nombre = ""
             carrera = Carrera.SISTEMAS
@@ -45,6 +47,7 @@ def test_subclase_sin_nombre_falla():
 def test_subclase_sin_carrera_falla():
     # Omitir carrera debe lanzar error al definir la subclase
     with pytest.raises(ValueError):
+
         class HerramientaSinCarrera(Herramienta):
             nombre = "Sin carrera"
             carrera = None
@@ -57,6 +60,7 @@ def test_subclase_sin_carrera_falla():
 def test_subclase_sin_descripcion_falla():
     # Omitir descripcion debe lanzar error al definir la subclase
     with pytest.raises(ValueError):
+
         class HerramientaSinDescripcion(Herramienta):
             nombre = "Sin descripcion"
             carrera = Carrera.SISTEMAS
