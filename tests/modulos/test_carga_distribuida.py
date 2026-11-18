@@ -1,5 +1,4 @@
 import pytest
-
 from escuadra.modulos.civil.carga_distribuida import calcular_reacciones_carga_parcial
 
 

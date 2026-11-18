@@ -9,7 +9,7 @@ import math
 
 import pytest
 
-from escuadra.math.sistemas_lineales_nxn import resolver_sistema
+from chuspacalc.math.sistemas_lineales_nxn import resolver_sistema
 
 NO_FINITOS = [math.nan, math.inf, -math.inf]
 

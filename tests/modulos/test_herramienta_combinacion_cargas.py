@@ -1,7 +1,7 @@
 from PySide6.QtWidgets import QWidget
 
-from escuadra.core.carrera import Carrera
-from escuadra.modulos.civil.herramienta_combinacion_cargas import (
+from chuspacalc.core.carrera import Carrera
+from chuspacalc.modulos.civil.herramienta_combinacion_cargas import (
     HerramientaCombinacionCargas,
 )
 
@@ -32,9 +32,7 @@ def test_calcular_con_carga_muerta_10_y_viva_5(qtbot):
 
     herramienta._calcular()
 
-    assert herramienta._resultado.text() == (
-        "Carga última de diseño: 20.00 kN"
-    )
+    assert herramienta._resultado.text() == ("Carga última de diseño: 20.00 kN")
 
 
 def test_calcular_con_ambas_cargas_en_cero(qtbot):
@@ -47,6 +45,4 @@ def test_calcular_con_ambas_cargas_en_cero(qtbot):
 
     herramienta._calcular()
 
-    assert herramienta._resultado.text() == (
-        "Carga última de diseño: 0.00 kN"
-    )
+    assert herramienta._resultado.text() == ("Carga última de diseño: 0.00 kN")

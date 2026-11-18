@@ -2,7 +2,7 @@ import math
 
 import pytest
 
-from escuadra.modulos.electrica.potencia_trifasica import calcular_potencia_trifasica
+from chuspacalc.modulos.electrica.potencia_trifasica import calcular_potencia_trifasica
 
 
 def test_potencia_aparente_y_activa_con_factor_de_potencia_ocho_decimas():

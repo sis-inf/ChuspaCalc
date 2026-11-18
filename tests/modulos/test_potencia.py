@@ -4,7 +4,7 @@ Pruebas unitarias para el módulo de cálculo de potencia eléctrica.
 
 import pytest
 
-from escuadra.modulos.electrica.potencia import (
+from chuspacalc.modulos.electrica.potencia import (
     potencia_ir,
     potencia_vi,
     potencia_vr,

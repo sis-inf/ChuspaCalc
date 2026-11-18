@@ -2,7 +2,7 @@
 Pruebas unitarias para el enum Carrera.
 """
 
-from escuadra.core.carrera import Carrera
+from chuspacalc.core.carrera import Carrera
 
 
 def test_carrera_civil_tiene_codigo_y_etiqueta_correctos():
