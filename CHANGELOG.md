@@ -30,6 +30,7 @@ El script genera las entradas del changelog a partir de los commits desde el úl
 ### Changed
 - chore(changelog): actualización de módulos documentados en desarrollo
 - refactor(validation): normalización de validaciones numéricas, valores no finitos y contratos de entrada en módulos de cálculo
+- refactor(matrix): validación de matrices nulas o irregulares y escalares no finitos en operaciones matriciales (#1930).
 - refactor(typing): corrección de anotaciones, valores opcionales, parámetros y retornos para validar el paquete con mypy
 - refactor(packaging): consolidación del namespace `chuspacalc` manteniendo el shim de compatibilidad `escuadra`
 - chore(dependencies): incorporación de `pytest-qt` a las dependencias de desarrollo utilizadas por la suite y CI
