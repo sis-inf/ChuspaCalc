@@ -2,7 +2,7 @@ import re
 
 import pytest
 
-from escuadra.modulos.sistemas.karnaugh import (
+from chuspacalc.modulos.sistemas.karnaugh import (
     generar_mapa_karnaugh,
     simplificar_expresion,
 )

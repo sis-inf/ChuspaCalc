@@ -6,6 +6,7 @@ Tests unitarios para módulos avanzados de civil:
 """
 
 import pytest
+
 from chuspacalc.modulos.civil.area_seccion import (
     area_circular,
     area_circular_hueca,
@@ -32,18 +33,14 @@ def test_area_seccion_rectangular():
 
 def test_area_seccion_circular():
     # Área = pi * r²
-    assert area_circular(2) == pytest.approx(
-        4 * 3.141592653589793
-    )
+    assert area_circular(2) == pytest.approx(4 * 3.141592653589793)
 
 
 def test_area_seccion_circular_hueca():
     # Área = pi * (R² - r²)
     esperado = 3.141592653589793 * (5**2 - 3**2)
 
-    assert area_circular_hueca(5, 3) == pytest.approx(
-        esperado
-    )
+    assert area_circular_hueca(5, 3) == pytest.approx(esperado)
 
 
 def test_area_perfil_i():
@@ -86,14 +83,9 @@ def test_deflexion_viga_puntual_central():
         tipo_carga="puntual_central",
     )
 
-    esperado = (
-        (1000 * 4**3)
-        / (48 * 200000000000 * 0.0001)
-    ) * 1000
+    esperado = ((1000 * 4**3) / (48 * 200000000000 * 0.0001)) * 1000
 
-    assert resultado["deflexion_max"] == pytest.approx(
-        esperado
-    )
+    assert resultado["deflexion_max"] == pytest.approx(esperado)
 
     assert resultado["posicion"] == 2
 
@@ -107,14 +99,9 @@ def test_deflexion_viga_distribuida():
         tipo_carga="distribuida",
     )
 
-    esperado = (
-        (5 * 500 * 5**4)
-        / (384 * 200000000000 * 0.0002)
-    ) * 1000
+    esperado = ((5 * 500 * 5**4) / (384 * 200000000000 * 0.0002)) * 1000
 
-    assert resultado["deflexion_max"] == pytest.approx(
-        esperado
-    )
+    assert resultado["deflexion_max"] == pytest.approx(esperado)
 
 
 # ------------------------
@@ -141,9 +128,7 @@ def test_momento_flector_carga_distribuida():
 
     esperado = 10 * (4**2) / 8
 
-    assert resultado["momento_max"] == pytest.approx(
-        esperado
-    )
+    assert resultado["momento_max"] == pytest.approx(esperado)
 
 
 @pytest.mark.parametrize("no_finito", [float("nan"), float("inf"), float("-inf")])

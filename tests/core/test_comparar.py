@@ -3,7 +3,6 @@ Pruebas unitarias para el módulo comparar.py.
 """
 
 import pytest
-
 from escuadra.core.comparar import comparar_resultados
 
 
