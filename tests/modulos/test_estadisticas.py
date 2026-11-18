@@ -6,7 +6,7 @@ vacías y de datos insuficientes.
 
 import pytest
 
-from escuadra.modulos.matematicas.estadisticas import (
+from chuspacalc.modulos.matematicas.estadisticas import (
     calcular_desviacion_estandar,
     calcular_media,
     calcular_mediana,
@@ -84,11 +84,9 @@ def test_funciones_estadisticas_rechazan_datos_invalidos(funcion, datos):
 
 
 def test_calcular_moda_acepta_enteros_grandes():
-    numero_grande = 10 ** 400
+    numero_grande = 10**400
 
-    resultado = calcular_moda(
-        [numero_grande, numero_grande, 2]
-    )
+    resultado = calcular_moda([numero_grande, numero_grande, 2])
 
     assert resultado == [numero_grande]
 
@@ -96,8 +94,6 @@ def test_calcular_moda_acepta_enteros_grandes():
 def test_calcular_desviacion_estandar_muestral():
     datos = [1, 2, 3]
 
-    resultado = calcular_desviacion_estandar(
-        datos, poblacional=False
-    )
+    resultado = calcular_desviacion_estandar(datos, poblacional=False)
 
     assert resultado == pytest.approx(1.0)

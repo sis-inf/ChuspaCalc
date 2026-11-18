@@ -6,14 +6,17 @@ Pruebas para los wrappers de herramientas matemáticas:
 """
 
 import pytest
+from PySide6.QtWidgets import QApplication
+
 from chuspacalc.modulos.matematicas.herramienta_calculadora_cientifica import (
     HerramientaCalculadoraCientifica,
 )
 from chuspacalc.modulos.matematicas.herramienta_conversion_unidades import (
     HerramientaConversionUnidades,
 )
-from chuspacalc.modulos.matematicas.herramienta_sistemas_lineales import HerramientaSistemasLineales
-from PySide6.QtWidgets import QApplication
+from chuspacalc.modulos.matematicas.herramienta_sistemas_lineales import (
+    HerramientaSistemasLineales,
+)
 
 
 @pytest.fixture
@@ -42,11 +45,11 @@ class TestHerramientaConversionUnidades:
         qtbot.addWidget(widget)
 
         assert widget is not None
-        assert hasattr(herramienta, 'categoria_combo')
-        assert hasattr(herramienta, 'de_unidad_combo')
-        assert hasattr(herramienta, 'a_unidad_combo')
-        assert hasattr(herramienta, 'valor_input')
-        assert hasattr(herramienta, 'resultado_output')
+        assert hasattr(herramienta, "categoria_combo")
+        assert hasattr(herramienta, "de_unidad_combo")
+        assert hasattr(herramienta, "a_unidad_combo")
+        assert hasattr(herramienta, "valor_input")
+        assert hasattr(herramienta, "resultado_output")
 
     def test_conversion_lineal_longitud(self, app, qtbot):
         """Verifica la conversión lineal (longitud)"""
@@ -183,10 +186,10 @@ class TestHerramientaSistemasLineales:
         qtbot.addWidget(widget)
 
         assert widget is not None
-        assert hasattr(herramienta, '_spinbox')
-        assert hasattr(herramienta, '_inputs_A')
-        assert hasattr(herramienta, '_inputs_b')
-        assert hasattr(herramienta, '_resultado_label')
+        assert hasattr(herramienta, "_spinbox")
+        assert hasattr(herramienta, "_inputs_A")
+        assert hasattr(herramienta, "_inputs_b")
+        assert hasattr(herramienta, "_resultado_label")
 
     @pytest.mark.xfail(
         reason=(
