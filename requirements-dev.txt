@@ -1,5 +1,6 @@
 # dependencias de desarrollo
 pytest>=8.0
+pytest-qt>=4.5
 ruff>=0.4
 pre-commit>=4.6.2
 build>=1.6.1

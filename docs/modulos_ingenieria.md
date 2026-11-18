@@ -2,9 +2,9 @@
 
 ## 1. Propósito y alcance
 
-Este documento describe las ecuaciones, magnitudes, unidades y supuestos de los módulos de cálculo de **vigas, circuitos eléctricos, figuras geométricas, conversores y subredes IP** de Escuadra.
+Este documento describe las ecuaciones, magnitudes, unidades y supuestos de los módulos de cálculo de **vigas, circuitos eléctricos, figuras geométricas, conversores y subredes IP** de ChuspaCalc.
 
-La documentación se elaboró tomando como referencia la implementación disponible en `src/escuadra/modulos/`. Cuando una función no valida ni convierte explícitamente las unidades, se indica la convención de uso recomendada. El usuario debe introducir magnitudes compatibles entre sí: una fórmula numéricamente correcta puede producir un resultado incorrecto si se mezclan unidades.
+La documentación se elaboró tomando como referencia la implementación disponible en `src/chuspacalc/modulos/`. Cuando una función no valida ni convierte explícitamente las unidades, se indica la convención de uso recomendada. El usuario debe introducir magnitudes compatibles entre sí: una fórmula numéricamente correcta puede producir un resultado incorrecto si se mezclan unidades.
 
 ## 2. Convenciones generales de unidades
 
