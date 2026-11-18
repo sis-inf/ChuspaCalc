@@ -1,4 +1,4 @@
-from escuadra.io.exportador_latex import escapar_latex, exportar_tabla
+from chuspacalc.io.exportador_latex import escapar_latex, exportar_tabla
 
 
 def test_escapar_latex_escapa_porcentaje():

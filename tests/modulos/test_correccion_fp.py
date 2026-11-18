@@ -1,5 +1,4 @@
 import pytest
-
 from escuadra.modulos.electrica.correccion_fp import calcular_capacitancia_correccion
 
 

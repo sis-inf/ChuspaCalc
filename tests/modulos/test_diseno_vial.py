@@ -6,7 +6,7 @@ valores no válidos.
 
 import pytest
 
-from escuadra.modulos.civil.diseno_vial import (
+from chuspacalc.modulos.civil.diseno_vial import (
     ErrorDisenoVial,
     calcular_pendiente,
     calcular_peralte_curva,

@@ -6,7 +6,7 @@ import math
 
 import pytest
 
-from escuadra.modulos.civil.area_seccion import (
+from chuspacalc.modulos.civil.area_seccion import (
     area_circular,
     area_circular_hueca,
     area_perfil_i,
