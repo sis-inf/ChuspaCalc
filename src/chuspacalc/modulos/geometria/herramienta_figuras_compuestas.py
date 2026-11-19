@@ -32,7 +32,9 @@ Figuras = Sequence[Mapping[str, Any]]
 def _validar_numero(valor: object, nombre: str) -> None:
     """Verifica que `valor` sea un número real finito y mayor que cero."""
     if isinstance(valor, bool) or not isinstance(valor, Real):
-        raise ErrorValidacion(f"{nombre} debe ser numérico, se recibió {type(valor).__name__}.")
+        raise ErrorValidacion(
+            f"{nombre} debe ser numérico, se recibió {type(valor).__name__}."
+        )
     if not math.isfinite(valor):
         raise ErrorValidacion(f"{nombre} debe ser un valor finito, se recibió {valor}.")
     if valor <= 0:
@@ -59,7 +61,9 @@ def _validar_figuras(figuras: object) -> None:
 
         parametros = figura["parametros"]
         if not isinstance(parametros, Mapping) or not parametros:
-            raise ErrorValidacion(f"Figura {indice}: 'parametros' debe ser un mapeo no vacío.")
+            raise ErrorValidacion(
+                f"Figura {indice}: 'parametros' debe ser un mapeo no vacío."
+            )
 
         for nombre, valor in parametros.items():
             _validar_numero(valor, f"Figura {indice}: el parámetro '{nombre}'")
@@ -147,7 +151,9 @@ class HerramientaFigurasCompuestas(Herramienta):
             try:
                 figuras = json.loads(texto)
             except json.JSONDecodeError as error:
-                raise ErrorValidacion(f"El JSON ingresado no es válido: {error}") from error
+                raise ErrorValidacion(
+                    f"El JSON ingresado no es válido: {error}"
+                ) from error
 
             if tipo == "area":
                 res = self.ejecutar(figuras)
