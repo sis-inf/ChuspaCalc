@@ -30,55 +30,41 @@ def mostrar_error_contextualizado(parent, excepcion):
     nombre_error = type(excepcion).__name__
     mensaje = str(excepcion)
 
-    logger.warning(
-        "Excepción recibida: %s - %s",
-        nombre_error,
-        mensaje
-    )
+    logger.warning("Excepción recibida: %s - %s", nombre_error, mensaje)
 
     try:
         if nombre_error == "ErrorParametros":
-            mostrar_advertencia(
-                parent,
-                "Parámetros inválidos",
-                mensaje
-            )
+            mostrar_advertencia(parent, "Parámetros inválidos", mensaje)
 
         elif nombre_error == "ErrorCalculo":
             mostrar_error(
                 parent,
                 "Error de cálculo",
-                f"{mensaje}\n\nRevise los valores ingresados e intente nuevamente."
+                f"{mensaje}\n\nRevise los valores ingresados e intente nuevamente.",
             )
 
         elif nombre_error == "ErrorValidacion":
             mostrar_advertencia(
                 parent,
                 "Error de validación",
-                f"{mensaje}\n\nVerifique que los valores estén dentro del rango permitido."
+                f"{mensaje}\n\nVerifique que los valores estén dentro del rango permitido.",
             )
 
         else:
             logger.error(
                 "Error inesperado: %s",
                 mensaje,
-                exc_info=(
-                    type(excepcion),
-                    excepcion,
-                    excepcion.__traceback__
-                )
+                exc_info=(type(excepcion), excepcion, excepcion.__traceback__),
             )
 
             mostrar_error(
                 parent,
                 "Error inesperado",
-                "Ocurrió un problema al realizar la operación. Intente nuevamente."
+                "Ocurrió un problema al realizar la operación. Intente nuevamente.",
             )
 
     except Exception:
-        logger.exception(
-            "No se pudo mostrar el mensaje de error en la interfaz."
-        )
+        logger.exception("No se pudo mostrar el mensaje de error en la interfaz.")
 
 
 def confirmar(parent, titulo, mensaje):
@@ -100,4 +86,3 @@ def confirmar(parent, titulo, mensaje):
 
     # Comprueba qué botón seleccionó el usuario.
     return caja.clickedButton() == boton_si
-
