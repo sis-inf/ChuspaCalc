@@ -19,7 +19,18 @@ class HerramientaEjecutable(Protocol):
 
 
 def _formatear_resultado(resultado: Resultado, formato: str) -> Resultado:
-    """Convierte el resultado de un handler al formato solicitado."""
+    """
+    Convierte el resultado de un handler al formato solicitado.
+
+    Args:
+        resultado: Valor devuelto por el handler. Solo se formatea si es un diccionario.
+        formato: Formato de salida: 'dict', 'json' o 'texto'.
+
+    Returns:
+        El mismo resultado si el formato es 'dict' o si no es un diccionario.
+        En otro caso, una cadena JSON ('json') o una cadena con una linea
+        'clave: valor' por entrada ('texto').
+    """
     if formato == "dict" or not isinstance(resultado, dict):
         return resultado
     if formato == "json":
