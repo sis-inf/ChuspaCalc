@@ -44,6 +44,7 @@ El script genera las entradas del changelog a partir de los commits desde el úl
 - chore(ui): normalización de señales y slots y captura segura de errores en `widget_herramienta` (#2044)
 - test(chuspacalc): migrar imports históricos a chuspacalc en test_correccion_fp.py (#1873)
 - refactor(transformaciones): validación de parámetros numéricos finitos, detección de resultados desbordados mediante ErrorValidacion y anotaciones de tipo completas (#1987).
+- chore(ui): normalización de señales y captura segura de errores en `dialogo_acerca_de` (#2036)
 
 ### Security
 - security(evaluators): sustitución de evaluación dinámica insegura por evaluadores matemáticos y lógicos con listas blancas y límites de complejidad
