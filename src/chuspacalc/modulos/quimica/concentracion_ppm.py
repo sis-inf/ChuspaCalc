@@ -1,11 +1,9 @@
-
 """
 Calculadora de concentración de una sustancia en partes por millón (ppm).
 
 Fórmula:
     ppm = (masa_soluto / masa_total) * 1_000_000
 """
-
 
 import math
 

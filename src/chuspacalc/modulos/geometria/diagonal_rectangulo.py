@@ -1,4 +1,3 @@
-
 import math
 
 
@@ -19,10 +18,7 @@ def calcular_diagonal_rectangulo(base, altura):
                     positivas o finitas.
     """
 
-    dimensiones = {
-        "base": base,
-        "altura": altura
-    }
+    dimensiones = {"base": base, "altura": altura}
 
     for nombre, valor in dimensiones.items():
         if isinstance(valor, bool) or not isinstance(valor, (int, float)):

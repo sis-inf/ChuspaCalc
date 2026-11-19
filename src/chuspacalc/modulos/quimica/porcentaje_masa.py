@@ -1,4 +1,3 @@
-
 """
 Calculadora del porcentaje en masa de un componente en una mezcla.
 
@@ -8,7 +7,6 @@ Fórmula:
 Unidades:
     Ambas masas deben utilizar la misma unidad.
 """
-
 
 import math
 
@@ -54,9 +52,7 @@ def calcular_porcentaje_masa(
     try:
         porcentaje = (masa_soluto / masa_total) * 100
     except OverflowError as error:
-        raise ErrorValidacion(
-            "El resultado está fuera del rango permitido."
-        ) from error
+        raise ErrorValidacion("El resultado está fuera del rango permitido.") from error
 
     if not math.isfinite(porcentaje):
         raise ErrorValidacion("El porcentaje calculado debe ser finito.")

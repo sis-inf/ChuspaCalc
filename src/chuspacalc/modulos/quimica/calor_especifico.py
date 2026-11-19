@@ -1,11 +1,9 @@
-
 """
 Calculadora del calor específico de una sustancia.
 
 Fórmula:
     c = Q / (m * ΔT)
 """
-
 
 import math
 
@@ -46,10 +44,7 @@ def calcular_calor_especifico(calor, masa, cambio_temperatura):
         raise ValueError("El cambio de temperatura no puede ser cero.")
 
     try:
-        calor_especifico = (
-            float(calor) /
-            (float(masa) * float(cambio_temperatura))
-        )
+        calor_especifico = float(calor) / (float(masa) * float(cambio_temperatura))
     except OverflowError as error:
         raise ValueError("El resultado está fuera del rango permitido.") from error
 

@@ -1,5 +1,3 @@
-from chuspacalc.core.carrera import Carrera
-from chuspacalc.core.herramienta import Herramienta
 from PySide6.QtWidgets import (
     QHBoxLayout,
     QLabel,
@@ -10,6 +8,13 @@ from PySide6.QtWidgets import (
     QTableWidgetItem,
     QVBoxLayout,
     QWidget,
+)
+
+from chuspacalc.core.carrera import Carrera
+from chuspacalc.core.herramienta import Herramienta
+from chuspacalc.modulos.sistemas.karnaugh import (
+    generar_mapa_karnaugh,
+    simplificar_expresion,
 )
 
 
@@ -60,8 +65,8 @@ class HerramientaKarnaugh(Herramienta):
                     resultado.setText("Ingresa minterms ej: 0,1,3")
                     return
 
-                minterms = [int(x.strip()) for x in texto.split(",") if x.strip()!= ""]
-                total = 2 ** num_vars
+                minterms = [int(x.strip()) for x in texto.split(",") if x.strip() != ""]
+                total = 2**num_vars
                 tabla_verdad = [0] * total
                 for m in minterms:
                     if 0 <= m < total:

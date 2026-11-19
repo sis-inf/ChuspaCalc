@@ -1,10 +1,3 @@
-from chuspacalc.core.carrera import Carrera
-from chuspacalc.core.herramienta import Herramienta
-from chuspacalc.modulos.geometria.transformaciones import (
-    escalar_punto,
-    rotar_punto,
-    trasladar_punto,
-)
 from PySide6.QtWidgets import (
     QComboBox,
     QDoubleSpinBox,
@@ -16,16 +9,21 @@ from PySide6.QtWidgets import (
     QWidget,
 )
 
+from chuspacalc.core.carrera import Carrera
+from chuspacalc.core.herramienta import Herramienta
+from chuspacalc.modulos.geometria.transformaciones import (
+    escalar_punto,
+    rotar_punto,
+    trasladar_punto,
+)
+
 
 class HerramientaTransformaciones(Herramienta):
     nombre = "Transformaciones Geométricas"
 
     carrera = Carrera.GEOMETRIA
 
-    descripcion = (
-        "Permite rotar, trasladar y escalar puntos "
-        "en el plano cartesiano."
-    )
+    descripcion = "Permite rotar, trasladar y escalar puntos " "en el plano cartesiano."
 
     def crear_widget(self) -> QWidget:
         widget = QWidget()
@@ -71,12 +69,8 @@ class HerramientaTransformaciones(Herramienta):
         self.rotacion_centro_y.setDecimals(4)
 
         formulario_rotacion.addRow("Ángulo (grados):", self.angulo)
-        formulario_rotacion.addRow(
-            "Centro X:", self.rotacion_centro_x
-        )
-        formulario_rotacion.addRow(
-            "Centro Y:", self.rotacion_centro_y
-        )
+        formulario_rotacion.addRow("Centro X:", self.rotacion_centro_x)
+        formulario_rotacion.addRow("Centro Y:", self.rotacion_centro_y)
 
         self.parametros.addWidget(pagina_rotacion)
 
@@ -94,12 +88,8 @@ class HerramientaTransformaciones(Herramienta):
         self.desplazamiento_y.setDecimals(4)
         self.desplazamiento_y.setValue(1.0)
 
-        formulario_traslacion.addRow(
-            "Desplazamiento X (dx):", self.desplazamiento_x
-        )
-        formulario_traslacion.addRow(
-            "Desplazamiento Y (dy):", self.desplazamiento_y
-        )
+        formulario_traslacion.addRow("Desplazamiento X (dx):", self.desplazamiento_x)
+        formulario_traslacion.addRow("Desplazamiento Y (dy):", self.desplazamiento_y)
 
         self.parametros.addWidget(pagina_traslacion)
 
@@ -120,15 +110,9 @@ class HerramientaTransformaciones(Herramienta):
         self.escalado_centro_y.setRange(-1000000, 1000000)
         self.escalado_centro_y.setDecimals(4)
 
-        formulario_escalado.addRow(
-            "Factor de escala:", self.factor_escala
-        )
-        formulario_escalado.addRow(
-            "Centro X:", self.escalado_centro_x
-        )
-        formulario_escalado.addRow(
-            "Centro Y:", self.escalado_centro_y
-        )
+        formulario_escalado.addRow("Factor de escala:", self.factor_escala)
+        formulario_escalado.addRow("Centro X:", self.escalado_centro_x)
+        formulario_escalado.addRow("Centro Y:", self.escalado_centro_y)
 
         self.parametros.addWidget(pagina_escalado)
 
@@ -141,12 +125,8 @@ class HerramientaTransformaciones(Herramienta):
         self.resultado.setWordWrap(True)
         layout.addWidget(self.resultado)
 
-        self.selector.currentIndexChanged.connect(
-            self.parametros.setCurrentIndex
-        )
-        self.boton_aplicar.clicked.connect(
-            self.aplicar_transformacion
-        )
+        self.selector.currentIndexChanged.connect(self.parametros.setCurrentIndex)
+        self.boton_aplicar.clicked.connect(self.aplicar_transformacion)
 
         return widget
 
@@ -190,7 +170,5 @@ class HerramientaTransformaciones(Herramienta):
             )
 
         self.resultado.setText(
-            f"Resultado: X = {resultado[0]:.4f}, "
-            f"Y = {resultado[1]:.4f}"
+            f"Resultado: X = {resultado[0]:.4f}, " f"Y = {resultado[1]:.4f}"
         )
-

@@ -1,4 +1,3 @@
-
 """
 Calculadora de variación porcentual entre dos valores.
 """
@@ -36,9 +35,7 @@ def calcular_variacion_porcentual(valor_inicial, valor_final):
     if valor_inicial == 0:
         raise ValueError("El valor inicial no puede ser cero.")
 
-    variacion = (
-        (valor_final - valor_inicial) / valor_inicial
-    ) * 100
+    variacion = ((valor_final - valor_inicial) / valor_inicial) * 100
 
     if not math.isfinite(variacion):
         raise ValueError("El resultado debe ser finito.")

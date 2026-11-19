@@ -1,4 +1,3 @@
-
 """
 Calculadora de la media ponderada de un conjunto de valores.
 """

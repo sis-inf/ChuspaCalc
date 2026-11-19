@@ -91,6 +91,4 @@ def reflejar_punto(
     if eje_normalizado == "origen":
         return (-x, -y)
 
-    raise ValueError(
-        f"Eje '{eje}' no valido. Solo se admiten 'x', 'y' y 'origen'."
-    )
+    raise ValueError(f"Eje '{eje}' no valido. Solo se admiten 'x', 'y' y 'origen'.")
