@@ -20,7 +20,9 @@ def _validar_numero(valor: object, nombre: str) -> float:
     except OverflowError:
         raise ErrorValidacion(f"'{nombre}' es demasiado grande para operar.") from None
     if not math.isfinite(numero):
-        raise ErrorValidacion(f"'{nombre}' debe ser un numero finito (sin NaN ni infinitos).")
+        raise ErrorValidacion(
+            f"'{nombre}' debe ser un numero finito (sin NaN ni infinitos)."
+        )
     return numero
 
 
@@ -37,7 +39,9 @@ def _validar_punto(punto: object, nombre: str) -> Punto:
 def _verificar_resultado(resultado: Punto) -> Punto:
     """Evita devolver NaN o infinitos producidos por desbordamiento."""
     if not all(math.isfinite(c) for c in resultado):
-        raise ErrorValidacion("El resultado esta fuera del rango numerico representable.")
+        raise ErrorValidacion(
+            "El resultado esta fuera del rango numerico representable."
+        )
     return resultado
 
 
@@ -154,4 +158,6 @@ def reflejar_punto(
     if eje_normalizado == "origen":
         return (-x, -y)
 
-    raise ErrorValidacion(f"Eje '{eje}' no valido. Solo se admiten 'x', 'y' y 'origen'.")
+    raise ErrorValidacion(
+        f"Eje '{eje}' no valido. Solo se admiten 'x', 'y' y 'origen'."
+    )
