@@ -13,6 +13,7 @@ Uso:
 from __future__ import annotations
 
 import json
+from typing import Any
 
 from chuspacalc.core.herramienta import Herramienta
 from chuspacalc.core.registry import descubrir_herramientas
@@ -29,11 +30,20 @@ _TIPO_JSON: dict[str, str] = {
 
 
 def _tipo_json(anotacion: str) -> str:
-    """Convierte una anotación de tipo Python a tipo JSON Schema."""
+    """
+    Convierte una anotación de tipo Python a tipo JSON Schema.
+
+    Args:
+        anotacion: Nombre del tipo Python (por ejemplo ``"int"``).
+
+    Returns:
+        Tipo JSON Schema equivalente (por ejemplo ``"integer"``). Si la
+        anotación no está en el mapa, devuelve ``"string"``.
+    """
     return _TIPO_JSON.get(anotacion, "string")
 
 
-def _herramienta_a_funcion(herramienta: type[Herramienta]) -> dict:
+def _herramienta_a_funcion(herramienta: type[Herramienta]) -> dict[str, Any]:
     """
     Convierte una clase Herramienta al formato de función
     compatible con function-calling de LLMs.
@@ -48,6 +58,15 @@ def _herramienta_a_funcion(herramienta: type[Herramienta]) -> dict:
             "required": [ ... ]
         }
     }
+
+    Args:
+        herramienta: Clase de la herramienta a convertir. Se leen sus
+            atributos ``nombre``, ``descripcion`` y ``carrera``, y la
+            firma de sus métodos públicos.
+
+    Returns:
+        Diccionario con las claves ``name``, ``description`` y
+        ``parameters`` en formato function-calling.
     """
     import inspect
 
@@ -68,7 +87,7 @@ def _herramienta_a_funcion(herramienta: type[Herramienta]) -> dict:
     descripcion = herramienta.descripcion
     carrera = herramienta.carrera.value if herramienta.carrera else "general"
 
-    propiedades: dict = {}
+    propiedades: dict[str, Any] = {}
     requeridos: list[str] = []
 
     # Inspeccionar métodos públicos que no sean crear_widget ni metadatos
@@ -82,7 +101,7 @@ def _herramienta_a_funcion(herramienta: type[Herramienta]) -> dict:
             continue
 
         sig = inspect.signature(metodo)
-        params_metodo: dict = {}
+        params_metodo: dict[str, Any] = {}
         req_metodo: list[str] = []
 
         for param_nombre, param in sig.parameters.items():
@@ -134,7 +153,7 @@ def _herramienta_a_funcion(herramienta: type[Herramienta]) -> dict:
     }
 
 
-def exportar_esquema_llm() -> list[dict]:
+def exportar_esquema_llm() -> list[dict[str, Any]]:
     """
     Exporta el esquema de todas las herramientas del registry
     en formato function-calling compatible con LLMs.
