@@ -12,9 +12,9 @@ from types import ModuleType
 from typing import Sequence
 
 import chuspacalc as _canonical_package
-from chuspacalc import __version__
+from chuspacalc import __version__ as __version__
 
-__all__: list[str] = []
+__all__ = ["__version__"]
 # Mantiene disponible la inspección del paquete para herramientas y plugins.
 __path__ = list(_canonical_package.__path__)
 

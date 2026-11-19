@@ -29,7 +29,9 @@ def test_cargar_herramienta_con_error_muestra_error():
         def crear_widget(self):
             raise RuntimeError("Error de prueba")
 
-    with patch("chuspacalc.ui.cargador_herramienta.mostrar_error") as mock_mostrar_error:
+    with patch(
+        "chuspacalc.ui.cargador_herramienta.mostrar_error"
+    ) as mock_mostrar_error:
         cargador.cargar(HerramientaConError)
 
     mock_mostrar_error.assert_called_once()

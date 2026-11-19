@@ -1,11 +1,9 @@
-
 """
 Calculadora del discriminante de una ecuación cuadrática.
 
 Fórmula:
     D = b² - 4ac
 """
-
 
 import math
 
@@ -39,7 +37,7 @@ def calcular_discriminante(a, b, c):
         raise ValueError("El coeficiente principal a no puede ser cero.")
 
     try:
-        discriminante = b ** 2 - 4 * a * c
+        discriminante = b**2 - 4 * a * c
     except OverflowError as error:
         raise ValueError("El resultado está fuera del rango permitido.") from error
 

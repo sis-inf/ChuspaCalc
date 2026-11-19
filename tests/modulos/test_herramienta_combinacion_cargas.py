@@ -32,9 +32,7 @@ def test_calcular_con_carga_muerta_10_y_viva_5(qtbot):
 
     herramienta._calcular()
 
-    assert herramienta._resultado.text() == (
-        "Carga última de diseño: 20.00 kN"
-    )
+    assert herramienta._resultado.text() == ("Carga última de diseño: 20.00 kN")
 
 
 def test_calcular_con_ambas_cargas_en_cero(qtbot):
@@ -47,6 +45,4 @@ def test_calcular_con_ambas_cargas_en_cero(qtbot):
 
     herramienta._calcular()
 
-    assert herramienta._resultado.text() == (
-        "Carga última de diseño: 0.00 kN"
-    )
+    assert herramienta._resultado.text() == ("Carga última de diseño: 0.00 kN")

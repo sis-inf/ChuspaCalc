@@ -1,4 +1,3 @@
-
 """
 Calculadora de reactancia capacitiva.
 
@@ -45,7 +44,9 @@ def calcular_reactancia_capacitiva(frecuencia, capacitancia):
             raise ValueError("Los valores deben ser finitos.") from error
 
         if valor <= 0:
-            raise ValueError("La frecuencia y la capacitancia deben ser mayores que cero.")
+            raise ValueError(
+                "La frecuencia y la capacitancia deben ser mayores que cero."
+            )
 
     try:
         denominador = 2 * math.pi * frecuencia * capacitancia

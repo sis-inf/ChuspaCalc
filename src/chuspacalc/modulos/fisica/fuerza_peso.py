@@ -1,11 +1,9 @@
-
 """
 Calculadora de fuerza peso de un cuerpo.
 
 Fórmula:
     P = m * g
 """
-
 
 import math
 

@@ -1,11 +1,9 @@
-
 """
 Calculadora del calor absorbido o cedido por una sustancia.
 
 Fórmula:
     Q = m * c * ΔT
 """
-
 
 import math
 
@@ -43,11 +41,7 @@ def calcular_calor(masa, calor_especifico, cambio_temperatura):
         raise ValueError("La masa y el calor específico deben ser positivos.")
 
     try:
-        calor = (
-            float(masa)
-            * float(calor_especifico)
-            * float(cambio_temperatura)
-        )
+        calor = float(masa) * float(calor_especifico) * float(cambio_temperatura)
     except OverflowError as error:
         raise ValueError("El resultado está fuera del rango permitido.") from error
 

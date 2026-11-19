@@ -1,4 +1,3 @@
-
 import math
 from numbers import Real
 
@@ -37,9 +36,7 @@ def calcular_punto_equilibrio(costos_fijos, precio_unitario, costo_variable):
     margen_contribucion = precio_unitario - costo_variable
 
     if margen_contribucion <= 0:
-        raise ValueError(
-            "El precio unitario debe ser mayor que el costo variable."
-        )
+        raise ValueError("El precio unitario debe ser mayor que el costo variable.")
 
     punto_equilibrio = costos_fijos / margen_contribucion
 

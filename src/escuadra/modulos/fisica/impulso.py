@@ -1,8 +1,6 @@
-
 """
 Calculadora de impulso mecánico.
 """
-
 
 import math
 

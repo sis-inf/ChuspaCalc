@@ -1,10 +1,18 @@
 import threading
 
-from chuspacalc.ui.mensajes import mostrar_error_contextualizado
-from chuspacalc.ui.progress import ProgressIndicator
 from PySide6.QtCore import Slot
 from PySide6.QtGui import QFont
-from PySide6.QtWidgets import QApplication, QFrame, QLabel, QPushButton, QVBoxLayout, QWidget
+from PySide6.QtWidgets import (
+    QApplication,
+    QFrame,
+    QLabel,
+    QPushButton,
+    QVBoxLayout,
+    QWidget,
+)
+
+from chuspacalc.ui.mensajes import mostrar_error_contextualizado
+from chuspacalc.ui.progress import ProgressIndicator
 
 
 class WidgetHerramienta(QWidget):

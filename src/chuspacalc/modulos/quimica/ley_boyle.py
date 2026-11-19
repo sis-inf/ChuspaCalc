@@ -1,4 +1,3 @@
-
 """
 Calculadora del volumen final de un gas mediante la ley de Boyle.
 
@@ -6,7 +5,6 @@ Fórmula:
     P1 * V1 = P2 * V2
     V2 = (P1 * V1) / P2
 """
-
 
 import math
 
@@ -44,9 +42,9 @@ def calcular_volumen_boyle(presion_inicial, volumen_inicial, presion_final):
             raise ValueError("Las presiones y el volumen deben ser positivos.")
 
     try:
-        volumen_final = (
-            float(presion_inicial) * float(volumen_inicial)
-        ) / float(presion_final)
+        volumen_final = (float(presion_inicial) * float(volumen_inicial)) / float(
+            presion_final
+        )
     except OverflowError as error:
         raise ValueError("El resultado está fuera del rango permitido.") from error
 

@@ -1,4 +1,3 @@
-
 import math
 from numbers import Real
 
@@ -19,7 +18,7 @@ def volumen_cubo(lado):
     if lado <= 0:
         raise ValueError("La dimensión debe ser mayor que 0")
 
-    return float(lado ** 3)
+    return float(lado**3)
 
 
 def volumen_esfera(radio):
@@ -29,7 +28,7 @@ def volumen_esfera(radio):
     if radio <= 0:
         raise ValueError("La dimensión debe ser mayor que 0")
 
-    return float((4 / 3) * math.pi * radio ** 3)
+    return float((4 / 3) * math.pi * radio**3)
 
 
 def volumen_cilindro(radio, altura):
@@ -40,7 +39,7 @@ def volumen_cilindro(radio, altura):
     if radio <= 0 or altura <= 0:
         raise ValueError("Las dimensiones deben ser mayores que 0")
 
-    return float(math.pi * radio ** 2 * altura)
+    return float(math.pi * radio**2 * altura)
 
 
 def volumen_cono(radio, altura):
@@ -51,7 +50,7 @@ def volumen_cono(radio, altura):
     if radio <= 0 or altura <= 0:
         raise ValueError("Las dimensiones deben ser mayores que 0")
 
-    return float((1 / 3) * math.pi * radio ** 2 * altura)
+    return float((1 / 3) * math.pi * radio**2 * altura)
 
 
 def volumen_paralelepipedo(largo, ancho, alto):
