@@ -39,6 +39,7 @@ El script genera las entradas del changelog a partir de los commits desde el úl
 - chore(quality): normalización selectiva del código y las pruebas para Ruff y Black
 - refactor(csv_parser): validación de rutas y opciones de lectura, con detección de CSV malformado y compatibilidad con Latin-1 (#1923).
 - chore(core): agregados docstrings y type hints en la clase base `Herramienta` (#1919)
+- chore(core): agregados docstrings y type hints en el despachador `dispatcher` (#1917)
 
 ### Security
 - security(evaluators): sustitución de evaluación dinámica insegura por evaluadores matemáticos y lógicos con listas blancas y límites de complejidad
