@@ -19,5 +19,13 @@ Closes #
 - [ ] Actualicé la documentación correspondiente
 - [ ] Mis cambios no rompen funcionalidad existente
 - [ ] Agregué tests si corresponde
+- [ ] Actualicé `CHANGELOG.md` porque el cambio es funcional, de seguridad, incompatible o agrega una funcionalidad
+- [ ] O bien, el cambio es solo de pruebas/documentación, o justifiqué abajo una exención para que un colaborador autorice `skip-changelog`
+
+## CHANGELOG / solicitud de exención
+
+Indica la entrada añadida o explica por qué el cambio no altera el comportamiento.
+La etiqueta `skip-changelog` solo puede ser autorizada por un colaborador; no evita
+ninguna otra validación de CI.
 
 ## Evidencia / capturas
