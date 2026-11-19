@@ -8,7 +8,7 @@ import math
 
 import pytest
 
-from escuadra.modulos.matematicas.numeros_complejos import (
+from chuspacalc.modulos.matematicas.numeros_complejos import (
     conjugado,
     dividir,
     modulo,

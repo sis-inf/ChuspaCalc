@@ -203,6 +203,35 @@ Desde GitHub, abre un Pull Request con esta configuración:
 - Referencia siempre el issue relacionado (`Closes #N`)
 - Evita incluir cambios no relacionados
 - Añade evidencia si aplica (logs, capturas, etc.)
+
+## Política de CHANGELOG
+
+Todo PR que modifique `src/chuspacalc/` debe incluir una entrada breve bajo
+`[Unreleased]` en `CHANGELOG.md` cuando introduce:
+
+- una funcionalidad nueva;
+- una corrección funcional;
+- una validación que cambia el comportamiento observable;
+- una corrección de seguridad; o
+- un cambio incompatible.
+
+Los cambios exclusivos de pruebas o documentación no requieren una entrada. Los
+cambios exclusivamente de formato y las refactorizaciones internas sin cambio
+funcional pueden quedar exentos, pero el autor debe justificarlo en el PR y un
+colaborador con permisos debe autorizarlo aplicando la etiqueta `skip-changelog`.
+La etiqueta no puede ser aplicada por el estudiante para evitar la validación ni
+reemplaza las demás comprobaciones de CI.
+
+Si el issue limita los archivos autorizados, se consideran también autorizados:
+
+- las pruebas específicas necesarias para demostrar sus criterios; y
+- `CHANGELOG.md`, únicamente cuando esta política exige una entrada.
+
+No agregues `CHANGELOG.md` a un cambio que no lo requiere solo para superar CI.
+Después de aplicar o retirar `skip-changelog`, GitHub Actions ejecutará nuevamente
+la comprobación. La entrada manual bajo `[Unreleased]` debe ser concisa y compatible
+con Conventional Commits; `git-cliff` se reserva para la preparación de versiones
+por los mantenedores, evitando regenerar el archivo completo en cada PR.
 ---
 
 # Convención de ramas

@@ -1,8 +1,9 @@
+from PySide6.QtWidgets import QWidget
+
 from chuspacalc.core.carrera import Carrera
 from chuspacalc.modulos.geometria.herramienta_resolucion_triangulos import (
     HerramientaResolucionTriangulos,
 )
-from PySide6.QtWidgets import QWidget
 
 
 def test_metadatos_devuelve_nombre_y_carrera():

@@ -3,6 +3,7 @@ Tests unitarios para las funciones de complemento a 2.
 """
 
 import pytest
+
 from chuspacalc.modulos.sistemas.complemento_a_2 import (
     complemento_a_decimal,
     decimal_a_complemento,

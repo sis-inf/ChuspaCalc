@@ -31,7 +31,7 @@ class TestConstructorMenu:
 
         callback = MagicMock()
 
-        with patch('chuspacalc.ui.constructor_menu.QAction') as MockQAction:
+        with patch("chuspacalc.ui.constructor_menu.QAction") as MockQAction:
             mock_action = MagicMock()
             MockQAction.return_value = mock_action
 
@@ -58,7 +58,7 @@ class TestConstructorMenu:
 
         callback = MagicMock()
 
-        with patch('chuspacalc.ui.constructor_menu.QAction') as MockQAction:
+        with patch("chuspacalc.ui.constructor_menu.QAction") as MockQAction:
             mock_action = MagicMock()
             MockQAction.return_value = mock_action
 
@@ -78,7 +78,7 @@ class TestConstructorMenu:
 
         callback = MagicMock()
 
-        with patch('chuspacalc.ui.constructor_menu.QAction') as MockQAction:
+        with patch("chuspacalc.ui.constructor_menu.QAction") as MockQAction:
             mock_action = MagicMock()
             MockQAction.return_value = mock_action
 
@@ -105,7 +105,7 @@ class TestConstructorMenu:
 
         callback = MagicMock()
 
-        with patch('chuspacalc.ui.constructor_menu.QAction') as MockQAction:
+        with patch("chuspacalc.ui.constructor_menu.QAction") as MockQAction:
             mock_action = MagicMock()
             MockQAction.return_value = mock_action
 
@@ -133,7 +133,7 @@ class TestConstructorMenu:
 
         callback = MagicMock()
 
-        with patch('chuspacalc.ui.constructor_menu.QAction') as MockQAction:
+        with patch("chuspacalc.ui.constructor_menu.QAction") as MockQAction:
             mock_action = MagicMock()
             MockQAction.return_value = mock_action
 
@@ -158,7 +158,7 @@ class TestConstructorMenu:
 
         callback = MagicMock()
 
-        with patch('chuspacalc.ui.constructor_menu.QAction') as MockQAction:
+        with patch("chuspacalc.ui.constructor_menu.QAction") as MockQAction:
             mock_action = MagicMock()
             MockQAction.return_value = mock_action
 

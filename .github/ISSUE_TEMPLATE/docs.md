@@ -13,5 +13,10 @@ labels: "docs"
 - [ ]
 - [ ]
 
+## Alcance autorizado
+
+Indicar archivos de documentación. Los cambios exclusivos de documentación no
+requieren `CHANGELOG.md`.
+
 ## Rama sugerida
 `docs/nombre-descriptivo`
