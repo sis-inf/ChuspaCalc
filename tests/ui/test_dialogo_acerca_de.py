@@ -7,6 +7,7 @@ from PySide6.QtCore import Qt
 from PySide6.QtWidgets import QApplication, QLabel, QWidget
 
 from chuspacalc import __version__
+from chuspacalc.ui import dialogo_acerca_de as modulo
 from chuspacalc.ui.dialogo_acerca_de import mostrar_acerca_de
 
 
@@ -81,7 +82,8 @@ class TestDialogoAcercaDe:
         assert "Universidad Técnica de Oruro" in texto
         assert "Documentación técnica" in texto
         dialogo.findChildren.assert_called_once_with(QLabel)
-        etiqueta.setOpenExternalLinks.assert_called_once_with(True)
+        etiqueta.setOpenExternalLinks.assert_called_once_with(False)
+        etiqueta.linkActivated.connect.assert_called_once()
 
     def test_mostrar_acerca_de_titulo(self, app, cuadro_mensaje):
         """Verifica que el diálogo tiene el título correcto"""
@@ -90,3 +92,39 @@ class TestDialogoAcercaDe:
         mostrar_acerca_de()
 
         dialogo.setWindowTitle.assert_called_once_with("Acerca de ChuspaCalc")
+
+
+class TestAbrirEnlace:
+    """Pruebas del slot que abre los enlaces del dialogo."""
+
+    def test_enlace_valido_abre_navegador(self, app):
+        """Un enlace https se envia al navegador del sistema."""
+        with patch.object(modulo, "QDesktopServices") as escritorio:
+            escritorio.openUrl.return_value = True
+
+            modulo._abrir_enlace("https://example.com")
+
+            escritorio.openUrl.assert_called_once()
+
+    def test_esquema_invalido_muestra_error(self, app):
+        """Un enlace que no es http ni https se rechaza con un mensaje."""
+        with (
+            patch.object(modulo, "QDesktopServices") as escritorio,
+            patch.object(modulo, "mostrar_error_contextualizado") as error,
+        ):
+            modulo._abrir_enlace("file:///etc/passwd")
+
+            escritorio.openUrl.assert_not_called()
+            error.assert_called_once()
+
+    def test_openurl_falla_muestra_advertencia(self, app):
+        """Si el sistema no puede abrir el enlace, se avisa al usuario."""
+        with (
+            patch.object(modulo, "QDesktopServices") as escritorio,
+            patch.object(modulo, "mostrar_advertencia") as aviso,
+        ):
+            escritorio.openUrl.return_value = False
+
+            modulo._abrir_enlace("https://example.com")
+
+            aviso.assert_called_once()
