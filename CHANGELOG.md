@@ -3,7 +3,7 @@
 Todos los cambios notables de este proyecto serán documentados en este archivo.
 
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/es/1.1.0/)
-y este proyecto sigue el versionado [SemVer](https://semver.org/lang/es/).
+y este proyecto sigue el versionado [SemVer](https://semver.org/lang/es/).2034
 
 ## Generación automática
 
@@ -45,6 +45,7 @@ El script genera las entradas del changelog a partir de los commits desde el úl
 - test(chuspacalc): migrar imports históricos a chuspacalc en test_correccion_fp.py (#1873)
 - refactor(transformaciones): validación de parámetros numéricos finitos, detección de resultados desbordados mediante ErrorValidacion y anotaciones de tipo completas (#1987).
 - chore(ui): normalización de señales y captura segura de errores en `cargador_herramienta`, mostrando un widget informativo cuando falla la carga de una herramienta (#2034)
+- chore(ui): normalización de señales y captura segura de errores en `dialogo_comparar_historial` (#2037)
 
 ### Security
 - security(evaluators): sustitución de evaluación dinámica insegura por evaluadores matemáticos y lógicos con listas blancas y límites de complejidad
