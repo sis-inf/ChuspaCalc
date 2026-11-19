@@ -68,7 +68,9 @@ class DialogoCompararHistorial(QDialog):
         self._conectar_senales()
 
     @staticmethod
-    def _validar_entradas(entrada1: Mapping[str, Any], entrada2: Mapping[str, Any]) -> None:
+    def _validar_entradas(
+        entrada1: Mapping[str, Any], entrada2: Mapping[str, Any]
+    ) -> None:
         """Comprueba que ambas entradas sean mapeos antes de mostrarlas.
 
         Raises:
@@ -76,7 +78,9 @@ class DialogoCompararHistorial(QDialog):
         """
         for numero, entrada in ((1, entrada1), (2, entrada2)):
             if not isinstance(entrada, Mapping):
-                raise ErrorValidacion(f"La entrada {numero} del historial no es válida.")
+                raise ErrorValidacion(
+                    f"La entrada {numero} del historial no es válida."
+                )
 
     def _conectar_senales(self) -> None:
         """Conecta las señales de la interfaz con sus slots.

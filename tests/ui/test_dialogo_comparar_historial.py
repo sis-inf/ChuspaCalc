@@ -89,4 +89,7 @@ class TestDialogoCompararHistorial:
 
     def test_formatear_entrada_vacia(self):
         """Una entrada vacía devuelve el mensaje de datos no disponibles."""
-        assert DialogoCompararHistorial._formatear_entrada({}) == "No hay datos disponibles."
+        assert (
+            DialogoCompararHistorial._formatear_entrada({})
+            == "No hay datos disponibles."
+        )
