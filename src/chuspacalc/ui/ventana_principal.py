@@ -108,9 +108,13 @@ class VentanaPrincipal(QMainWindow):
         for idx, atajo in enumerate(self._atajos_herramientas_recientes):
             # Cada atajo ejecuta el callback a través de _ejecutar_atajo_reciente,
             # que captura errores para que no escapen del bucle de eventos de Qt.
-            atajo.activated.connect(lambda i=idx: self._ejecutar_atajo_reciente(callback, i))
+            atajo.activated.connect(
+                lambda i=idx: self._ejecutar_atajo_reciente(callback, i)
+            )
 
-    def _ejecutar_atajo_reciente(self, callback: Callable[[int], None], indice: int) -> None:
+    def _ejecutar_atajo_reciente(
+        self, callback: Callable[[int], None], indice: int
+    ) -> None:
         """
         Ejecuta el callback de un atajo reciente capturando cualquier error.
 
