@@ -1,6 +1,6 @@
 import pytest
 
-from escuadra.io.csv_parser import parse_csv
+from chuspacalc.io.csv_parser import parse_csv
 
 
 def test_parse_csv_con_encabezados_devuelve_diccionarios(tmp_path):

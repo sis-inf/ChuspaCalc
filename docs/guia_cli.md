@@ -4,12 +4,10 @@ Referencia rápida para invocar las herramientas de ChuspaCalc desde la terminal
 Complementa a [cli-referencia.md](cli-referencia.md), [cli-modo-interactivo.md](cli-modo-interactivo.md)
 y [cli-autocompletado.md](cli-autocompletado.md).
 
-> **Estado actual:** el CLI todavía no arranca en `dev`. El código del CLI importa
-> el paquete `chuspacalc`, pero en `src/` el paquete sigue llamándose `escuadra`,
-> así que cualquier comando termina con `ModuleNotFoundError: No module named 'chuspacalc'`.
-> Además, `cli_interactivo.py` importa `obtener_herramientas` de `chuspacalc.registry`,
-> un módulo que todavía no existe. Las salidas esperadas de esta guía salen de leer
-> `src/escuadra/cli.py` y van a valer cuando se resuelvan esos dos puntos.
+> **Estado actual:** el CLI utiliza el paquete `chuspacalc` y permite
+> consultar la ayuda general y los comandos disponibles.
+> Algunas herramientas todavía presentan errores de importación,
+> por lo que no todas están disponibles.
 
 ## Sintaxis general
 
@@ -67,7 +65,7 @@ pensado `chuspacalc interactivo`, y mientras tanto se usa la interfaz gráfica.
 | Ingeniería de Sistemas e Informática (`sistemas`) | `"Complemento a 2"`, `"Conversión de bases"`, `"Mapas de Karnaugh"`, `"Tabla ASCII"`, `"Tablas de verdad"` |
 
 `chuspacalc listar` siempre muestra la lista actualizada, porque se arma al vuelo
-con las clases `Herramienta` de los archivos `herramienta_*.py` de `src/escuadra/modulos/`.
+con las clases `Herramienta` de los archivos `herramienta_*.py` de `src/chuspacalc/modulos/`.
 
 ## Formatos de salida y exportación
 

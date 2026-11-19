@@ -4,7 +4,7 @@ Pruebas unitarias para circuito_serie_paralelo.py.
 
 import pytest
 
-from escuadra.modulos.electrica.circuito_serie_paralelo import (
+from chuspacalc.modulos.electrica.circuito_serie_paralelo import (
     resistencia_paralelo,
     resistencia_serie,
 )

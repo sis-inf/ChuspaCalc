@@ -21,3 +21,8 @@ labels: "bug"
 
 ## Evidencia
 [Capturas, logs]
+
+## Alcance autorizado
+
+Indicar archivos funcionales. También se autorizan pruebas específicas y
+`CHANGELOG.md` cuando la corrección cambia el comportamiento observable.
