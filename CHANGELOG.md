@@ -37,13 +37,10 @@ El script genera las entradas del changelog a partir de los commits desde el úl
 - refactor(coordenadas): validación de coordenadas finitas, radio polar y límites numéricos mediante ErrorValidacion (#1978).
 - chore(dependencies): incorporación de `pytest-qt` a las dependencias de desarrollo utilizadas por la suite y CI
 - chore(quality): normalización selectiva del código y las pruebas para Ruff y Black
-<<<<<<< HEAD
-- chore(ui): normalización de señales y slots y captura segura de errores en `widget_herramienta` (#2044)
-=======
 - refactor(csv_parser): validación de rutas y opciones de lectura, con detección de CSV malformado y compatibilidad con Latin-1 (#1923).
 - chore(core): agregados docstrings y type hints en la clase base `Herramienta` (#1919)
 - chore(core): agregados docstrings y type hints en el despachador `dispatcher` (#1917)
->>>>>>> upstream/dev
+- chore(ui): normalización de señales y slots y captura segura de errores en `widget_herramienta` (#2044)
 
 ### Security
 - security(evaluators): sustitución de evaluación dinámica insegura por evaluadores matemáticos y lógicos con listas blancas y límites de complejidad
