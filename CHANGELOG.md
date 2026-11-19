@@ -34,6 +34,7 @@ El script genera las entradas del changelog a partir de los commits desde el úl
 - refactor(packaging): consolidación del namespace `chuspacalc` manteniendo el shim de compatibilidad `escuadra`
 - chore(dependencies): incorporación de `pytest-qt` a las dependencias de desarrollo utilizadas por la suite y CI
 - chore(quality): normalización selectiva del código y las pruebas para Ruff y Black
+- chore(ui): normalización de señales y slots y captura segura de errores en `widget_herramienta` (#2044)
 
 ### Security
 - security(evaluators): sustitución de evaluación dinámica insegura por evaluadores matemáticos y lógicos con listas blancas y límites de complejidad
