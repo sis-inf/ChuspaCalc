@@ -16,5 +16,10 @@ labels: "security"
 - [ ]
 - [ ]
 
+## Alcance autorizado
+
+Indicar archivos funcionales y pruebas. Las correcciones de seguridad deben añadir
+una entrada bajo `[Unreleased]` sin revelar detalles explotables.
+
 ## Rama sugerida
 `security/nombre-descriptivo`

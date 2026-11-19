@@ -15,6 +15,11 @@ labels: "feat"
 - [ ]
 - [ ]
 
+## Alcance autorizado
+
+Indicar archivos funcionales y pruebas. Las nuevas funcionalidades deben añadir una
+entrada breve bajo `[Unreleased]` en `CHANGELOG.md`; ese archivo queda autorizado.
+
 ## Rama sugerida
 `feat/nombre-descriptivo`
 
