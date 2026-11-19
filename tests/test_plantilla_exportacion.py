@@ -5,7 +5,8 @@ actualización de opciones y la copia independiente de la plantilla.
 """
 
 import pytest
-from escuadra.io.plantilla_exportacion import PlantillaExportacion
+
+from chuspacalc.io.plantilla_exportacion import PlantillaExportacion
 
 
 def test_valores_por_defecto():
