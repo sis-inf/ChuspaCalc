@@ -110,6 +110,9 @@ class CargadorHerramienta:
             self._widget_actual = widget
 
         except Exception as error:
+            # Captura segura: cualquier fallo de validación o de creación del
+            # widget se registra, se avisa con un diálogo y se deja un widget
+            # informativo en el panel central en lugar de un área vacía.
             logger.error(f"Error al cargar herramienta: {error}", exc_info=True)
 
             mostrar_error(
@@ -117,6 +120,12 @@ class CargadorHerramienta:
                 "Error al cargar herramienta",
                 str(error),
             )
+
+            try:
+                self._mostrar_widget_error(f"No se pudo cargar la herramienta: {error}")
+            except Exception:
+                # Si la propia ventana falla, no propagamos el error a la UI.
+                logger.error("No se pudo mostrar el widget de error", exc_info=True)
 
     def herramienta_actual(self):
         """
