@@ -28,6 +28,7 @@ El script genera las entradas del changelog a partir de los commits desde el úl
 - feat(viga): agregado módulo de cálculo para vigas
 
 ### Changed
+- chore(utils): documentación y anotaciones de tipos en logging_config (#2048).
 - chore(changelog): actualización de módulos documentados en desarrollo
 - refactor(validation): normalización de validaciones numéricas, valores no finitos y contratos de entrada en módulos de cálculo
 - refactor(matrix): validación de matrices nulas o irregulares y escalares no finitos en operaciones matriciales (#1930).
