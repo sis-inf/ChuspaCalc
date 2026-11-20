@@ -49,6 +49,7 @@ El script genera las entradas del changelog a partir de los commits desde el úl
 - chore(converter): documentación de módulo y docstrings en formato estándar con Args y Returns, y corrección del ejemplo de celsius_to_fahrenheit (#2046).
 - chore(ui): normalización de señales y captura segura de errores en `dialogo_comparar_historial` (#2037)
 - refactor(geometria): validar parámetros numéricos y tipado en diagonal_rectangulo (#1979).
+- refactor(conversor_masa): validación de parámetros numéricos, unidades y resultados finitos mediante ErrorValidacion (#1995).
 
 ### Security
 - security(evaluators): sustitución de evaluación dinámica insegura por evaluadores matemáticos y lógicos con listas blancas y límites de complejidad
