@@ -2,8 +2,13 @@
 Operaciones básicas de matrices usando listas de listas.
 """
 
+import math
+from collections.abc import Sequence
 
-def sumar(a: list[list[float]], b: list[list[float]]) -> list[list[float]]:
+Matriz = Sequence[Sequence[float]]
+
+
+def sumar(a: Matriz, b: Matriz) -> list[list[float]]:
     """
     Suma dos matrices de iguales dimensiones.
 
@@ -15,7 +20,7 @@ def sumar(a: list[list[float]], b: list[list[float]]) -> list[list[float]]:
         Nueva matriz con la suma elemento a elemento.
 
     Raises:
-        ValueError: Si las dimensiones no son compatibles.
+        ValueError: Si alguna matriz es inválida o las dimensiones son incompatibles.
 
     Examples:
         >>> sumar([[1, 2], [3, 4]], [[5, 6], [7, 8]])
@@ -25,7 +30,7 @@ def sumar(a: list[list[float]], b: list[list[float]]) -> list[list[float]]:
     return [[a[i][j] + b[i][j] for j in range(len(a[0]))] for i in range(len(a))]
 
 
-def restar(a: list[list[float]], b: list[list[float]]) -> list[list[float]]:
+def restar(a: Matriz, b: Matriz) -> list[list[float]]:
     """
     Resta dos matrices de iguales dimensiones.
 
@@ -37,7 +42,7 @@ def restar(a: list[list[float]], b: list[list[float]]) -> list[list[float]]:
         Nueva matriz con la resta elemento a elemento.
 
     Raises:
-        ValueError: Si las dimensiones no son compatibles.
+        ValueError: Si alguna matriz es inválida o las dimensiones son incompatibles.
 
     Examples:
         >>> restar([[5, 6], [7, 8]], [[1, 2], [3, 4]])
@@ -47,7 +52,7 @@ def restar(a: list[list[float]], b: list[list[float]]) -> list[list[float]]:
     return [[a[i][j] - b[i][j] for j in range(len(a[0]))] for i in range(len(a))]
 
 
-def multiplicar(a: list[list[float]], b: list[list[float]]) -> list[list[float]]:
+def multiplicar(a: Matriz, b: Matriz) -> list[list[float]]:
     """
     Multiplica dos matrices (producto matricial).
 
@@ -59,7 +64,7 @@ def multiplicar(a: list[list[float]], b: list[list[float]]) -> list[list[float]]
         Nueva matriz de dimensiones m x p.
 
     Raises:
-        ValueError: Si las dimensiones no son compatibles para multiplicación.
+        ValueError: Si alguna matriz es inválida o las dimensiones son incompatibles.
 
     Examples:
         >>> multiplicar([[1, 2], [3, 4]], [[5, 6], [7, 8]])
@@ -83,15 +88,34 @@ def multiplicar(a: list[list[float]], b: list[list[float]]) -> list[list[float]]
     ]
 
 
-def _validar_matriz(m: list[list[float]]) -> None:
-    """Valida que la matriz no esté vacía y que sus filas tengan igual longitud."""
-    if not m or not m[0]:
+def _es_numero_finito(valor: object) -> bool:
+    """Acepta enteros y flotantes finitos, excluyendo valores booleanos."""
+    if isinstance(valor, int):
+        return not isinstance(valor, bool)
+    return isinstance(valor, float) and math.isfinite(valor)
+
+
+def _validar_matriz(m: Matriz) -> None:
+    """Exige una matriz rectangular no vacía con valores numéricos finitos."""
+    if not isinstance(m, Sequence) or isinstance(m, (str, bytes, bytearray)):
+        raise ValueError("La matriz debe ser una secuencia de filas.")
+    if not m:
         raise ValueError("La matriz no puede estar vacía.")
-    if any(len(fila) != len(m[0]) for fila in m):
+    if any(
+        not isinstance(fila, Sequence) or isinstance(fila, (str, bytes, bytearray))
+        for fila in m
+    ):
+        raise ValueError("Cada fila de la matriz debe ser una secuencia.")
+    columnas = len(m[0])
+    if not columnas:
+        raise ValueError("La matriz no puede estar vacía.")
+    if any(len(fila) != columnas for fila in m):
         raise ValueError("Todas las filas deben tener la misma longitud.")
+    if any(not _es_numero_finito(elemento) for fila in m for elemento in fila):
+        raise ValueError("Todos los elementos de la matriz deben ser números finitos.")
 
 
-def _validar_dimensiones(a: list[list[float]], b: list[list[float]]) -> None:
+def _validar_dimensiones(a: Matriz, b: Matriz) -> None:
     """Valida que dos matrices tengan las mismas dimensiones."""
     _validar_matriz(a)
     _validar_matriz(b)
@@ -101,7 +125,7 @@ def _validar_dimensiones(a: list[list[float]], b: list[list[float]]) -> None:
         )
 
 
-def transponer(a: list[list[float]]) -> list[list[float]]:
+def transponer(a: Matriz) -> list[list[float]]:
     """
     Calcula la transpuesta de una matriz.
 
@@ -112,24 +136,17 @@ def transponer(a: list[list[float]]) -> list[list[float]]:
         Nueva matriz de dimensiones n x m con filas y columnas intercambiadas.
 
     Raises:
-        ValueError: Si la matriz está vacía o sus filas no tienen todas
-            la misma longitud.
+        ValueError: Si la matriz está vacía, no es rectangular o tiene valores inválidos.
 
     Examples:
         >>> transponer([[1, 2, 3], [4, 5, 6]])
         [[1, 4], [2, 5], [3, 6]]
     """
-    if not a:
-        raise ValueError("No se puede transponer una matriz vacía.")
-
-    columnas = len(a[0])
-    if any(len(fila) != columnas for fila in a):
-        raise ValueError("Todas las filas deben tener la misma longitud.")
-
-    return [[a[i][j] for i in range(len(a))] for j in range(columnas)]
+    _validar_matriz(a)
+    return [list(columna) for columna in zip(*a)]
 
 
-def multiplicar_escalar(a: list[list[float]], escalar: float) -> list[list[float]]:
+def multiplicar_escalar(a: Matriz, escalar: float) -> list[list[float]]:
     """
     Multiplica cada elemento de una matriz por un escalar.
 
@@ -140,8 +157,14 @@ def multiplicar_escalar(a: list[list[float]], escalar: float) -> list[list[float
     Returns:
         Nueva matriz con cada elemento multiplicado por ``escalar``.
 
+    Raises:
+        ValueError: Si la matriz es inválida o el escalar no es un número finito.
+
     Examples:
         >>> multiplicar_escalar([[1.0, -2.0], [3.0, 4.0]], 2.5)
         [[2.5, -5.0], [7.5, 10.0]]
     """
+    _validar_matriz(a)
+    if not _es_numero_finito(escalar):
+        raise ValueError("El escalar debe ser un número finito.")
     return [[elemento * escalar for elemento in fila] for fila in a]
