@@ -35,20 +35,14 @@ def calcular_diagonal_rectangulo(
         try:
             es_finito = math.isfinite(valor)
         except OverflowError as error:
-            raise ErrorValidacion(
-                f"La {nombre} debe ser positiva y finita."
-            ) from error
+            raise ErrorValidacion(f"La {nombre} debe ser positiva y finita.") from error
 
         if not es_finito or valor <= 0:
-            raise ErrorValidacion(
-                f"La {nombre} debe ser positiva y finita."
-            )
+            raise ErrorValidacion(f"La {nombre} debe ser positiva y finita.")
 
     diagonal = math.hypot(base, altura)
 
     if not math.isfinite(diagonal):
-        raise ErrorValidacion(
-            "La diagonal calculada debe ser finita."
-        )
+        raise ErrorValidacion("La diagonal calculada debe ser finita.")
 
     return diagonal

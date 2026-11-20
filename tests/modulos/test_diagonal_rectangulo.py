@@ -1,4 +1,3 @@
-
 import pytest
 
 from chuspacalc.modulos.geometria.diagonal_rectangulo import (
