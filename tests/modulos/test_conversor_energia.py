@@ -5,7 +5,8 @@ y el manejo de valores negativos y unidades desconocidas.
 """
 
 import pytest
-from escuadra.modulos.matematicas.conversor_energia import convertir_energia
+
+from chuspacalc.modulos.matematicas.conversor_energia import convertir_energia
 
 
 def test_convertir_julios_a_kilojulios():
