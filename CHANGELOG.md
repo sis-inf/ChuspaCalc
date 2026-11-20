@@ -46,6 +46,7 @@ El script genera las entradas del changelog a partir de los commits desde el úl
 - refactor(transformaciones): validación de parámetros numéricos finitos, detección de resultados desbordados mediante ErrorValidacion y anotaciones de tipo completas (#1987).
 - chore(ui): normalización de señales y captura segura de errores en `dialogo_acerca_de` (#2036)
 - chore(ui): normalización de señales y captura segura de errores en `cargador_herramienta`, mostrando un widget informativo cuando falla la carga de una herramienta (#2034)
+- chore(ui): normalización de señales y captura segura de errores en `dialogo_comparar_historial` (#2037)
 
 ### Security
 - security(evaluators): sustitución de evaluación dinámica insegura por evaluadores matemáticos y lógicos con listas blancas y límites de complejidad
@@ -60,6 +61,7 @@ El script genera las entradas del changelog a partir de los commits desde el úl
 - fix(tests): corrección de la colección de pytest y adición de pruebas de regresión para seguridad, tipado, compatibilidad y módulos integrados
 - fix(packaging): inclusión de módulos descubiertos dinámicamente y de los módulos estudiantiles conservados bajo el namespace histórico
 - fix(pyinstaller): exclusión selectiva de bibliotecas ICU incompatibles procedentes de `OpenAI.CodexPrimaryRuntime` al construir el ejecutable Qt
+- fix(utils): `validar_numero` rechaza `nan`, `inf` y `-inf` y se agregan pruebas de IO Unicode y de portapapeles con aislamiento de `QApplication` (#2045).
 
 ## [0.1.0] - 2026-04-19
 
