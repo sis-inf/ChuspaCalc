@@ -3,7 +3,8 @@ Pruebas unitarias para el módulo comparar.py.
 """
 
 import pytest
-from escuadra.core.comparar import comparar_resultados
+
+from chuspacalc.core.comparar import comparar_resultados
 
 
 def test_comparar_resultados_equivalentes_con_tolerancia_por_defecto():
