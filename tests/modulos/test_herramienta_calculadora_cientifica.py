@@ -39,9 +39,7 @@ def test_rechaza_modo_angular_invalido(calculadora, modo):
         ("ln(-5)", "ln"),
     ],
 )
-def test_dominio_de_funciones_lanza_error_validacion(
-    calculadora, expresion, funcion
-):
+def test_dominio_de_funciones_lanza_error_validacion(calculadora, expresion, funcion):
     with pytest.raises(ErrorValidacion, match=f"dominio de {funcion}"):
         calculadora.evaluar_expresion(expresion)
 
