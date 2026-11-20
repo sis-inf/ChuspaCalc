@@ -46,6 +46,7 @@ El script genera las entradas del changelog a partir de los commits desde el úl
 - refactor(transformaciones): validación de parámetros numéricos finitos, detección de resultados desbordados mediante ErrorValidacion y anotaciones de tipo completas (#1987).
 - chore(ui): normalización de señales y captura segura de errores en `dialogo_acerca_de` (#2036)
 - chore(ui): normalización de señales y captura segura de errores en `cargador_herramienta`, mostrando un widget informativo cuando falla la carga de una herramienta (#2034)
+- refactor(herramienta_financiera): validación de capital, tasa y períodos mediante ErrorValidacion, con tope de períodos y anotaciones de tipo completas (#2005).
 
 ### Security
 - security(evaluators): sustitución de evaluación dinámica insegura por evaluadores matemáticos y lógicos con listas blancas y límites de complejidad
