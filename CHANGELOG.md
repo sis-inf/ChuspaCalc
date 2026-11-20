@@ -28,6 +28,7 @@ El script genera las entradas del changelog a partir de los commits desde el úl
 - feat(viga): agregado módulo de cálculo para vigas
 
 ### Changed
+- refactor(conversor_velocidad): validación de parámetros numéricos, unidades y resultados finitos mediante ErrorValidacion (#1998).
 - chore(changelog): actualización de módulos documentados en desarrollo
 - refactor(validation): normalización de validaciones numéricas, valores no finitos y contratos de entrada en módulos de cálculo
 - refactor(matrix): validación de matrices nulas o irregulares y escalares no finitos en operaciones matriciales (#1930).
