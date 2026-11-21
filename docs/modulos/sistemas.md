@@ -259,7 +259,7 @@ Total     = 2^(32 - 24) - 2 = 254
 **Uso desde código:**
 
 ```python
-from escuadra.modulos.sistemas.calculadora_subred import calcular_subred
+from chuspacalc.modulos.sistemas.calculadora_subred import calcular_subred
 
 calcular_subred("192.168.1.0", "24")
 # {"red": "192.168.1.0", "broadcast": "192.168.1.255", "mascara": "255.255.255.0",

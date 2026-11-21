@@ -6,7 +6,6 @@ entradas no finitas (NaN, inf y -inf) y conservan los resultados válidos.
 import math
 
 import pytest
-
 from escuadra.modulos.electrica.caida_tension import calcular_caida
 from escuadra.modulos.electrica.circuito_serie_paralelo import (
     capacitancia_paralelo,
