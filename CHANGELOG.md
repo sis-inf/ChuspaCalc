@@ -28,6 +28,7 @@ El script genera las entradas del changelog a partir de los commits desde el úl
 - feat(viga): agregado módulo de cálculo para vigas
 
 ### Changed
+- chore(utils): documentación y anotaciones de tipos en logging_config (#2048).
 - chore(changelog): actualización de módulos documentados en desarrollo
 - refactor(validation): normalización de validaciones numéricas, valores no finitos y contratos de entrada en módulos de cálculo
 - refactor(matrix): validación de matrices nulas o irregulares y escalares no finitos en operaciones matriciales (#1930).
@@ -46,10 +47,12 @@ El script genera las entradas del changelog a partir de los commits desde el úl
 - refactor(transformaciones): validación de parámetros numéricos finitos, detección de resultados desbordados mediante ErrorValidacion y anotaciones de tipo completas (#1987).
 - chore(ui): normalización de señales y captura segura de errores en `dialogo_acerca_de` (#2036)
 - chore(ui): normalización de señales y captura segura de errores en `cargador_herramienta`, mostrando un widget informativo cuando falla la carga de una herramienta (#2034)
+- refactor(calculadora_cientifica): validación de expresión y modo angular, errores de dominio de funciones mediante ErrorValidacion y anotaciones de tipo completas (#2003).
 - chore(converter): documentación de módulo y docstrings en formato estándar con Args y Returns, y corrección del ejemplo de celsius_to_fahrenheit (#2046).
 - chore(ui): normalización de señales y captura segura de errores en `dialogo_comparar_historial` (#2037)
 - refactor(geometria): validar parámetros numéricos y tipado en diagonal_rectangulo (#1979).
 - refactor(conversor_temperatura): validación de tipos numéricos, NaN e infinitos mediante ErrorValidacion y anotaciones de tipo completas (#1997).
+- refactor(matematicas): validar parámetros numéricos y tipado en conversor_energia (#1992).
 
 ### Security
 - security(evaluators): sustitución de evaluación dinámica insegura por evaluadores matemáticos y lógicos con listas blancas y límites de complejidad
