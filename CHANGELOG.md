@@ -53,6 +53,7 @@ El script genera las entradas del changelog a partir de los commits desde el úl
 - refactor(geometria): validar parámetros numéricos y tipado en diagonal_rectangulo (#1979).
 - refactor(conversor_temperatura): validación de tipos numéricos, NaN e infinitos mediante ErrorValidacion y anotaciones de tipo completas (#1997).
 - refactor(matematicas): validar parámetros numéricos y tipado en conversor_energia (#1992).
+- refactor(conversor_velocidad): validación de tipos numéricos, NaN, infinitos y unidades mediante ErrorValidacion y anotaciones de tipo completas (#1998).
 
 ### Security
 - security(evaluators): sustitución de evaluación dinámica insegura por evaluadores matemáticos y lógicos con listas blancas y límites de complejidad
