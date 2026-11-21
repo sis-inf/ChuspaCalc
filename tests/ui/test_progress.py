@@ -119,3 +119,53 @@ class TestProgressIndicator:
 
             assert indicator._activo is False
             mock_print.assert_called_with("\n✔ terminado")
+
+    def test_progress_indicator_start_es_idempotente(self):
+        """Verifica que un segundo start no crea otro hilo"""
+        indicator = ProgressIndicator("Test")
+
+        with patch("builtins.print"):
+            with patch("threading.Thread") as mock_thread:
+                indicator.start()
+                indicator.start()
+
+        mock_thread.assert_called_once()
+        assert mock_thread.return_value.start.call_count == 1
+
+    def test_progress_indicator_hilo_es_daemon(self):
+        """Verifica que el hilo se crea como daemon"""
+        indicator = ProgressIndicator("Test")
+
+        with patch("builtins.print"):
+            with patch("threading.Thread") as mock_thread:
+                indicator.start()
+
+        assert mock_thread.call_args.kwargs["daemon"] is True
+
+    def test_progress_indicator_hilo_se_detiene_si_falla_la_salida(self):
+        """Verifica que el hilo se detiene y registra el error si print falla"""
+        indicator = ProgressIndicator("Test")
+
+        with patch("builtins.print"):
+            with patch("threading.Thread") as mock_thread:
+                indicator.start()
+
+        ejecutar = mock_thread.call_args.kwargs["target"]
+
+        with patch("builtins.print", side_effect=ValueError("stream cerrado")):
+            with patch("chuspacalc.ui.progress.logger") as mock_logger:
+                ejecutar()
+
+        assert indicator._activo is False
+        mock_logger.warning.assert_called_once()
+
+    def test_progress_indicator_stop_sin_simbolo_unicode(self):
+        """Verifica que stop imprime sin el símbolo si la consola no lo soporta"""
+        indicator = ProgressIndicator("Test")
+        error = UnicodeEncodeError("ascii", "✔", 0, 1, "ordinal not in range")
+
+        with patch("builtins.print", side_effect=[error, None]) as mock_print:
+            indicator.stop()
+
+        assert mock_print.call_count == 2
+        mock_print.assert_called_with("\nterminado")
