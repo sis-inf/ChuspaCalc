@@ -51,6 +51,7 @@ El script genera las entradas del changelog a partir de los commits desde el úl
 - chore(converter): documentación de módulo y docstrings en formato estándar con Args y Returns, y corrección del ejemplo de celsius_to_fahrenheit (#2046).
 - chore(ui): normalización de señales y captura segura de errores en `dialogo_comparar_historial` (#2037)
 - refactor(geometria): validar parámetros numéricos y tipado en diagonal_rectangulo (#1979).
+- refactor(conversor_temperatura): validación de tipos numéricos, NaN e infinitos mediante ErrorValidacion y anotaciones de tipo completas (#1997).
 - refactor(matematicas): validar parámetros numéricos y tipado en conversor_energia (#1992).
 
 ### Security
