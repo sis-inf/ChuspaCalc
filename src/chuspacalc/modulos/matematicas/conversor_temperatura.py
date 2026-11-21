@@ -26,10 +26,10 @@ def _validar_numero(valor: object, nombre: str) -> float:
         raise ErrorValidacion(
             f"El parámetro '{nombre}' es demasiado grande para ser procesado",
         ) from None
-    if math.isnan(numero):
-        raise ErrorValidacion(f"El parámetro '{nombre}' no puede ser NaN")
-    if math.isinf(numero):
-        raise ErrorValidacion(f"El parámetro '{nombre}' no puede ser infinito")
+    if not math.isfinite(numero):
+        raise ErrorValidacion(
+            f"El parámetro '{nombre}' debe ser finito (no NaN ni infinito): {numero}",
+        )
     return numero
 
 
