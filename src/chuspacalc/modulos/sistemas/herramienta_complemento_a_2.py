@@ -1,10 +1,3 @@
-﻿from chuspacalc.core.carrera import Carrera
-from chuspacalc.core.herramienta import Herramienta
-from chuspacalc.modulos.matematicas.error_validacion import ErrorValidacion
-from chuspacalc.modulos.sistemas.complemento_a_2 import (
-    complemento_a_decimal,
-    decimal_a_complemento,
-)
 from PySide6.QtWidgets import (
     QComboBox,
     QHBoxLayout,
@@ -13,6 +6,14 @@ from PySide6.QtWidgets import (
     QPushButton,
     QVBoxLayout,
     QWidget,
+)
+
+from chuspacalc.core.carrera import Carrera
+from chuspacalc.core.herramienta import Herramienta
+from chuspacalc.modulos.matematicas.error_validacion import ErrorValidacion
+from chuspacalc.modulos.sistemas.complemento_a_2 import (
+    complemento_a_decimal,
+    decimal_a_complemento,
 )
 
 
@@ -24,78 +25,64 @@ class HerramientaComplementoA2(Herramienta):
     )
 
     def crear_widget(self) -> QWidget:
-      widget = QWidget()
-      layout = QVBoxLayout()
+        widget = QWidget()
+        layout = QVBoxLayout()
 
-      # Selector de bits
-      bits_layout = QHBoxLayout()
-      bits_layout.addWidget(QLabel("Bits:"))
+        # Selector de bits
+        bits_layout = QHBoxLayout()
+        bits_layout.addWidget(QLabel("Bits:"))
 
-      self.bits_combo = QComboBox()
-      self.bits_combo.addItems(["4", "8", "16", "32"])
+        self.bits_combo = QComboBox()
+        self.bits_combo.addItems(["4", "8", "16", "32"])
 
-      bits_layout.addWidget(self.bits_combo)
-      layout.addLayout(bits_layout)
+        bits_layout.addWidget(self.bits_combo)
+        layout.addLayout(bits_layout)
 
-      # Rango representable
-      self.rango_label = QLabel("")
-      layout.addWidget(self.rango_label)
+        # Rango representable
+        self.rango_label = QLabel("")
+        layout.addWidget(self.rango_label)
 
-      # Decimal -> Complemento a 2
-      layout.addWidget(QLabel("Número decimal:"))
+        # Decimal -> Complemento a 2
+        layout.addWidget(QLabel("Número decimal:"))
 
-      self.decimal_input = QLineEdit()
-      self.decimal_input.setPlaceholderText("Ejemplo: -5")
-      layout.addWidget(self.decimal_input)
+        self.decimal_input = QLineEdit()
+        self.decimal_input.setPlaceholderText("Ejemplo: -5")
+        layout.addWidget(self.decimal_input)
 
-      self.btn_decimal = QPushButton(
-        "Decimal → Complemento a 2"
-    )
-      self.btn_decimal.clicked.connect(
-        self._convertir_decimal
-    )
-      layout.addWidget(self.btn_decimal)
+        self.btn_decimal = QPushButton("Decimal → Complemento a 2")
+        self.btn_decimal.clicked.connect(self._convertir_decimal)
+        layout.addWidget(self.btn_decimal)
 
-      self.binario_output = QLineEdit()
-      self.binario_output.setReadOnly(True)
-      layout.addWidget(self.binario_output)
+        self.binario_output = QLineEdit()
+        self.binario_output.setReadOnly(True)
+        layout.addWidget(self.binario_output)
 
-    # Complemento a 2 -> Decimal
-      layout.addWidget(QLabel("Número binario:"))
+        # Complemento a 2 -> Decimal
+        layout.addWidget(QLabel("Número binario:"))
 
-      self.binario_input = QLineEdit()
-      self.binario_input.setPlaceholderText(
-        "Ejemplo: 11111011"
-    )
-      layout.addWidget(self.binario_input)
+        self.binario_input = QLineEdit()
+        self.binario_input.setPlaceholderText("Ejemplo: 11111011")
+        layout.addWidget(self.binario_input)
 
-      self.btn_binario = QPushButton(
-        "Complemento a 2 → Decimal"
-    )
-      self.btn_binario.clicked.connect(
-         self._convertir_binario
-    )
-      layout.addWidget(self.btn_binario)
+        self.btn_binario = QPushButton("Complemento a 2 → Decimal")
+        self.btn_binario.clicked.connect(self._convertir_binario)
+        layout.addWidget(self.btn_binario)
 
-      self.decimal_output = QLineEdit()
-      self.decimal_output.setReadOnly(True)
-      layout.addWidget(self.decimal_output)
+        self.decimal_output = QLineEdit()
+        self.decimal_output.setReadOnly(True)
+        layout.addWidget(self.decimal_output)
 
-    # Errores
-      self.error_label = QLabel("")
-      self.error_label.setStyleSheet(
-        "color: red;"
-    )
-      layout.addWidget(self.error_label)
+        # Errores
+        self.error_label = QLabel("")
+        self.error_label.setStyleSheet("color: red;")
+        layout.addWidget(self.error_label)
 
-      self.bits_combo.currentTextChanged.connect(
-        self._actualizar_rango
-    )
+        self.bits_combo.currentTextChanged.connect(self._actualizar_rango)
 
-      self._actualizar_rango()
+        self._actualizar_rango()
 
-      widget.setLayout(layout)
-      return widget
+        widget.setLayout(layout)
+        return widget
 
     def _leer_bits(self) -> int:
         texto = self.bits_combo.currentText()
@@ -113,9 +100,7 @@ class HerramientaComplementoA2(Herramienta):
         minimo = -(2 ** (bits - 1))
         maximo = (2 ** (bits - 1)) - 1
 
-        self.rango_label.setText(
-            f"Rango con {bits} bits: {minimo} a {maximo}"
-        )
+        self.rango_label.setText(f"Rango con {bits} bits: {minimo} a {maximo}")
 
     def _convertir_decimal(self) -> None:
         self.error_label.setText("")
@@ -169,4 +154,3 @@ class HerramientaComplementoA2(Herramienta):
 
         except ErrorValidacion as e:
             self.error_label.setText(str(e))
-            
