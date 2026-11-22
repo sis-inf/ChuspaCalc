@@ -10,34 +10,94 @@ from PySide6.QtWidgets import (
 
 from chuspacalc.core.carrera import Carrera
 from chuspacalc.core.herramienta import Herramienta
+from chuspacalc.modulos.matematicas.error_validacion import (
+    ErrorValidacion,
+    validar_numero,
+)
 
 
 def calcular_vout(vin: float, r1: float, r2: float) -> float:
+    """Calcula el voltaje de salida de un divisor de tensión.
+
+    Args:
+        vin: Voltaje de entrada en Volts.
+        r1: Resistencia superior en Ohms (mayor que cero).
+        r2: Resistencia inferior en Ohms (mayor que cero).
+
+    Returns:
+        Voltaje de salida en Volts.
+
+    Raises:
+        ErrorValidacion: Si algún valor no es un número real finito o si
+            las resistencias no son positivas.
+    """
+    vin = validar_numero(vin, "vin")
+    r1 = validar_numero(r1, "r1")
+    r2 = validar_numero(r2, "r2")
+
     if r1 <= 0 or r2 <= 0:
-        raise ValueError("Las resistencias deben ser positivas.")
+        raise ErrorValidacion("Las resistencias deben ser positivas.")
 
     return vin * r2 / (r1 + r2)
 
 
 def calcular_r2(vin: float, vout: float, r1: float) -> float:
+    """Calcula la resistencia R2 necesaria para obtener un voltaje de salida.
+
+    Args:
+        vin: Voltaje de entrada en Volts (mayor que vout).
+        vout: Voltaje de salida deseado en Volts.
+        r1: Resistencia superior en Ohms (mayor que cero).
+
+    Returns:
+        Resistencia R2 en Ohms.
+
+    Raises:
+        ErrorValidacion: Si algún valor no es un número real finito, si R1
+            no es positiva o si vin no es mayor que vout.
+    """
+    vin = validar_numero(vin, "vin")
+    vout = validar_numero(vout, "vout")
+    r1 = validar_numero(r1, "r1")
+
     if r1 <= 0:
-        raise ValueError("R1 debe ser positiva.")
+        raise ErrorValidacion("R1 debe ser positiva.")
 
     if vin <= vout:
-        raise ValueError("V_in debe ser mayor que V_out.")
+        raise ErrorValidacion("V_in debe ser mayor que V_out.")
 
     return (vout * r1) / (vin - vout)
 
 
 def calcular_r1(vin: float, vout: float, r2: float) -> float:
+    """Calcula la resistencia R1 necesaria para obtener un voltaje de salida.
+
+    Args:
+        vin: Voltaje de entrada en Volts.
+        vout: Voltaje de salida deseado en Volts (mayor que cero y no mayor
+            que vin).
+        r2: Resistencia inferior en Ohms (mayor que cero).
+
+    Returns:
+        Resistencia R1 en Ohms.
+
+    Raises:
+        ErrorValidacion: Si algún valor no es un número real finito, si R2
+            no es positiva, si vout no es mayor que cero o si vout es mayor
+            que vin.
+    """
+    vin = validar_numero(vin, "vin")
+    vout = validar_numero(vout, "vout")
+    r2 = validar_numero(r2, "r2")
+
     if r2 <= 0:
-        raise ValueError("R2 debe ser positiva.")
+        raise ErrorValidacion("R2 debe ser positiva.")
 
     if vout <= 0:
-        raise ValueError("V_out debe ser mayor que cero.")
+        raise ErrorValidacion("V_out debe ser mayor que cero.")
 
     if vout > vin:
-        raise ValueError("V_out no puede ser mayor que V_in.")
+        raise ErrorValidacion("V_out no puede ser mayor que V_in.")
 
     return r2 * (vin - vout) / vout
 
@@ -96,7 +156,7 @@ class HerramientaDivisorTension(Herramienta):
 
         return widget
 
-    def actualizar_modo(self):
+    def actualizar_modo(self) -> None:
         self.vin.setReadOnly(False)
         self.vout.setReadOnly(False)
         self.r1.setReadOnly(False)
@@ -113,7 +173,7 @@ class HerramientaDivisorTension(Herramienta):
         else:
             self.r1.setReadOnly(True)
 
-    def realizar_calculo(self):
+    def realizar_calculo(self) -> None:
         try:
             modo = self.modo.currentIndex()
 
