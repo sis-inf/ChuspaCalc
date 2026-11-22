@@ -1,4 +1,3 @@
-
 """
 Calculadora de aceleración centrípeta.
 """
@@ -32,7 +31,7 @@ def calcular_aceleracion_centripeta(velocidad, radio):
     if radio <= 0:
         raise ValueError("El radio debe ser positivo.")
 
-    aceleracion = velocidad ** 2 / radio
+    aceleracion = velocidad**2 / radio
 
     if not math.isfinite(aceleracion):
         raise ValueError("El resultado no es finito.")

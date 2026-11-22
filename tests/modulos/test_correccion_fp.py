@@ -1,6 +1,6 @@
 import pytest
 
-from escuadra.modulos.electrica.correccion_fp import calcular_capacitancia_correccion
+from chuspacalc.modulos.electrica.correccion_fp import calcular_capacitancia_correccion
 
 
 def test_correccion_de_070_a_095_da_capacitancia_positiva_esperada():

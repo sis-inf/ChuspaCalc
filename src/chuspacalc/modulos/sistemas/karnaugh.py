@@ -25,7 +25,7 @@ Implicante = tuple[int, int]
 def generar_mapa_karnaugh(
     tabla_verdad: list[int],
     num_variables: int,
-) -> list[list[int]]:
+) -> list[int]:
     """
     Valida la tabla de verdad de un mapa de Karnaugh (2 a 4 variables).
 

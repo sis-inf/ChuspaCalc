@@ -76,6 +76,9 @@ def herramientas_por_carrera() -> dict[Carrera, list[type[Herramienta]]]:
 
     for herramienta in descubrir_herramientas():
         carrera = herramienta.carrera
+        if carrera is None:
+            logger.warning("Se omitió %s porque no tiene carrera", herramienta.nombre)
+            continue
         if carrera not in resultado:
             resultado[carrera] = []
         resultado[carrera].append(herramienta)

@@ -1,4 +1,3 @@
-
 """
 Identificador de reactivo limitante en una reaccion quimica.
 """

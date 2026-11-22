@@ -1,4 +1,3 @@
-
 import math
 from numbers import Real
 

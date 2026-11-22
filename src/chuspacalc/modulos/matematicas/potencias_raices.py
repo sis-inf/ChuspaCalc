@@ -76,9 +76,7 @@ def raiz_n(valor: int | float, n: int) -> float:
     try:
         if valor < 0:
             if n % 2 == 0:
-                raise ErrorValidacion(
-                    "No existe raíz par real de un número negativo"
-                )
+                raise ErrorValidacion("No existe raíz par real de un número negativo")
             resultado = -float((-valor) ** (1 / n))
         else:
             resultado = float(valor ** (1 / n))
@@ -128,9 +126,7 @@ def logaritmo_natural(valor: int | float) -> float:
     _validar_real_finito(valor, "El valor")
 
     if valor <= 0:
-        raise ErrorValidacion(
-            "El valor debe ser mayor que 0"
-        )
+        raise ErrorValidacion("El valor debe ser mayor que 0")
 
     return float(math.log(valor))
 
@@ -149,9 +145,7 @@ def logaritmo_base10(valor: int | float) -> float:
     _validar_real_finito(valor, "El valor")
 
     if valor <= 0:
-        raise ErrorValidacion(
-            "El valor debe ser mayor que 0"
-        )
+        raise ErrorValidacion("El valor debe ser mayor que 0")
 
     return float(math.log10(valor))
 
@@ -172,13 +166,9 @@ def logaritmo_base(valor: int | float, base: int | float) -> float:
     _validar_real_finito(base, "La base")
 
     if valor <= 0:
-        raise ErrorValidacion(
-            "El valor debe ser mayor que 0"
-        )
+        raise ErrorValidacion("El valor debe ser mayor que 0")
 
     if base <= 0 or base == 1:
-        raise ErrorValidacion(
-            "La base debe ser positiva y distinta de 1"
-        )
+        raise ErrorValidacion("La base debe ser positiva y distinta de 1")
 
     return float(math.log(valor, base))

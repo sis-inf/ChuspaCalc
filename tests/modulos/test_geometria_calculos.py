@@ -161,7 +161,7 @@ class TestVolumen:
         """Verifica el cálculo del volumen de una esfera"""
         # Volumen = (4/3) * π * r³
         resultado = volumen_esfera(radio=3)
-        esperado = (4/3) * math.pi * 27
+        esperado = (4 / 3) * math.pi * 27
         assert resultado == pytest.approx(esperado, rel=1e-6)
 
     def test_volumen_esfera_radio_cero(self):
@@ -193,7 +193,7 @@ class TestVolumen:
         """Verifica el cálculo del volumen de un cono"""
         # Volumen = (1/3) * π * r² * altura
         resultado = volumen_cono(radio=3, altura=5)
-        esperado = (1/3) * math.pi * 9 * 5
+        esperado = (1 / 3) * math.pi * 9 * 5
         assert resultado == pytest.approx(esperado, rel=1e-6)
 
     def test_volumen_cono_radio_cero(self):

@@ -1,4 +1,3 @@
-
 """
 Calculadora del área de un rombo.
 """
@@ -38,9 +37,7 @@ def calcular_area_rombo(diagonal_mayor, diagonal_menor):
             raise ValueError("Las diagonales deben ser positivas.")
 
     if diagonal_mayor < diagonal_menor:
-        raise ValueError(
-            "La diagonal mayor no puede ser menor que la diagonal menor."
-        )
+        raise ValueError("La diagonal mayor no puede ser menor que la diagonal menor.")
 
     area = (diagonal_mayor * diagonal_menor) / 2
 

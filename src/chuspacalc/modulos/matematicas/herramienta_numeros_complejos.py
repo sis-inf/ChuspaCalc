@@ -1,16 +1,7 @@
+from PySide6.QtWidgets import QWidget
+
 from chuspacalc.core.carrera import Carrera
 from chuspacalc.core.herramienta import Herramienta
-from chuspacalc.modulos.matematicas.numeros_complejos import (
-    conjugado,
-    dividir,
-    modulo,
-    multiplicar,
-    polar_a_rectangular,
-    rectangular_a_polar,
-    restar,
-    sumar,
-)
-from PySide6.QtWidgets import QWidget
 
 
 class HerramientaNumerosComplejos(Herramienta):
