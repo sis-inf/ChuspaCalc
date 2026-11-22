@@ -19,17 +19,22 @@ class PanelHistorial(QWidget):
 
     def _refrescar_lista(self):
         """
-        Limpia y vuelve a cargar la lista de historial desde el core.
+        Vuelve a cargar la lista de historial desde el core.
         Este método es vital para que la nota aparezca al editarla.
+
+        Primero se consultan los datos y solo si la consulta tiene éxito se
+        limpia la lista. Si ocurre un ErrorValidacion, se muestra el mensaje
+        y los registros que ya estaban visibles se conservan.
         """
-        self.lista_historial.clear()
-        # Obtenemos la lista actualizada del modelo
+        # Obtenemos la lista actualizada del modelo antes de tocar la lista
         try:
             entradas = self.historial.obtener_historial()
         except ErrorValidacion as error:
-            # Muestra el error de validación en la interfaz y no recarga.
+            # Muestra el error de validación y conserva los registros visibles.
             mostrar_error_contextualizado(self, error)
             return
+
+        self.lista_historial.clear()
 
         for entrada in entradas:
             # Creamos el ítem con el texto descriptivo
