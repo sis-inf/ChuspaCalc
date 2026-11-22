@@ -60,6 +60,7 @@ El script genera las entradas del changelog a partir de los commits desde el úl
 - refactor(carga_distribuida): validación de tipos numéricos, NaN e infinitos mediante ErrorValidacion y anotaciones de tipo completas (#1936).
 - refactor(sistemas): validación de parámetros con `ErrorValidacion` y type hints completos en `tabla_ascii` (#2031)
 - chore(ui): las subclases de `ErrorValidacion` (p. ej. `ErrorCIDR`) muestran el mensaje de validación en `mensajes` y se documentan sus funciones (#2039)
+- refactor(potencias_raices): validación de valores finitos, booleanos, desbordes, cero con exponente negativo, raíz par negativa y bases logarítmicas inválidas mediante ErrorValidacion y anotaciones de tipo completas (#2011).
 - chore(ui): panel_estadisticas_uso captura ErrorValidacion al actualizar estadísticas y muestra el mensaje en la interfaz (#2040)
 
 ### Security
