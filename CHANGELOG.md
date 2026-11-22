@@ -57,6 +57,7 @@ El script genera las entradas del changelog a partir de los commits desde el úl
 - refactor(conversor_velocidad): validación de tipos numéricos, NaN, infinitos y unidades mediante ErrorValidacion y anotaciones de tipo completas (#1998).
 - refactor(carga_distribuida): validación de tipos numéricos, NaN e infinitos mediante ErrorValidacion y anotaciones de tipo completas (#1936).
 - refactor(sistemas): validación de parámetros con `ErrorValidacion` y type hints completos en `tabla_ascii` (#2031)
+- chore(ui): las subclases de `ErrorValidacion` (p. ej. `ErrorCIDR`) muestran el mensaje de validación en `mensajes` y se documentan sus funciones (#2039)
 
 ### Security
 - security(evaluators): sustitución de evaluación dinámica insegura por evaluadores matemáticos y lógicos con listas blancas y límites de complejidad
