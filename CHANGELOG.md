@@ -26,6 +26,7 @@ El script genera las entradas del changelog a partir de los commits desde el úl
 - feat(tablas_verdad): agregada generación de tablas de verdad
 - feat(conversor_bases): agregado conversor entre sistemas numéricos
 - feat(viga): agregado módulo de cálculo para vigas
+- feat(error_validacion): agregados validadores numericos (tipo, finitud, no cero y rango)
 
 ### Changed
 - chore(utils): documentación y anotaciones de tipos en logging_config (#2048).
