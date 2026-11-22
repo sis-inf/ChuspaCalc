@@ -58,10 +58,11 @@ def herramienta_correccion_fp(
     if frecuencia <= 0:
         raise ErrorValidacion("La frecuencia debe ser positiva")
 
-    return calcular_capacitancia_correccion(
+    capacitancia: float = calcular_capacitancia_correccion(
         potencia_activa,
         fp_actual,
         fp_deseado,
         voltaje,
         frecuencia,
     )
+    return capacitancia
