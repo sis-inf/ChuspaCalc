@@ -2,6 +2,7 @@ import re
 
 import pytest
 
+from chuspacalc.modulos.matematicas.error_validacion import ErrorValidacion
 from chuspacalc.modulos.sistemas.karnaugh import (
     generar_mapa_karnaugh,
     simplificar_expresion,
@@ -146,3 +147,47 @@ def test_todas_las_funciones_son_exactas_y_sin_terminos_redundantes(num_variable
 def test_rechaza_entradas_invalidas(entrada, mensaje):
     with pytest.raises(ValueError, match=mensaje):
         simplificar_expresion(entrada)
+
+
+@pytest.mark.parametrize("num_variables", [None, "3", 2.5, True])
+def test_generar_mapa_rechaza_num_variables_no_entero(num_variables):
+    with pytest.raises(ErrorValidacion, match="debe ser entero"):
+        generar_mapa_karnaugh([0, 1, 1, 0], num_variables)
+
+
+@pytest.mark.parametrize("tabla", [None, 5, "0110"])
+def test_generar_mapa_rechaza_tabla_que_no_es_lista(tabla):
+    with pytest.raises(ErrorValidacion, match="debe ser lista"):
+        generar_mapa_karnaugh(tabla, 2)
+
+
+@pytest.mark.parametrize("valor", [2, -1, 1.0, "1", None])
+def test_generar_mapa_rechaza_valores_distintos_de_0_y_1(valor):
+    with pytest.raises(ErrorValidacion, match="Solo se admiten 0 y 1"):
+        generar_mapa_karnaugh([0, 1, 1, valor], 2)
+
+
+@pytest.mark.parametrize("mapa", [None, 7])
+def test_simplificar_rechaza_mapa_que_no_es_lista(mapa):
+    with pytest.raises(ErrorValidacion, match="debe ser una lista"):
+        simplificar_expresion(mapa)
+
+
+def test_simplificar_rechaza_mapa_con_forma_invalida():
+    mapa = [[0, 1, 0], [1, 0, 1], [0, 0, 1]]
+
+    with pytest.raises(ErrorValidacion, match="2x2, 2x4 o 4x4"):
+        simplificar_expresion(mapa)
+
+
+def test_entradas_validas_siguen_funcionando():
+    assert generar_mapa_karnaugh([False, True, True, False], 2) == [0, 1, 1, 0]
+    assert generar_mapa_karnaugh((0, 1, 1, 0), 2) == (0, 1, 1, 0)
+    assert simplificar_expresion((0, 1, 1, 0)) == simplificar_expresion([0, 1, 1, 0])
+
+
+def test_error_validacion_sigue_siendo_value_error():
+    assert issubclass(ErrorValidacion, ValueError)
+
+    with pytest.raises(ValueError):
+        generar_mapa_karnaugh([0, 1], 1)
