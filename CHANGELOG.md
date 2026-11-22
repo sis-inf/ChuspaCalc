@@ -63,6 +63,7 @@ El script genera las entradas del changelog a partir de los commits desde el úl
 - refactor(potencias_raices): validación de valores finitos, booleanos, desbordes, cero con exponente negativo, raíz par negativa y bases logarítmicas inválidas mediante ErrorValidacion y anotaciones de tipo completas (#2011).
 - chore(ui): panel_estadisticas_uso captura ErrorValidacion al actualizar estadísticas y muestra el mensaje en la interfaz (#2040)
 - chore(ui): panel_historial captura ErrorValidacion al consultar y editar el historial y muestra el mensaje en la interfaz (#2041).
+- refactor(electrica): validación de parámetros con ErrorValidacion en herramienta_correccion_fp; se rechazan valores no numéricos, NaN e infinitos y se validan los rangos en el wrapper (#1960)
 
 ### Security
 - security(evaluators): sustitución de evaluación dinámica insegura por evaluadores matemáticos y lógicos con listas blancas y límites de complejidad
