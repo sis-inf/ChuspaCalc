@@ -50,6 +50,8 @@ class PanelEstadisticasUso(QWidget):
 
         Si ocurre un ErrorValidacion durante la actualización, se captura
         y se muestra un mensaje claro al usuario en lugar de propagarlo.
+        Los contadores solo se confirman si la tabla se refrescó sin errores,
+        así que nunca quedan desincronizados con la interfaz.
 
         Args:
             modulo: nombre del módulo ejecutado.
@@ -58,15 +60,19 @@ class PanelEstadisticasUso(QWidget):
         """
 
         try:
-            # Crea la métrica del módulo la primera vez que se ejecuta.
-            metrica = self.metricas.setdefault(
-                modulo,
-                {"exitosas": 0, "fallidas": 0},
-            )
+            # Trabaja sobre una copia: self.metricas no cambia hasta que
+            # la tabla se haya refrescado sin errores.
+            actual = self.metricas.get(modulo, {"exitosas": 0, "fallidas": 0})
+            metrica = dict(actual)
             metrica["especialidad"] = self._obtener_especialidad(modulo)
             metrica["exitosas" if exito else "fallidas"] += 1
 
-            self._refrescar_tabla()
+            nuevas = dict(self.metricas)
+            nuevas[modulo] = metrica
+            self._refrescar_tabla(nuevas)
+
+            # Confirma los contadores solo si la tabla se actualizó.
+            self.metricas[modulo] = metrica
         except ErrorValidacion as error:
             # Muestra el error de validación en la interfaz.
             mostrar_error_contextualizado(self, error)
@@ -80,12 +86,20 @@ class PanelEstadisticasUso(QWidget):
 
         return SIN_ESPECIALIDAD
 
-    def _refrescar_tabla(self):
-        """Vuelve a cargar la tabla con las métricas actuales."""
+    def _refrescar_tabla(self, metricas=None):
+        """
+        Vuelve a cargar la tabla con las métricas indicadas.
 
-        self._tabla.setRowCount(len(self.metricas))
+        Args:
+            metricas: métricas a mostrar; si es None se usan las actuales.
+        """
 
-        for fila, (modulo, metrica) in enumerate(self.metricas.items()):
+        if metricas is None:
+            metricas = self.metricas
+
+        self._tabla.setRowCount(len(metricas))
+
+        for fila, (modulo, metrica) in enumerate(metricas.items()):
             total = metrica["exitosas"] + metrica["fallidas"]
             valores = [
                 modulo,
