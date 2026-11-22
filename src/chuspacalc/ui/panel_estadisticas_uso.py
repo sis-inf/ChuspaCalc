@@ -50,8 +50,10 @@ class PanelEstadisticasUso(QWidget):
 
         Si ocurre un ErrorValidacion durante la actualización, se captura
         y se muestra un mensaje claro al usuario en lugar de propagarlo.
-        Los contadores solo se confirman si la tabla se refrescó sin errores,
-        así que nunca quedan desincronizados con la interfaz.
+        Los contadores solo se confirman si la tabla se refrescó sin errores.
+        Si el error ocurre mientras se escribe la tabla, esta puede quedar
+        a medias; por eso, antes de mostrar el mensaje, se vuelve a dibujar
+        con los contadores confirmados para que ambos queden sincronizados.
 
         Args:
             modulo: nombre del módulo ejecutado.
@@ -74,6 +76,9 @@ class PanelEstadisticasUso(QWidget):
             # Confirma los contadores solo si la tabla se actualizó.
             self.metricas[modulo] = metrica
         except ErrorValidacion as error:
+            # La tabla pudo quedar a medias: se redibuja con los contadores
+            # confirmados para que ambos coincidan antes de avisar al usuario.
+            self._refrescar_tabla()
             # Muestra el error de validación en la interfaz.
             mostrar_error_contextualizado(self, error)
 
