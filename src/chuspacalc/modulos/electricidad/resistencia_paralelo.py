@@ -7,8 +7,10 @@ La resistencia equivalente se calcula mediante:
 
 import math
 
+from chuspacalc.modulos.matematicas.error_validacion import ErrorValidacion
 
-def calcular_resistencia_paralelo(resistencias):
+
+def calcular_resistencia_paralelo(resistencias: list[float]) -> float:
     """
     Calcula la resistencia equivalente de varias resistencias
     conectadas en paralelo.
@@ -20,37 +22,44 @@ def calcular_resistencia_paralelo(resistencias):
         La resistencia equivalente en ohmios.
 
     Raises:
-        TypeError: Si la entrada no es una lista o contiene
-            valores que no son números.
-        ValueError: Si la lista está vacía, contiene valores
-            no positivos o no finitos, o el resultado no es finito.
+        ErrorValidacion: Si la entrada no es una lista, contiene valores
+            que no son números, la lista está vacía, hay valores no
+            positivos o no finitos, o el resultado no es finito.
     """
     if not isinstance(resistencias, list):
-        raise TypeError("Las resistencias deben proporcionarse en una lista.")
+        raise ErrorValidacion("Las resistencias deben proporcionarse en una lista.")
 
     if not resistencias:
-        raise ValueError("La lista de resistencias no puede estar vacía.")
+        raise ErrorValidacion("La lista de resistencias no puede estar vacía.")
 
     for resistencia in resistencias:
         if isinstance(resistencia, bool) or not isinstance(resistencia, (int, float)):
-            raise TypeError("Todas las resistencias deben ser números.")
+            raise ErrorValidacion("Todas las resistencias deben ser números.")
 
         try:
-            if not math.isfinite(resistencia):
-                raise ValueError("Las resistencias deben ser valores finitos.")
-        except OverflowError as error:
-            raise ValueError("Las resistencias deben ser valores finitos.") from error
+            es_finita = math.isfinite(resistencia)
+        except OverflowError:
+            es_finita = False
+
+        if not es_finita:
+            raise ErrorValidacion("Las resistencias deben ser valores finitos.")
 
         if resistencia <= 0:
-            raise ValueError("Las resistencias deben ser mayores que cero.")
+            raise ErrorValidacion("Las resistencias deben ser mayores que cero.")
 
     try:
         conductancia_total = sum(1 / resistencia for resistencia in resistencias)
-        equivalente = 1 / conductancia_total
     except (OverflowError, ZeroDivisionError) as error:
-        raise ValueError("No se pudo calcular la resistencia equivalente.") from error
+        raise ErrorValidacion(
+            "No se pudo calcular la resistencia equivalente."
+        ) from error
+
+    if not math.isfinite(conductancia_total) or conductancia_total <= 0:
+        raise ErrorValidacion("No se pudo calcular la resistencia equivalente.")
+
+    equivalente = 1 / conductancia_total
 
     if not math.isfinite(equivalente):
-        raise ValueError("El resultado debe ser un número finito.")
+        raise ErrorValidacion("El resultado debe ser un número finito.")
 
     return equivalente
