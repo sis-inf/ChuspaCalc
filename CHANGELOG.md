@@ -59,6 +59,7 @@ El script genera las entradas del changelog a partir de los commits desde el úl
 - refactor(sistemas): validación de parámetros con `ErrorValidacion` y type hints completos en `tabla_ascii` (#2031)
 - chore(ui): las subclases de `ErrorValidacion` (p. ej. `ErrorCIDR`) muestran el mensaje de validación en `mensajes` y se documentan sus funciones (#2039)
 - chore(ui): panel_estadisticas_uso captura ErrorValidacion al actualizar estadísticas y muestra el mensaje en la interfaz (#2040)
+- refactor(potencia): validación de tipos numéricos, NaN, infinitos y desbordamiento de resultados mediante ErrorValidacion y anotaciones de tipo completas (#1965).
 
 ### Security
 - security(evaluators): sustitución de evaluación dinámica insegura por evaluadores matemáticos y lógicos con listas blancas y límites de complejidad
