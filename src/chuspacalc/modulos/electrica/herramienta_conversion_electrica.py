@@ -15,6 +15,10 @@ from PySide6.QtWidgets import (
 
 from chuspacalc.core.carrera import Carrera
 from chuspacalc.core.herramienta import Herramienta
+from chuspacalc.modulos.matematicas.error_validacion import (
+    ErrorValidacion,
+    validar_numero,
+)
 
 # Función pura de conversión
 
@@ -35,8 +39,11 @@ def convertir_unidad(
         Valor convertido a la unidad destino.
 
     Raises:
-        ValueError: Si la categoría o alguna unidad no es reconocida.
+        ErrorValidacion: Si valor no es un número real finito, o si la
+            categoría o alguna unidad no es reconocida.
     """
+    valor = validar_numero(valor, "valor")
+
     factores: dict[str, dict[str, float]] = {
         "Potencia": {
             "W": 1,
@@ -55,15 +62,15 @@ def convertir_unidad(
     }
 
     if categoria not in factores:
-        raise ValueError(f"Categoría no reconocida: {categoria}")
+        raise ErrorValidacion(f"Categoría no reconocida: {categoria}")
 
     tabla = factores[categoria]
 
     if de_unidad not in tabla:
-        raise ValueError(f"Unidad origen no reconocida: {de_unidad}")
+        raise ErrorValidacion(f"Unidad origen no reconocida: {de_unidad}")
 
     if a_unidad not in tabla:
-        raise ValueError(f"Unidad destino no reconocida: {a_unidad}")
+        raise ErrorValidacion(f"Unidad destino no reconocida: {a_unidad}")
 
     valor_base = valor * tabla[de_unidad]
     return valor_base / tabla[a_unidad]
