@@ -26,6 +26,7 @@ El script genera las entradas del changelog a partir de los commits desde el úl
 - feat(tablas_verdad): agregada generación de tablas de verdad
 - feat(conversor_bases): agregado conversor entre sistemas numéricos
 - feat(viga): agregado módulo de cálculo para vigas
+- feat(error_validacion): agregados validadores numericos (tipo, finitud, no cero y rango)
 
 ### Changed
 - chore(utils): documentación y anotaciones de tipos en logging_config (#2048).
@@ -48,6 +49,7 @@ El script genera las entradas del changelog a partir de los commits desde el úl
 - refactor(transformaciones): validación de parámetros numéricos finitos, detección de resultados desbordados mediante ErrorValidacion y anotaciones de tipo completas (#1987).
 - chore(ui): normalización de señales y captura segura de errores en `dialogo_acerca_de` (#2036)
 - chore(ui): normalización de señales y captura segura de errores en `cargador_herramienta`, mostrando un widget informativo cuando falla la carga de una herramienta (#2034)
+- refactor(herramienta_financiera): validación de capital, tasa y períodos mediante ErrorValidacion, con tope de períodos y anotaciones de tipo completas (#2005).
 - refactor(calculadora_cientifica): validación de expresión y modo angular, errores de dominio de funciones mediante ErrorValidacion y anotaciones de tipo completas (#2003).
 - chore(converter): documentación de módulo y docstrings en formato estándar con Args y Returns, y corrección del ejemplo de celsius_to_fahrenheit (#2046).
 - chore(ui): normalización de señales y captura segura de errores en `dialogo_comparar_historial` (#2037)
@@ -58,8 +60,10 @@ El script genera las entradas del changelog a partir de los commits desde el úl
 - refactor(carga_distribuida): validación de tipos numéricos, NaN e infinitos mediante ErrorValidacion y anotaciones de tipo completas (#1936).
 - refactor(sistemas): validación de parámetros con `ErrorValidacion` y type hints completos en `tabla_ascii` (#2031)
 - chore(ui): las subclases de `ErrorValidacion` (p. ej. `ErrorCIDR`) muestran el mensaje de validación en `mensajes` y se documentan sus funciones (#2039)
+- refactor(potencias_raices): validación de valores finitos, booleanos, desbordes, cero con exponente negativo, raíz par negativa y bases logarítmicas inválidas mediante ErrorValidacion y anotaciones de tipo completas (#2011).
 - chore(ui): panel_estadisticas_uso captura ErrorValidacion al actualizar estadísticas y muestra el mensaje en la interfaz (#2040)
-- refactor(ley_ohm): validación de tipos numéricos, NaN, infinitos y desbordamiento de resultados mediante ErrorValidacion y anotaciones de tipo completas (#1964).
+- chore(ui): panel_historial captura ErrorValidacion al consultar y editar el historial y muestra el mensaje en la interfaz (#2041).
+- refactor(electrica): la herramienta de Ley de Ohm valida con ErrorValidacion valores NaN, infinitos, divisores en cero y desbordes, y completa sus type hints (#1962)
 
 ### Security
 - security(evaluators): sustitución de evaluación dinámica insegura por evaluadores matemáticos y lógicos con listas blancas y límites de complejidad
