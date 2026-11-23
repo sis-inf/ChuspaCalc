@@ -3,6 +3,11 @@ Panel de estadísticas de uso de herramientas.
 
 Genera un resumen del historial persistente mostrando
 la cantidad de usos por herramienta y carrera.
+
+Este panel no define señales ni slots propios: recibe los resultados
+mediante la llamada directa a ``actualizar_estadisticas``. Los errores de
+validación que se produzcan al actualizar se capturan y se muestran al
+usuario con un mensaje claro, sin cerrar la aplicación.
 """
 
 from collections import Counter
@@ -13,6 +18,9 @@ from PySide6.QtWidgets import (
     QVBoxLayout,
     QWidget,
 )
+
+from chuspacalc.modulos.matematicas.error_validacion import ErrorValidacion
+from chuspacalc.ui.mensajes import mostrar_error_contextualizado
 
 SIN_ESPECIALIDAD = "Sin especialidad"
 
@@ -25,6 +33,7 @@ class PanelEstadisticasUso(QWidget):
         self.historial = historial
         self.metricas = {}
 
+        # Tabla de solo lectura con una fila por módulo ejecutado.
         self._tabla = QTableWidget(0, 5)
         self._tabla.setHorizontalHeaderLabels(
             ["Módulo", "Especialidad", "Exitosas", "Con error", "Total"]
@@ -39,20 +48,39 @@ class PanelEstadisticasUso(QWidget):
         """
         Registra una ejecución del módulo y refresca la tabla del panel.
 
+        Si ocurre un ErrorValidacion durante la actualización, se captura
+        y se muestra un mensaje claro al usuario en lugar de propagarlo.
+        Los contadores solo se confirman si la tabla se refrescó sin errores.
+        Si el error ocurre mientras se escribe la tabla, esta puede quedar
+        a medias; por eso, antes de mostrar el mensaje, se vuelve a dibujar
+        con los contadores confirmados para que ambos queden sincronizados.
+
         Args:
             modulo: nombre del módulo ejecutado.
             exito: True si la ejecución se completó; False si terminó
                 con error de validación.
         """
 
-        metrica = self.metricas.setdefault(
-            modulo,
-            {"exitosas": 0, "fallidas": 0},
-        )
-        metrica["especialidad"] = self._obtener_especialidad(modulo)
-        metrica["exitosas" if exito else "fallidas"] += 1
+        try:
+            # Trabaja sobre una copia: self.metricas no cambia hasta que
+            # la tabla se haya refrescado sin errores.
+            actual = self.metricas.get(modulo, {"exitosas": 0, "fallidas": 0})
+            metrica = dict(actual)
+            metrica["especialidad"] = self._obtener_especialidad(modulo)
+            metrica["exitosas" if exito else "fallidas"] += 1
 
-        self._refrescar_tabla()
+            nuevas = dict(self.metricas)
+            nuevas[modulo] = metrica
+            self._refrescar_tabla(nuevas)
+
+            # Confirma los contadores solo si la tabla se actualizó.
+            self.metricas[modulo] = metrica
+        except ErrorValidacion as error:
+            # La tabla pudo quedar a medias: se redibuja con los contadores
+            # confirmados para que ambos coincidan antes de avisar al usuario.
+            self._refrescar_tabla()
+            # Muestra el error de validación en la interfaz.
+            mostrar_error_contextualizado(self, error)
 
     def _obtener_especialidad(self, modulo):
         """Busca en el historial la carrera asociada al módulo."""
@@ -63,12 +91,20 @@ class PanelEstadisticasUso(QWidget):
 
         return SIN_ESPECIALIDAD
 
-    def _refrescar_tabla(self):
-        """Vuelve a cargar la tabla con las métricas actuales."""
+    def _refrescar_tabla(self, metricas=None):
+        """
+        Vuelve a cargar la tabla con las métricas indicadas.
 
-        self._tabla.setRowCount(len(self.metricas))
+        Args:
+            metricas: métricas a mostrar; si es None se usan las actuales.
+        """
 
-        for fila, (modulo, metrica) in enumerate(self.metricas.items()):
+        if metricas is None:
+            metricas = self.metricas
+
+        self._tabla.setRowCount(len(metricas))
+
+        for fila, (modulo, metrica) in enumerate(metricas.items()):
             total = metrica["exitosas"] + metrica["fallidas"]
             valores = [
                 modulo,
