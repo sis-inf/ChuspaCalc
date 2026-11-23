@@ -7,6 +7,7 @@ from PySide6.QtWidgets import QWidget
 
 from chuspacalc.core.carrera import Carrera
 from chuspacalc.core.herramienta import Herramienta
+from chuspacalc.modulos.matematicas.error_validacion import ErrorValidacion
 
 MAX_EXPRESSION_LENGTH = 512
 MAX_AST_NODES = 128
@@ -43,21 +44,21 @@ class _EvaluadorMatematico:
         arbol = ast.parse(expresion, mode="eval")
         nodos = list(ast.walk(arbol))
         if len(nodos) > MAX_AST_NODES:
-            raise ValueError("La expresión es demasiado compleja.")
+            raise ErrorValidacion("La expresión es demasiado compleja.")
         return self._evaluar_nodo(arbol.body, profundidad=1)
 
     def _evaluar_nodo(self, nodo: ast.AST, profundidad: int) -> float:
         if profundidad > MAX_AST_DEPTH:
-            raise ValueError("La expresión excede la profundidad permitida.")
+            raise ErrorValidacion("La expresión excede la profundidad permitida.")
 
         if isinstance(nodo, ast.Constant):
             if isinstance(nodo.value, bool) or not isinstance(nodo.value, (int, float)):
-                raise ValueError("Solo se permiten constantes numéricas.")
+                raise ErrorValidacion("Solo se permiten constantes numéricas.")
             return self._validar_resultado(float(nodo.value))
 
         if isinstance(nodo, ast.Name):
             if nodo.id not in self._constantes:
-                raise ValueError(f"Nombre no permitido: {nodo.id}")
+                raise ErrorValidacion(f"Nombre no permitido: {nodo.id}")
             return self._constantes[nodo.id]
 
         if isinstance(nodo, ast.UnaryOp) and type(nodo.op) in self._operadores_unarios:
@@ -71,19 +72,19 @@ class _EvaluadorMatematico:
             derecha = self._evaluar_nodo(nodo.right, profundidad + 1)
             if isinstance(nodo.op, ast.Pow):
                 if abs(derecha) > MAX_ABS_EXPONENT:
-                    raise ValueError("El exponente excede el límite permitido.")
+                    raise ErrorValidacion("El exponente excede el límite permitido.")
                 try:
                     resultado = izquierda**derecha
                 except OverflowError as error:
-                    raise ValueError(
+                    raise ErrorValidacion(
                         "El resultado excede el límite permitido."
                     ) from error
             elif type(nodo.op) in self._operadores_binarios:
                 resultado = self._operadores_binarios[type(nodo.op)](izquierda, derecha)
             else:
-                raise ValueError("Operador no permitido.")
+                raise ErrorValidacion("Operador no permitido.")
             if isinstance(resultado, complex):
-                raise ValueError("El resultado debe ser un número real.")
+                raise ErrorValidacion("El resultado debe ser un número real.")
             return self._validar_resultado(float(resultado))
 
         if isinstance(nodo, ast.Call):
@@ -91,22 +92,27 @@ class _EvaluadorMatematico:
                 not isinstance(nodo.func, ast.Name)
                 or nodo.func.id not in self._funciones
             ):
-                raise ValueError("Función no permitida.")
+                raise ErrorValidacion("Función no permitida.")
             if len(nodo.args) != 1 or nodo.keywords:
-                raise ValueError("La función requiere exactamente un argumento.")
+                raise ErrorValidacion("La función requiere exactamente un argumento.")
             argumento = self._evaluar_nodo(nodo.args[0], profundidad + 1)
-            return self._validar_resultado(
-                float(self._funciones[nodo.func.id](argumento))
-            )
+            nombre_funcion = nodo.func.id
+            try:
+                resultado_funcion = self._funciones[nombre_funcion](argumento)
+            except (ValueError, OverflowError) as error:
+                raise ErrorValidacion(
+                    f"Argumento fuera del dominio de {nombre_funcion}({argumento:g})."
+                ) from error
+            return self._validar_resultado(float(resultado_funcion))
 
-        raise ValueError(f"Construcción no permitida: {type(nodo).__name__}")
+        raise ErrorValidacion(f"Construcción no permitida: {type(nodo).__name__}")
 
     @staticmethod
     def _validar_resultado(resultado: float) -> float:
         if not math.isfinite(resultado):
-            raise ValueError("El resultado debe ser finito.")
+            raise ErrorValidacion("El resultado debe ser finito.")
         if abs(resultado) > MAX_ABS_RESULT:
-            raise ValueError("El resultado excede el límite permitido.")
+            raise ErrorValidacion("El resultado excede el límite permitido.")
         return resultado
 
 
@@ -118,20 +124,24 @@ class HerramientaCalculadoraCientifica(Herramienta):
         "logarítmicas y constantes."
     )
 
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()
 
     def evaluar_expresion(
         self, expresion: str, modo_angular: str = "Radianes"
     ) -> float:
-        if not expresion or not isinstance(expresion, str):
-            raise ValueError("La expresión debe ser una cadena de texto válida.")
+        if not isinstance(expresion, str):
+            raise ErrorValidacion("La expresión debe ser una cadena de texto válida.")
+        if not expresion.strip():
+            raise ErrorValidacion("La expresión no puede estar vacía.")
         if len(expresion) > MAX_EXPRESSION_LENGTH:
-            raise ValueError("La expresión excede la longitud permitida.")
+            raise ErrorValidacion("La expresión excede la longitud permitida.")
+        if modo_angular not in ("Radianes", "Grados"):
+            raise ErrorValidacion("El modo angular debe ser 'Radianes' o 'Grados'.")
 
         expresion_limpia = expresion.replace("^", "**").replace("π", "pi")
 
-        funciones = {
+        funciones: dict[str, Callable[[float], float]] = {
             "sin": math.sin,
             "cos": math.cos,
             "tan": math.tan,
@@ -139,7 +149,7 @@ class HerramientaCalculadoraCientifica(Herramienta):
             "ln": math.log,
             "sqrt": math.sqrt,
         }
-        constantes = {
+        constantes: dict[str, float] = {
             "pi": math.pi,
             "e": math.e,
         }
@@ -155,7 +165,7 @@ class HerramientaCalculadoraCientifica(Herramienta):
         except ZeroDivisionError:
             raise ZeroDivisionError("Error: División por cero.")
         except ValueError as ve:
-            raise ValueError(f"Error de dominio o sintaxis: {str(ve)}")
+            raise ErrorValidacion(f"Error de dominio o sintaxis: {str(ve)}")
         except SyntaxError:
             raise SyntaxError("Error de sintaxis: La expresión está mal formada.")
 
