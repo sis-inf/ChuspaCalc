@@ -10,6 +10,7 @@ from chuspacalc.modulos.matematicas.conversor_longitud import (
 )
 from chuspacalc.modulos.matematicas.conversor_masa import convertir_masa
 from chuspacalc.modulos.matematicas.conversor_presion import convertir_presion
+from chuspacalc.modulos.matematicas.error_validacion import ErrorValidacion
 
 try:
     from chuspacalc.modulos.matematicas.conversor_longitud_extendido import (
@@ -76,6 +77,42 @@ def test_convertir_longitud_km_a_m():
 def test_convertir_longitud_valor_negativo():
     with pytest.raises(ValueError):
         convertir(-1, "m", "cm")
+
+
+@pytest.mark.parametrize("valor", [True, False, "1", None, [1]])
+def test_convertir_longitud_rechaza_tipos_invalidos(valor):
+    with pytest.raises(ErrorValidacion):
+        convertir(valor, "m", "cm")
+
+
+@pytest.mark.parametrize("valor", [float("nan"), float("inf"), float("-inf")])
+def test_convertir_longitud_rechaza_no_finitos(valor):
+    with pytest.raises(ErrorValidacion):
+        convertir(valor, "m", "cm")
+
+
+def test_convertir_longitud_negativo_lanza_error_validacion():
+    with pytest.raises(ErrorValidacion):
+        convertir(-1, "m", "cm")
+
+
+@pytest.mark.parametrize(
+    ("de_unidad", "a_unidad"),
+    [("xx", "m"), ("m", "xx"), (1, "m"), ("m", None)],
+)
+def test_convertir_longitud_rechaza_unidades_invalidas(de_unidad, a_unidad):
+    with pytest.raises(ErrorValidacion):
+        convertir(1, de_unidad, a_unidad)
+
+
+def test_convertir_longitud_retorna_claves_esperadas():
+    resultado = convertir(2, " KM ", "M")
+    assert resultado == {
+        "valor_original": 2,
+        "unidad_original": "km",
+        "valor_convertido": pytest.approx(2000.0),
+        "unidad_destino": "m",
+    }
 
 
 # ------------------------
