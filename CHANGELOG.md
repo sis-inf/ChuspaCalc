@@ -29,6 +29,7 @@ El script genera las entradas del changelog a partir de los commits desde el úl
 - feat(error_validacion): agregados validadores numericos (tipo, finitud, no cero y rango)
 
 ### Changed
+- refactor(volumen_excavacion): validación de dimensiones finitas y positivas mediante ErrorValidacion y anotaciones de tipo completas (#1951).
 - chore(utils): documentación y anotaciones de tipos en logging_config (#2048).
 - chore(changelog): actualización de módulos documentados en desarrollo
 - refactor(validation): normalización de validaciones numéricas, valores no finitos y contratos de entrada en módulos de cálculo
@@ -54,6 +55,7 @@ El script genera las entradas del changelog a partir de los commits desde el úl
 - chore(converter): documentación de módulo y docstrings en formato estándar con Args y Returns, y corrección del ejemplo de celsius_to_fahrenheit (#2046).
 - chore(ui): normalización de señales y captura segura de errores en `dialogo_comparar_historial` (#2037)
 - refactor(geometria): validar parámetros numéricos y tipado en diagonal_rectangulo (#1979).
+- refactor(conversor_longitud): validación de valor y unidades mediante ErrorValidacion, rechazo de booleanos, texto y valores no finitos, y TypedDict preciso para el retorno (#1993).
 - refactor(conversor_temperatura): validación de tipos numéricos, NaN e infinitos mediante ErrorValidacion y anotaciones de tipo completas (#1997).
 - refactor(matematicas): validar parámetros numéricos y tipado en conversor_energia (#1992).
 - refactor(conversor_velocidad): validación de tipos numéricos, NaN, infinitos y unidades mediante ErrorValidacion y anotaciones de tipo completas (#1998).
@@ -65,6 +67,8 @@ El script genera las entradas del changelog a partir de los commits desde el úl
 - chore(ui): panel_historial captura ErrorValidacion al consultar y editar el historial y muestra el mensaje en la interfaz (#2041).
 - refactor(electrica): la herramienta de Ley de Ohm valida con ErrorValidacion valores NaN, infinitos, divisores en cero y desbordes, y completa sus type hints (#1962)
 - refactor(punto_equilibrio): validación de costos y precios mediante ErrorValidacion, rechazo de booleanos, texto y valores no finitos, detección de márgenes y resultados desbordados, y anotaciones de tipo completas (#1989).
+- refactor(herramienta_conversion_unidades): validación de valores, categorías y unidades mediante ErrorValidacion, rechazo de booleanos, texto y valores no finitos, cero absoluto, detección de resultados desbordados y anotaciones de tipo completas (#2004).
+- refactor(sistemas_lineales): validación de parámetros numéricos finitos, captura de errores de cálculo mediante ErrorValidacion y anotaciones de tipo completas en la herramienta de sistemas lineales (#2007).
 
 ### Security
 - security(evaluators): sustitución de evaluación dinámica insegura por evaluadores matemáticos y lógicos con listas blancas y límites de complejidad
