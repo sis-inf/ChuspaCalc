@@ -66,6 +66,7 @@ El script genera las entradas del changelog a partir de los commits desde el úl
 - chore(ui): panel_estadisticas_uso captura ErrorValidacion al actualizar estadísticas y muestra el mensaje en la interfaz (#2040)
 - chore(ui): panel_historial captura ErrorValidacion al consultar y editar el historial y muestra el mensaje en la interfaz (#2041).
 - refactor(electrica): la herramienta de Ley de Ohm valida con ErrorValidacion valores NaN, infinitos, divisores en cero y desbordes, y completa sus type hints (#1962)
+- refactor(punto_equilibrio): validación de costos y precios mediante ErrorValidacion, rechazo de booleanos, texto y valores no finitos, detección de márgenes y resultados desbordados, y anotaciones de tipo completas (#1989).
 - refactor(herramienta_conversion_unidades): validación de valores, categorías y unidades mediante ErrorValidacion, rechazo de booleanos, texto y valores no finitos, cero absoluto, detección de resultados desbordados y anotaciones de tipo completas (#2004).
 - refactor(sistemas_lineales): validación de parámetros numéricos finitos, captura de errores de cálculo mediante ErrorValidacion y anotaciones de tipo completas en la herramienta de sistemas lineales (#2007).
 
