@@ -1,6 +1,8 @@
 import math
 from typing import TypedDict
 
+from chuspacalc.modulos.matematicas.error_validacion import ErrorValidacion
+
 
 class ResultadoMomento(TypedDict):
     momento_max: float
@@ -10,11 +12,11 @@ class ResultadoMomento(TypedDict):
 
 def _validar_finito(nombre: str, valor: float) -> None:
     if isinstance(valor, bool) or not isinstance(valor, (int, float)):
-        raise ValueError(f"'{nombre}' debe ser un número finito")
+        raise ErrorValidacion(f"'{nombre}' debe ser un número finito")
     if not math.isfinite(valor):
-        raise ValueError(f"'{nombre}' debe ser un número finito")
+        raise ErrorValidacion(f"'{nombre}' debe ser un número finito")
     if valor <= 0:
-        raise ValueError(f"'{nombre}' debe ser mayor que cero")
+        raise ErrorValidacion(f"'{nombre}' debe ser mayor que cero")
 
 
 def calcular_momento_max(
@@ -38,8 +40,8 @@ def calcular_momento_max(
         Momento máximo, posición y unidad.
 
     Raises:
-        ValueError: Si los valores no son positivos y finitos o el tipo
-            de carga no está soportado.
+        ErrorValidacion: Si los valores no son positivos y finitos o el
+            tipo de carga no está soportado.
     """
     _validar_finito("longitud", longitud)
     _validar_finito("carga", carga)
@@ -49,7 +51,9 @@ def calcular_momento_max(
     elif tipo_carga == "distribuida":
         momento = carga * longitud**2 / 8
     else:
-        raise ValueError("El tipo de carga debe ser 'puntual_central' o 'distribuida'")
+        raise ErrorValidacion(
+            "El tipo de carga debe ser 'puntual_central' o 'distribuida'"
+        )
 
     return {
         "momento_max": float(momento),
