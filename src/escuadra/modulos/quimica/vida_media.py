@@ -1,4 +1,3 @@
-
 """
 Calculadora de vida media radiactiva.
 """

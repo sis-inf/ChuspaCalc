@@ -1,4 +1,3 @@
-
 """
 Calculadora de distancia de un punto al origen de coordenadas.
 """

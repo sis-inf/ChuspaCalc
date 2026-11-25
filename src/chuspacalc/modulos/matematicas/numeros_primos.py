@@ -1,4 +1,3 @@
-
 def es_numero_primo(numero):
     """
     Determina si un número entero es primo.

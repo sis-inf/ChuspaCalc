@@ -2,6 +2,7 @@
 Módulo conversor_color
 Encargado de realizar conversiones de color entre los modelos RGB, HEX y HSL.
 """
+
 import string
 
 from chuspacalc.modulos.matematicas.error_validacion import ErrorValidacion
@@ -32,11 +33,13 @@ def hex_a_rgb(hex_str: str) -> tuple[int, int, int]:
     if not isinstance(hex_str, str):
         raise ErrorValidacion("El valor hexadecimal debe ser una cadena de texto.")
 
-    if hex_str.startswith('#'):
+    if hex_str.startswith("#"):
         hex_str = hex_str[1:]
 
     if len(hex_str) != 6:
-        raise ErrorValidacion("El formato hexadecimal debe contener exactamente 6 caracteres")
+        raise ErrorValidacion(
+            "El formato hexadecimal debe contener exactamente 6 caracteres"
+        )
 
     # int(..., 16) acepta signos, espacios y guiones bajos ("-1", " 1", "1_1"),
     # por eso se comprueba antes que todos los caracteres sean dígitos hex.
@@ -73,7 +76,9 @@ def rgb_a_hsl(r: int, g: int, b: int) -> tuple[int, int, int]:
     else:
         denominador = 1.0 - abs(2.0 * l_calc - 1.0)
         if denominador == 0:
-            raise ErrorValidacion("No se puede calcular la saturación: denominador igual a cero.")
+            raise ErrorValidacion(
+                "No se puede calcular la saturación: denominador igual a cero."
+            )
         s_calc = delta / denominador
 
         if max_val == r_norm:

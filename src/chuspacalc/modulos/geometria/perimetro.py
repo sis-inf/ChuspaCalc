@@ -1,4 +1,3 @@
-
 import math
 from numbers import Real
 
@@ -10,7 +9,6 @@ def _validar_dimension(valor, nombre):
 
     if not isinstance(valor, int) and not math.isfinite(valor):
         raise ValueError(f"{nombre} debe ser un numero real finito")
-
 
 
 def perimetro_circulo(radio):

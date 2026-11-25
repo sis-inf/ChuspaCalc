@@ -64,10 +64,10 @@ def resolver_sistema(A: list[list[float]], b: list[float]) -> list[float] | None
             return None
 
         # Eliminar los coeficientes debajo del pivote
-        for fila in range(col + 1, n):
-            factor = M[fila][col] / pivote
+        for indice_fila in range(col + 1, n):
+            factor = M[indice_fila][col] / pivote
             for j in range(col, n + 1):
-                M[fila][j] -= factor * M[col][j]
+                M[indice_fila][j] -= factor * M[col][j]
 
     # Sustitución hacia atrás
     x = [0.0] * n

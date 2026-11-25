@@ -3,29 +3,34 @@ Despachador de comandos que mapea subcomandos a funciones ejecutables
 consultando dinámicamente al registry.
 """
 
-import importlib
 import json
 import sys
+from typing import Protocol, runtime_checkable
 
 from chuspacalc.core import registry
 
 FORMATOS_VALIDOS = ("dict", "json", "texto")
+Resultado = int | dict[str, object] | str
 
 
-def _cargar_modulos_dinamicos() -> None:
-    """Carga dinámicamente los módulos de la carpeta 'modulos'."""
-    if registry.MODULOS_DIR.exists():
-        for archivo in registry.MODULOS_DIR.glob("*.py"):
-            if archivo.name != "__init__.py":
-                nombre_modulo = f"chuspacalc.modulos.{archivo.stem}"
-                try:
-                    importlib.import_module(nombre_modulo)
-                except (ImportError, ModuleNotFoundError):
-                    pass
+@runtime_checkable
+class HerramientaEjecutable(Protocol):
+    def ejecutar(self) -> Resultado: ...
 
 
-def _formatear_resultado(resultado, formato: str):
-    """Convierte el resultado de un handler al formato solicitado."""
+def _formatear_resultado(resultado: Resultado, formato: str) -> Resultado:
+    """
+    Convierte el resultado de un handler al formato solicitado.
+
+    Args:
+        resultado: Valor devuelto por el handler. Solo se formatea si es un diccionario.
+        formato: Formato de salida: 'dict', 'json' o 'texto'.
+
+    Returns:
+        El mismo resultado si el formato es 'dict' o si no es un diccionario.
+        En otro caso, una cadena JSON ('json') o una cadena con una linea
+        'clave: valor' por entrada ('texto').
+    """
     if formato == "dict" or not isinstance(resultado, dict):
         return resultado
     if formato == "json":
@@ -33,7 +38,7 @@ def _formatear_resultado(resultado, formato: str):
     return "\n".join(f"{clave}: {valor}" for clave, valor in resultado.items())
 
 
-def dispatch(subcommand: str, formato: str = "dict") -> int | dict | str:
+def dispatch(subcommand: str, formato: str = "dict") -> Resultado:
     """
     Despacha un subcomando a su función ejecutable correspondiente.
 
@@ -62,13 +67,8 @@ def dispatch(subcommand: str, formato: str = "dict") -> int | dict | str:
             f"Formato '{formato}' no soportado. Use uno de: {', '.join(FORMATOS_VALIDOS)}"
         )
 
-    # Forzamos el descubrimiento automático de submódulos antes de consultar
-    _cargar_modulos_dinamicos()
-
-    tools = registry.get_tools()
-    handler = tools.get(subcommand)
-
-    if handler is None:
+    herramienta = registry.buscar_por_nombre(subcommand)
+    if herramienta is None:
         print(
             f"Error: subcomando desconocido '{subcommand}'",
             file=sys.stderr,
@@ -76,7 +76,7 @@ def dispatch(subcommand: str, formato: str = "dict") -> int | dict | str:
         return 1
 
     try:
-        resultado = handler()
+        instancia = herramienta()
     except (ImportError, ModuleNotFoundError):
         print(
             "Error: El módulo solicitado no está disponible o no existe.",
@@ -84,4 +84,12 @@ def dispatch(subcommand: str, formato: str = "dict") -> int | dict | str:
         )
         return 1
 
+    if not isinstance(instancia, HerramientaEjecutable):
+        print(
+            f"Error: la herramienta '{subcommand}' no es ejecutable.",
+            file=sys.stderr,
+        )
+        return 1
+
+    resultado = instancia.ejecutar()
     return _formatear_resultado(resultado, formato)

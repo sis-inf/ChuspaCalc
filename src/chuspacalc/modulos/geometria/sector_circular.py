@@ -1,4 +1,3 @@
-
 """
 Calculadora del área de un sector circular.
 """
@@ -40,7 +39,7 @@ def calcular_area_sector(radio, angulo):
     if not 0 <= angulo <= 360:
         raise ValueError("El ángulo debe estar entre 0 y 360 grados.")
 
-    area = (angulo / 360) * math.pi * radio ** 2
+    area = (angulo / 360) * math.pi * radio**2
 
     if not math.isfinite(area):
         raise ValueError("El resultado debe ser finito.")

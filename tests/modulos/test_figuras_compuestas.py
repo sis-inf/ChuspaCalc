@@ -1,6 +1,6 @@
 import pytest
 
-from escuadra.modulos.geometria.figuras_compuestas import (
+from chuspacalc.modulos.geometria.figuras_compuestas import (
     calcular_area_compuesta,
     calcular_volumen_compuesto,
 )
