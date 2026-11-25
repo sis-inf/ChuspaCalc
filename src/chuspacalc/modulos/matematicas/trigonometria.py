@@ -10,6 +10,8 @@ def _validar_numero_finito(valor: int | float) -> int | float:
     Raises:
         ErrorValidacion: Si el valor no es numérico o no es finito.
     """
+    if isinstance(valor, bool):
+        raise ErrorValidacion("El valor debe ser un número finito")
     try:
         if not math.isfinite(valor):
             raise ErrorValidacion("El valor debe ser un número finito")
