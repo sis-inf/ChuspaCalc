@@ -3,9 +3,6 @@ Herramienta de Carga Crítica de Euler para ChuspaCalc.
 Calcula la carga crítica de pandeo para columnas a compresión.
 """
 
-from chuspacalc.core.carrera import Carrera
-from chuspacalc.core.herramienta import Herramienta
-from chuspacalc.modulos.civil.columna_pandeo import calcular_carga_critica_euler
 from PySide6.QtWidgets import (
     QComboBox,
     QHBoxLayout,
@@ -15,6 +12,10 @@ from PySide6.QtWidgets import (
     QVBoxLayout,
     QWidget,
 )
+
+from chuspacalc.core.carrera import Carrera
+from chuspacalc.core.herramienta import Herramienta
+from chuspacalc.modulos.civil.columna_pandeo import calcular_carga_critica_euler
 
 
 class HerramientaColumnaPandeo(Herramienta):
@@ -60,8 +61,12 @@ class HerramientaColumnaPandeo(Herramienta):
         self._condicion_combo = QComboBox()
         self._condicion_combo.addItem("Biarticulada (K=1.0)", "biarticulada")
         self._condicion_combo.addItem("Empotrada-Libre (K=2.0)", "empotrada-libre")
-        self._condicion_combo.addItem("Empotrada-Empotrada (K=0.5)", "empotrada-empotrada")
-        self._condicion_combo.addItem("Empotrada-Articulada (K=0.7)", "empotrada-articulada")
+        self._condicion_combo.addItem(
+            "Empotrada-Empotrada (K=0.5)", "empotrada-empotrada"
+        )
+        self._condicion_combo.addItem(
+            "Empotrada-Articulada (K=0.7)", "empotrada-articulada"
+        )
         fila_condicion.addWidget(label_condicion)
         fila_condicion.addWidget(self._condicion_combo)
         root.addLayout(fila_condicion)
@@ -108,7 +113,7 @@ class HerramientaColumnaPandeo(Herramienta):
         self._carga_critica_output.clear()
 
         # Leer valores
-        valores: dict[str, float | None] = {}
+        valores: dict[str, float] = {}
         for clave in ("modulo_elasticidad", "momento_inercia", "longitud"):
             texto = self._campos[clave].text().strip()
             if texto == "":
@@ -123,9 +128,7 @@ class HerramientaColumnaPandeo(Herramienta):
                     return
                 valores[clave] = v
             except ValueError:
-                self._error_label.setText(
-                    f"Error: «{texto}» no es un número válido."
-                )
+                self._error_label.setText(f"Error: «{texto}» no es un número válido.")
                 return
 
         # Obtener condición de apoyo

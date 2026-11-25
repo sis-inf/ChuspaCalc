@@ -6,6 +6,7 @@ valores no finitos (NaN, inf y -inf) y conservan las conversiones válidas.
 import math
 
 import pytest
+
 from chuspacalc.modulos.matematicas.conversor_energia import convertir_energia
 from chuspacalc.modulos.matematicas.conversor_longitud import convertir
 from chuspacalc.modulos.matematicas.conversor_longitud_extendido import (

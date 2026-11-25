@@ -1,9 +1,18 @@
 import threading
 
+from PySide6.QtCore import Slot
+from PySide6.QtGui import QFont
+from PySide6.QtWidgets import (
+    QApplication,
+    QFrame,
+    QLabel,
+    QPushButton,
+    QVBoxLayout,
+    QWidget,
+)
+
 from chuspacalc.ui.mensajes import mostrar_error_contextualizado
 from chuspacalc.ui.progress import ProgressIndicator
-from PySide6.QtGui import QFont
-from PySide6.QtWidgets import QApplication, QFrame, QLabel, QPushButton, QVBoxLayout, QWidget
 
 
 class WidgetHerramienta(QWidget):
@@ -52,6 +61,8 @@ class WidgetHerramienta(QWidget):
 
         # Botón dedicado para copiar resultados (Tu funcionalidad del Issue #704)
         self.btn_copiar = QPushButton("Copiar resultado")
+        # La señal clicked se conecta al slot copiar_al_portapapeles, que está
+        # decorado con @Slot() y no recibe el parámetro 'checked' de la señal.
         self.btn_copiar.clicked.connect(self.copiar_al_portapapeles)
 
         # Construcción ordenada de la interfaz base
@@ -74,12 +85,21 @@ class WidgetHerramienta(QWidget):
         """
         return ""
 
+    @Slot()
     def copiar_al_portapapeles(self):
         """
         Obtiene el resultado formateado de la herramienta y lo copia
         al portapapeles del sistema usando QApplication.clipboard.
+
+        Si la herramienta lanza una excepción al validar o calcular el
+        resultado, se muestra un mensaje de error en la interfaz en lugar
+        de dejar que la excepción se propague fuera del slot.
         """
-        resultado = self.obtener_resultado_formateado()
+        try:
+            resultado = self.obtener_resultado_formateado()
+        except Exception as error:
+            mostrar_error_contextualizado(self, error)
+            return
         if resultado:
             portapapeles = QApplication.clipboard()
             portapapeles.setText(str(resultado))
@@ -94,6 +114,8 @@ def ejecutar_con_progreso_ui(funcion, *args, umbral=0.5, **kwargs):
     terminado = threading.Event()
 
     def tarea():
+        # Se ejecuta en un hilo aparte; guarda el resultado o la excepción
+        # para reportarla después en el hilo principal de la interfaz.
         try:
             resultado[0] = funcion(*args, **kwargs)
         except Exception as error:
@@ -104,6 +126,8 @@ def ejecutar_con_progreso_ui(funcion, *args, umbral=0.5, **kwargs):
     hilo = threading.Thread(target=tarea)
     hilo.start()
 
+    # Espera hasta 'umbral' segundos; si la tarea sigue activa se muestra
+    # el indicador de progreso hasta que termine.
     hilo.join(timeout=umbral)
 
     if not terminado.is_set():
@@ -114,6 +138,8 @@ def ejecutar_con_progreso_ui(funcion, *args, umbral=0.5, **kwargs):
     else:
         hilo.join()
 
+    # Si la tarea falló, se informa al usuario con un mensaje claro
+    # y se devuelve None para que el llamador no use un resultado inválido.
     if isinstance(resultado[0], Exception):
         mostrar_error_contextualizado(None, resultado[0])
         return None

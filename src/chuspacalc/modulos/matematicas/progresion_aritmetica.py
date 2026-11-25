@@ -1,4 +1,3 @@
-
 import math
 from numbers import Real
 
@@ -44,11 +43,7 @@ def calcular_termino_aritmetico(
     if not _es_real_finito(diferencia):
         raise ErrorValidacion("La diferencia debe ser un número real finito.")
 
-    if (
-        isinstance(posicion, bool)
-        or not isinstance(posicion, int)
-        or posicion <= 0
-    ):
+    if isinstance(posicion, bool) or not isinstance(posicion, int) or posicion <= 0:
         raise ErrorValidacion("La posición debe ser un entero positivo.")
 
     try:

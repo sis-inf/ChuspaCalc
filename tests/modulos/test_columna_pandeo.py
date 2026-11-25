@@ -1,5 +1,4 @@
 import pytest
-
 from escuadra.modulos.civil.columna_pandeo import calcular_carga_critica_euler
 
 

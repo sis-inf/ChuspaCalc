@@ -1,4 +1,3 @@
-
 """
 Calculadora de resistencia equivalente en paralelo.
 

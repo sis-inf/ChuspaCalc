@@ -1,5 +1,4 @@
 import pytest
-
 from escuadra.modulos.civil.carga_distribuida import calcular_reacciones_carga_parcial
 
 
@@ -82,3 +81,35 @@ def test_parametro_no_finito_lanza_value_error(parametro, no_finito):
     valores[parametro] = no_finito
     with pytest.raises(ValueError, match=f"{parametro} debe ser un número finito"):
         calcular_reacciones_carga_parcial(**valores)
+
+
+def test_errores_de_dominio_son_error_validacion():
+    from chuspacalc.modulos.matematicas.error_validacion import ErrorValidacion
+
+    with pytest.raises(ErrorValidacion):
+        calcular_reacciones_carga_parcial(0, 2, 0, 10)
+
+
+@pytest.mark.parametrize("invalido", ["10", None, True, [1]])
+@pytest.mark.parametrize(
+    "parametro", ["longitud_viga", "carga_por_metro", "inicio_carga", "fin_carga"]
+)
+def test_tipo_no_numerico_lanza_error_validacion(parametro, invalido):
+    from chuspacalc.modulos.matematicas.error_validacion import ErrorValidacion
+
+    valores = {
+        "longitud_viga": 10,
+        "carga_por_metro": 5,
+        "inicio_carga": 2,
+        "fin_carga": 6,
+    }
+    valores[parametro] = invalido
+    with pytest.raises(ErrorValidacion, match=f"{parametro} debe ser un número"):
+        calcular_reacciones_carga_parcial(**valores)
+
+
+def test_entero_gigante_lanza_error_validacion():
+    from chuspacalc.modulos.matematicas.error_validacion import ErrorValidacion
+
+    with pytest.raises(ErrorValidacion, match="demasiado grande"):
+        calcular_reacciones_carga_parcial(10**400, 2, 0, 10)

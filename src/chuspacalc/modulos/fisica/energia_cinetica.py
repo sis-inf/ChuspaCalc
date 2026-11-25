@@ -28,7 +28,7 @@ def calcular_energia_cinetica(masa, velocidad):
     if masa <= 0:
         raise ValueError("La masa debe ser un numero positivo.")
 
-    energia = (masa * velocidad ** 2) / 2
+    energia = (masa * velocidad**2) / 2
 
     if not math.isfinite(energia):
         raise ValueError("El resultado debe ser finito.")

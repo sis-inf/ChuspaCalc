@@ -1,8 +1,6 @@
-
 """
 Calculadora del rango estadístico de un conjunto de datos.
 """
-
 
 import math
 

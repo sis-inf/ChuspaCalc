@@ -3,9 +3,6 @@ Herramienta de Potencia Trifásica para ChuspaCalc.
 Calcula la potencia activa, reactiva y aparente en sistemas trifásicos.
 """
 
-from chuspacalc.core.carrera import Carrera
-from chuspacalc.core.herramienta import Herramienta
-from chuspacalc.modulos.electrica.potencia_trifasica import calcular_potencia_trifasica
 from PySide6.QtWidgets import (
     QComboBox,
     QHBoxLayout,
@@ -16,11 +13,17 @@ from PySide6.QtWidgets import (
     QWidget,
 )
 
+from chuspacalc.core.carrera import Carrera
+from chuspacalc.core.herramienta import Herramienta
+from chuspacalc.modulos.electrica.potencia_trifasica import calcular_potencia_trifasica
+
 
 class HerramientaPotenciaTrifasica(Herramienta):
     nombre = "Potencia Trifásica"
     carrera = Carrera.ELECTRICA
-    descripcion = "Calcula la potencia activa, reactiva y aparente en sistemas trifásicos."
+    descripcion = (
+        "Calcula la potencia activa, reactiva y aparente en sistemas trifásicos."
+    )
 
     def crear_widget(self) -> QWidget:
         widget = QWidget()
@@ -114,7 +117,7 @@ class HerramientaPotenciaTrifasica(Herramienta):
             campo.clear()
 
         # Leer valores
-        valores: dict[str, float | None] = {}
+        valores: dict[str, float] = {}
         for clave in ("voltaje", "corriente", "factor_potencia"):
             texto = self._campos[clave].text().strip()
             if texto == "":
@@ -129,9 +132,7 @@ class HerramientaPotenciaTrifasica(Herramienta):
                     return
                 valores[clave] = v
             except ValueError:
-                self._error_label.setText(
-                    f"Error: «{texto}» no es un número válido."
-                )
+                self._error_label.setText(f"Error: «{texto}» no es un número válido.")
                 return
 
         # Obtener tipo de conexión
