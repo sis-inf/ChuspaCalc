@@ -70,6 +70,7 @@ El script genera las entradas del changelog a partir de los commits desde el úl
 - refactor(punto_equilibrio): validación de costos y precios mediante ErrorValidacion, rechazo de booleanos, texto y valores no finitos, detección de márgenes y resultados desbordados, y anotaciones de tipo completas (#1989).
 - refactor(herramienta_conversion_unidades): validación de valores, categorías y unidades mediante ErrorValidacion, rechazo de booleanos, texto y valores no finitos, cero absoluto, detección de resultados desbordados y anotaciones de tipo completas (#2004).
 - refactor(sistemas_lineales): validación de parámetros numéricos finitos, captura de errores de cálculo mediante ErrorValidacion y anotaciones de tipo completas en la herramienta de sistemas lineales (#2007).
+- fix(trigonometria): rechazo de booleanos mediante ErrorValidacion en seno, coseno, tangente y arcofunciones, con prueba de regresión (#2013).
 
 ### Security
 - security(evaluators): sustitución de evaluación dinámica insegura por evaluadores matemáticos y lógicos con listas blancas y límites de complejidad
