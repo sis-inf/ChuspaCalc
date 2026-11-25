@@ -1,3 +1,7 @@
+import math
+from numbers import Real
+from typing import ClassVar
+
 from PySide6.QtWidgets import (
     QComboBox,
     QHBoxLayout,
@@ -9,6 +13,49 @@ from PySide6.QtWidgets import (
 
 from chuspacalc.core.carrera import Carrera
 from chuspacalc.core.herramienta import Herramienta
+from chuspacalc.modulos.matematicas.error_validacion import ErrorValidacion
+
+UNIDADES_TEMPERATURA: frozenset[str] = frozenset({"°C", "°F", "K"})
+CERO_ABSOLUTO_CELSIUS: float = -273.15
+TOLERANCIA_CERO_ABSOLUTO: float = 1e-9
+
+
+def _validar_valor(valor: float) -> float:
+    """Valida que el valor sea un número real finito (sin booleanos)."""
+    if isinstance(valor, bool) or not isinstance(valor, Real):
+        raise ErrorValidacion(f"El valor debe ser un número finito: {valor!r}")
+
+    try:
+        es_finito = math.isfinite(valor)
+    except OverflowError as error:
+        raise ErrorValidacion(
+            "El valor debe ser un número finito: es demasiado grande"
+        ) from error
+
+    if not es_finito:
+        raise ErrorValidacion(f"El valor debe ser un número finito: {valor}")
+
+    return valor
+
+
+def _validar_resultado(resultado: float) -> float:
+    """Valida que el resultado de la conversión sea finito."""
+    if not math.isfinite(resultado):
+        raise ErrorValidacion(
+            f"El resultado de la conversión no es finito: {resultado}"
+        )
+    return resultado
+
+
+def _validar_unidad(unidad: str, nombre: str, permitidas: frozenset[str]) -> str:
+    """Valida que la unidad sea texto y esté entre las unidades permitidas."""
+    if not isinstance(unidad, str):
+        raise ErrorValidacion(f"La unidad de {nombre} debe ser texto: {unidad!r}")
+
+    if unidad not in permitidas:
+        raise ErrorValidacion(f"Unidad de {nombre} inválida: {unidad!r}")
+
+    return unidad
 
 
 class HerramientaConversionUnidades(Herramienta):
@@ -18,7 +65,7 @@ class HerramientaConversionUnidades(Herramienta):
         "Convierte valores entre unidades de longitud, masa, tiempo y temperatura."
     )
 
-    CATEGORIAS = {
+    CATEGORIAS: ClassVar[dict[str, dict[str, float]]] = {
         "Longitud": {
             "m": 1.0,
             "km": 1000.0,
@@ -32,7 +79,7 @@ class HerramientaConversionUnidades(Herramienta):
         "Tiempo": {"s": 1.0, "min": 60.0, "h": 3600.0, "d": 86400.0},
     }
 
-    def crear_widget(self):
+    def crear_widget(self) -> QWidget:
         widget = QWidget()
         layout = QVBoxLayout()
 
@@ -80,7 +127,7 @@ class HerramientaConversionUnidades(Herramienta):
         self.actualizar_unidades()
         return widget
 
-    def actualizar_unidades(self):
+    def actualizar_unidades(self) -> None:
         categoria = self.categoria_combo.currentText()
         self.de_unidad_combo.clear()
         self.a_unidad_combo.clear()
@@ -94,7 +141,7 @@ class HerramientaConversionUnidades(Herramienta):
             if len(unidades) > 1:
                 self.a_unidad_combo.setCurrentIndex(1)
 
-    def convertir_automatico(self):
+    def convertir_automatico(self) -> None:
         self.error_label.setText("")
         self.resultado_output.clear()
 
@@ -119,16 +166,50 @@ class HerramientaConversionUnidades(Herramienta):
                 resultado = self.convertir_lineal(valor, de_unidad, a_unidad, categoria)
 
             self.resultado_output.setText(str(round(resultado, 10)))
-        except Exception as e:
-            self.error_label.setText(f"Error en la conversión: {str(e)}")
+        except ErrorValidacion as error:
+            self.error_label.setText(f"Error en la conversión: {error}")
 
-    def convertir_lineal(self, valor, de_unidad, a_unidad, categoria):
+    def convertir_lineal(
+        self, valor: float, de_unidad: str, a_unidad: str, categoria: str
+    ) -> float:
+        """
+        Convierte un valor entre unidades de una categoría lineal.
+
+        Raises:
+            ErrorValidacion: Si el valor no es un número finito, si la categoría
+                o las unidades no son válidas, o si el resultado no es finito.
+        """
+        _validar_valor(valor)
+
+        if not isinstance(categoria, str) or categoria not in self.CATEGORIAS:
+            raise ErrorValidacion(f"Categoría inválida: {categoria!r}")
+
         factores = self.CATEGORIAS[categoria]
-        valor_en_base = valor * factores[de_unidad]
-        resultado = valor_en_base / factores[a_unidad]
-        return resultado
+        unidades = frozenset(factores)
+        _validar_unidad(de_unidad, "origen", unidades)
+        _validar_unidad(a_unidad, "destino", unidades)
 
-    def convertir_temperatura(self, valor, de_unidad, a_unidad):
+        if factores[a_unidad] == 0:
+            raise ErrorValidacion(f"El factor de la unidad destino es cero: {a_unidad}")
+
+        valor_en_base = _validar_resultado(valor * factores[de_unidad])
+        return _validar_resultado(valor_en_base / factores[a_unidad])
+
+    def convertir_temperatura(
+        self, valor: float, de_unidad: str, a_unidad: str
+    ) -> float:
+        """
+        Convierte una temperatura entre °C, °F y K.
+
+        Raises:
+            ErrorValidacion: Si el valor no es un número finito, si las unidades
+                no son válidas, si la temperatura está bajo el cero absoluto o
+                si el resultado no es finito.
+        """
+        _validar_valor(valor)
+        _validar_unidad(de_unidad, "origen", UNIDADES_TEMPERATURA)
+        _validar_unidad(a_unidad, "destino", UNIDADES_TEMPERATURA)
+
         celsius = valor
 
         if de_unidad == "°F":
@@ -136,11 +217,17 @@ class HerramientaConversionUnidades(Herramienta):
         elif de_unidad == "K":
             celsius = valor - 273.15
 
-        if a_unidad == "°C":
-            return celsius
-        elif a_unidad == "°F":
-            return celsius * 9 / 5 + 32
-        elif a_unidad == "K":
-            return celsius + 273.15
+        _validar_resultado(celsius)
+
+        if celsius < CERO_ABSOLUTO_CELSIUS - TOLERANCIA_CERO_ABSOLUTO:
+            raise ErrorValidacion(
+                "La temperatura no puede ser menor al cero absoluto: "
+                f"{valor} {de_unidad}"
+            )
+
+        if a_unidad == "°F":
+            return _validar_resultado(celsius * 9 / 5 + 32)
+        if a_unidad == "K":
+            return _validar_resultado(celsius + 273.15)
 
         return celsius
