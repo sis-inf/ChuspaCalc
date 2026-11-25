@@ -29,6 +29,7 @@ El script genera las entradas del changelog a partir de los commits desde el úl
 - feat(error_validacion): agregados validadores numericos (tipo, finitud, no cero y rango)
 
 ### Changed
+- refactor(momento_flector): las entradas inválidas de calcular_momento_max y calcular_momento_maximo lanzan ErrorValidacion; se añade regresión de ambos contratos (#1945).
 - refactor(volumen_excavacion): validación de dimensiones finitas y positivas mediante ErrorValidacion y anotaciones de tipo completas (#1951).
 - refactor(terreno): validación de áreas no negativas y longitud positiva mediante ErrorValidacion y anotaciones de tipo completas (#1949).
 - chore(utils): documentación y anotaciones de tipos en logging_config (#2048).
