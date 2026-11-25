@@ -76,6 +76,7 @@ El script genera las entradas del changelog a partir de los commits desde el úl
 - fix(trigonometria): rechazo de booleanos mediante ErrorValidacion en seno, coseno, tangente y arcofunciones, con prueba de regresión (#2013).
 - refactor(numeros_complejos): validación de operandos complejos finitos, control de desbordes y divisiones por cero mediante ErrorValidacion y anotaciones de tipo completas en el módulo de números complejos (#2006).
 - refactor(financiera): validación de parámetros numéricos finitos, control de desbordes y divisiones por cero mediante ErrorValidacion y anotaciones de tipo completas en el módulo de matemática financiera (#2002).
+- refactor(reacciones_carga_distribuida): validación de tipos numéricos, NaN, infinitos y resultados desbordados mediante ErrorValidacion y anotaciones de tipo completas (#1946).
 
 ### Security
 - security(evaluators): sustitución de evaluación dinámica insegura por evaluadores matemáticos y lógicos con listas blancas y límites de complejidad

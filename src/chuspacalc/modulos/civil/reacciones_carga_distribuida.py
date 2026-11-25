@@ -1,7 +1,39 @@
+"""Cálculo de reacciones en vigas simplemente apoyadas con carga uniforme."""
+
 import math
+from numbers import Real
+
+from chuspacalc.modulos.matematicas.error_validacion import ErrorValidacion
 
 
-def calcular_reacciones_carga_distribuida(carga_distribuida, longitud):
+def _validar_numero(valor: object, descripcion: str) -> float:
+    """Verifica que el valor sea un número real finito y lo devuelve como float.
+
+    Args:
+        valor: Dato a validar.
+        descripcion: Nombre descriptivo del parámetro para el mensaje de error.
+
+    Returns:
+        El valor convertido a ``float``.
+
+    Raises:
+        ErrorValidacion: Si el tipo no es numérico (incluye ``bool``), si es
+            demasiado grande para convertirse a ``float`` o si no es finito.
+    """
+    if isinstance(valor, bool) or not isinstance(valor, Real):
+        raise ErrorValidacion(f"{descripcion} debe ser numérica.")
+    try:
+        numero = float(valor)
+    except OverflowError:
+        raise ErrorValidacion(f"{descripcion} es demasiado grande.") from None
+    if not math.isfinite(numero):
+        raise ErrorValidacion(f"{descripcion} debe ser finita.")
+    return numero
+
+
+def calcular_reacciones_carga_distribuida(
+    carga_distribuida: float, longitud: float
+) -> tuple[float, float]:
     """
     Calcula las reacciones en los apoyos de una viga simplemente
     apoyada sometida a una carga uniformemente distribuida.
@@ -14,31 +46,23 @@ def calcular_reacciones_carga_distribuida(carga_distribuida, longitud):
         tuple: (reaccion_izquierda, reaccion_derecha), en N.
 
     Raises:
-        ValueError: Si los parámetros no son numéricos,
-                    positivos o finitos.
+        ErrorValidacion: Si los parámetros no son numéricos,
+            positivos o finitos, o si el resultado se desborda.
     """
+    carga = _validar_numero(carga_distribuida, "La carga distribuida")
+    largo = _validar_numero(longitud, "La longitud")
 
-    if isinstance(carga_distribuida, bool) or not isinstance(
-        carga_distribuida, (int, float)
-    ):
-        raise ValueError("La carga distribuida debe ser numérica.")
+    if carga <= 0:
+        raise ErrorValidacion("La carga distribuida debe ser mayor que cero.")
 
-    if isinstance(longitud, bool) or not isinstance(longitud, (int, float)):
-        raise ValueError("La longitud debe ser numérica.")
+    if largo <= 0:
+        raise ErrorValidacion("La longitud debe ser mayor que cero.")
 
-    if not math.isfinite(carga_distribuida):
-        raise ValueError("La carga distribuida debe ser finita.")
-
-    if not math.isfinite(longitud):
-        raise ValueError("La longitud debe ser finita.")
-
-    if carga_distribuida <= 0:
-        raise ValueError("La carga distribuida debe ser mayor que cero.")
-
-    if longitud <= 0:
-        raise ValueError("La longitud debe ser mayor que cero.")
-
-    carga_total = carga_distribuida * longitud
+    carga_total = carga * largo
+    if not math.isfinite(carga_total):
+        raise ErrorValidacion(
+            "El resultado se desborda: carga o longitud demasiado grandes."
+        )
 
     reaccion_izquierda = carga_total / 2
     reaccion_derecha = carga_total / 2
