@@ -29,6 +29,7 @@ El script genera las entradas del changelog a partir de los commits desde el úl
 - feat(error_validacion): agregados validadores numericos (tipo, finitud, no cero y rango)
 
 ### Changed
+- refactor(momento_flector): las entradas inválidas de calcular_momento_max y calcular_momento_maximo lanzan ErrorValidacion; se añade regresión de ambos contratos (#1945).
 - refactor(volumen_excavacion): validación de dimensiones finitas y positivas mediante ErrorValidacion y anotaciones de tipo completas (#1951).
 - refactor(terreno): validación de áreas no negativas y longitud positiva mediante ErrorValidacion y anotaciones de tipo completas (#1949).
 - chore(utils): documentación y anotaciones de tipos en logging_config (#2048).
@@ -72,6 +73,7 @@ El script genera las entradas del changelog a partir de los commits desde el úl
 - refactor(herramienta_conversion_unidades): validación de valores, categorías y unidades mediante ErrorValidacion, rechazo de booleanos, texto y valores no finitos, cero absoluto, detección de resultados desbordados y anotaciones de tipo completas (#2004).
 - refactor(sistemas_lineales): validación de parámetros numéricos finitos, captura de errores de cálculo mediante ErrorValidacion y anotaciones de tipo completas en la herramienta de sistemas lineales (#2007).
 - refactor(numeros_primos): es_numero_primo lanza ErrorValidacion ante valores no enteros, booleanos, NaN o infinitos y completa sus anotaciones de tipo (#2010).
+- refactor(numeros_complejos): validación de operandos complejos finitos, control de desbordes y divisiones por cero mediante ErrorValidacion y anotaciones de tipo completas en el módulo de números complejos (#2006).
 - refactor(financiera): validación de parámetros numéricos finitos, control de desbordes y divisiones por cero mediante ErrorValidacion y anotaciones de tipo completas en el módulo de matemática financiera (#2002).
 
 ### Security
