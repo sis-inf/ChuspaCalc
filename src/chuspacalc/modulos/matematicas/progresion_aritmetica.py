@@ -51,7 +51,7 @@ def calcular_termino_aritmetico(
     except OverflowError as error:
         raise ErrorValidacion("El resultado calculado no es finito.") from error
 
-    if not math.isfinite(resultado):
+    if not _es_real_finito(resultado):
         raise ErrorValidacion("El resultado calculado no es finito.")
 
     return resultado
