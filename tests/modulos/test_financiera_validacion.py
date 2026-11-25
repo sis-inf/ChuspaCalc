@@ -64,7 +64,8 @@ def test_periodos_invalidos(funcion, invalido):
 
 
 @pytest.mark.parametrize(
-    "funcion", [calcular_valor_futuro, calcular_valor_presente, calcular_interes_compuesto]
+    "funcion",
+    [calcular_valor_futuro, calcular_valor_presente, calcular_interes_compuesto],
 )
 def test_desbordamiento_lanza_error_validacion(funcion):
     with pytest.raises(ErrorValidacion, match="rango"):
