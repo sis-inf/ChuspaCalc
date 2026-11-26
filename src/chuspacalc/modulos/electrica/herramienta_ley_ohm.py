@@ -17,11 +17,33 @@ from PySide6.QtWidgets import (
 from chuspacalc.core.carrera import Carrera
 from chuspacalc.core.herramienta import Herramienta
 from chuspacalc.modulos.electrica.ley_ohm import calcular_ohm
+from chuspacalc.modulos.matematicas.error_validacion import (
+    ErrorValidacion,
+    validar_no_cero,
+    validar_numero,
+)
 
 
 def calcular_potencia(voltaje: float, corriente: float) -> float:
-    """Calcula la potencia eléctrica."""
-    return voltaje * corriente
+    """Calcula la potencia eléctrica.
+
+    Args:
+        voltaje: Voltaje en voltios.
+        corriente: Corriente en amperios.
+
+    Returns:
+        La potencia en vatios (voltaje * corriente).
+
+    Raises:
+        ErrorValidacion: Si voltaje o corriente no son números finitos,
+            o si el resultado se desborda.
+    """
+    v = validar_numero(voltaje, "voltaje")
+    i = validar_numero(corriente, "corriente")
+
+    potencia = v * i
+
+    return validar_numero(potencia, "potencia")
 
 
 class HerramientaLeyOhm(Herramienta):
@@ -113,6 +135,12 @@ class HerramientaLeyOhm(Herramienta):
                 self._error_label.setText(f"Error: «{texto}» no es un número válido.")
                 return
 
+            try:
+                validar_numero(valor, clave)
+            except ErrorValidacion as error:
+                self._error_label.setText(f"Error: {error}")
+                return
+
             if valor < 0:
                 self._error_label.setText(
                     f"Error: el valor de {clave} debe ser positivo."
@@ -132,10 +160,24 @@ class HerramientaLeyOhm(Herramienta):
             return
 
         try:
+            # El divisor de la operación no puede ser cero.
+            if valores["R"] is None:
+                validar_no_cero(valores["I"], "I")
+            else:
+                validar_no_cero(valores["R"], "R")
+
             resultado = calcular_ohm(
                 voltaje=valores["V"],
                 corriente=valores["I"],
                 resistencia=valores["R"],
+            )
+
+            for magnitud in ("voltaje", "corriente", "resistencia"):
+                validar_numero(resultado[magnitud], magnitud)
+
+            potencia = calcular_potencia(
+                resultado["voltaje"],
+                resultado["corriente"],
             )
         except ValueError as error:
             self._error_label.setText(str(error))
@@ -145,10 +187,6 @@ class HerramientaLeyOhm(Herramienta):
         self._campos["I"].setText(str(round(resultado["corriente"], 4)))
         self._campos["R"].setText(str(round(resultado["resistencia"], 4)))
 
-        potencia = calcular_potencia(
-            resultado["voltaje"],
-            resultado["corriente"],
-        )
         self._potencia_output.setText(str(round(potencia, 4)))
 
     def _limpiar(self) -> None:

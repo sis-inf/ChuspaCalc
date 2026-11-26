@@ -18,17 +18,26 @@ from PySide6.QtWidgets import (
 
 from chuspacalc.core.carrera import Carrera
 from chuspacalc.core.herramienta import Herramienta
+from chuspacalc.modulos.matematicas.error_validacion import ErrorValidacion
 from chuspacalc.modulos.matematicas.financiera import (
     calcular_interes_compuesto,
     calcular_valor_futuro,
     calcular_valor_presente,
 )
 
+MAX_PERIODOS = 10_000
+
 
 class HerramientaFinanciera(Herramienta):
     nombre = "Matemática financiera"
     carrera = Carrera.MATEMATICAS
     descripcion = "Calcula valor futuro, valor presente " "e interés compuesto."
+
+    _tipo_calculo: QComboBox
+    _campos: dict[str, QLineEdit]
+    _etiquetas: dict[str, QLabel]
+    _resultado_output: QLineEdit
+    _error_label: QLabel
 
     def crear_widget(self) -> QWidget:
         widget = QWidget()
@@ -142,67 +151,59 @@ class HerramientaFinanciera(Herramienta):
         self._resultado_output.clear()
         self._error_label.clear()
 
+    def _leer_parametros(self) -> tuple[float, float, int]:
+        """Lee y valida monto, tasa y períodos; lanza ErrorValidacion."""
+        valores: dict[str, float] = {}
+
+        for clave in ("monto", "tasa"):
+            etiqueta = self._etiquetas[clave].text()
+            texto = self._campos[clave].text().strip()
+
+            if texto == "":
+                raise ErrorValidacion(f"Completa el campo «{etiqueta}».")
+
+            try:
+                valor = float(texto)
+            except ValueError:
+                raise ErrorValidacion(f"«{texto}» no es un número válido.") from None
+
+            if not math.isfinite(valor):
+                raise ErrorValidacion("Ingresa valores numéricos finitos.")
+
+            if valor < 0:
+                raise ErrorValidacion(f"«{etiqueta}» no puede ser negativo.")
+
+            valores[clave] = valor
+
+        texto_periodos = self._campos["periodos"].text().strip()
+
+        if texto_periodos == "":
+            raise ErrorValidacion("Ingresa el número de períodos.")
+
+        try:
+            periodos = int(texto_periodos)
+        except ValueError:
+            raise ErrorValidacion("Los períodos deben ser un número entero.") from None
+
+        if periodos <= 0:
+            raise ErrorValidacion("Los períodos deben ser mayores que 0.")
+
+        if periodos > MAX_PERIODOS:
+            raise ErrorValidacion(f"Los períodos no pueden superar {MAX_PERIODOS}.")
+
+        return valores["monto"], valores["tasa"], periodos
+
     def _calcular(self) -> None:
         """Valida las entradas y ejecuta el cálculo seleccionado."""
         self._error_label.clear()
         self._resultado_output.clear()
 
-        valores: dict[str, float] = {}
-
-        # Leer y validar el monto y la tasa.
-        for clave in ("monto", "tasa"):
-            texto = self._campos[clave].text().strip()
-
-            if texto == "":
-                self._error_label.setText(
-                    f"Error: completa el campo " f"«{self._etiquetas[clave].text()}»."
-                )
-                return
-
-            try:
-                valor = float(texto)
-            except ValueError:
-                self._error_label.setText(f"Error: «{texto}» no es un número válido.")
-                return
-
-            if not math.isfinite(valor):
-                self._error_label.setText("Error: ingresa valores numéricos finitos.")
-                return
-
-            valores[clave] = valor
-
-        # El monto debe ser no negativo.
-        if valores["monto"] < 0:
-            self._error_label.setText(
-                "Error: el capital o monto no puede ser negativo."
-            )
-            return
-
-        # La tasa debe ser mayor que -1 para que las
-        # fórmulas tengan un factor de capitalización válido.
-        if valores["tasa"] <= -1:
-            self._error_label.setText("Error: la tasa debe ser mayor que -1.")
-            return
-
-        # Leer y validar el número entero de períodos.
-        texto_periodos = self._campos["periodos"].text().strip()
-
-        if texto_periodos == "":
-            self._error_label.setText("Error: ingresa el número de períodos.")
-            return
-
         try:
-            periodos = int(texto_periodos)
-        except ValueError:
-            self._error_label.setText("Error: los períodos deben ser un número entero.")
+            monto, tasa, periodos = self._leer_parametros()
+        except ErrorValidacion as error:
+            self._error_label.setText(f"Error: {error}")
             return
 
-        if periodos < 0:
-            self._error_label.setText("Error: los períodos no pueden ser negativos.")
-            return
-
-        monto = valores["monto"]
-        tasa = valores["tasa"]
         tipo = self._tipo_calculo.currentData()
 
         try:
