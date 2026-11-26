@@ -29,6 +29,7 @@ El script genera las entradas del changelog a partir de los commits desde el úl
 - feat(error_validacion): agregados validadores numericos (tipo, finitud, no cero y rango)
 
 ### Changed
+- refactor(herramienta_diseno_vial): validación de parámetros numéricos mediante ErrorValidacion y anotaciones de tipo completas (#1944).
 - refactor(volumen_excavacion): validación de dimensiones finitas y positivas mediante ErrorValidacion y anotaciones de tipo completas (#1951).
 - chore(utils): documentación y anotaciones de tipos en logging_config (#2048).
 - chore(changelog): actualización de módulos documentados en desarrollo
