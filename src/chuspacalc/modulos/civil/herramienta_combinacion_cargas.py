@@ -2,6 +2,8 @@
 Herramienta para calcular combinaciones de cargas en ingeniería civil.
 """
 
+import math
+
 from PySide6.QtWidgets import (
     QDoubleSpinBox,
     QFormLayout,
@@ -14,6 +16,23 @@ from PySide6.QtWidgets import (
 from chuspacalc.core.carrera import Carrera
 from chuspacalc.core.herramienta import Herramienta
 from chuspacalc.modulos.civil.combinacion_cargas import combinar_cargas_lrfd
+from chuspacalc.modulos.matematicas.error_validacion import ErrorValidacion
+
+
+def _validar_carga(nombre: str, valor: float) -> float:
+    """
+    Comprueba que una carga sea un número finito y no negativo.
+
+    Raises:
+        ErrorValidacion: Si el valor no es numérico, no es finito o es negativo.
+    """
+    if isinstance(valor, bool) or not isinstance(valor, (int, float)):
+        raise ErrorValidacion(f"{nombre} debe ser un número.")
+    if not math.isfinite(valor):
+        raise ErrorValidacion(f"{nombre} debe ser un número finito.")
+    if valor < 0:
+        raise ErrorValidacion(f"{nombre} no puede ser negativa.")
+    return valor
 
 
 class HerramientaCombinacionCargas(Herramienta):
@@ -50,9 +69,12 @@ class HerramientaCombinacionCargas(Herramienta):
         return widget
 
     def _calcular(self) -> None:
-        resultado = combinar_cargas_lrfd(
-            self._carga_muerta.value(),
-            self._carga_viva.value(),
-        )
+        try:
+            carga_muerta = _validar_carga("La carga muerta", self._carga_muerta.value())
+            carga_viva = _validar_carga("La carga viva", self._carga_viva.value())
+            resultado = combinar_cargas_lrfd(carga_muerta, carga_viva)
+        except ValueError as error:
+            self._resultado.setText(f"Error: {error}")
+            return
 
         self._resultado.setText(f"Carga última de diseño: {resultado:.2f} kN")

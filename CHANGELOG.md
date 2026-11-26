@@ -29,6 +29,7 @@ El script genera las entradas del changelog a partir de los commits desde el úl
 - feat(error_validacion): agregados validadores numericos (tipo, finitud, no cero y rango)
 
 ### Changed
+- refactor(herramienta_combinacion_cargas): la herramienta valida las cargas con ErrorValidacion y muestra el error en la etiqueta del resultado en lugar de dejar escapar la excepción (#1943).
 - refactor(circuitos_rc_rl): validación de parámetros numéricos mediante ErrorValidacion y anotaciones de tipo completas (#1955).
 - refactor(momento_flector): las entradas inválidas de calcular_momento_max y calcular_momento_maximo lanzan ErrorValidacion; se añade regresión de ambos contratos (#1945).
 - refactor(volumen_excavacion): validación de dimensiones finitas y positivas mediante ErrorValidacion y anotaciones de tipo completas (#1951).
