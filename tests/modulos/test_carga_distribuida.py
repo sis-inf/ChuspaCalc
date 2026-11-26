@@ -1,6 +1,6 @@
 import pytest
 
-from escuadra.modulos.civil.carga_distribuida import calcular_reacciones_carga_parcial
+from chuspacalc.modulos.civil.carga_distribuida import calcular_reacciones_carga_parcial
 
 
 def test_carga_en_toda_la_viga_reparte_las_reacciones_por_igual():
