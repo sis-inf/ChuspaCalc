@@ -1,4 +1,3 @@
-
 """
 Calculadora de trabajo mecanico realizado por una fuerza constante.
 """

@@ -7,55 +7,138 @@ aritméticas y conversiones entre forma rectangular y polar.
 
 import cmath
 import math
-import numbers
+
+from chuspacalc.modulos.matematicas.error_validacion import (
+    ErrorValidacion,
+    validar_numero,
+    validar_rango,
+)
+
+_MSG_RANGO = "El resultado excede el rango representable."
+
+
+class ErrorDivisionPorCero(ErrorValidacion, ZeroDivisionError):
+    """División entre cero.
+
+    Es a la vez ``ErrorValidacion`` y ``ZeroDivisionError``, para mantener
+    compatible el código que ya capturaba ``ZeroDivisionError``.
+    """
+
+
+def _a_complejo(valor: object, nombre: str) -> complex:
+    """Valida que valor sea int, float o complex finito y lo devuelve complex."""
+    if isinstance(valor, bool) or not isinstance(valor, (int, float, complex)):
+        raise ErrorValidacion(
+            f"El valor de '{nombre}' debe ser un número entero, decimal o complejo."
+        )
+
+    try:
+        numero = complex(valor)
+    except OverflowError as exc:
+        raise ErrorValidacion(
+            f"El valor de '{nombre}' está fuera del rango permitido."
+        ) from exc
+
+    if not (math.isfinite(numero.real) and math.isfinite(numero.imag)):
+        raise ErrorValidacion(
+            f"El valor de '{nombre}' debe tener parte real e imaginaria "
+            f"finitas: {valor}"
+        )
+
+    return numero
+
+
+def _resultado_complejo(valor: complex) -> complex:
+    """Verifica que el resultado tenga componentes finitas."""
+    if not (math.isfinite(valor.real) and math.isfinite(valor.imag)):
+        raise ErrorValidacion(_MSG_RANGO)
+    return valor
 
 
 def sumar(a: complex, b: complex) -> complex:
     """
     Retorna la suma de dos números complejos.
+
+    Raises:
+        ErrorValidacion: Si algún operando es inválido o el resultado
+            excede el rango representable.
     """
-    return a + b
+    return _resultado_complejo(_a_complejo(a, "a") + _a_complejo(b, "b"))
 
 
 def restar(a: complex, b: complex) -> complex:
     """
     Retorna la resta de dos números complejos.
+
+    Raises:
+        ErrorValidacion: Si algún operando es inválido o el resultado
+            excede el rango representable.
     """
-    return a - b
+    return _resultado_complejo(_a_complejo(a, "a") - _a_complejo(b, "b"))
 
 
 def multiplicar(a: complex, b: complex) -> complex:
     """
     Retorna el producto de dos números complejos.
+
+    Raises:
+        ErrorValidacion: Si algún operando es inválido o el resultado
+            excede el rango representable.
     """
-    return a * b
+    return _resultado_complejo(_a_complejo(a, "a") * _a_complejo(b, "b"))
 
 
 def dividir(a: complex, b: complex) -> complex:
     """
     Retorna la división de dos números complejos.
 
-    Lanza:
-        ZeroDivisionError: Si el divisor es cero.
+    Raises:
+        ErrorDivisionPorCero: Si el divisor es cero (también es
+            ZeroDivisionError y ErrorValidacion).
+        ErrorValidacion: Si algún operando es inválido o el resultado
+            excede el rango representable.
     """
-    if b == 0:
-        raise ZeroDivisionError("No es posible dividir entre cero.")
+    dividendo = _a_complejo(a, "a")
+    divisor = _a_complejo(b, "b")
 
-    return a / b
+    if divisor == 0:
+        raise ErrorDivisionPorCero("No es posible dividir entre cero.")
+
+    try:
+        resultado = dividendo / divisor
+    except (OverflowError, ZeroDivisionError) as exc:
+        raise ErrorValidacion(_MSG_RANGO) from exc
+
+    return _resultado_complejo(resultado)
 
 
 def modulo(z: complex) -> float:
     """
     Retorna el módulo de un número complejo.
+
+    Raises:
+        ErrorValidacion: Si z es inválido o el módulo excede el rango.
     """
-    return abs(z)
+    numero = _a_complejo(z, "z")
+
+    try:
+        resultado = abs(numero)
+    except OverflowError as exc:
+        raise ErrorValidacion(_MSG_RANGO) from exc
+
+    if not math.isfinite(resultado):
+        raise ErrorValidacion(_MSG_RANGO)
+    return resultado
 
 
 def conjugado(z: complex) -> complex:
     """
     Retorna el conjugado de un número complejo.
+
+    Raises:
+        ErrorValidacion: Si z no es un número complejo finito.
     """
-    return z.conjugate()
+    return _a_complejo(z, "z").conjugate()
 
 
 def rectangular_a_polar(z: complex) -> tuple[float, float]:
@@ -65,11 +148,22 @@ def rectangular_a_polar(z: complex) -> tuple[float, float]:
 
     Retorna:
         (r, theta)
-    donde:
         r = módulo
         theta = ángulo en radianes.
+
+    Raises:
+        ErrorValidacion: Si z es inválido o el módulo excede el rango.
     """
-    return cmath.polar(z)
+    numero = _a_complejo(z, "z")
+
+    try:
+        r, theta = cmath.polar(numero)
+    except OverflowError as exc:
+        raise ErrorValidacion(_MSG_RANGO) from exc
+
+    if not math.isfinite(r):
+        raise ErrorValidacion(_MSG_RANGO)
+    return r, theta
 
 
 def polar_a_rectangular(r: float, theta: float) -> complex:
@@ -78,23 +172,17 @@ def polar_a_rectangular(r: float, theta: float) -> complex:
     a forma rectangular.
 
     Parámetros:
-        r: módulo
+        r: módulo (no negativo)
         theta: ángulo en radianes
-    """
-    if isinstance(r, bool) or not isinstance(r, numbers.Real):
-        raise ValueError("El módulo debe ser un número real.")
-    if isinstance(theta, bool) or not isinstance(theta, numbers.Real):
-        raise ValueError("El ángulo debe ser un número real.")
 
-    if not math.isfinite(r):
-        raise ValueError("El módulo debe ser un número finito.")
-    if not math.isfinite(theta):
-        raise ValueError("El ángulo debe ser un número finito.")
-        
-    if r < 0:
-        raise ValueError("El módulo no puede ser negativo.")
+    Raises:
+        ErrorValidacion: Si r o theta no son reales finitos, o si r es
+            negativo.
+    """
+    modulo_r = validar_rango(r, "módulo", minimo=0)
+    angulo = validar_numero(theta, "ángulo")
 
     return complex(
-        r * math.cos(theta),
-        r * math.sin(theta),
+        modulo_r * math.cos(angulo),
+        modulo_r * math.sin(angulo),
     )

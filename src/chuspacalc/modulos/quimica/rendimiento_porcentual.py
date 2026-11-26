@@ -1,4 +1,3 @@
-
 """
 Calculadora del rendimiento porcentual de una reacción química.
 
@@ -44,9 +43,7 @@ def calcular_rendimiento_porcentual(rendimiento_real, rendimiento_teorico):
         raise ValueError("El rendimiento real no puede ser negativo.")
 
     try:
-        resultado = (
-            float(rendimiento_real) / float(rendimiento_teorico)
-        ) * 100
+        resultado = (float(rendimiento_real) / float(rendimiento_teorico)) * 100
     except (OverflowError, ZeroDivisionError) as error:
         raise ValueError("No se pudo calcular un resultado válido.") from error
 

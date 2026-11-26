@@ -1,5 +1,7 @@
+from .error_validacion import ErrorValidacion
 
-def es_numero_primo(numero):
+
+def es_numero_primo(numero: int) -> bool:
     """
     Determina si un número entero es primo.
 
@@ -10,12 +12,12 @@ def es_numero_primo(numero):
         bool: True si es primo, False si no es primo.
 
     Raises:
-        ValueError: Si el argumento no es un número entero
-                    o si es un valor booleano.
+        ErrorValidacion: Si el argumento no es un número entero
+            o si es un valor booleano.
     """
 
     if isinstance(numero, bool) or not isinstance(numero, int):
-        raise ValueError("El argumento debe ser un número entero.")
+        raise ErrorValidacion("El argumento debe ser un número entero.")
 
     if numero < 2:
         return False

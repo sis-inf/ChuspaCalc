@@ -1,6 +1,6 @@
 """Plantillas reutilizables para configuraciones de exportación."""
 
-FORMATOS_VALIDOS = ("json", "markdown", "latex", "csv")
+FORMATOS_VALIDOS = ("json", "markdown", "md", "latex", "csv")
 
 
 def _validar_formato(formato) -> None:

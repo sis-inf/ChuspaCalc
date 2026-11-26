@@ -7,6 +7,8 @@ constructor de menú y cargador de herramientas.
 import logging
 import sys
 
+from PySide6.QtWidgets import QApplication, QMessageBox
+
 from chuspacalc.config.loader import load_font_scale
 from chuspacalc.core.registry import descubrir_herramientas, herramientas_por_carrera
 from chuspacalc.ui.cargador_herramienta import CargadorHerramienta
@@ -14,7 +16,6 @@ from chuspacalc.ui.constructor_menu import construir_menu
 from chuspacalc.ui.dialogo_acerca_de import mostrar_acerca_de
 from chuspacalc.ui.ventana_principal import VentanaPrincipal
 from chuspacalc.utils.logging_config import configurar_logging
-from PySide6.QtWidgets import QApplication, QMessageBox
 
 logger = logging.getLogger(__name__)
 
@@ -75,15 +76,21 @@ def main() -> None:
         sys.exit(app.exec())
 
     except Exception as error:
-        logger.critical("Error fatal al arrancar la aplicación: %s", error, exc_info=True)
+        logger.critical(
+            "Error fatal al arrancar la aplicación: %s", error, exc_info=True
+        )
         try:
             QMessageBox.critical(
                 None,
                 "Error fatal",
                 f"La aplicación no pudo iniciarse:\n{error}",
             )
-        except Exception:
-            pass
+        except Exception as dialog_error:
+            logger.warning(
+                "No se pudo mostrar el diálogo del error fatal: %s",
+                dialog_error,
+                exc_info=True,
+            )
         sys.exit(1)
 
 

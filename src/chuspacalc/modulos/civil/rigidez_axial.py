@@ -1,4 +1,3 @@
-
 import math
 
 
@@ -19,11 +18,7 @@ def calcular_rigidez_axial(elasticidad, area, longitud):
                     positivos o finitos.
     """
 
-    parametros = {
-        "elasticidad": elasticidad,
-        "area": area,
-        "longitud": longitud
-    }
+    parametros = {"elasticidad": elasticidad, "area": area, "longitud": longitud}
 
     for nombre, valor in parametros.items():
         if isinstance(valor, bool) or not isinstance(valor, (int, float)):

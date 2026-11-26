@@ -3,7 +3,6 @@ Pruebas unitarias para conversor_presion.py.
 """
 
 import pytest
-
 from escuadra.modulos.matematicas.conversor_presion import convertir_presion
 
 

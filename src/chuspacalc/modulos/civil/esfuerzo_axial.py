@@ -1,39 +1,48 @@
+"""
+Cálculo del esfuerzo normal producido por una fuerza axial.
+"""
 
 import math
 
+from chuspacalc.modulos.matematicas.error_validacion import (
+    ErrorValidacion,
+    validar_numero,
+)
 
-def calcular_esfuerzo_axial(fuerza, area):
+
+def calcular_esfuerzo_axial(fuerza: float, area: float) -> float:
     """
     Calcula el esfuerzo normal producido por una fuerza axial.
 
     Args:
-        fuerza: Fuerza axial en Newtons (N).
-                Positiva para tracción y negativa para compresión.
-        area: Área transversal en metros cuadrados (m²).
+        fuerza: Fuerza axial en Newtons (N). Debe ser finita. Positiva
+            para tracción y negativa para compresión.
+        area: Área transversal en metros cuadrados (m²). Debe ser finita
+            y mayor que cero.
 
     Returns:
-        float: Esfuerzo axial en Pascales (Pa).
+        Esfuerzo axial en Pascales (Pa).
 
     Raises:
-        ValueError: Si la fuerza no es numérica o finita,
-                    o si el área no es positiva y finita.
+        ErrorValidacion: Si la fuerza o el área no son números reales
+            finitos, si son booleanas, si el área no es mayor que cero o
+            si el esfuerzo resultante se desborda.
     """
 
-    if isinstance(fuerza, bool) or not isinstance(fuerza, (int, float)):
-        raise ValueError("La fuerza debe ser un valor numérico.")
+    fuerza_validada = validar_numero(fuerza, "fuerza")
+    area_validada = validar_numero(area, "area")
 
-    if isinstance(area, bool) or not isinstance(area, (int, float)):
-        raise ValueError("El área debe ser un valor numérico.")
+    if area_validada <= 0:
+        raise ErrorValidacion(
+            f"El valor de 'area' debe ser mayor que cero "
+            f"(valor recibido: {area_validada})."
+        )
 
-    if not math.isfinite(fuerza):
-        raise ValueError("La fuerza debe ser finita.")
-
-    if not math.isfinite(area) or area <= 0:
-        raise ValueError("El área debe ser positiva y finita.")
-
-    esfuerzo = fuerza / area
+    esfuerzo = fuerza_validada / area_validada
 
     if not math.isfinite(esfuerzo):
-        raise ValueError("El esfuerzo calculado debe ser finito.")
+        raise ErrorValidacion(
+            "El esfuerzo calculado está fuera del rango representable."
+        )
 
     return esfuerzo

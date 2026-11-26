@@ -1,3 +1,4 @@
+import math
 from pathlib import Path
 
 
@@ -101,11 +102,15 @@ def validar_numero(
             Por defecto, True.
 
     Returns:
-        True si el texto cumple las condiciones de validación;
-        False en caso contrario.
+        True si el texto representa un número finito que cumple las
+        condiciones de validación; False en caso contrario. Los valores
+        no finitos (nan, inf y -inf) siempre se rechazan.
     """
     try:
         numero = float(texto)
+
+        if not math.isfinite(numero):
+            return False
 
         if not permitir_negativo and numero < 0:
             return False

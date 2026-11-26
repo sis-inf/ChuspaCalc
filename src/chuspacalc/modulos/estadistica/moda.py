@@ -1,4 +1,3 @@
-
 """
 Calculadora de la moda estadística de un conjunto de datos.
 """

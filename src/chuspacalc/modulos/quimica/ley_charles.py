@@ -1,4 +1,3 @@
-
 """
 Calculadora del volumen final de un gas mediante la ley de Charles.
 
@@ -6,7 +5,6 @@ Fórmula:
     V1 / T1 = V2 / T2
     V2 = (V1 * T2) / T1
 """
-
 
 import math
 
@@ -44,9 +42,9 @@ def calcular_volumen_charles(volumen_inicial, temperatura_inicial, temperatura_f
             raise ValueError("Los volúmenes y temperaturas deben ser positivos.")
 
     try:
-        volumen_final = (
-            float(volumen_inicial) * float(temperatura_final)
-        ) / float(temperatura_inicial)
+        volumen_final = (float(volumen_inicial) * float(temperatura_final)) / float(
+            temperatura_inicial
+        )
     except OverflowError as error:
         raise ValueError("El resultado está fuera del rango permitido.") from error
 
