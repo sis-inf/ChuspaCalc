@@ -6,6 +6,7 @@ fuera de dominio.
 
 import pytest
 
+from chuspacalc.modulos.matematicas.error_validacion import ErrorValidacion
 from chuspacalc.modulos.matematicas.trigonometria import (
     arcocoseno,
     arcoseno,
@@ -68,3 +69,12 @@ def test_arcocoseno_de_menos_2_lanza_value_error():
 def test_arcotangente_de_1_es_45_grados():
     # atan(1) = 45° (el resultado se devuelve en grados)
     assert arcotangente(1) == pytest.approx(45.0)
+
+
+@pytest.mark.parametrize(
+    "funcion", [seno, coseno, tangente, arcoseno, arcocoseno, arcotangente]
+)
+@pytest.mark.parametrize("valor", [True, False])
+def test_rechaza_booleanos(funcion, valor):
+    with pytest.raises(ErrorValidacion):
+        funcion(valor)
