@@ -262,16 +262,18 @@ def herramienta_diseno_vial(
         radio_curva,
         friccion_lateral,
     )
+    try:
+        pendiente = calcular_pendiente(
+            elevacion_inicial, elevacion_final, distancia_horizontal
+        )
 
-    pendiente = calcular_pendiente(
-        elevacion_inicial, elevacion_final, distancia_horizontal
-    )
-
-    peralte = calcular_peralte_curva(
-        velocidad_diseno,
-        radio_curva,
-        friccion_lateral,
-    )
+        peralte = calcular_peralte_curva(
+            velocidad_diseno,
+            radio_curva,
+            friccion_lateral,
+        )
+    except ErrorDisenoVial as e:
+        return f"Error: {e}"
 
     pendiente = _validar_resultado(pendiente, "la pendiente")
     peralte = _validar_resultado(peralte, "el peralte")
