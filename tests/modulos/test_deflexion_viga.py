@@ -54,3 +54,33 @@ def test_parametros_no_positivos_lanzan_error(longitud, carga, modulo, inercia):
 def test_tipo_de_carga_invalido_lanza_error():
     with pytest.raises(ValueError):
         calcular_deflexion_max(4, 10000, E, INERCIA, "triangular")
+
+
+INVALIDOS = [True, "4", None, float("nan"), float("inf"), float("-inf"), 0, -1]
+
+
+@pytest.mark.parametrize("tipo_carga", ["puntual_central", "distribuida"])
+@pytest.mark.parametrize("valor", INVALIDOS)
+@pytest.mark.parametrize("posicion", range(4))
+def test_parametros_invalidos_lanzan_error_validacion(posicion, valor, tipo_carga):
+    from chuspacalc.modulos.matematicas.error_validacion import ErrorValidacion
+
+    argumentos = [4, 10000, E, INERCIA]
+    argumentos[posicion] = valor
+
+    with pytest.raises(ErrorValidacion):
+        calcular_deflexion_max(*argumentos, tipo_carga)
+
+
+def test_tipo_de_carga_invalido_lanza_error_validacion():
+    from chuspacalc.modulos.matematicas.error_validacion import ErrorValidacion
+
+    with pytest.raises(ErrorValidacion):
+        calcular_deflexion_max(4, 10000, E, INERCIA, "triangular")
+
+
+def test_resultado_no_finito_lanza_error_validacion():
+    from chuspacalc.modulos.matematicas.error_validacion import ErrorValidacion
+
+    with pytest.raises(ErrorValidacion):
+        calcular_deflexion_max(1e200, 1e300, E, INERCIA)
