@@ -50,9 +50,7 @@ def calcular_pendiente(
         raise ErrorDisenoVial("La distancia horizontal debe ser mayor a 0")
 
     try:
-        pendiente = (
-            (elevacion_final - elevacion_inicial) / distancia_horizontal
-        ) * 100
+        pendiente = ((elevacion_final - elevacion_inicial) / distancia_horizontal) * 100
     except OverflowError as error:
         raise ErrorDisenoVial("El resultado calculado no es finito") from error
     return _resultado_finito(pendiente)
