@@ -33,6 +33,7 @@ El script genera las entradas del changelog a partir de los commits desde el úl
 - refactor(circuitos_rc_rl): validación de parámetros numéricos mediante ErrorValidacion y anotaciones de tipo completas (#1955).
 - refactor(momento_flector): las entradas inválidas de calcular_momento_max y calcular_momento_maximo lanzan ErrorValidacion; se añade regresión de ambos contratos (#1945).
 - refactor(volumen_excavacion): validación de dimensiones finitas y positivas mediante ErrorValidacion y anotaciones de tipo completas (#1951).
+- refactor(electrica): validación defensiva y anotaciones de tipo completas en herramienta_circuitos_rc_rl (#1958).
 - refactor(terreno): validación de áreas no negativas y longitud positiva mediante ErrorValidacion y anotaciones de tipo completas (#1949).
 - chore(utils): documentación y anotaciones de tipos en logging_config (#2048).
 - chore(changelog): actualización de módulos documentados en desarrollo
