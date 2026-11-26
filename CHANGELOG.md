@@ -80,6 +80,7 @@ El script genera las entradas del changelog a partir de los commits desde el úl
 - refactor(financiera): validación de parámetros numéricos finitos, control de desbordes y divisiones por cero mediante ErrorValidacion y anotaciones de tipo completas en el módulo de matemática financiera (#2002).
 - refactor(esfuerzo_axial): validación de fuerza y área finitas mediante ErrorValidacion y anotaciones de tipo completas (#1941).
 - refactor(reacciones_viga): validación de carga y longitud positivas mediante ErrorValidacion y anotaciones de tipo completas (#1947).
+- refactor(combinacion_cargas): validación de cargas, factores y viento finitos mediante ErrorValidacion y anotaciones de tipo completas (#1938).
 
 ### Security
 - security(evaluators): sustitución de evaluación dinámica insegura por evaluadores matemáticos y lógicos con listas blancas y límites de complejidad
