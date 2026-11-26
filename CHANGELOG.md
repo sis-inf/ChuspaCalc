@@ -30,7 +30,9 @@ El script genera las entradas del changelog a partir de los commits desde el úl
 
 ### Changed
 - refactor(circuitos_rc_rl): validación de parámetros numéricos mediante ErrorValidacion y anotaciones de tipo completas (#1955).
+- refactor(momento_flector): las entradas inválidas de calcular_momento_max y calcular_momento_maximo lanzan ErrorValidacion; se añade regresión de ambos contratos (#1945).
 - refactor(volumen_excavacion): validación de dimensiones finitas y positivas mediante ErrorValidacion y anotaciones de tipo completas (#1951).
+- refactor(terreno): validación de áreas no negativas y longitud positiva mediante ErrorValidacion y anotaciones de tipo completas (#1949).
 - chore(utils): documentación y anotaciones de tipos en logging_config (#2048).
 - chore(changelog): actualización de módulos documentados en desarrollo
 - refactor(validation): normalización de validaciones numéricas, valores no finitos y contratos de entrada en módulos de cálculo
@@ -71,6 +73,12 @@ El script genera las entradas del changelog a partir de los commits desde el úl
 - refactor(punto_equilibrio): validación de costos y precios mediante ErrorValidacion, rechazo de booleanos, texto y valores no finitos, detección de márgenes y resultados desbordados, y anotaciones de tipo completas (#1989).
 - refactor(herramienta_conversion_unidades): validación de valores, categorías y unidades mediante ErrorValidacion, rechazo de booleanos, texto y valores no finitos, cero absoluto, detección de resultados desbordados y anotaciones de tipo completas (#2004).
 - refactor(sistemas_lineales): validación de parámetros numéricos finitos, captura de errores de cálculo mediante ErrorValidacion y anotaciones de tipo completas en la herramienta de sistemas lineales (#2007).
+- refactor(numeros_primos): es_numero_primo lanza ErrorValidacion ante valores no enteros, booleanos, NaN o infinitos y completa sus anotaciones de tipo (#2010).
+- refactor(progresion_aritmetica): validación de posición, operandos y resultado finitos mediante ErrorValidacion y tipos de retorno completos (#2012).
+- fix(trigonometria): rechazo de booleanos mediante ErrorValidacion en seno, coseno, tangente y arcofunciones, con prueba de regresión (#2013).
+- refactor(numeros_complejos): validación de operandos complejos finitos, control de desbordes y divisiones por cero mediante ErrorValidacion y anotaciones de tipo completas en el módulo de números complejos (#2006).
+- refactor(financiera): validación de parámetros numéricos finitos, control de desbordes y divisiones por cero mediante ErrorValidacion y anotaciones de tipo completas en el módulo de matemática financiera (#2002).
+- refactor(esfuerzo_axial): validación de fuerza y área finitas mediante ErrorValidacion y anotaciones de tipo completas (#1941).
 
 ### Security
 - security(evaluators): sustitución de evaluación dinámica insegura por evaluadores matemáticos y lógicos con listas blancas y límites de complejidad
