@@ -19,6 +19,9 @@ El script genera las entradas del changelog a partir de los commits desde el úl
 
 ## [Unreleased]
 
+### Fixed
+- fix(tabla_ascii): mensajes de validación descriptivos para códigos vacíos, no enteros o fuera del rango 0 a 127
+
 ### Added
 - feat(conversor_longitud): agregado módulo de conversión de longitud
 - feat(herramienta_calculo_area): agregada herramienta de cálculo de áreas

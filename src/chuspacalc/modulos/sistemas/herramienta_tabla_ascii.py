@@ -17,6 +17,7 @@ from PySide6.QtWidgets import (
 
 from chuspacalc.core.carrera import Carrera
 from chuspacalc.core.herramienta import Herramienta
+from chuspacalc.modulos.matematicas.error_validacion import ErrorValidacion
 from chuspacalc.modulos.sistemas.tabla_ascii import (
     ascii_a_caracter,
     caracter_a_ascii,
@@ -24,14 +25,55 @@ from chuspacalc.modulos.sistemas.tabla_ascii import (
 )
 
 
+def leer_codigo_ascii(texto: str, nombre: str) -> int:
+    """
+    Convierte el texto de un campo en un código ASCII válido.
+
+    Args:
+        texto: Texto ingresado por el usuario. Se ignoran los espacios
+            al inicio y al final.
+        nombre: Nombre del campo, usado en el mensaje de error.
+
+    Returns:
+        Código entero entre 0 y 127.
+
+    Raises:
+        ErrorValidacion: Si texto no es una cadena, está vacío, no es un
+            número entero (incluye decimales, NaN e infinitos) o está
+            fuera del rango 0 a 127.
+    """
+    if not isinstance(texto, str) or not texto.strip():
+        raise ErrorValidacion(f"Ingrese un valor en '{nombre}'.")
+
+    try:
+        codigo = int(texto.strip())
+    except ValueError as error:
+        raise ErrorValidacion(
+            f"El valor de '{nombre}' debe ser un número entero."
+        ) from error
+
+    if not 0 <= codigo <= 127:
+        raise ErrorValidacion(f"El valor de '{nombre}' debe estar entre 0 y 127.")
+
+    return codigo
+
+
 class HerramientaTablaAscii(Herramienta):
-    nombre = "Tabla ASCII"
-    carrera = Carrera.SISTEMAS
-    descripcion = (
+    """Interfaz para consultar y listar la tabla ASCII estándar."""
+
+    nombre: str = "Tabla ASCII"
+    carrera: Carrera | None = Carrera.SISTEMAS
+    descripcion: str = (
         "Convierte caracteres a código ASCII y lista rangos de la tabla estándar."
     )
 
     def crear_widget(self) -> QWidget:
+        """
+        Crea el widget con las secciones de conversión y listado.
+
+        Returns:
+            Widget principal de la herramienta.
+        """
         widget = QWidget()
         root = QVBoxLayout()
         root.setSpacing(12)
@@ -138,7 +180,7 @@ class HerramientaTablaAscii(Herramienta):
                 f"Binario: {resultado['binario']}"
             )
 
-        except ValueError as error:
+        except ErrorValidacion as error:
             self._error_label.setText(str(error))
             self._resultado_char.setText("")
 
@@ -146,7 +188,7 @@ class HerramientaTablaAscii(Herramienta):
         self._error_label.setText("")
 
         try:
-            codigo = int(self._input_codigo.text().strip())
+            codigo = leer_codigo_ascii(self._input_codigo.text(), "Código")
             resultado = ascii_a_caracter(codigo)
 
             self._resultado_codigo.setText(
@@ -156,7 +198,7 @@ class HerramientaTablaAscii(Herramienta):
                 f"Binario: {resultado['binario']}"
             )
 
-        except ValueError as error:
+        except ErrorValidacion as error:
             self._error_label.setText(str(error))
             self._resultado_codigo.setText("")
 
@@ -165,8 +207,8 @@ class HerramientaTablaAscii(Herramienta):
         self._tabla.setRowCount(0)
 
         try:
-            inicio = int(self._input_inicio.text().strip())
-            fin = int(self._input_fin.text().strip())
+            inicio = leer_codigo_ascii(self._input_inicio.text(), "Desde")
+            fin = leer_codigo_ascii(self._input_fin.text(), "Hasta")
 
             entradas = listar_ascii_rango(inicio, fin)
 
@@ -199,7 +241,7 @@ class HerramientaTablaAscii(Herramienta):
                     QTableWidgetItem(entrada["binario"]),
                 )
 
-        except ValueError as error:
+        except ErrorValidacion as error:
             self._error_label.setText(str(error))
 
     def _limpiar(self) -> None:
