@@ -30,6 +30,7 @@ from chuspacalc.modulos.geometria.volumen import (
     volumen_esfera,
     volumen_paralelepipedo,
 )
+from chuspacalc.modulos.matematicas.error_validacion import ErrorValidacion
 
 
 class TestCalculoArea:
@@ -250,3 +251,44 @@ def test_dimensiones_invalidas(funcion, argumentos, valor_invalido):
 
         with pytest.raises(ValueError):
             funcion(*valores)
+
+
+@pytest.mark.parametrize(
+    "funcion,argumentos",
+    [
+        (volumen_cubo, (3,)),
+        (volumen_esfera, (3,)),
+        (volumen_cilindro, (3, 4)),
+        (volumen_cono, (3, 4)),
+        (volumen_paralelepipedo, (3, 4, 5)),
+    ],
+)
+@pytest.mark.parametrize(
+    "valor_invalido",
+    [0, -1, True, "3", None, float("nan"), float("inf"), float("-inf")],
+)
+def test_volumen_error_validacion(funcion, argumentos, valor_invalido):
+    """Verifica que las dimensiones inválidas lanzan ErrorValidacion."""
+    for indice in range(len(argumentos)):
+        valores = list(argumentos)
+        valores[indice] = valor_invalido
+
+        with pytest.raises(ErrorValidacion):
+            funcion(*valores)
+
+
+@pytest.mark.parametrize(
+    "funcion,argumentos",
+    [
+        (volumen_cubo, (1e308,)),
+        (volumen_esfera, (1e308,)),
+        (volumen_cilindro, (1e308, 2)),
+        (volumen_cono, (1e308, 2)),
+        (volumen_paralelepipedo, (1e308, 1e308, 2)),
+        (volumen_cubo, (10**400,)),
+    ],
+)
+def test_volumen_desbordamiento(funcion, argumentos):
+    """Verifica el control de desbordamientos numéricos."""
+    with pytest.raises(ErrorValidacion):
+        funcion(*argumentos)

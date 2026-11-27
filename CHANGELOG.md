@@ -45,6 +45,7 @@ El script genera las entradas del changelog a partir de los commits desde el úl
 - refactor(typing): corrección de anotaciones, valores opcionales, parámetros y retornos para validar el paquete con mypy
 - refactor(resolucion_triangulos): validación de lados y ángulos finitos mediante ErrorValidacion y tipos de retorno completos (#1986).
 - refactor(packaging): consolidación del namespace `chuspacalc` manteniendo el shim de compatibilidad `escuadra`
+- refactor(geometria): validación de dimensiones numéricas, control de desbordamientos mediante ErrorValidacion y anotaciones de tipo completas en volumen (#1988).
 - refactor(coordenadas): validación de coordenadas finitas, radio polar y límites numéricos mediante ErrorValidacion (#1978).
 - chore(dependencies): incorporación de `pytest-qt` a las dependencias de desarrollo utilizadas por la suite y CI
 - chore(quality): normalización selectiva del código y las pruebas para Ruff y Black
