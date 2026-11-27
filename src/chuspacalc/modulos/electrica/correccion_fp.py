@@ -80,31 +80,22 @@ def calcular_capacitancia_correccion(
     if frecuencia <= 0:
         raise ErrorValidacion("La frecuencia debe ser positiva")
 
-    theta_actual = math.acos(fp_actual)
-    theta_deseado = math.acos(fp_deseado)
-
-    diferencia = math.tan(theta_actual) - math.tan(theta_deseado)
-    potencia_reactiva = potencia_activa * diferencia
-
-    omega = 2 * math.pi * frecuencia
+    actual = Fraction(fp_actual)
+    deseado = Fraction(fp_deseado)
+    seno_actual = Fraction(math.sqrt((1 - fp_actual) * (1 + fp_actual)))
+    seno_deseado = Fraction(math.sqrt((1 - fp_deseado) * (1 + fp_deseado)))
+    diferencia = ((deseado - actual) * (deseado + actual)) / (
+        actual * deseado * (deseado * seno_actual + actual * seno_deseado)
+    )
 
     try:
-        capacitancia = potencia_reactiva / (omega * voltaje**2)
-    except (OverflowError, ZeroDivisionError):
-        capacitancia = math.nan
+        capacitancia = float(
+            Fraction(potencia_activa)
+            * diferencia
+            / (Fraction(2 * math.pi) * Fraction(frecuencia) * Fraction(voltaje) ** 2)
+        )
+    except OverflowError as error:
+        raise ErrorValidacion("La capacitancia excede el rango numérico") from error
     if not math.isfinite(capacitancia) or capacitancia <= 0:
-        try:
-            capacitancia = float(
-                Fraction(potencia_activa)
-                * Fraction(diferencia)
-                / (
-                    Fraction(2 * math.pi)
-                    * Fraction(frecuencia)
-                    * Fraction(voltaje) ** 2
-                )
-            )
-        except (OverflowError, ZeroDivisionError) as error:
-            raise ErrorValidacion("La capacitancia excede el rango numérico") from error
-        if not math.isfinite(capacitancia) or capacitancia <= 0:
-            raise ErrorValidacion("La capacitancia debe ser positiva y finita")
+        raise ErrorValidacion("La capacitancia debe ser positiva y finita")
     return capacitancia
