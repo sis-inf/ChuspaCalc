@@ -29,6 +29,7 @@ El script genera las entradas del changelog a partir de los commits desde el úl
 - feat(error_validacion): agregados validadores numericos (tipo, finitud, no cero y rango)
 
 ### Changed
+- refactor(herramienta_diseno_vial): validación de parámetros numéricos mediante ErrorValidacion y anotaciones de tipo completas (#1944).
 - refactor(herramienta_columna_pandeo): la herramienta valida los campos con ErrorValidacion y rechaza cero, NaN e infinito antes de calcular (#1942).
 - refactor(divisor_tension): entradas positivas y finitas mediante ErrorValidacion, tipos completos y cálculo estable en valores extremos (#1957).
 - refactor(circuitos_rc_rl): validación de parámetros numéricos mediante ErrorValidacion y anotaciones de tipo completas (#1955).
