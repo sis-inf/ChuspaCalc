@@ -26,7 +26,12 @@ def calcular_densidad(masa: float, volumen: float) -> float:
         if isinstance(valor, bool) or not isinstance(valor, Real):
             raise ErrorValidacion("La masa y el volumen deben ser numéricos.")
 
-        if not math.isfinite(valor):
+        try:
+            es_finito = math.isfinite(valor)
+        except OverflowError:
+            es_finito = False
+
+        if not es_finito:
             raise ErrorValidacion("La masa y el volumen deben ser finitos.")
 
     if masa < 0:
@@ -35,7 +40,10 @@ def calcular_densidad(masa: float, volumen: float) -> float:
     if volumen <= 0:
         raise ErrorValidacion("El volumen debe ser positivo.")
 
-    densidad = masa / volumen
+    try:
+        densidad = masa / volumen
+    except OverflowError as exc:
+        raise ErrorValidacion("La densidad calculada no es finita.") from exc
 
     if not math.isfinite(densidad):
         raise ErrorValidacion("La densidad calculada no es finita.")
