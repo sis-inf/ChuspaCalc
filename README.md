@@ -1,6 +1,6 @@
 # Escuadra - Calculadora Técnica para Ingeniería
 
-[![CI](https://github.com/sis-inf/escuadra/actions/workflows/ci.yml/badge.svg)](https://github.com/sis-inf/escuadra/actions/workflows/ci.yml)
+[![CI](https://github.com/sis-inf/ChuspaCalc/actions/workflows/ci.yml/badge.svg)](https://github.com/sis-inf/ChuspaCalc/actions/workflows/ci.yml)
 [![Licencia MIT](https://img.shields.io/badge/licencia-MIT-blue.svg)](LICENSE)
 
 Una aplicación de escritorio que centraliza herramientas de cálculo especializadas para estudiantes y docentes de ingeniería.
@@ -11,13 +11,13 @@ Una aplicación de escritorio que centraliza herramientas de cálculo especializ
 
 ```bash
 # 1. Clonar el repositorio y entrar al directorio
-git clone https://github.com/sis-inf/escuadra.git && cd escuadra
+git clone https://github.com/sis-inf/ChuspaCalc.git && cd ChuspaCalc
 
 # 2. Crear entorno virtual e instalar dependencias
 python -m venv .venv && source .venv/bin/activate && pip install -e ".[dev]"
 
 # 3. Ejecutar la aplicación
-python -m escuadra
+python -m chuspacalc
 ```
 
 > En Windows reemplaza `source .venv/bin/activate` por `.venv\Scripts\activate`
@@ -48,9 +48,9 @@ Los estudiantes y docentes de ingeniería suelen necesitar realizar cálculos re
 
 **Escuadra** resuelve esto ofreciendo:
 
-✅ Una interfaz unificada y limpia.  
-✅ Herramientas organizadas por carrera.  
-✅ Resultados claros y, cuando es posible, con detalle del proceso.  
+✅ Una interfaz unificada y limpia.
+✅ Herramientas organizadas por carrera.
+✅ Resultados claros y, cuando es posible, con detalle del proceso.
 ✅ Un sistema extensible para que cualquier estudiante pueda agregar nuevas herramientas.
 
 ---
@@ -99,8 +99,8 @@ Los estudiantes y docentes de ingeniería suelen necesitar realizar cálculos re
 
 ```bash
 # Clonar el repositorio
-git clone https://github.com/sis-inf/escuadra.git
-cd escuadra
+git clone https://github.com/sis-inf/ChuspaCalc.git
+cd ChuspaCalc
 
 # Crear y activar entorno virtual
 python -m venv .venv

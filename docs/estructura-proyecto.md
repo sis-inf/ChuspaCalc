@@ -1,10 +1,10 @@
-# Estructura del Proyecto - Escuadra
+# Estructura del Proyecto - ChuspaCalc
 
-Este documento describe la arquitectura de software y la organización de directorios del repositorio **Escuadra** para orientar a nuevos desarrolladores y asegurar la escalabilidad del sistema.
+Este documento describe la arquitectura de software y la organización de directorios del repositorio **ChuspaCalc** para orientar a nuevos desarrolladores y asegurar la escalabilidad del sistema.
 
 ## Descripción General del Proyecto
 
-**Escuadra** es una suite de herramientas de ingeniería y utilitarios diseñada bajo una arquitectura modular. El sistema consolida módulos analíticos para la resolución de sistemas lineales, cálculos trigonométricos, potencias, conversión de unidades físicas (masa, energía, temperatura, etc.), herramientas informáticas de bajo nivel (conversión de bases, complemento a dos, tablas ASCII) y una interfaz gráfica de usuario (GUI) para interactuar con estas funciones.
+**ChuspaCalc** es una suite de herramientas de ingeniería y utilitarios diseñada bajo una arquitectura modular. El sistema consolida módulos analíticos para la resolución de sistemas lineales, cálculos trigonométricos, potencias, conversión de unidades físicas (masa, energía, temperatura, etc.), herramientas informáticas de bajo nivel (conversión de bases, complemento a dos, tablas ASCII) y una interfaz gráfica de usuario (GUI) para interactuar con estas funciones.
 
 ---
 
@@ -17,7 +17,7 @@ Este documento describe la arquitectura de software y la organización de direct
 ├── docs/                 # Documentación técnica del proyecto
 ├── security/             # Herramientas y auditorías de seguridad
 ├── src/                  # Código fuente de la aplicación
-│   └── escuadra/         # Paquete principal del proyecto
+│   └── ChuspaCalc/       # Paquete principal del proyecto
 │       ├── modulos/      # Submódulos de lógica de negocio
 │       │   ├── matematicas/ # Conversores y calculadoras matemáticas
 │       │   └── sistemas/    # Herramientas informáticas y de sistemas
@@ -25,7 +25,7 @@ Este documento describe la arquitectura de software y la organización de direct
 └── tests/                # Pruebas automatizadas (Pytest)
 
 Descripción Detallada de Directorios y Componentes
-1. Núcleo del Código (src/escuadra/)
+1. Núcleo del Código (src/ChuspaCalc/)
 Este directorio contiene la lógica ejecutable del programa, organizada en paquetes de Python (.py) utilizando archivos de inicialización __init__.py.
 
 modulos/matematicas/: Contiene los scripts encargados de realizar cálculos científicos y conversiones dimensionales de ingeniería.

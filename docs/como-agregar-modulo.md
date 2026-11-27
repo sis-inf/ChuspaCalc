@@ -1,6 +1,6 @@
-# Cómo agregar un nuevo módulo a Escuadra
+# Cómo agregar un nuevo módulo a ChuspaCalc
 
-Esta guía explica cómo crear e integrar una nueva herramienta dentro del proyecto Escuadra.
+Esta guía explica cómo crear e integrar una nueva herramienta dentro del proyecto ChuspaCalc.
 
 El objetivo es mantener una estructura clara, consistente y fácil de mantener para todos los contribuidores.
 
@@ -8,12 +8,12 @@ El objetivo es mantener una estructura clara, consistente y fácil de mantener p
 
 # Estructura de módulos
 
-Los módulos deben organizarse según el dominio correspondiente dentro de `src/escuadra/modulos/`.
+Los módulos deben organizarse según el dominio correspondiente dentro de `src/ChuspaCalc/modulos/`.
 
 Ejemplo de estructura:
 
 ```text
-src/escuadra/modulos/
+src/ChuspaCalc/modulos/
 ├── civil/
 ├── electrica/
 ├── geometria/
@@ -26,9 +26,9 @@ Cada carpeta contiene herramientas relacionadas con su área.
 Ejemplos:
 
 ```text
-src/escuadra/modulos/civil/herramienta_calculo_vigas.py
-src/escuadra/modulos/electrica/herramienta_ley_ohm.py
-src/escuadra/modulos/geometria/herramienta_calculo_area.py
+src/ChuspaCalc/modulos/civil/herramienta_calculo_vigas.py
+src/ChuspaCalc/modulos/electrica/herramienta_ley_ohm.py
+src/ChuspaCalc/modulos/geometria/herramienta_calculo_area.py
 ```
 
 ---
@@ -40,13 +40,13 @@ src/escuadra/modulos/geometria/herramienta_calculo_area.py
 Seleccionar la carpeta correspondiente dentro de:
 
 ```text
-src/escuadra/modulos/
+src/ChuspaCalc/modulos/
 ```
 
 Ejemplo:
 
 ```text
-src/escuadra/modulos/civil/
+src/ChuspaCalc/modulos/civil/
 ```
 
 ---
@@ -56,7 +56,7 @@ src/escuadra/modulos/civil/
 Si se crea un dominio que todavía no existe, se debe agregar un archivo:
 
 ```text
-src/escuadra/modulos/nuevo_dominio/__init__.py
+src/ChuspaCalc/modulos/nuevo_dominio/__init__.py
 ```
 
 Esto permite que Python reconozca el directorio como un paquete.
@@ -67,7 +67,7 @@ Esto permite que Python reconozca el directorio como un paquete.
 
 El archivo debe crearse dentro del dominio correspondiente y tener un nombre descriptivo usando `snake_case`.
 
-Las herramientas descubiertas automáticamente por Escuadra deben utilizar el prefijo `herramienta_`.
+Las herramientas descubiertas automáticamente por ChuspaCalc deben utilizar el prefijo `herramienta_`.
 
 Ejemplos válidos:
 
@@ -96,8 +96,8 @@ Template básico:
 ```python
 from PySide6.QtWidgets import QLabel
 
-from escuadra.core.carrera import Carrera
-from escuadra.core.herramienta import Herramienta
+from ChuspaCalc.core.carrera import Carrera
+from ChuspaCalc.core.herramienta import Herramienta
 
 
 class HerramientaEjemplo(Herramienta):
@@ -145,12 +145,12 @@ def calcular_area(base, altura):
 Las herramientas son descubiertas automáticamente por el registro definido en:
 
 ```text
-src/escuadra/core/registry.py
+src/ChuspaCalc/core/registry.py
 ```
 
 Para que una herramienta sea detectada correctamente:
 
-* Debe estar ubicada dentro de `src/escuadra/modulos/`
+* Debe estar ubicada dentro de `src/ChuspaCalc/modulos/`
 * El archivo debe comenzar con el prefijo `herramienta_`
 * Debe contener una clase que herede de `Herramienta`
 
@@ -179,12 +179,12 @@ Las pruebas deben validar:
 
 ```python
 # Archivo:
-# src/escuadra/modulos/geometria/herramienta_calculo_area.py
+# src/ChuspaCalc/modulos/geometria/herramienta_calculo_area.py
 
 from PySide6.QtWidgets import QLabel
 
-from escuadra.core.carrera import Carrera
-from escuadra.core.herramienta import Herramienta
+from ChuspaCalc.core.carrera import Carrera
+from ChuspaCalc.core.herramienta import Herramienta
 
 
 class HerramientaCalculoArea(Herramienta):

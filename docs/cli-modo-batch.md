@@ -1,6 +1,6 @@
 # 📦 Modo Batch del CLI
 
-Esta guía explica cómo utilizar el **modo batch** de Escuadra, una funcionalidad que permite procesar múltiples cálculos desde un archivo de entrada.
+Esta guía explica cómo utilizar el **modo batch** de ChuspaCalc, una funcionalidad que permite procesar múltiples cálculos desde un archivo de entrada.
 
 ---
 
@@ -20,4 +20,4 @@ El modo batch permite **ejecutar varios cálculos de forma automatizada** a part
 ### Comando principal
 
 ```bash
-escuadra batch --archivo entrada.csv --salida resultados.csv
+ChuspaCalc batch --archivo entrada.csv --salida resultados.csv

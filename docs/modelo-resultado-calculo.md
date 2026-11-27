@@ -3,7 +3,7 @@
 ## Introducción
 
 Este documento define el contrato formal `ResultadoCalculo` que los módulos
-de cálculo de Escuadra deben seguir al retornar sus resultados, y describe
+de cálculo de ChuspaCalc deben seguir al retornar sus resultados, y describe
 la transición gradual desde el estado actual hacia este contrato uniforme.
 
 ---
@@ -64,7 +64,7 @@ resultado específico del dominio dentro de una estructura común.
 ### Ejemplo de uso (forma propuesta)
 
 ```python
-from escuadra.core.resultado import ResultadoCalculo
+from ChuspaCalc.core.resultado import ResultadoCalculo
 
 def calcular_reacciones(longitud, carga, posicion=None) -> ResultadoCalculo:
     ...
@@ -112,7 +112,7 @@ módulos de golpe. Se sugiere el siguiente enfoque incremental:
 
 > **Nota:** Al momento de escribir este documento, el contrato
 > `ResultadoCalculo` aún no está implementado en el código del proyecto
-> (no existe en `src/escuadra/core/`). Este documento describe la
+> (no existe en `src/ChuspaCalc/core/`). Este documento describe la
 > propuesta de diseño para guiar su futura implementación y la
 > migración de los módulos existentes.
 
@@ -121,5 +121,5 @@ módulos de golpe. Se sugiere el siguiente enfoque incremental:
 ## Referencias
 
 * `docs/como-agregar-modulo.md` — guía general para agregar nuevos módulos.
-* `src/escuadra/modulos/civil/viga.py` — ejemplo de módulo con diccionario ad-hoc.
-* `src/escuadra/modulos/electrica/caida_tension.py` — ejemplo de módulo con diccionario ad-hoc.
+* `src/ChuspaCalc/modulos/civil/viga.py` — ejemplo de módulo con diccionario ad-hoc.
+* `src/ChuspaCalc/modulos/electrica/caida_tension.py` — ejemplo de módulo con diccionario ad-hoc.

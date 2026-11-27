@@ -16,7 +16,7 @@ http://localhost:5000
 
 ```json
 {
-  "mensaje": "API Escuadra en funcionamiento"
+  "mensaje": "API ChuspaCalc en funcionamiento"
 }
 ```
 

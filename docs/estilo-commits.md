@@ -2,7 +2,7 @@
 
 ## Introducción
 
-El proyecto **Escuadra** utiliza la especificación **Conventional Commits** para mantener un historial de cambios claro, consistente y fácil de entender.
+El proyecto **ChuspaCalc** utiliza la especificación **Conventional Commits** para mantener un historial de cambios claro, consistente y fácil de entender.
 
 Seguir una convención para los mensajes de commit facilita la revisión de cambios, mejora la trazabilidad del proyecto y permite identificar rápidamente el propósito de cada modificación.
 

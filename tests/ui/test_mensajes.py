@@ -1,7 +1,7 @@
 from PySide6.QtCore import Qt, QTimer
 from PySide6.QtWidgets import QApplication, QMessageBox
 
-from escuadra.ui.mensajes import confirmar
+from chuspacalc.ui.mensajes import confirmar
 
 
 def test_confirmar_retorna_true_al_presionar_si(qtbot):

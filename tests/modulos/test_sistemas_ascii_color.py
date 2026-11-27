@@ -1,9 +1,9 @@
-from escuadra.modulos.sistemas.conversor_color import (
+from chuspacalc.modulos.sistemas.conversor_color import (
     hex_a_rgb,
     rgb_a_hex,
     rgb_a_hsl,
 )
-from escuadra.modulos.sistemas.tabla_ascii import listar_ascii_rango
+from chuspacalc.modulos.sistemas.tabla_ascii import listar_ascii_rango
 
 
 def test_generacion_tabla_ascii_rango():

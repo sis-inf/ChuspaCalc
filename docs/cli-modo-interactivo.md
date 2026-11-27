@@ -1,6 +1,6 @@
 # 🖥️ Modo Interactivo (REPL) del CLI
 
-Esta guía explica cómo utilizar el **modo interactivo** (REPL) de Escuadra, una funcionalidad que permite ejecutar cálculos y herramientas desde una consola interactiva.
+Esta guía explica cómo utilizar el **modo interactivo** (REPL) de ChuspaCalc, una funcionalidad que permite ejecutar cálculos y herramientas desde una consola interactiva.
 
 ---
 
@@ -20,16 +20,16 @@ El modo interactivo (REPL - Read-Eval-Print Loop) es una **consola interactiva**
 ### Desde la línea de comandos
 
 ```bash
-escuadra interactiva
+ChuspaCalc interactiva
 
-$ escuadra interactiva
-🖥️  Modo interactivo de Escuadra
+$ ChuspaCalc interactiva
+🖥️  Modo interactivo de ChuspaCalc
 
-escuadra> listar
+ChuspaCalc> listar
 - viga      - Cálculo de reacciones en vigas
 - tension   - Cálculo de caída de tensión
 
-escuadra> usar viga
+ChuspaCalc> usar viga
 📐 Ingresa los parámetros de la viga:
   longitud (m) > 5.0
   carga (kN) > 10.0
@@ -39,5 +39,5 @@ Resultado:
   Momento flector: 12.50 kN·m
   Cortante máximo: 5.00 kN
 
-escuadra> salir
+ChuspaCalc> salir
    ¡hasta luego!

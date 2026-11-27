@@ -4,15 +4,16 @@ Tests unitarios para los conversores de presión, masa y longitud.
 
 import pytest
 
-from escuadra.modulos.matematicas.conversor_longitud import (
+from chuspacalc.modulos.matematicas.conversor_longitud import (
     UNIDADES_A_METROS,
     convertir,
 )
-from escuadra.modulos.matematicas.conversor_masa import convertir_masa
-from escuadra.modulos.matematicas.conversor_presion import convertir_presion
+from chuspacalc.modulos.matematicas.conversor_masa import convertir_masa
+from chuspacalc.modulos.matematicas.conversor_presion import convertir_presion
+from chuspacalc.modulos.matematicas.error_validacion import ErrorValidacion
 
 try:
-    from escuadra.modulos.matematicas.conversor_longitud_extendido import (
+    from chuspacalc.modulos.matematicas.conversor_longitud_extendido import (
         UNIDADES_BASE,
         convertir_longitud,
     )
@@ -78,6 +79,42 @@ def test_convertir_longitud_valor_negativo():
         convertir(-1, "m", "cm")
 
 
+@pytest.mark.parametrize("valor", [True, False, "1", None, [1]])
+def test_convertir_longitud_rechaza_tipos_invalidos(valor):
+    with pytest.raises(ErrorValidacion):
+        convertir(valor, "m", "cm")
+
+
+@pytest.mark.parametrize("valor", [float("nan"), float("inf"), float("-inf")])
+def test_convertir_longitud_rechaza_no_finitos(valor):
+    with pytest.raises(ErrorValidacion):
+        convertir(valor, "m", "cm")
+
+
+def test_convertir_longitud_negativo_lanza_error_validacion():
+    with pytest.raises(ErrorValidacion):
+        convertir(-1, "m", "cm")
+
+
+@pytest.mark.parametrize(
+    ("de_unidad", "a_unidad"),
+    [("xx", "m"), ("m", "xx"), (1, "m"), ("m", None)],
+)
+def test_convertir_longitud_rechaza_unidades_invalidas(de_unidad, a_unidad):
+    with pytest.raises(ErrorValidacion):
+        convertir(1, de_unidad, a_unidad)
+
+
+def test_convertir_longitud_retorna_claves_esperadas():
+    resultado = convertir(2, " KM ", "M")
+    assert resultado == {
+        "valor_original": 2,
+        "unidad_original": "km",
+        "valor_convertido": pytest.approx(2000.0),
+        "unidad_destino": "m",
+    }
+
+
 # ------------------------
 # Conversor de longitud extendido
 # ------------------------
@@ -85,17 +122,15 @@ def test_convertir_longitud_valor_negativo():
 
 @pytest.mark.skipif(
     not MODULO_DISPONIBLE,
-    reason="Bug conocido: conversor_longitud_extendido.py importa desde 'src.escuadra'.",
+    reason="Bug conocido: conversor_longitud_extendido.py importa desde 'src.chuspacalc'.",
 )
 def test_convertir_longitud_extendida_pc_a_al():
-    assert convertir_longitud(1, "pc", "al") == pytest.approx(
-        3.086e16 / 9.461e15
-    )
+    assert convertir_longitud(1, "pc", "al") == pytest.approx(3.086e16 / 9.461e15)
 
 
 @pytest.mark.skipif(
     not MODULO_DISPONIBLE,
-    reason="Bug conocido: conversor_longitud_extendido.py importa desde 'src.escuadra'.",
+    reason="Bug conocido: conversor_longitud_extendido.py importa desde 'src.chuspacalc'.",
 )
 def test_convertir_longitud_extendida_mn_a_m():
     assert convertir_longitud(1, "mn", "m") == pytest.approx(1852.0)
@@ -103,7 +138,7 @@ def test_convertir_longitud_extendida_mn_a_m():
 
 @pytest.mark.skipif(
     not MODULO_DISPONIBLE,
-    reason="Bug conocido: conversor_longitud_extendido.py importa desde 'src.escuadra'.",
+    reason="Bug conocido: conversor_longitud_extendido.py importa desde 'src.chuspacalc'.",
 )
 def test_unidades_base_importadas_correctamente():
     assert UNIDADES_BASE is UNIDADES_A_METROS

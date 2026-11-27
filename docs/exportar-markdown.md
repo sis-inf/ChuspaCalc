@@ -2,7 +2,7 @@
 
 ## Introducción
 
-Escuadra permite exportar los resultados de los cálculos en formato **Markdown (.md)**. Esta funcionalidad facilita compartir resultados en documentación técnica, repositorios Git, sistemas de control de versiones y plataformas compatibles con Markdown.
+ChuspaCalc permite exportar los resultados de los cálculos en formato **Markdown (.md)**. Esta funcionalidad facilita compartir resultados en documentación técnica, repositorios Git, sistemas de control de versiones y plataformas compatibles con Markdown.
 
 ---
 

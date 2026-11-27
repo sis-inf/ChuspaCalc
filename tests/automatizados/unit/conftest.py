@@ -17,7 +17,7 @@ def datos_numericos():
 def config_basica():
     """Retorna una configuración mínima válida del proyecto."""
     return {
-        "nombre_proyecto": "Escuadra",
+        "nombre_proyecto": "ChuspaCalc",
         "version": "1.0",
         "modo_debug": False,
     }

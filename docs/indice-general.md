@@ -1,6 +1,6 @@
 # Índice General de Documentación
 
-Índice navegable maestro de la documentación del proyecto Escuadra.
+Índice navegable maestro de la documentación del proyecto ChuspaCalc.
 
 ---
 

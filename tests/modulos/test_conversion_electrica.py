@@ -4,7 +4,7 @@ Tests unitarios para la función de conversión de unidades eléctricas.
 
 import pytest
 
-from escuadra.modulos.electrica.herramienta_conversion_electrica import (
+from chuspacalc.modulos.electrica.herramienta_conversion_electrica import (
     convertir_unidad,
 )
 

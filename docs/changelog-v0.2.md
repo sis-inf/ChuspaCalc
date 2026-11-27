@@ -1,4 +1,4 @@
-# Changelog - Suite Escuadra (Sprint 2 - v0.2)
+# Changelog - Suite ChuspaCalc (Sprint 2 - v0.2)
 
 **Período:** Del 25 de abril de 2026 al 21 de mayo de 2026.
 

@@ -1,18 +1,18 @@
 # Guía de Despliegue
 
-Esta guía describe el proceso de instalación y ejecución de Escuadra en sistemas Windows, Linux y macOS. Incluye la configuración del entorno virtual, la instalación del proyecto mediante pip y la verificación del funcionamiento de la interfaz de línea de comandos (CLI).
+Esta guía describe el proceso de instalación y ejecución de ChuspaCalc en sistemas Windows, Linux y macOS. Incluye la configuración del entorno virtual, la instalación del proyecto mediante pip y la verificación del funcionamiento de la interfaz de línea de comandos (CLI).
 
 ---
 
 # Prerrequisitos
 
-Antes de instalar Escuadra, asegúrese de tener instalado:
+Antes de instalar ChuspaCalc, asegúrese de tener instalado:
 
 * Python 3.10 o superior
 * pip (incluido con Python)
 * Git
 
-> Escuadra requiere Python 3.10 o superior. Versiones anteriores no están soportadas.
+> ChuspaCalc requiere Python 3.10 o superior. Versiones anteriores no están soportadas.
 
 Verificar las versiones instaladas:
 
@@ -30,18 +30,18 @@ git --version
 
 ## Clonar el repositorio
 
-Si desea utilizar Escuadra como usuario:
+Si desea utilizar ChuspaCalc como usuario:
 
 ```bash
-git clone https://github.com/sis-inf/escuadra.git
-cd escuadra
+git clone https://github.com/sis-inf/ChuspaCalc.git
+cd ChuspaCalc
 ```
 
 Si trabaja mediante el flujo de contribución del proyecto, clone primero su fork personal:
 
 ```bash
-git clone https://github.com/TU-USUARIO/escuadra.git
-cd escuadra
+git clone https://github.com/TU-USUARIO/ChuspaCalc.git
+cd ChuspaCalc
 ```
 
 Para más detalles sobre el flujo de contribución consulte:
@@ -115,7 +115,7 @@ La opción `-e` (*editable*) instala el proyecto enlazándolo al código fuente 
 La instalación registra además el comando:
 
 ```bash
-escuadra
+chuspacalc
 ```
 
 definido en el archivo `pyproject.toml`.
@@ -136,22 +136,22 @@ Estas dependencias incluyen herramientas para pruebas, validación de código y 
 
 # Verificar la instalación
 
-Verificar que Escuadra esté disponible:
+Verificar que ChuspaCalc esté disponible:
 
 ```bash
-escuadra --help
+chuspacalc --help
 ```
 
 Consultar la versión instalada:
 
 ```bash
-escuadra --version
+chuspacalc --version
 ```
 
 También es posible ejecutar la aplicación mediante:
 
 ```bash
-python -m escuadra --help
+python -m chuspacalc --help
 ```
 
 Si la instalación fue exitosa, se mostrará la ayuda de la aplicación o la versión instalada.
@@ -163,13 +163,13 @@ Si la instalación fue exitosa, se mostrará la ayuda de la aplicación o la ver
 Mostrar la ayuda general:
 
 ```bash
-escuadra --help
+chuspacalc --help
 ```
 
 Ejecutar el paquete directamente:
 
 ```bash
-python -m escuadra
+python -m chuspacalc
 ```
 
 ---
@@ -200,7 +200,7 @@ Add Python to PATH
 
 durante la instalación.
 
-## El comando `escuadra` no funciona
+## El comando `chuspacalc` no funciona
 
 Verifique que:
 
@@ -236,7 +236,7 @@ sha256sum -c SHA256SUMS.txt
 Si la verificación es correcta, se mostrará un resultado similar a:
 
 ```text
-escuadra: OK
+chuspacalc: OK
 ```
 
 ## macOS
@@ -244,7 +244,7 @@ escuadra: OK
 Calcule el checksum del ejecutable:
 
 ```bash
-shasum -a 256 escuadra
+shasum -a 256 chuspacalc
 ```
 
 Compare el valor obtenido con el correspondiente en `SHA256SUMS.txt`.
@@ -254,7 +254,7 @@ Compare el valor obtenido con el correspondiente en `SHA256SUMS.txt`.
 Calcule el checksum mediante:
 
 ```powershell
-Get-FileHash .\escuadra -Algorithm SHA256
+Get-FileHash .\chuspacalc -Algorithm SHA256
 ```
 
 Compare el valor mostrado con el registrado en `SHA256SUMS.txt`.

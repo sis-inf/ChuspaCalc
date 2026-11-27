@@ -2,7 +2,7 @@
 
 ## Introducción
 
-Escuadra permite exportar los resultados de los cálculos en formato **LaTeX**, facilitando su incorporación en informes técnicos, artículos científicos, tesis y otros documentos académicos.
+ChuspaCalc permite exportar los resultados de los cálculos en formato **LaTeX**, facilitando su incorporación en informes técnicos, artículos científicos, tesis y otros documentos académicos.
 
 La exportación genera código compatible con LaTeX, listo para copiar e insertar en un documento `.tex`.
 

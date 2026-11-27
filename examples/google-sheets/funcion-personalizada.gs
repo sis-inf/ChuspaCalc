@@ -1,12 +1,12 @@
 /**
  * Ejemplo de función personalizada para Google Sheets
- * que consume la API HTTP local de Escuadra.
+ * que consume la API HTTP local de ChuspaCalc.
  *
- * Requiere que Escuadra esté ejecutándose localmente
+ * Requiere que ChuspaCalc esté ejecutándose localmente
  * con la API activada.
  */
 
-function ESCUADRA_CALCULAR(herramienta, parametros) {
+function CHUSPACALC_CALCULAR(herramienta, parametros) {
   var url = "http://localhost:8000/calcular/" + herramienta;
 
   var opciones = {

@@ -5,6 +5,7 @@ on:
     branches: ["**"]
   pull_request:
     branches: ["**"]
+    types: [opened, synchronize, reopened, labeled, unlabeled]
 
 jobs:
   lint:
@@ -14,9 +15,9 @@ jobs:
       matrix:
         python-version: ["3.10", "3.11", "3.12"]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v6
+        uses: actions/setup-python@v7
         with:
           python-version: ${{ matrix.python-version }}
       - name: Check formatting with Black
@@ -36,6 +37,7 @@ jobs:
     env:
       QT_QPA_PLATFORM: offscreen
     strategy:
+      fail-fast: false
       matrix:
         os:
           - ubuntu-latest
@@ -46,19 +48,27 @@ jobs:
           - "3.11"
           - "3.12"
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
+      - name: Install Qt system libraries (Ubuntu)
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes --no-install-recommends libegl1 libgl1
       - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v6
+        uses: actions/setup-python@v7
         with:
           python-version: ${{ matrix.python-version }}
       - name: Install dependencies
         run: |
           pip install -e .
           pip install -r requirements-dev.txt
+      - name: Verify PySide6 offscreen startup (Ubuntu)
+        if: matrix.os == 'ubuntu-latest'
+        run: python -c "from PySide6.QtWidgets import QApplication; QApplication([])"
       - name: Verificar ubicación de tests
         run: bash scripts/verificar-tests-ubicacion.sh
       - name: Run pytest
-        run: pytest -m "not slow" --cov=src/escuadra --cov-report=term-missing
+        run: pytest -m "not slow" --cov=src/chuspacalc --cov-report=term-missing
   mypy:
     name: Type check (mypy)
     runs-on: ubuntu-latest
@@ -66,9 +76,9 @@ jobs:
       matrix:
         python-version: ["3.12"]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v6
+        uses: actions/setup-python@v7
         with:
           python-version: ${{ matrix.python-version }}
       - name: Install dependencies
@@ -76,14 +86,14 @@ jobs:
           pip install -e .
           pip install -r requirements-dev.txt
       - name: Run mypy
-        run: mypy src/escuadra
+        run: mypy src/chuspacalc
 
   changelog-check:
     name: Changelog check
     runs-on: ubuntu-latest
     if: github.event_name == 'pull_request'
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
       - name: Check for skip-changelog label
@@ -98,11 +108,11 @@ jobs:
           fi
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Check if src/escuadra was modified
+      - name: Check if src/chuspacalc was modified
         id: check-src
         if: steps.check-label.outputs.skip == 'false'
         run: |
-          git diff --name-only origin/${{ github.base_ref }}...HEAD | grep -q "^src/escuadra/" && echo "modified=true" >> $GITHUB_OUTPUT || echo "modified=false" >> $GITHUB_OUTPUT
+          git diff --name-only origin/${{ github.base_ref }}...HEAD | grep -q "^src/chuspacalc/" && echo "modified=true" >> $GITHUB_OUTPUT || echo "modified=false" >> $GITHUB_OUTPUT
       - name: Check if CHANGELOG.md was modified
         id: check-changelog
         if: steps.check-src.outputs.modified == 'true'
@@ -111,7 +121,7 @@ jobs:
       - name: Fail if CHANGELOG.md not updated
         if: steps.check-changelog.outputs.modified == 'false'
         run: |
-          echo "ERROR: Este PR modifica archivos en src/escuadra/ pero no actualiza CHANGELOG.md"
+          echo "ERROR: Este PR modifica archivos en src/chuspacalc/ pero no actualiza CHANGELOG.md"
           echo "Por favor, actualiza CHANGELOG.md para documentar los cambios realizados."
           echo "Si este cambio no requiere actualización del changelog, agrega la etiqueta 'skip-changelog' al PR."
           exit 1

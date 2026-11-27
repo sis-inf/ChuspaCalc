@@ -1,7 +1,7 @@
 # Uso de pytest markers
 ## Introducción
 
-La carpeta "tests/" contiene todos los recursos relacionados con las pruebas del proyecto Escuadra. Su objetivo es proporcionar una estructura organizada para pruebas automatizadas, pruebas manuales, casos de prueba, datos de prueba y documentación asociada al proceso de aseguramiento de calidad.
+La carpeta "tests/" contiene todos los recursos relacionados con las pruebas del proyecto ChuspaCalc. Su objetivo es proporcionar una estructura organizada para pruebas automatizadas, pruebas manuales, casos de prueba, datos de prueba y documentación asociada al proceso de aseguramiento de calidad.
 
 Las pruebas permiten verificar que los cambios realizados en el código funcionen correctamente y no introduzcan errores en funcionalidades existentes. Por esta razón, se recomienda ejecutar las pruebas correspondientes antes de enviar cambios al repositorio mediante un Pull Request.
 

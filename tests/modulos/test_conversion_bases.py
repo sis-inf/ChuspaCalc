@@ -4,7 +4,7 @@ Tests unitarios para las funciones de conversión de bases numéricas.
 
 import pytest
 
-from escuadra.modulos.sistemas.herramienta_conversion_bases import (
+from chuspacalc.modulos.sistemas.herramienta_conversion_bases import (
     convertir_desde_decimal,
     parsear_valor,
 )

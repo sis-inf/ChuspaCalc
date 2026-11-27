@@ -2,7 +2,7 @@
 
 ## Introducción
 
-Escuadra permite importar parámetros desde un archivo CSV para ejecutar cálculos en lote desde la interfaz gráfica (GUI). Esta funcionalidad facilita el procesamiento de múltiples casos utilizando un único archivo de entrada, evitando el ingreso manual de datos para cada cálculo.
+ChuspaCalc permite importar parámetros desde un archivo CSV para ejecutar cálculos en lote desde la interfaz gráfica (GUI). Esta funcionalidad facilita el procesamiento de múltiples casos utilizando un único archivo de entrada, evitando el ingreso manual de datos para cada cálculo.
 
 ## Flujo general
 

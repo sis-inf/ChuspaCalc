@@ -1,6 +1,6 @@
 # Modo de depuración con trazas intermedias
 
-Este documento explica cómo activar el modo de depuración en Escuadra y qué herramientas lo soportan.
+Este documento explica cómo activar el modo de depuración en ChuspaCalc y qué herramientas lo soportan.
 
 ## ¿Qué es el modo de depuración?
 
@@ -17,13 +17,13 @@ Edita o crea un archivo `config.yaml` con el siguiente contenido:
 ```yaml
 logging:
   level: DEBUG
-  file: escuadra-debug.log
+  file: ChuspaCalc-debug.log
 ```
 
 Luego carga la configuración en tu entorno:
 
 ```python
-from escuadra.config.loader import load
+from ChuspaCalc.config.loader import load
 
 config = load("config.yaml")
 ```
@@ -40,7 +40,7 @@ Con esta configuración activa, el sistema registrará las trazas intermedias de
 
 ## Herramientas que soportan trazas intermedias
 
-Las siguientes herramientas de Escuadra generan pasos intermedios visibles al activar el modo de depuración:
+Las siguientes herramientas de ChuspaCalc generan pasos intermedios visibles al activar el modo de depuración:
 
 | Herramienta              | Módulo      | Trazas generadas                                          |
 | ------------------------ | ----------- | --------------------------------------------------------- |

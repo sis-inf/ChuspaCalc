@@ -1,4 +1,4 @@
-# Flujo de trabajo con Git: Forking Workflow para Escuadra
+# Flujo de trabajo con Git: Forking Workflow para ChuspaCalc
 
 ## Introducción
 
@@ -291,5 +291,5 @@ Esto ayuda a evitar conflictos al momento de abrir el Pull Request.
 
 ## Conclusión
 
-El Forking Workflow permite colaborar de manera ordenada en Escuadra.  
+El Forking Workflow permite colaborar de manera ordenada en ChuspaCalc.  
 Cada integrante trabaja desde su propio fork, crea una rama para cada tarea, realiza sus cambios, los sube a GitHub y finalmente abre un Pull Request para que el equipo pueda revisarlos antes de integrarlos al proyecto principal.

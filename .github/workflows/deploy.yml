@@ -16,10 +16,10 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v6
+        uses: actions/setup-python@v7
         with:
           python-version: ${{ matrix.python-version }}
 
@@ -32,19 +32,19 @@ jobs:
 
       - name: Build executable with PyInstaller
         run: |
-          pyinstaller --onefile --name escuadra src/escuadra/app.py
+          pyinstaller --onefile --name chuspacalc src/chuspacalc/app.py
 
       - name: Generate SHA256 checksum
         run: |
           cd dist
-          sha256sum escuadra > SHA256SUMS.txt
+          sha256sum chuspacalc > SHA256SUMS.txt
 
       - name: Upload artifact
         uses: actions/upload-artifact@v7
         with:
-          name: escuadra-linux
+          name: chuspacalc-linux
           path: |
-            dist/escuadra
+            dist/chuspacalc
             dist/SHA256SUMS.txt
 
       - name: Create release
@@ -52,6 +52,6 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
-            dist/escuadra
+            dist/chuspacalc
             dist/SHA256SUMS.txt
           generate_release_notes: true

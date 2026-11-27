@@ -6,7 +6,7 @@ y el manejo de entradas inválidas.
 
 import pytest
 
-from escuadra.modulos.sistemas.conversor_bases import convertir
+from chuspacalc.modulos.sistemas.conversor_bases import convertir
 
 
 def test_decimal_a_binario():

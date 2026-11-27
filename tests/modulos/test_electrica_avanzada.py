@@ -6,16 +6,15 @@ Pruebas para módulos eléctricos avanzados:
 
 import pytest
 
-from escuadra.modulos.electrica.caida_tension import (
-    calcular_caida,
+from chuspacalc.modulos.electrica.caida_tension import (
+    PORCENTAJE_ADMISIBLE,
     RESISTIVIDADES,
     TENSION_REFERENCIA_V,
-    PORCENTAJE_ADMISIBLE
+    calcular_caida,
 )
-
-from escuadra.modulos.electrica.circuito_serie_paralelo import (
+from chuspacalc.modulos.electrica.circuito_serie_paralelo import (
+    resistencia_paralelo,
     resistencia_serie,
-    resistencia_paralelo
 )
 
 
@@ -25,8 +24,10 @@ class TestCaidaTension:
     def test_calcular_caida_cobre(self):
         """Verifica el cálculo de caída de tensión con cobre"""
         # Fórmula: DV = 2 * 0.0172 * 100 * 15 / 4 = 12.9V
-        resultado = calcular_caida(longitud=100, corriente=15, seccion=4, material="cobre")
-        
+        resultado = calcular_caida(
+            longitud=100, corriente=15, seccion=4, material="cobre"
+        )
+
         assert resultado["caida_v"] == 12.9
         assert resultado["porcentaje"] == pytest.approx(5.8636, rel=1e-4)
         assert resultado["admisible"] is False
@@ -34,8 +35,10 @@ class TestCaidaTension:
     def test_calcular_caida_aluminio(self):
         """Verifica el cálculo de caída de tensión con aluminio"""
         # Fórmula: DV = 2 * 0.0282 * 100 * 15 / 4 = 21.15V
-        resultado = calcular_caida(longitud=100, corriente=15, seccion=4, material="aluminio")
-        
+        resultado = calcular_caida(
+            longitud=100, corriente=15, seccion=4, material="aluminio"
+        )
+
         assert resultado["caida_v"] == 21.15
         assert resultado["porcentaje"] == pytest.approx(9.6136, rel=1e-4)
         assert resultado["admisible"] is False
@@ -43,8 +46,10 @@ class TestCaidaTension:
     def test_calcular_caida_admisible(self):
         """Verifica que detecta caída admisible (<= 3%)"""
         # Con longitud pequeña, caída será menor al 3%
-        resultado = calcular_caida(longitud=10, corriente=5, seccion=10, material="cobre")
-        
+        resultado = calcular_caida(
+            longitud=10, corriente=5, seccion=10, material="cobre"
+        )
+
         assert resultado["admisible"] is True
 
     def test_calcular_caida_longitud_cero(self):

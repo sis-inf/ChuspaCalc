@@ -1,6 +1,6 @@
 # 📌 Política de Versionado Semántico
 
-Este documento define la política de versionado que sigue el proyecto **Escuadra**, basada en [**Semantic Versioning (SemVer)**](https://semver.org/).
+Este documento define la política de versionado que sigue el proyecto **ChuspaCalc**, basada en [**Semantic Versioning (SemVer)**](https://semver.org/).
 
 ---
 

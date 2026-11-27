@@ -1,6 +1,6 @@
-# Ejemplos de Uso — Suite Escuadra
+# Ejemplos de Uso — Suite ChuspaCalc
 
-Este documento presenta ejemplos concretos de entrada y salida para las principales herramientas de Escuadra.
+Este documento presenta ejemplos concretos de entrada y salida para las principales herramientas de ChuspaCalc.
 
 ---
 
@@ -14,7 +14,7 @@ Una viga simplemente apoyada de 10 metros soporta una carga total distribuida de
 **Código Python:**
 
 ```python
-from escuadra.modulos.civil.viga import calcular_reacciones
+from chuspacalc.modulos.civil.viga import calcular_reacciones
 
 resultado = calcular_reacciones(longitud=10, carga=100)
 print(resultado)
@@ -36,8 +36,8 @@ Una viga de 6 metros tiene una carga puntual de 10 kN aplicada en el centro. Se 
 **Código Python:**
 
 ```python
-from escuadra.modulos.civil.viga import calcular_reacciones
-from escuadra.modulos.civil.momento_flector import calcular_momento_max
+from chuspacalc.modulos.civil.viga import calcular_reacciones
+from chuspacalc.modulos.civil.momento_flector import calcular_momento_max
 
 reacciones = calcular_reacciones(longitud=6, carga=10, posicion=3)
 momento = calcular_momento_max(longitud=6, carga=10, tipo_carga='puntual_central')
@@ -64,7 +64,7 @@ Un circuito tiene una resistencia de 5 Ω y circula una corriente de 2 A. Se des
 **Código Python:**
 
 ```python
-from escuadra.modulos.electrica.herramienta_ley_ohm import calcular_voltaje, calcular_potencia
+from chuspacalc.modulos.electrica.herramienta_ley_ohm import calcular_voltaje, calcular_potencia
 
 voltaje = calcular_voltaje(corriente=2, resistencia=5)
 potencia = calcular_potencia(voltaje=voltaje, corriente=2)
@@ -89,7 +89,7 @@ Un conductor de cobre de 100 metros y sección de 4 mm² conduce una corriente d
 **Código Python:**
 
 ```python
-from escuadra.modulos.electrica.caida_tension import calcular_caida
+from chuspacalc.modulos.electrica.caida_tension import calcular_caida
 
 resultado = calcular_caida(longitud=100, corriente=15, seccion=4)
 print(resultado)
@@ -113,7 +113,7 @@ Un ingeniero necesita convertir 3 pies a metros para unificar datos de un inform
 **Código Python:**
 
 ```python
-from escuadra.modulos.matematicas.conversor_longitud import convertir
+from chuspacalc.modulos.matematicas.conversor_longitud import convertir
 
 resultado = convertir(valor=3, de_unidad='ft', a_unidad='m')
 print(resultado)
@@ -135,7 +135,7 @@ Un estudiante realizó 5 mediciones de resistencia eléctrica: 47, 52, 49, 51, 4
 **Código Python:**
 
 ```python
-from escuadra.modulos.matematicas.estadisticas import calcular
+from chuspacalc.modulos.matematicas.estadisticas import calcular
 
 resultado = calcular([47, 52, 49, 51, 48])
 print(f"Media: {resultado['media']} Ω")
@@ -161,7 +161,7 @@ Un estudiante necesita convertir el número decimal 255 a binario, octal y hexad
 **Código Python:**
 
 ```python
-from escuadra.modulos.sistemas.conversor_bases import convertir
+from chuspacalc.modulos.sistemas.conversor_bases import convertir
 
 print(convertir('255', 10, 2))
 print(convertir('255', 10, 8))
@@ -186,7 +186,7 @@ Resolver el sistema: 2x + y = 4, x + 3y = 5.
 **Código Python:**
 
 ```python
-from escuadra.modulos.matematicas.herramienta_sistemas_lineales import resolver_sistema
+from chuspacalc.modulos.matematicas.herramienta_sistemas_lineales import resolver_sistema
 
 solucion = resolver_sistema([[2, 1], [1, 3]], [4, 5])
 print(f"x1 = {solucion[0]}, x2 = {solucion[1]}")
@@ -210,7 +210,7 @@ Calcular el área de un triángulo con base de 10 m y altura de 5 m.
 **Código Python:**
 
 ```python
-from escuadra.modulos.geometria.calculo_area import area_triangulo
+from chuspacalc.modulos.geometria.calculo_area import area_triangulo
 
 resultado = area_triangulo(base=10, altura=5)
 print(f"Área: {resultado} m²")
@@ -232,7 +232,7 @@ Calcular el área de una sección circular de tubería con radio de 0.5 m.
 **Código Python:**
 
 ```python
-from escuadra.modulos.geometria.calculo_area import area_circulo
+from chuspacalc.modulos.geometria.calculo_area import area_circulo
 
 resultado = area_circulo(radio=0.5)
 print(f"Área: {resultado:.4f} m²")

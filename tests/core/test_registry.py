@@ -2,12 +2,11 @@
 Tests unitarios para el registry de herramientas.
 """
 
-
 from PySide6.QtWidgets import QLabel, QWidget
 
-from escuadra.core.carrera import Carrera
-from escuadra.core.herramienta import Herramienta
-from escuadra.core.registry import (
+from chuspacalc.core.carrera import Carrera
+from chuspacalc.core.herramienta import Herramienta
+from chuspacalc.core.registry import (
     buscar_por_nombre,
     descubrir_herramientas,
     herramientas_por_carrera,
@@ -68,6 +67,16 @@ def test_herramientas_por_carrera_agrupa_correctamente():
     for carrera, herramientas in resultado.items():
         assert isinstance(carrera, Carrera)
         assert all(h.carrera == carrera for h in herramientas)
+    # verificacion explicita en presencia de 5 mienbros del Enum Carrera
+    carreras_esperadas = {
+        Carrera.SISTEMAS,
+        Carrera.MATEMATICAS,
+        Carrera.ELECTRICA,
+        Carrera.CIVIL,
+        Carrera.GEOMETRIA,
+    }
+    # comprobar que las carreras presentes en el resultado pertenezcan al conjunto esperado
+    assert set(resultado.keys()).issubset(carreras_esperadas)
 
 
 def test_herramientas_por_carrera_ordenadas_alfabeticamente():

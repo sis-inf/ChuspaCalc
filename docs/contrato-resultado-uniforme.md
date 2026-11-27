@@ -1,12 +1,12 @@
 # 📋 Contrato Uniforme `ResultadoCalculo`
 
-Este documento describe el **contrato uniforme `ResultadoCalculo`**, una estructura estandarizada que todos los módulos de cálculo de Escuadra deben seguir para retornar sus resultados.
+Este documento describe el **contrato uniforme `ResultadoCalculo`**, una estructura estandarizada que todos los módulos de cálculo de ChuspaCalc deben seguir para retornar sus resultados.
 
 ---
 
 ## 🎯 ¿Qué es `ResultadoCalculo`?
 
-`ResultadoCalculo` es un contrato (interfaz o clase base) que define la estructura común que deben tener los resultados de todas las herramientas de cálculo en Escuadra.
+`ResultadoCalculo` es un contrato (interfaz o clase base) que define la estructura común que deben tener los resultados de todas las herramientas de cálculo en ChuspaCalc.
 
 ### Propósito
 

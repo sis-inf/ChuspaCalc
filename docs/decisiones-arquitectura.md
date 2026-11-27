@@ -1,6 +1,6 @@
 # Decisiones de Arquitectura (ADR)
 
-Este documento registra las decisiones arquitectónicas clave del proyecto escuadra. Cada ADR documenta el contexto, la decisión tomada y sus consecuencias.
+Este documento registra las decisiones arquitectónicas clave del proyecto ChuspaCalc. Cada ADR documenta el contexto, la decisión tomada y sus consecuencias.
 
 ## Índice
 

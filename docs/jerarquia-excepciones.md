@@ -2,15 +2,15 @@
 
 ## Descripción
 
-Este documento describe las excepciones específicas del dominio utilizadas en el proyecto Escuadra. Estas excepciones permiten identificar distintos tipos de errores durante la ejecución de las herramientas.
+Este documento describe las excepciones específicas del dominio utilizadas en el proyecto ChuspaCalc. Estas excepciones permiten identificar distintos tipos de errores durante la ejecución de las herramientas.
 
 Para conocer ejemplos de errores frecuentes y sus posibles soluciones, consultar el documento `docs/errores-comunes.md`.
 
-## ErrorEscuadra
+## ErrorChuspaCalc
 
-`ErrorEscuadra` es la excepción base del proyecto.
+`ErrorChuspaCalc` es la excepción base del proyecto.
 
-Las demás excepciones específicas heredan de esta clase y representan distintos tipos de errores relacionados con el funcionamiento de Escuadra.
+Las demás excepciones específicas heredan de esta clase y representan distintos tipos de errores relacionados con el funcionamiento de ChuspaCalc.
 
 Se utiliza para agrupar las excepciones propias del dominio y facilitar su manejo.
 

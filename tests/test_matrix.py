@@ -1,6 +1,6 @@
 import pytest
 
-from escuadra.math.matrix import multiplicar, restar, sumar
+from chuspacalc.math.matrix import multiplicar, restar, sumar
 
 
 def test_sumar_matrices():
@@ -53,3 +53,57 @@ def test_multiplicar_por_identidad():
     matriz = [[2, 3], [4, 5]]
 
     assert multiplicar(matriz, identidad) == matriz
+
+
+def test_sumar_y_restar_rectangulares():
+    a = [[1, 2, 3], [4, 5, 6]]
+    b = [[6, 5, 4], [3, 2, 1]]
+
+    assert sumar(a, b) == [[7, 7, 7], [7, 7, 7]]
+    assert restar(a, b) == [[-5, -3, -1], [1, 3, 5]]
+
+
+def test_multiplicar_rectangulares():
+    a = [[1, 2, 3], [4, 5, 6]]
+    b = [[7, 8], [9, 10], [11, 12]]
+
+    assert multiplicar(a, b) == [[58, 64], [139, 154]]
+
+
+@pytest.mark.parametrize("operacion", [sumar, restar, multiplicar])
+@pytest.mark.parametrize(
+    "a, b",
+    [
+        ([], [[1]]),
+        ([[1]], []),
+        ([[]], [[]]),
+    ],
+)
+def test_matriz_vacia_lanza_error(operacion, a, b):
+    with pytest.raises(ValueError):
+        operacion(a, b)
+
+
+@pytest.mark.parametrize("operacion", [sumar, restar])
+@pytest.mark.parametrize(
+    "a, b",
+    [
+        ([[1, 2], [3]], [[1, 2], [3, 4]]),
+        ([[1, 2], [3, 4]], [[1, 2], [3]]),
+    ],
+)
+def test_sumar_restar_filas_irregulares_lanza_error(operacion, a, b):
+    with pytest.raises(ValueError):
+        operacion(a, b)
+
+
+@pytest.mark.parametrize(
+    "a, b",
+    [
+        ([[1, 2], [3]], [[1], [2]]),
+        ([[1, 2]], [[1, 2], [3]]),
+    ],
+)
+def test_multiplicar_filas_irregulares_lanza_error(a, b):
+    with pytest.raises(ValueError):
+        multiplicar(a, b)

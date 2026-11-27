@@ -5,30 +5,32 @@ Pruebas para módulos de geometría:
 - volumen.py
 """
 
-import pytest
 import math
 
-from escuadra.modulos.geometria.calculo_area import (
-    area_triangulo,
-    area_circulo,
-    area_rectangulo
-)
+import pytest
 
-from escuadra.modulos.geometria.perimetro import (
+from chuspacalc.modulos.geometria.calculo_area import (
+    area_circulo,
+    area_rectangulo,
+    area_triangulo,
+)
+from chuspacalc.modulos.geometria.perimetro import (
     perimetro_circulo,
     perimetro_cuadrado,
+    perimetro_hexagono_regular,
+    perimetro_poligono_regular,
     perimetro_rectangulo,
+    perimetro_trapecio,
     perimetro_triangulo,
-    perimetro_hexagono_regular
 )
-
-from escuadra.modulos.geometria.volumen import (
-    volumen_cubo,
-    volumen_esfera,
+from chuspacalc.modulos.geometria.volumen import (
     volumen_cilindro,
     volumen_cono,
-    volumen_paralelepipedo
+    volumen_cubo,
+    volumen_esfera,
+    volumen_paralelepipedo,
 )
+from chuspacalc.modulos.matematicas.error_validacion import ErrorValidacion
 
 
 class TestCalculoArea:
@@ -160,7 +162,7 @@ class TestVolumen:
         """Verifica el cálculo del volumen de una esfera"""
         # Volumen = (4/3) * π * r³
         resultado = volumen_esfera(radio=3)
-        esperado = (4/3) * math.pi * 27
+        esperado = (4 / 3) * math.pi * 27
         assert resultado == pytest.approx(esperado, rel=1e-6)
 
     def test_volumen_esfera_radio_cero(self):
@@ -192,7 +194,7 @@ class TestVolumen:
         """Verifica el cálculo del volumen de un cono"""
         # Volumen = (1/3) * π * r² * altura
         resultado = volumen_cono(radio=3, altura=5)
-        esperado = (1/3) * math.pi * 9 * 5
+        esperado = (1 / 3) * math.pi * 9 * 5
         assert resultado == pytest.approx(esperado, rel=1e-6)
 
     def test_volumen_cono_radio_cero(self):
@@ -212,3 +214,81 @@ class TestVolumen:
         with pytest.raises(ValueError) as excinfo:
             volumen_paralelepipedo(largo=0, ancho=3, alto=4)
         assert "dimensiones" in str(excinfo.value)
+
+
+@pytest.mark.parametrize(
+    "funcion,argumentos",
+    [
+        (area_triangulo, (3, 4)),
+        (area_circulo, (3,)),
+        (area_rectangulo, (3, 4)),
+        (perimetro_circulo, (3,)),
+        (perimetro_cuadrado, (3,)),
+        (perimetro_rectangulo, (3, 4)),
+        (perimetro_triangulo, (3, 4, 5)),
+        (perimetro_hexagono_regular, (3,)),
+        (perimetro_poligono_regular, (5, 3)),
+        (perimetro_trapecio, (3, 4, 5, 6)),
+        (volumen_cubo, (3,)),
+        (volumen_esfera, (3,)),
+        (volumen_cilindro, (3, 4)),
+        (volumen_cono, (3, 4)),
+        (volumen_paralelepipedo, (3, 4, 5)),
+    ],
+)
+@pytest.mark.parametrize(
+    "valor_invalido",
+    [0, -1, float("nan"), float("inf"), float("-inf")],
+)
+def test_dimensiones_invalidas(funcion, argumentos, valor_invalido):
+    for indice in range(len(argumentos)):
+        # n_lados representa una cantidad, no una longitud.
+        if funcion is perimetro_poligono_regular and indice == 0:
+            continue
+
+        valores = list(argumentos)
+        valores[indice] = valor_invalido
+
+        with pytest.raises(ValueError):
+            funcion(*valores)
+
+
+@pytest.mark.parametrize(
+    "funcion,argumentos",
+    [
+        (volumen_cubo, (3,)),
+        (volumen_esfera, (3,)),
+        (volumen_cilindro, (3, 4)),
+        (volumen_cono, (3, 4)),
+        (volumen_paralelepipedo, (3, 4, 5)),
+    ],
+)
+@pytest.mark.parametrize(
+    "valor_invalido",
+    [0, -1, True, "3", None, float("nan"), float("inf"), float("-inf")],
+)
+def test_volumen_error_validacion(funcion, argumentos, valor_invalido):
+    """Verifica que las dimensiones inválidas lanzan ErrorValidacion."""
+    for indice in range(len(argumentos)):
+        valores = list(argumentos)
+        valores[indice] = valor_invalido
+
+        with pytest.raises(ErrorValidacion):
+            funcion(*valores)
+
+
+@pytest.mark.parametrize(
+    "funcion,argumentos",
+    [
+        (volumen_cubo, (1e308,)),
+        (volumen_esfera, (1e308,)),
+        (volumen_cilindro, (1e308, 2)),
+        (volumen_cono, (1e308, 2)),
+        (volumen_paralelepipedo, (1e308, 1e308, 2)),
+        (volumen_cubo, (10**400,)),
+    ],
+)
+def test_volumen_desbordamiento(funcion, argumentos):
+    """Verifica el control de desbordamientos numéricos."""
+    with pytest.raises(ErrorValidacion):
+        funcion(*argumentos)

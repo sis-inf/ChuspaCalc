@@ -19,7 +19,7 @@ sys.modules["PyQt5"] = pyqt5
 sys.modules["PyQt5.QtGui"] = qtgui
 sys.modules["PyQt5.QtWidgets"] = qtwidgets
 
-from escuadra.ui.widget_herramienta import ( #noqa: E402
+from chuspacalc.ui.widget_herramienta import (  # noqa: E402
     WidgetHerramienta,
     ejecutar_con_progreso_ui,
 )
@@ -63,7 +63,7 @@ def test_ejecutar_con_progreso_ui_maneja_error(monkeypatch):
         raise ValueError("error de prueba")
 
     monkeypatch.setattr(
-        "escuadra.ui.widget_herramienta.mostrar_error_contextualizado",
+        "chuspacalc.ui.widget_herramienta.mostrar_error_contextualizado",
         lambda *args: None,
     )
 

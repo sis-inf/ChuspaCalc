@@ -1,10 +1,10 @@
-## Casos de Uso — Escuadra
+## Casos de Uso — ChuspaCalc
 
 ### Actores del sistema
 
-**1. Estudiante de ingeniería:** Persona que cursa una carrera de ingeniería y utiliza Escuadra como apoyo académico para resolver ejercicios, verificar cálculos y aplicar conceptos teóricos vistos en clase. Puede tener conocimientos básicos o intermedios según el semestre en curso.
+**1. Estudiante de ingeniería:** Persona que cursa una carrera de ingeniería y utiliza ChuspaCalc como apoyo académico para resolver ejercicios, verificar cálculos y aplicar conceptos teóricos vistos en clase. Puede tener conocimientos básicos o intermedios según el semestre en curso.
 
-**2. Docente:**Profesional del área de ingeniería que imparte clases y utiliza Escuadra como recurso didáctico para demostrar procedimientos, plantear ejemplos prácticos y apoyar la enseñanza de conceptos técnicos.
+**2. Docente:**Profesional del área de ingeniería que imparte clases y utiliza ChuspaCalc como recurso didáctico para demostrar procedimientos, plantear ejemplos prácticos y apoyar la enseñanza de conceptos técnicos.
 
 ### Casos de uso
 

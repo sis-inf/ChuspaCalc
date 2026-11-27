@@ -1,6 +1,6 @@
 # 📦 Empaquetado con PyInstaller
 
-Esta guía explica cómo generar un ejecutable distribuible de Escuadra usando PyInstaller.
+Esta guía explica cómo generar un ejecutable distribuible de ChuspaCalc usando PyInstaller.
 
 ## 📋 Requisitos previos
 

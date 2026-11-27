@@ -2,11 +2,12 @@
 Pruebas para el módulo constructor_menu.py
 """
 
-import pytest
 from unittest.mock import MagicMock, patch
 
-from escuadra.ui.constructor_menu import construir_menu
-from escuadra.core.carrera import Carrera
+import pytest
+
+from chuspacalc.core.carrera import Carrera
+from chuspacalc.ui.constructor_menu import construir_menu
 
 
 class TestConstructorMenu:
@@ -30,7 +31,7 @@ class TestConstructorMenu:
 
         callback = MagicMock()
 
-        with patch('escuadra.ui.constructor_menu.QAction') as MockQAction:
+        with patch("chuspacalc.ui.constructor_menu.QAction") as MockQAction:
             mock_action = MagicMock()
             MockQAction.return_value = mock_action
 
@@ -57,7 +58,7 @@ class TestConstructorMenu:
 
         callback = MagicMock()
 
-        with patch('escuadra.ui.constructor_menu.QAction') as MockQAction:
+        with patch("chuspacalc.ui.constructor_menu.QAction") as MockQAction:
             mock_action = MagicMock()
             MockQAction.return_value = mock_action
 
@@ -77,7 +78,7 @@ class TestConstructorMenu:
 
         callback = MagicMock()
 
-        with patch('escuadra.ui.constructor_menu.QAction') as MockQAction:
+        with patch("chuspacalc.ui.constructor_menu.QAction") as MockQAction:
             mock_action = MagicMock()
             MockQAction.return_value = mock_action
 
@@ -104,7 +105,7 @@ class TestConstructorMenu:
 
         callback = MagicMock()
 
-        with patch('escuadra.ui.constructor_menu.QAction') as MockQAction:
+        with patch("chuspacalc.ui.constructor_menu.QAction") as MockQAction:
             mock_action = MagicMock()
             MockQAction.return_value = mock_action
 
@@ -132,7 +133,7 @@ class TestConstructorMenu:
 
         callback = MagicMock()
 
-        with patch('escuadra.ui.constructor_menu.QAction') as MockQAction:
+        with patch("chuspacalc.ui.constructor_menu.QAction") as MockQAction:
             mock_action = MagicMock()
             MockQAction.return_value = mock_action
 
@@ -157,7 +158,7 @@ class TestConstructorMenu:
 
         callback = MagicMock()
 
-        with patch('escuadra.ui.constructor_menu.QAction') as MockQAction:
+        with patch("chuspacalc.ui.constructor_menu.QAction") as MockQAction:
             mock_action = MagicMock()
             MockQAction.return_value = mock_action
 

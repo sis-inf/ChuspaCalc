@@ -1,8 +1,8 @@
-# Arquitectura del Sistema - Proyecto Escuadra
+# Arquitectura del Sistema - Proyecto ChuspaCalc
 
 ## 1. Visión General
 
-El proyecto **Escuadra** está diseñado como una plataforma modular de herramientas orientadas a distintas ramas de la ingeniería. La arquitectura sigue un principio de **Separación de Responsabilidades**, permitiendo que cada área de ingeniería implemente sus propias soluciones de forma independiente.
+El proyecto **ChuspaCalc** está diseñado como una plataforma modular de herramientas orientadas a distintas ramas de la ingeniería. La arquitectura sigue un principio de **Separación de Responsabilidades**, permitiendo que cada área de ingeniería implemente sus propias soluciones de forma independiente.
 
 El sistema prioriza la escalabilidad, permitiendo agregar nuevas herramientas sin afectar el funcionamiento general.
 
@@ -25,7 +25,7 @@ El sistema prioriza la escalabilidad, permitiendo agregar nuevas herramientas si
 
 El repositorio fue inicialmente documentado con instrucciones de Node.js (npm install, node index.js), lo que generaba ambigüedad. La decisión de usar Python se basa en:
 
-- Todo el código fuente del proyecto (src/escuadra/) está escrito en Python.
+- Todo el código fuente del proyecto (src/ChuspaCalc/) está escrito en Python.
 - Los módulos de cálculo de ingeniería (civil, eléctrica, matemáticas, sistemas) utilizan Python puro.
 - El sistema de empaquetado usa pyproject.toml y setuptools, herramientas del ecosistema Python.
 - PySide6 es una librería Python para interfaces gráficas, sin dependencia de Node.js.
@@ -35,14 +35,14 @@ El repositorio fue inicialmente documentado con instrucciones de Node.js (npm in
 
 ## 4. Componentes Principales
 
-- Core (src/escuadra/core/): Lógica central del sistema, dispatcher y registro de herramientas.
-- Módulos de ingeniería (src/escuadra/modulos/): Cada rama de ingeniería tiene su propio subdirectorio con herramientas independientes.
-- Interfaz de usuario (src/escuadra/ui/): Componentes visuales basados en PySide6.
-- Utilidades (src/escuadra/utils/): Funciones auxiliares, validaciones y helpers compartidos.
-- Configuración (src/escuadra/config/): Carga y gestión de configuración del proyecto.
-- IO (src/escuadra/io/): Parsers para leer archivos de entrada como CSV.
-- Matemáticas (src/escuadra/math/): Operaciones matemáticas reutilizables como matrices, estadísticas y sistemas lineales.
-- CLI (src/escuadra/cli.py): Interfaz de línea de comandos para acceder a las herramientas.
+- Core (src/ChuspaCalc/core/): Lógica central del sistema, dispatcher y registro de herramientas.
+- Módulos de ingeniería (src/ChuspaCalc/modulos/): Cada rama de ingeniería tiene su propio subdirectorio con herramientas independientes.
+- Interfaz de usuario (src/ChuspaCalc/ui/): Componentes visuales basados en PySide6.
+- Utilidades (src/ChuspaCalc/utils/): Funciones auxiliares, validaciones y helpers compartidos.
+- Configuración (src/ChuspaCalc/config/): Carga y gestión de configuración del proyecto.
+- IO (src/ChuspaCalc/io/): Parsers para leer archivos de entrada como CSV.
+- Matemáticas (src/ChuspaCalc/math/): Operaciones matemáticas reutilizables como matrices, estadísticas y sistemas lineales.
+- CLI (src/ChuspaCalc/cli.py): Interfaz de línea de comandos para acceder a las herramientas.
 
 ---
 
@@ -51,9 +51,9 @@ El repositorio fue inicialmente documentado con instrucciones de Node.js (npm in
 **El sistema está estructurado en módulos independientes según cada área:**
 
 ```text
-escuadra/
+ChuspaCalc/
 ├── src/
-│   └── escuadra/
+│   └── ChuspaCalc/
 │       ├── core/           # Dispatcher y registro de herramientas
 │       ├── io/             # Parsers de archivos de entrada (CSV, etc.)
 │       ├── math/           # Operaciones matemáticas reutilizables
@@ -80,7 +80,7 @@ escuadra/
 ### Decisión 1: Arquitectura Modular por rama de Ingeniería
 
 **Contexto:** El proyecto cubre múltiples áreas de ingeniería con necesidades distintas.  
-**Decisión:** Separar cada rama en módulos independientes dentro de src/escuadra/modulos/  
+**Decisión:** Separar cada rama en módulos independientes dentro de src/ChuspaCalc/modulos/  
 **Consecuencias:** Permite desarrollo paralelo sin conflictos y facilita agregar nuevas herramientas.
 
 ---
@@ -88,7 +88,7 @@ escuadra/
 ### Decisión 2: Interfaz gráfica con PySide6
 
 **Contexto:** Se requiere una aplicación de escritorio accesible para estudiantes y profesionales.  
-**Decisión:** Usar PySide6 como framework de UI, con componentes reutilizables en src/escuadra/ui/.  
+**Decisión:** Usar PySide6 como framework de UI, con componentes reutilizables en src/ChuspaCalc/ui/.  
 **Consecuencias:** Interfaz multiplataforma (Windows, Linux, macOS) con el binding oficial de Qt para Python.
 
 ---

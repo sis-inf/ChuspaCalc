@@ -1,6 +1,6 @@
 # 📚 Referencias
 
-Este documento contiene las referencias bibliográficas y enlaces externos utilizados en el proyecto Escuadra.
+Este documento contiene las referencias bibliográficas y enlaces externos utilizados en el proyecto ChuspaCalc.
 
 ---
 
@@ -72,4 +72,4 @@ Este documento contiene las referencias bibliográficas y enlaces externos utili
 
 ## 📌 Nota
 
-Los enlaces fueron verificados y funcionan al momento de la última actualización. Si algún enlace no funciona, por favor reportarlo en los [issues del proyecto](https://github.com/sis-inf/escuadra/issues).
+Los enlaces fueron verificados y funcionan al momento de la última actualización. Si algún enlace no funciona, por favor reportarlo en los [issues del proyecto](https://github.com/sis-inf/ChuspaCalc/issues).

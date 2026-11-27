@@ -2,7 +2,7 @@
 
 ## Introducción
 
-La seguridad es un aspecto importante del proyecto Escuadra. Este documento describe el procedimiento para reportar vulnerabilidades de forma responsable, los tiempos de respuesta esperados y las políticas de divulgación utilizadas por el proyecto.
+La seguridad es un aspecto importante del proyecto ChuspaCalc. Este documento describe el procedimiento para reportar vulnerabilidades de forma responsable, los tiempos de respuesta esperados y las políticas de divulgación utilizadas por el proyecto.
 
 ## Alcance de seguridad
 

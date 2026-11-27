@@ -2,7 +2,7 @@
 
 ## 4. Diagramas de flujo de usuario
 
-Los siguientes diagramas muestran ejemplos de interacción entre el usuario y Escuadra para distintos tipos de cálculos. Cada flujo incluye un camino exitoso y un posible escenario de error.
+Los siguientes diagramas muestran ejemplos de interacción entre el usuario y ChuspaCalc para distintos tipos de cálculos. Cada flujo incluye un camino exitoso y un posible escenario de error.
 
 ---
 
@@ -210,4 +210,4 @@ Este flujo representa el uso de una herramienta del módulo Civil para analizar 
 
 ## Conclusión
 
-Los flujos anteriores representan escenarios comunes de uso dentro de Escuadra. En todos los casos, el sistema sigue una secuencia similar: recepción de datos, validación, procesamiento y presentación de resultados. La validación previa ayuda a reducir errores y mejora la experiencia del usuario durante la realización de cálculos.
+Los flujos anteriores representan escenarios comunes de uso dentro de ChuspaCalc. En todos los casos, el sistema sigue una secuencia similar: recepción de datos, validación, procesamiento y presentación de resultados. La validación previa ayuda a reducir errores y mejora la experiencia del usuario durante la realización de cálculos.

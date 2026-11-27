@@ -2,7 +2,7 @@
 
 ## Introducción
 
-Escuadra mantiene un historial de los cálculos realizados para facilitar la consulta de resultados obtenidos previamente. Esta funcionalidad permite revisar operaciones anteriores sin necesidad de volver a introducir los mismos parámetros.
+ChuspaCalc mantiene un historial de los cálculos realizados para facilitar la consulta de resultados obtenidos previamente. Esta funcionalidad permite revisar operaciones anteriores sin necesidad de volver a introducir los mismos parámetros.
 
 El historial permanece disponible entre sesiones de la aplicación, permitiendo continuar el trabajo desde donde se dejó.
 
@@ -12,7 +12,7 @@ El historial permanece disponible entre sesiones de la aplicación, permitiendo 
 
 El historial persistente se almacena automáticamente por la aplicación utilizando su mecanismo interno de persistencia.
 
-El usuario no necesita crear ni modificar manualmente el archivo del historial, ya que Escuadra administra el almacenamiento de forma transparente.
+El usuario no necesita crear ni modificar manualmente el archivo del historial, ya que ChuspaCalc administra el almacenamiento de forma transparente.
 
 ---
 
@@ -33,7 +33,7 @@ Esta información permite consultar posteriormente cómo se obtuvo un resultado 
 
 Para consultar cálculos anteriores:
 
-1. Abrir la interfaz gráfica de Escuadra.
+1. Abrir la interfaz gráfica de ChuspaCalc.
 2. Seleccionar el **Panel de historial**.
 3. Revisar la lista de cálculos registrados.
 4. Seleccionar una entrada para visualizar sus detalles.

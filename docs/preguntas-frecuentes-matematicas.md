@@ -1,6 +1,6 @@
 # ❓ Preguntas Frecuentes - Fórmulas y Cálculos Matemáticos
 
-Este documento responde a las dudas más comunes sobre el uso de las herramientas de cálculo de Escuadra, especialmente aquellas relacionadas con **fórmulas matemáticas, resultados numéricos y advertencias**.
+Este documento responde a las dudas más comunes sobre el uso de las herramientas de cálculo de ChuspaCalc, especialmente aquellas relacionadas con **fórmulas matemáticas, resultados numéricos y advertencias**.
 
 > **Nota:** Este FAQ está orientado a **dudas de uso de las herramientas de cálculo**. Si buscás información sobre cómo contribuir al proyecto, consultá [preguntas-frecuentes.md](preguntas-frecuentes.md).
 

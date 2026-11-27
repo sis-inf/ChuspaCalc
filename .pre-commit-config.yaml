@@ -3,7 +3,7 @@ repos:
     rev: v0.9.10
     hooks:
       - id: ruff
-        args: [--fix]
+        args: [--check]
       - id: ruff-format
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v5.0.0
@@ -20,11 +20,15 @@ repos:
     rev: v1.17.0
     hooks:
       - id: mypy
-        files: ^src/escuadra/core/
+        files: ^src/chuspacalc/core/
   - repo: https://github.com/compilerla/conventional-pre-commit
     rev: v4.4.0
     hooks:
       - id: conventional-pre-commit
         stages: [commit-msg]
         args: [feat, fix, docs, chore, test, refactor, style, ci]
-
+  - repo: https://github.com/psf/black
+    rev: 24.10.0
+    hooks:
+      - id: black
+        args: [--check]

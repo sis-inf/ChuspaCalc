@@ -1,7 +1,7 @@
 # Generación de ejecutables standalone con PyInstaller
 
-Esta guía describe cómo generar un ejecutable standalone de Escuadra utilizando
-PyInstaller y el archivo de configuración `escuadra.spec` incluido en la raíz
+Esta guía describe cómo generar un ejecutable standalone de ChuspaCalc utilizando
+PyInstaller y el archivo de configuración `ChuspaCalc.spec` incluido en la raíz
 del proyecto.
 
 ## Requisitos previos
@@ -26,7 +26,7 @@ El proceso de compilación utiliza los siguientes archivos del proyecto:
 
 | Archivo | Descripción |
 |---------|-------------|
-| `escuadra.spec` | Configuración utilizada por PyInstaller para generar el ejecutable. |
+| `ChuspaCalc.spec` | Configuración utilizada por PyInstaller para generar el ejecutable. |
 | `build_app.py` | Script auxiliar que ejecuta PyInstaller utilizando el archivo `.spec`. |
 
 ## Comando exacto
@@ -34,7 +34,7 @@ El proceso de compilación utiliza los siguientes archivos del proyecto:
 Desde la raíz del repositorio ejecute:
 
 ```bash
-pyinstaller escuadra.spec
+pyinstaller ChuspaCalc.spec
 ```
 
 También es posible utilizar el script incluido en el proyecto:
@@ -44,20 +44,20 @@ python build_app.py
 ```
 
 Este script ejecuta internamente el comando anterior utilizando el archivo
-`escuadra.spec`.
+`ChuspaCalc.spec`.
 
 > **Importante:** Ejecute cualquiera de los comandos desde la raíz del
 > repositorio para que PyInstaller pueda localizar correctamente el archivo
-> `escuadra.spec`.
+> `ChuspaCalc.spec`.
 
-## Configuración incluida en `escuadra.spec`
+## Configuración incluida en `ChuspaCalc.spec`
 
-El archivo `escuadra.spec` define la configuración utilizada durante la
+El archivo `ChuspaCalc.spec` define la configuración utilizada durante la
 compilación, incluyendo:
 
-- El punto de entrada de la aplicación (`src/escuadra/app.py`).
+- El punto de entrada de la aplicación (`src/ChuspaCalc/app.py`).
 - Los módulos adicionales (`hiddenimports`) necesarios para PySide6.
-- El nombre del ejecutable generado (`escuadra`).
+- El nombre del ejecutable generado (`ChuspaCalc`).
 - La ejecución como aplicación gráfica (`console=False`).
 
 ## Resultado de la compilación
@@ -69,7 +69,7 @@ en el directorio:
 dist/
 ```
 
-El ejecutable generado tendrá el nombre **escuadra** (o **escuadra.exe** en
+El ejecutable generado tendrá el nombre **ChuspaCalc** (o **ChuspaCalc.exe** en
 Windows).
 
 ## Plataformas soportadas
@@ -83,7 +83,7 @@ compilación. No realiza compilación cruzada entre plataformas.
 | Linux | ✅ Compatible |
 | macOS | ✅ Compatible |
 
-Para distribuir Escuadra en varias plataformas es necesario ejecutar el proceso
+Para distribuir ChuspaCalc en varias plataformas es necesario ejecutar el proceso
 de compilación por separado en cada una de ellas.
 
 ## Solución de problemas
@@ -107,7 +107,7 @@ pip install pyinstaller
 Verifique que:
 
 - Está ejecutando el comando desde la raíz del proyecto.
-- El archivo `escuadra.spec` existe.
+- El archivo `ChuspaCalc.spec` existe.
 - No hubo errores durante la compilación.
 
 ## Documentación relacionada

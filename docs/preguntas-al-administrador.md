@@ -1,6 +1,6 @@
 # Preguntas Frecuentes al Administrador
 
-Este documento reúne las preguntas más frecuentes que recibe el administrador del repositorio **Escuadra**. Su objetivo es ayudar a los contribuidores a resolver dudas comunes sin necesidad de esperar una respuesta directa del administrador.
+Este documento reúne las preguntas más frecuentes que recibe el administrador del repositorio **ChuspaCalc**. Su objetivo es ayudar a los contribuidores a resolver dudas comunes sin necesidad de esperar una respuesta directa del administrador.
 
 Antes de realizar una consulta, revisa este documento, el archivo `README.md` y `CONTRIBUTING.md`. En muchos casos la respuesta ya se encuentra documentada.
 
@@ -21,16 +21,16 @@ git remote -v
 Deberías ver algo similar a:
 
 ```text
-origin    https://github.com/TU-USUARIO/escuadra.git (fetch)
-origin    https://github.com/TU-USUARIO/escuadra.git (push)
-upstream  https://github.com/sis-inf/escuadra.git (fetch)
-upstream  https://github.com/sis-inf/escuadra.git (push)
+origin    https://github.com/TU-USUARIO/ChuspaCalc.git (fetch)
+origin    https://github.com/TU-USUARIO/ChuspaCalc.git (push)
+upstream  https://github.com/sis-inf/ChuspaCalc.git (fetch)
+upstream  https://github.com/sis-inf/ChuspaCalc.git (push)
 ```
 
 Si `upstream` no existe, agrégalo:
 
 ```bash
-git remote add upstream https://github.com/sis-inf/escuadra.git
+git remote add upstream https://github.com/sis-inf/ChuspaCalc.git
 ```
 
 Luego actualiza tu rama local `dev`:
@@ -60,8 +60,8 @@ Cuando trabajas con el Forking Workflow existen normalmente dos repositorios rem
 Por ejemplo:
 
 ```text
-origin   -> https://github.com/TU-USUARIO/escuadra.git
-upstream -> https://github.com/sis-inf/escuadra.git
+origin   -> https://github.com/TU-USUARIO/ChuspaCalc.git
+upstream -> https://github.com/sis-inf/ChuspaCalc.git
 ```
 
 Los cambios oficiales llegan desde `upstream`, mientras que tus cambios se envían a `origin`.
@@ -132,9 +132,9 @@ Todos los Pull Requests deben abrirse contra la rama `dev`.
 Configuración correcta:
 
 ```text
-Base repository: sis-inf/escuadra
+Base repository: sis-inf/ChuspaCalc
 Base branch: dev
-Head repository: TU-USUARIO/escuadra
+Head repository: TU-USUARIO/ChuspaCalc
 Compare branch: tu-rama
 ```
 

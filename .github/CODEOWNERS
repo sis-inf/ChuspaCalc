@@ -1,7 +1,7 @@
 # Regla fallback global: Asignación por defecto si ninguna ruta específica coincide
 * @erwinsaul
 
-/src/escuadra/modulos/civil/* @Alex-Calle-P @Vizalla @YORDY-SG @LinoSimon20
-/src/escuadra/modulos/electrica/* @Alex-Calle-P @Vizalla @YORDY-SG @LinoSimon20
-/src/escuadra/core/* @Alex-Calle-P @Vizalla @YORDY-SG @LinoSimon20
+/src/chuspacalc/modulos/civil/* @Alex-Calle-P @Vizalla @YORDY-SG @LinoSimon20
+/src/chuspacalc/modulos/electrica/* @Alex-Calle-P @Vizalla @YORDY-SG @LinoSimon20
+/src/chuspacalc/core/* @Alex-Calle-P @Vizalla @YORDY-SG @LinoSimon20
 /docs/* @Alex-Calle-P @Vizalla @YORDY-SG @LinoSimon20

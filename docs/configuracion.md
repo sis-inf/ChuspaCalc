@@ -1,17 +1,17 @@
-# Configuración de Escuadra
+# Configuración de ChuspaCalc
 
-Esta guía describe cómo cargar y utilizar archivos de configuración en Escuadra mediante el módulo `src/escuadra/config/loader.py`.
+Esta guía describe cómo cargar y utilizar archivos de configuración en ChuspaCalc mediante el módulo `src/ChuspaCalc/config/loader.py`.
 
 ## Archivo de configuración
 
-Escuadra permite cargar archivos de configuración en formato YAML.
+ChuspaCalc permite cargar archivos de configuración en formato YAML.
 
 La carga se realiza mediante la función `load(path)`, la cual recibe la ruta de un archivo YAML y devuelve su contenido como un diccionario de Python.
 
 Ejemplo:
 
 ```python
-from escuadra.config.loader import load
+from ChuspaCalc.config.loader import load
 
 config = load("config.yaml")
 ```

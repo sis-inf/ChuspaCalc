@@ -1,0 +1,116 @@
+import pytest
+
+from chuspacalc.modulos.civil.carga_distribuida import calcular_reacciones_carga_parcial
+
+
+def test_carga_en_toda_la_viga_reparte_las_reacciones_por_igual():
+    resultado = calcular_reacciones_carga_parcial(
+        longitud_viga=10,
+        carga_por_metro=2,
+        inicio_carga=0,
+        fin_carga=10,
+    )
+
+    assert resultado == pytest.approx(
+        {
+            "reaccion_izquierda": 10.0,
+            "reaccion_derecha": 10.0,
+            "resultante": 20.0,
+            "posicion_resultante": 5.0,
+        }
+    )
+
+
+def test_carga_entre_dos_y_seis_metros_da_reacciones_de_doce_y_ocho():
+    resultado = calcular_reacciones_carga_parcial(
+        longitud_viga=10,
+        carga_por_metro=5,
+        inicio_carga=2,
+        fin_carga=6,
+    )
+
+    assert resultado == pytest.approx(
+        {
+            "reaccion_izquierda": 12.0,
+            "reaccion_derecha": 8.0,
+            "resultante": 20.0,
+            "posicion_resultante": 4.0,
+        }
+    )
+
+
+@pytest.mark.parametrize("longitud_viga", [0, -10])
+def test_longitud_viga_no_positiva_lanza_value_error(longitud_viga):
+    with pytest.raises(ValueError, match="La longitud de la viga debe ser positiva"):
+        calcular_reacciones_carga_parcial(longitud_viga, 2, 0, 10)
+
+
+@pytest.mark.parametrize("carga_por_metro", [0, -2])
+def test_carga_por_metro_no_positiva_lanza_value_error(carga_por_metro):
+    with pytest.raises(ValueError, match="La carga por metro debe ser positiva"):
+        calcular_reacciones_carga_parcial(10, carga_por_metro, 0, 10)
+
+
+def test_inicio_carga_negativo_lanza_value_error():
+    with pytest.raises(ValueError, match="inicio_carga no puede ser negativo"):
+        calcular_reacciones_carga_parcial(10, 2, -1, 6)
+
+
+@pytest.mark.parametrize("inicio_carga, fin_carga", [(4, 4), (6, 2)])
+def test_inicio_carga_igual_o_mayor_al_fin_lanza_value_error(inicio_carga, fin_carga):
+    with pytest.raises(ValueError, match="inicio_carga debe ser menor que fin_carga"):
+        calcular_reacciones_carga_parcial(10, 2, inicio_carga, fin_carga)
+
+
+def test_fin_carga_fuera_de_la_viga_lanza_value_error():
+    mensaje = "fin_carga no puede superar la longitud de la viga"
+    with pytest.raises(ValueError, match=mensaje):
+        calcular_reacciones_carga_parcial(10, 2, 0, 11)
+
+
+@pytest.mark.parametrize("no_finito", [float("nan"), float("inf"), float("-inf")])
+@pytest.mark.parametrize(
+    "parametro", ["longitud_viga", "carga_por_metro", "inicio_carga", "fin_carga"]
+)
+def test_parametro_no_finito_lanza_value_error(parametro, no_finito):
+    valores = {
+        "longitud_viga": 10,
+        "carga_por_metro": 5,
+        "inicio_carga": 2,
+        "fin_carga": 6,
+    }
+    valores[parametro] = no_finito
+    with pytest.raises(ValueError, match=f"{parametro} debe ser un número finito"):
+        calcular_reacciones_carga_parcial(**valores)
+
+
+def test_errores_de_dominio_son_error_validacion():
+    from chuspacalc.modulos.matematicas.error_validacion import ErrorValidacion
+
+    with pytest.raises(ErrorValidacion):
+        calcular_reacciones_carga_parcial(0, 2, 0, 10)
+
+
+@pytest.mark.parametrize("invalido", ["10", None, True, [1]])
+@pytest.mark.parametrize(
+    "parametro", ["longitud_viga", "carga_por_metro", "inicio_carga", "fin_carga"]
+)
+def test_tipo_no_numerico_lanza_error_validacion(parametro, invalido):
+    from chuspacalc.modulos.matematicas.error_validacion import ErrorValidacion
+
+    valores = {
+        "longitud_viga": 10,
+        "carga_por_metro": 5,
+        "inicio_carga": 2,
+        "fin_carga": 6,
+    }
+    valores[parametro] = invalido
+    with pytest.raises(ErrorValidacion, match=f"{parametro} debe ser un número"):
+        calcular_reacciones_carga_parcial(**valores)
+
+
+def test_entero_gigante_lanza_error_validacion():
+    from chuspacalc.modulos.matematicas.error_validacion import ErrorValidacion
+
+    with pytest.raises(ErrorValidacion, match="demasiado grande"):
+        calcular_reacciones_carga_parcial(10**400, 2, 0, 10)

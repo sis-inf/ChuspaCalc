@@ -2,16 +2,16 @@
 
 ## Introducción
 
-Este documento recopila errores frecuentes encontrados por estudiantes al trabajar con Escuadra y sus respectivas soluciones.
+Este documento recopila errores frecuentes encontrados por estudiantes al trabajar con ChuspaCalc y sus respectivas soluciones.
 
 ---
 
-## 1. ModuleNotFoundError al importar escuadra
+## 1. ModuleNotFoundError al importar el paquete del proyecto
 
 ### Síntoma
 
 ```bash
-ModuleNotFoundError: No module named 'escuadra'
+ModuleNotFoundError: No module named '<nombre_del_paquete>'
 ```
 
 ### Causa

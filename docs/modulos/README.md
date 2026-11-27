@@ -1,6 +1,6 @@
 # Índice de Módulos
 
-Este directorio contiene la documentación de los módulos disponibles en Escuadra.
+Este directorio contiene la documentación de los módulos disponibles en ChuspaCalc.
 
 | Módulo | Descripción | Herramientas | Lenguaje | Documentación |
 |--------|-------------|--------------|----------|---------------|

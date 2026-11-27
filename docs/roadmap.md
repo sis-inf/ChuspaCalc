@@ -1,6 +1,6 @@
-# 🗺️ Roadmap - Escuadra
+# 🗺️ Roadmap - ChuspaCalc
 
-Este documento presenta el **roadmap de funcionalidades planificadas** para el proyecto Escuadra, organizadas por módulo y con su nivel de prioridad.
+Este documento presenta el **roadmap de funcionalidades planificadas** para el proyecto ChuspaCalc, organizadas por módulo y con su nivel de prioridad.
 
 ---
 
@@ -80,6 +80,16 @@ Este documento presenta el **roadmap de funcionalidades planificadas** para el p
 | Historial de comandos | ✅ Completada | S | ✅ |
 | Modo interactivo (REPL) | ✅ Completada | M | ❌ |
 | Modo batch | ✅ Completada | M | ❌ |
+| Integración con Google Sheets (vía HTTP API / Apps Script) | 📋 Planificada | M | ❌ |
+
+---
+
+## 📑 Detalles de Funcionalidades en Roadmap (Futuras)
+
+### Integración con Google Sheets
+* **Módulo:** CLI / Sistemas de Exportación
+* **Estado:** 📋 Planificada (Sin implementación actual en `src/chuspacalc/`)
+* **Descripción:** Funcionalidad propuesta para permitir la sincronización, volcado y exportación de resultados de cálculos directamente hacia hojas de cálculo de Google Sheets utilizando llamadas vía HTTP API o Google Apps Script.
 
 ---
 
@@ -89,8 +99,8 @@ Este documento presenta el **roadmap de funcionalidades planificadas** para el p
 |--------|----------|
 | ✅ Completada | 22 |
 | 🚧 En desarrollo | 1 |
-| 📋 Planificada | 6 |
-| **Total** | **29** |
+| 📋 Planificada | 7 |
+| **Total** | **30** |
 
 ---
 
@@ -108,4 +118,4 @@ Este documento presenta el **roadmap de funcionalidades planificadas** para el p
 
 - [Catálogo de herramientas](herramientas.md)
 - [Guía de contribución](CONTRIBUTING.md)
-- [Issues abiertos](https://github.com/sis-inf/escuadra/issues)
+- [Issues abiertos](https://github.com/sis-inf/ChuspaCalc/issues)

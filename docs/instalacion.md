@@ -1,10 +1,10 @@
-# Guía de instalación de la suite Escuadra
+# Guía de instalación de la suite ChuspaCalc
 
-Esta guía cubre todos los pasos necesarios para instalar **Escuadra**, tanto para usuarios que desean utilizar las herramientas disponibles como para colaboradores que desean contribuir al desarrollo del proyecto.
+Esta guía cubre todos los pasos necesarios para instalar **ChuspaCalc**, tanto para usuarios que desean utilizar las herramientas disponibles como para colaboradores que desean contribuir al desarrollo del proyecto.
 
 ## Requisitos previos
 
-Antes de instalar la suite Escuadra, asegúrate de tener instalado lo siguiente:
+Antes de instalar la suite ChuspaCalc, asegúrate de tener instalado lo siguiente:
 
 - **Sistema operativo:** Linux (Ubuntu/Debian recomendado), macOS o Windows (con WSL2)
 - **Python:** Versión 3.10 o superior
@@ -31,8 +31,8 @@ Esta modalidad está orientada a usuarios que únicamente desean utilizar la apl
 ## 1. Clonar el repositorio
 
 ```bash
-git clone https://github.com/sis-inf/escuadra.git
-cd escuadra
+git clone https://github.com/sis-inf/ChuspaCalc.git
+cd ChuspaCalc
 ```
 
 ## 2. Instalar dependencias
@@ -46,13 +46,13 @@ Este comando instalará todas las dependencias necesarias para ejecutar la aplic
 ## 3. Ejecutar la aplicación
 
 ```bash
-python -m escuadra
+python -m ChuspaCalc
 ```
 
 Si el paquete está disponible como comando ejecutable:
 
 ```bash
-escuadra
+ChuspaCalc
 ```
 
 ---
@@ -68,8 +68,8 @@ Desde GitHub, crea un fork del repositorio principal en tu cuenta.
 Posteriormente clona tu fork:
 
 ```bash
-git clone https://github.com/TU-USUARIO/escuadra.git
-cd escuadra
+git clone https://github.com/TU-USUARIO/ChuspaCalc.git
+cd ChuspaCalc
 ```
 
 ## 2. Configurar el repositorio original como upstream
@@ -77,7 +77,7 @@ cd escuadra
 Para poder sincronizar los cambios realizados en el repositorio principal, agrega el repositorio original como remoto adicional:
 
 ```bash
-git remote add upstream https://github.com/sis-inf/escuadra.git
+git remote add upstream https://github.com/sis-inf/ChuspaCalc.git
 ```
 
 Verifica la configuración:
@@ -155,13 +155,13 @@ Una vez finalizada la instalación, es recomendable verificar que todo funciona 
 ## Verificar que la aplicación responde
 
 ```bash
-escuadra --help
+ChuspaCalc --help
 ```
 
 o
 
 ```bash
-python -m escuadra
+python -m ChuspaCalc
 ```
 
 La aplicación debería iniciarse sin errores.
@@ -189,7 +189,7 @@ Este comando valida que el código cumple con los estándares definidos por el p
 ## Desinstalar el paquete
 
 ```bash
-pip uninstall escuadra
+pip uninstall ChuspaCalc
 ```
 
 ## Eliminar el entorno virtual
@@ -218,14 +218,14 @@ Si ya no necesitas el código fuente:
 
 ```bash
 cd ..
-rm -rf escuadra
+rm -rf ChuspaCalc
 ```
 
 ### Windows
 
 ```cmd
 cd ..
-rmdir /s /q escuadra
+rmdir /s /q ChuspaCalc
 ```
 
 ---
@@ -244,7 +244,7 @@ python3 --version
 
 Asegúrate de que el entorno virtual esté activo antes de instalar dependencias y verifica que tu versión de pip esté actualizada.
 
-### `escuadra --help` no funciona
+### `ChuspaCalc --help` no funciona
 
 Comprueba que la instalación haya finalizado correctamente y que el entorno virtual se encuentre activo.
 
@@ -271,12 +271,12 @@ pipx ensurepath
 
 
 
-Instalación de Escuadra
+Instalación de ChuspaCalc
 bash
-pipx install escuadra
+pipx install ChuspaCalc
 Verificar la instalación
 bash
-escuadra --version
+ChuspaCalc --version
 Ejecutar el CLI
 bash
-escuadra --help
+ChuspaCalc --help

@@ -26,7 +26,7 @@ El alcance del módulo incluye:
 ### conversor_longitud
 
 ```python
-from escuadra.matematicas.conversor_longitud import metros_a_kilometros, kilometros_a_millas, pies_a_metros
+from ChuspaCalc.matematicas.conversor_longitud import metros_a_kilometros, kilometros_a_millas, pies_a_metros
 
 # Convertir metros a kilómetros
 distancia_m = 5000
@@ -47,7 +47,7 @@ print(f"{distancia_pies} pies = {distancia_m:.2f} metros")
 ### conversor_temperatura
 
 ```python
-from escuadra.matematicas.conversor_temperatura import celsius_a_fahrenheit, fahrenheit_a_celsius, celsius_a_kelvin
+from ChuspaCalc.matematicas.conversor_temperatura import celsius_a_fahrenheit, fahrenheit_a_celsius, celsius_a_kelvin
 
 # Convertir Celsius a Fahrenheit
 temp_c = 25
@@ -68,7 +68,7 @@ print(f"{temp_c}°C = {temp_k}K")
 ### estadísticas
 
 ```python
-from escuadra.matematicas.estadisticas import media, mediana, moda, desviacion_estandar, varianza
+from ChuspaCalc.matematicas.estadisticas import media, mediana, moda, desviacion_estandar, varianza
 
 # Conjunto de datos de ejemplo
 datos = [23, 45, 67, 89, 12, 34, 56, 78, 90, 23]
@@ -97,7 +97,7 @@ print(f"Varianza: {var:.2f}")
 ### trigonometría
 
 ```python
-from escuadra.matematicas.trigonometria import seno, coseno, tangente, grados_a_radianes, radianes_a_grados
+from ChuspaCalc.matematicas.trigonometria import seno, coseno, tangente, grados_a_radianes, radianes_a_grados
 import math
 
 # Calcular seno, coseno y tangente de un ángulo en radianes
@@ -120,7 +120,7 @@ print(f"{angulo_rad:.4f} radianes = {angulo_grados:.2f}°")
 ### numeros_complejos
 
 ```python
-from escuadra.matematicas.numeros_complejos import suma, resta, multiplicacion, division, modulo, conjugado
+from ChuspaCalc.matematicas.numeros_complejos import suma, resta, multiplicacion, division, modulo, conjugado
 
 # Definir números complejos como tuplas (parte_real, parte_imaginaria)
 z1 = (3, 4)   # 3 + 4i
@@ -156,7 +156,7 @@ print(f"Conjugado de {z1}: {conj}")
 Para agregar una nueva herramienta al módulo de Matemáticas, sigue las instrucciones detalladas en la guía de [Cómo agregar un módulo](../como-agregar-modulo.md).
 
 Los pasos principales son:
-1. Crear el archivo de la herramienta en el directorio `src/escuadra/matematicas/`
+1. Crear el archivo de la herramienta en el directorio `src/ChuspaCalc/matematicas/`
 2. Implementar las funciones necesarias siguiendo los estándares de código del proyecto
 3. Documentar las funciones con docstrings en español
 4. Agregar pruebas unitarias en el directorio correspondiente

@@ -1,10 +1,10 @@
-# Referencia del CLI de escuadra
+# Referencia del CLI de ChuspaCalc
 
-Este documento proporciona una referencia completa de los subcomandos disponibles en la interfaz de línea de comandos (CLI) de escuadra.
+Este documento proporciona una referencia completa de los subcomandos disponibles en la interfaz de línea de comandos (CLI) de ChuspaCalc.
 
 ## Instalación
 
-Para instalar el CLI de escuadra en tu entorno local:
+Para instalar el CLI de ChuspaCalc en tu entorno local:
 
 ```bash
 pip install -e .
@@ -17,7 +17,7 @@ Esto instala el paquete en modo editable, permitiendo que los cambios en el cód
 Para ver la ayuda general del CLI:
 
 ```bash
-escuadra --help
+ChuspaCalc --help
 ```
 
 Esto muestra todos los subcomandos disponibles y las opciones globales.
@@ -25,21 +25,21 @@ Esto muestra todos los subcomandos disponibles y las opciones globales.
 Para ver la versión del programa:
 
 ```bash
-escuadra --version
+ChuspaCalc --version
 # o
-escuadra -v
+ChuspaCalc -v
 ```
 
 ## Autocompletado de shell
 
-Escuadra soporta autocompletado de subcomandos mediante `argcomplete`.
+ChuspaCalc soporta autocompletado de subcomandos mediante `argcomplete`.
 
 Instala las dependencias del proyecto y activa el autocompletado:
 
 ### Bash
 
 ```bash
-eval "$(register-python-argcomplete escuadra)"
+eval "$(register-python-argcomplete ChuspaCalc)"
 ```
 
 ### Zsh
@@ -47,7 +47,7 @@ eval "$(register-python-argcomplete escuadra)"
 ```bash
 autoload -U bashcompinit
 bashcompinit
-eval "$(register-python-argcomplete escuadra)"
+eval "$(register-python-argcomplete ChuspaCalc)"
 ```
 
 Después podrás presionar `Tab` para completar automáticamente los subcomandos disponibles.
@@ -70,7 +70,7 @@ Calcula las reacciones en vigas simplemente apoyadas bajo carga puntual.
 #### Sintaxis
 
 ```bash
-escuadra viga --longitud LONGITUD --carga CARGA
+ChuspaCalc viga --longitud LONGITUD --carga CARGA
 ```
 
 #### Argumentos
@@ -87,7 +87,7 @@ Ninguno. Todos los argumentos son requeridos.
 #### Ejemplo de invocación
 
 ```bash
-escuadra viga --longitud 5.0 --carga 10.0
+ChuspaCalc viga --longitud 5.0 --carga 10.0
 ```
 
 #### Salida esperada
@@ -107,7 +107,7 @@ Calcula la caída de tensión en conductores eléctricos monofásicos.
 #### Sintaxis
 
 ```bash
-escuadra tension --longitud LONGITUD --corriente CORRIENTE --seccion SECCION
+ChuspaCalc tension --longitud LONGITUD --corriente CORRIENTE --seccion SECCION
 ```
 
 #### Argumentos
@@ -125,7 +125,7 @@ Ninguno. Todos los argumentos son requeridos.
 #### Ejemplo de invocación
 
 ```bash
-escuadra tension --longitud 100 --corriente 15 --seccion 4
+ChuspaCalc tension --longitud 100 --corriente 15 --seccion 4
 ```
 
 #### Salida esperada
@@ -140,15 +140,15 @@ La herramienta 'tension' aún está en construcción y no está disponible.
 
 Los subcomandos del CLI están actualmente en desarrollo. Aunque la sintaxis y los argumentos están definidos, la ejecución de los cálculos aún no está disponible a través de la línea de comandos.
 
-Para acceder a las funcionalidades de cálculo, se recomienda utilizar la interfaz gráfica de usuario (GUI) de escuadra, donde las herramientas están completamente implementadas.
+Para acceder a las funcionalidades de cálculo, se recomienda utilizar la interfaz gráfica de usuario (GUI) de ChuspaCalc, donde las herramientas están completamente implementadas.
 
 ## Ayuda adicional
 
 Para obtener ayuda específica de cada subcomando:
 
 ```bash
-escuadra viga --help
-escuadra tension --help
+ChuspaCalc viga --help
+ChuspaCalc tension --help
 ```
 
 Esto mostrará la sintaxis, argumentos y descripciones detalladas para cada subcomando.

@@ -6,7 +6,7 @@ distribuidas, así como el manejo de entradas inválidas.
 
 import pytest
 
-from escuadra.modulos.civil.viga import calcular_reacciones
+from chuspacalc.modulos.civil.viga import calcular_reacciones
 
 
 def test_carga_distribuida_simetrica():

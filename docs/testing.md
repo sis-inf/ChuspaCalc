@@ -2,7 +2,7 @@
 
 ## Introducción
 
-Las pruebas automatizadas son una parte fundamental del desarrollo en Escuadra. Permiten verificar que los cambios realizados no introduzcan errores y facilitan el mantenimiento del código a largo plazo.
+Las pruebas automatizadas son una parte fundamental del desarrollo en ChuspaCalc. Permiten verificar que los cambios realizados no introduzcan errores y facilitan el mantenimiento del código a largo plazo.
 
 Esta guía explica cómo configurar el entorno de pruebas, ejecutar los distintos tipos de tests, escribir nuevas pruebas y seguir las convenciones utilizadas por el proyecto.
 

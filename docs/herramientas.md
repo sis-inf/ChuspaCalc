@@ -1,10 +1,10 @@
-# Catálogo de herramientas de la suite Escuadra
+# Catálogo de herramientas de la suite ChuspaCalc
 
-Este documento describe las herramientas actualmente disponibles en la suite Escuadra.
+Este documento describe las herramientas actualmente disponibles en la suite ChuspaCalc.
 
 Las herramientas listadas corresponden a clases que implementan la interfaz base
 `Herramienta` y que son descubiertas correctamente por el sistema de registro
-(`escuadra.core.registry`).
+(`ChuspaCalc.core.registry`).
 
 ## Herramientas disponibles
 

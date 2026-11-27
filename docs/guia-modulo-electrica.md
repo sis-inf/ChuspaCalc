@@ -4,7 +4,7 @@ Este documento presenta los fundamentos teóricos utilizados en el módulo eléc
 
 ## Alcance: Solo Circuitos DC
 
-El módulo eléctrica de escuadra está limitado al análisis de circuitos de corriente continua (DC, por sus siglas en inglés: Direct Current). Esta restricción es intencional y se fundamenta en las siguientes razones:
+El módulo eléctrica de ChuspaCalc está limitado al análisis de circuitos de corriente continua (DC, por sus siglas en inglés: Direct Current). Esta restricción es intencional y se fundamenta en las siguientes razones:
 
 **Diferencias fundamentales entre DC y CA:**
 - **DC:** La corriente fluye en una sola dirección constante en el tiempo. El voltaje es constante (o variable lentamente). Los cálculos se realizan con valores instantáneos y no hay consideraciones de fase o frecuencia.
@@ -154,7 +154,7 @@ $$ V_{out} = I \cdot R_2 = \frac{V_{in}}{R_1 + R_2} \cdot R_2 = V_{in} \cdot \fr
 
 ## Limitaciones Conocidas
 
-El módulo eléctrica de escuadra tiene varias limitaciones importantes que los usuarios deben tener en cuenta:
+El módulo eléctrica de ChuspaCalc tiene varias limitaciones importantes que los usuarios deben tener en cuenta:
 
 **1. Solo resistencias puras:**
 El módulo asume que todos los componentes son resistencias puras. No considera capacitores, inductores ni otros componentes reactivos. Esto significa que:

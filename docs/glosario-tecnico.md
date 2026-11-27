@@ -1,6 +1,6 @@
-# Glosario técnico — Escuadra
+# Glosario técnico — ChuspaCalc
 
-Este glosario complementa a `docs/glosario.md` con definiciones técnicas de los términos de ingeniería utilizados en los módulos de Escuadra. Está orientado a estudiantes que implementan o mantienen los módulos `civil`, `electrica` y `matematicas`, y que necesitan comprender el dominio del problema sin ser especialistas en esas ramas.
+Este glosario complementa a `docs/glosario.md` con definiciones técnicas de los términos de ingeniería utilizados en los módulos de ChuspaCalc. Está orientado a estudiantes que implementan o mantienen los módulos `civil`, `electrica` y `matematicas`, y que necesitan comprender el dominio del problema sin ser especialistas en esas ramas.
 
 ---
 
@@ -173,6 +173,6 @@ Es la pérdida de precisión que ocurre al representar números reales en una co
 ## Referencias
 
 - `docs/glosario.md` — glosario general de términos del proyecto
-- `src/escuadra/modulos/civil/` — implementación del módulo civil
-- `src/escuadra/modulos/electrica/` — implementación del módulo eléctrico
-- `src/escuadra/modulos/matematicas/` — implementación de métodos numéricos
+- `src/ChuspaCalc/modulos/civil/` — implementación del módulo civil
+- `src/ChuspaCalc/modulos/electrica/` — implementación del módulo eléctrico
+- `src/ChuspaCalc/modulos/matematicas/` — implementación de métodos numéricos

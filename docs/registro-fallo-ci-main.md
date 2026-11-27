@@ -9,7 +9,7 @@
 - Última revisión completa sin fallos: 16 de junio de 2026, 7:26 p.m.
 - Primera revisión fallida: 16 de junio de 2026, 7:26 p.m.
 - Causa del inicio: al unir la solicitud de cambios #508
-- Estado: **falla continuamente desde esa fecha hasta hoy**
+- Estado: **falla continuamente desde esa fecha** (ver sección 6 para el estado actual)
 
 ## 3. ¿Por qué ocurre?
 Al ejecutar `ruff check` se detecta:
@@ -26,3 +26,9 @@ Al ejecutar `ruff check` se detecta:
 
 ## 5. Aclaración
 Este documento solo describe el fallo; **no modifica ni arregla ningún código**.
+
+## 6. Estado actual (revisado el 9 de noviembre de 2026)
+- Estado: **sin resolver**. Python CI sigue fallando en `main`; la última ejecución revisada (#1741, 8 de noviembre de 2026) está en rojo.
+- No existe una ejecución en verde que se haya mantenido en `main` desde el inicio del fallo.
+- El arreglo está pendiente en los issues #1, #2 y #23 (mencionados en el PR #1704).
+- Esta sección se reemplazará por una de Resolución, con la fecha de CI en verde de forma sostenida y las medidas preventivas adoptadas, cuando el CI vuelva a pasar.

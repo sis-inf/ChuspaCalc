@@ -1,15 +1,15 @@
-# Estructura del código fuente - Escuadra
+# Estructura del código fuente - ChuspaCalc
 
-Esta carpeta contiene el código fuente principal de Escuadra. El proyecto está organizado de forma modular para facilitar el mantenimiento, la incorporación de nuevas herramientas y la colaboración entre estudiantes y desarrolladores.
+Esta carpeta contiene el código fuente principal de ChuspaCalc. El proyecto está organizado de forma modular para facilitar el mantenimiento, la incorporación de nuevas herramientas y la colaboración entre estudiantes y desarrolladores.
 
-La mayor parte de la lógica de la aplicación se encuentra dentro del paquete `escuadra`, donde se agrupan los distintos componentes del sistema según su responsabilidad.
+La mayor parte de la lógica de la aplicación se encuentra dentro del paquete `chuspacalc`, donde se agrupan los distintos componentes del sistema según su responsabilidad.
 
 ## Estructura general
 
 ```text
 src/
 ├── README.md
-└── escuadra/
+└── chuspacalc/
     ├── app.py
     ├── cli.py
     ├── __init__.py
@@ -32,7 +32,7 @@ src/
 
 ### app.py
 
-Contiene la lógica principal de inicialización de la aplicación. Coordina los distintos componentes del sistema y sirve como punto de entrada para la ejecución de Escuadra.
+Contiene la lógica principal de inicialización de la aplicación. Coordina los distintos componentes del sistema y sirve como punto de entrada para la ejecución de ChuspaCalc.
 
 ### cli.py
 
@@ -40,14 +40,14 @@ Implementa la interfaz de línea de comandos (CLI). Permite ejecutar funcionalid
 
 ### __init__.py
 
-Identifica a `escuadra` como un paquete de Python y permite la importación de sus módulos desde otras partes del proyecto.
+Identifica a `chuspacalc` como un paquete de Python y permite la importación de sus módulos desde otras partes del proyecto.
 
 ### __main__.py
 
 Define el comportamiento cuando el proyecto es ejecutado mediante:
 
 ```bash
-python -m escuadra
+python -m chuspacalc
 ```
 
 Este archivo actúa como punto de entrada del paquete y redirige la ejecución hacia los componentes correspondientes.
@@ -109,13 +109,13 @@ Contiene funciones auxiliares, utilidades y componentes reutilizables que apoyan
 Una vez instaladas las dependencias necesarias, el proyecto puede ejecutarse directamente desde la raíz del repositorio mediante:
 
 ```bash
-python -m escuadra
+python -m chuspacalc
 ```
 
 Este comando utiliza el archivo `__main__.py` como punto de entrada del paquete.
 
 ## Objetivo de la organización
 
-La estructura modular de Escuadra permite separar responsabilidades, facilitar el mantenimiento del código y simplificar la incorporación de nuevas herramientas.
+La estructura modular de ChuspaCalc permite separar responsabilidades, facilitar el mantenimiento del código y simplificar la incorporación de nuevas herramientas.
 
 Gracias a esta organización, diferentes colaboradores pueden trabajar simultáneamente en distintos módulos sin afectar otras áreas del proyecto, favoreciendo un desarrollo más ordenado y escalable.

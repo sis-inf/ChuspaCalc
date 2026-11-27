@@ -1,0 +1,516 @@
+name: Check CI Health
+
+on:
+  schedule:
+    # Se ejecuta cada 6 horas para verificar el estado de Python CI en main.
+    - cron: "0 */6 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: check-ci-health-main
+  cancel-in-progress: false
+
+jobs:
+  check-failures:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+      actions: read
+    steps:
+      - name: Verificar fallos prolongados en CI
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+          FAILURE_THRESHOLD_HOURS: "24"
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import datetime as dt
+          import json
+          import os
+          import re
+          import subprocess
+          import sys
+          from typing import Any
+
+          FAILURE_TITLE = "🚨 ALERTA: CI lleva fallando más de 24 horas en main"
+          NO_RUNS_TITLE = "🚨 ALERTA: CI no tiene ejecuciones en main"
+          FAILURE_MARKER = "<!-- check-ci-health:failure -->"
+          NO_RUNS_MARKER = "<!-- check-ci-health:no-runs -->"
+          FAILURE_CONCLUSIONS = {
+              "failure",
+              "timed_out",
+              "action_required",
+              "startup_failure",
+          }
+          NON_DECISIVE_CONCLUSIONS = {"cancelled", "neutral", "skipped"}
+          ACTIVE_STATUSES = {"queued", "in_progress", "pending", "requested", "waiting"}
+          REPOSITORY = os.environ["GH_REPO"]
+          THRESHOLD_HOURS = int(os.environ["FAILURE_THRESHOLD_HOURS"])
+
+
+          class MonitorError(RuntimeError):
+              pass
+
+
+          def run_gh(arguments: list[str], input_text: str | None = None) -> str:
+              command = ["gh", *arguments]
+              result = subprocess.run(
+                  command,
+                  input=input_text,
+                  text=True,
+                  capture_output=True,
+                  check=False,
+              )
+              if result.returncode != 0:
+                  detail = result.stderr.strip() or result.stdout.strip()
+                  raise MonitorError(
+                      f"Falló {' '.join(command)} (código {result.returncode}): {detail}"
+                  )
+              return result.stdout
+
+
+          def gh_json(
+              arguments: list[str],
+              input_data: dict[str, Any] | None = None,
+          ) -> Any:
+              raw = run_gh(
+                  arguments,
+                  json.dumps(input_data) if input_data is not None else None,
+              )
+              try:
+                  return json.loads(raw)
+              except json.JSONDecodeError as error:
+                  raise MonitorError(
+                      f"Respuesta JSON inválida de gh: {error}"
+                  ) from error
+
+
+          def api_get(endpoint: str, **parameters: str | int) -> Any:
+              arguments = ["api", "--method", "GET", endpoint]
+              for key, value in parameters.items():
+                  arguments.extend(["-f", f"{key}={value}"])
+              return gh_json(arguments)
+
+
+          def fetch_open_issues() -> list[dict[str, Any]]:
+              issues_by_number: dict[int, dict[str, Any]] = {}
+              page = 1
+              while True:
+                  response = api_get(
+                      f"repos/{REPOSITORY}/issues",
+                      state="open",
+                      per_page=100,
+                      page=page,
+                  )
+                  if not isinstance(response, list):
+                      raise MonitorError("La API de Issues no devolvió una lista.")
+                  for issue in response:
+                      if not isinstance(issue, dict):
+                          raise MonitorError("La API devolvió un Issue inválido.")
+                      required = {"number", "title", "body", "user", "state"}
+                      if not required.issubset(issue):
+                          raise MonitorError(
+                              "Issue incompleto: faltan "
+                              f"{sorted(required - issue.keys())}"
+                          )
+                      number = issue["number"]
+                      user = issue["user"]
+                      if not isinstance(number, int) or number <= 0:
+                          raise MonitorError(f"Número de Issue inválido: {number!r}")
+                      if not isinstance(issue["title"], str):
+                          raise MonitorError(f"Título inválido en Issue #{number}.")
+                      if issue["body"] is not None and not isinstance(
+                          issue["body"],
+                          str,
+                      ):
+                          raise MonitorError(f"Cuerpo inválido en Issue #{number}.")
+                      if not isinstance(user, dict) or not isinstance(
+                          user.get("login"),
+                          str,
+                      ):
+                          raise MonitorError(f"Autor inválido en Issue #{number}.")
+                      if issue["state"] != "open":
+                          raise MonitorError(
+                              f"La consulta devolvió un Issue no abierto: #{number}."
+                          )
+                      if "pull_request" in issue:
+                          continue
+                      previous = issues_by_number.get(number)
+                      if previous is not None and previous != issue:
+                          raise MonitorError(
+                              f"El Issue #{number} cambió durante la paginación."
+                          )
+                      issues_by_number[number] = issue
+                  if len(response) < 100:
+                      return list(issues_by_number.values())
+                  page += 1
+                  if page > 1000:
+                      raise MonitorError("Paginación de Issues excesiva.")
+
+
+          def fetch_workflow_runs() -> list[dict[str, Any]]:
+              runs_by_id: dict[int, dict[str, Any]] = {}
+              expected_total: int | None = None
+              page = 1
+              while True:
+                  response = api_get(
+                      f"repos/{REPOSITORY}/actions/workflows/ci.yml/runs",
+                      branch="main",
+                      event="push",
+                      per_page=100,
+                      page=page,
+                  )
+                  if not isinstance(response, dict):
+                      raise MonitorError("La API de Actions no devolvió un objeto.")
+                  page_runs = response.get("workflow_runs")
+                  total_count = response.get("total_count")
+                  if not isinstance(page_runs, list) or not isinstance(total_count, int):
+                      raise MonitorError("Respuesta de Actions incompleta.")
+                  if total_count < 0:
+                      raise MonitorError("total_count de Actions es negativo.")
+                  if any(not isinstance(run, dict) for run in page_runs):
+                      raise MonitorError("La API devolvió una ejecución inválida.")
+                  expected_total = max(expected_total or 0, total_count)
+                  for run in page_runs:
+                      run_id = run.get("id")
+                      if not isinstance(run_id, int) or run_id <= 0:
+                          raise MonitorError(f"ID de ejecución inválido: {run_id!r}")
+                      previous = runs_by_id.get(run_id)
+                      if previous is not None and previous != run:
+                          raise MonitorError(
+                              f"La ejecución {run_id} cambió durante la paginación."
+                          )
+                      runs_by_id[run_id] = run
+                  if len(runs_by_id) >= expected_total:
+                      break
+                  if not page_runs:
+                      raise MonitorError(
+                          "Historial incompleto: la API terminó antes de total_count."
+                      )
+                  page += 1
+                  max_pages = (expected_total // 100) + 10
+                  if page > max_pages:
+                      raise MonitorError(
+                          "No se pudo estabilizar la paginación de ejecuciones."
+                      )
+
+              required = {
+                  "id",
+                  "status",
+                  "conclusion",
+                  "created_at",
+                  "updated_at",
+                  "html_url",
+                  "event",
+                  "head_branch",
+                  "head_sha",
+              }
+              runs = list(runs_by_id.values())
+              for run in runs:
+                  if not required.issubset(run):
+                      raise MonitorError(
+                          f"Ejecución incompleta: faltan {sorted(required - run.keys())}"
+                      )
+                  if run["event"] != "push" or run["head_branch"] != "main":
+                      raise MonitorError("La API devolvió una ejecución fuera del filtro.")
+                  if not isinstance(run["head_sha"], str) or not re.fullmatch(
+                      r"[0-9a-f]{40}",
+                      run["head_sha"],
+                  ):
+                      raise MonitorError(
+                          f"SHA inválido en ejecución {run['id']}: "
+                          f"{run['head_sha']!r}"
+                      )
+                  parse_timestamp(run["created_at"])
+                  parse_timestamp(run["updated_at"])
+                  status = run["status"]
+                  conclusion = run["conclusion"]
+                  if status == "completed":
+                      allowed = (
+                          FAILURE_CONCLUSIONS
+                          | NON_DECISIVE_CONCLUSIONS
+                          | {"success"}
+                      )
+                      if conclusion not in allowed:
+                          raise MonitorError(
+                              f"Conclusión completada desconocida: {conclusion!r}"
+                          )
+                  elif status not in ACTIVE_STATUSES:
+                      raise MonitorError(f"Estado de ejecución desconocido: {status!r}")
+
+              return sorted(
+                  runs,
+                  key=lambda run: (
+                      parse_timestamp(run["created_at"]),
+                      int(run["id"]),
+                  ),
+                  reverse=True,
+              )
+
+
+          def fetch_main_sha() -> str:
+              response = api_get(f"repos/{REPOSITORY}/git/ref/heads/main")
+              if not isinstance(response, dict):
+                  raise MonitorError("La referencia main no devolvió un objeto.")
+              target = response.get("object")
+              sha = target.get("sha") if isinstance(target, dict) else None
+              if not isinstance(sha, str) or not re.fullmatch(r"[0-9a-f]{40}", sha):
+                  raise MonitorError(f"SHA actual de main inválido: {sha!r}")
+              return sha
+
+
+          def parse_timestamp(value: Any) -> dt.datetime:
+              if not isinstance(value, str):
+                  raise MonitorError(f"Timestamp inválido: {value!r}")
+              try:
+                  parsed = dt.datetime.fromisoformat(value.replace("Z", "+00:00"))
+              except ValueError as error:
+                  raise MonitorError(f"Timestamp inválido: {value!r}") from error
+              if parsed.tzinfo is None:
+                  raise MonitorError(f"Timestamp sin zona horaria: {value!r}")
+              return parsed
+
+
+          def is_monitor_issue(
+              issue: dict[str, Any],
+              marker: str,
+              title: str,
+          ) -> bool:
+              user = issue.get("user")
+              author = user.get("login") if isinstance(user, dict) else None
+              body = issue.get("body") or ""
+              if author != "github-actions[bot]":
+                  return False
+              if marker in body:
+                  return True
+              return (
+                  marker == FAILURE_MARKER
+                  and issue.get("number") == 2212
+                  and issue.get("title") == title
+              )
+
+
+          def managed_issues(
+              issues: list[dict[str, Any]],
+              marker: str,
+              title: str,
+          ) -> list[dict[str, Any]]:
+              return sorted(
+                  (
+                      issue
+                      for issue in issues
+                      if is_monitor_issue(issue, marker, title)
+                  ),
+                  key=lambda issue: int(issue["number"]),
+              )
+
+
+          def comment_issue(number: int, body: str) -> None:
+              gh_json(
+                  [
+                      "api",
+                      "--method",
+                      "POST",
+                      f"repos/{REPOSITORY}/issues/{number}/comments",
+                      "--input",
+                      "-",
+                  ],
+                  {"body": body},
+              )
+
+
+          def close_issue(number: int, reason: str) -> None:
+              gh_json(
+                  [
+                      "api",
+                      "--method",
+                      "PATCH",
+                      f"repos/{REPOSITORY}/issues/{number}",
+                      "--input",
+                      "-",
+                  ],
+                  {"state": "closed", "state_reason": reason},
+              )
+
+
+          def close_alerts(
+              issues: list[dict[str, Any]],
+              marker: str,
+              title: str,
+              recovery_message: str,
+              legacy_message: str | None = None,
+          ) -> None:
+              for issue in managed_issues(issues, marker, title):
+                  number = int(issue["number"])
+                  message = (
+                      legacy_message
+                      if number == 2212 and legacy_message is not None
+                      else recovery_message
+                  )
+                  comment_issue(number, message)
+                  close_issue(number, "completed")
+
+
+          def ensure_single_alert(
+              issues: list[dict[str, Any]],
+              marker: str,
+              title: str,
+              body: str,
+          ) -> None:
+              existing = managed_issues(issues, marker, title)
+              if not existing:
+                  created = gh_json(
+                      [
+                          "api",
+                          "--method",
+                          "POST",
+                          f"repos/{REPOSITORY}/issues",
+                          "--input",
+                          "-",
+                      ],
+                      {
+                          "title": title,
+                          "body": f"{marker}\n\n{body}",
+                          "labels": ["bug"],
+                      },
+                  )
+                  if not isinstance(created, dict) or not isinstance(
+                      created.get("number"),
+                      int,
+                  ):
+                      raise MonitorError("GitHub no confirmó la creación de la alerta.")
+                  print(f"Alerta creada: #{created['number']}")
+                  return
+
+              canonical = int(existing[0]["number"])
+              print(f"La alerta #{canonical} ya está abierta.")
+              for duplicate in existing[1:]:
+                  number = int(duplicate["number"])
+                  comment_issue(
+                      number,
+                      f"Cierre automático: alerta duplicada de #{canonical}.",
+                  )
+                  close_issue(number, "not_planned")
+
+
+          def main() -> None:
+              # Todas las lecturas y decisiones se validan antes de escribir.
+              issues = fetch_open_issues()
+              runs = fetch_workflow_runs()
+              main_sha = fetch_main_sha()
+
+              if not runs:
+                  ensure_single_alert(
+                      issues,
+                      NO_RUNS_MARKER,
+                      NO_RUNS_TITLE,
+                      "No existen ejecuciones push de Python CI (ci.yml) para main. "
+                      "Revisar triggers y configuración del workflow.",
+                  )
+                  return
+
+              conclusive = [
+                  run
+                  for run in runs
+                  if run["status"] == "completed"
+                  and (
+                      run["conclusion"] == "success"
+                      or run["conclusion"] in FAILURE_CONCLUSIONS
+                  )
+              ]
+              if not conclusive:
+                  # La decisión queda completa antes de cerrar la alerta de ausencia.
+                  close_alerts(
+                      issues,
+                      NO_RUNS_MARKER,
+                      NO_RUNS_TITLE,
+                      "Ya existe al menos una ejecución push de Python CI en main.",
+                  )
+                  print(
+                      "No hay ejecuciones concluyentes; se conserva cualquier "
+                      "alerta de fallo existente."
+                  )
+                  return
+
+              latest = conclusive[0]
+              if latest["conclusion"] == "success":
+                  if latest["head_sha"] != main_sha:
+                      close_alerts(
+                          issues,
+                          NO_RUNS_MARKER,
+                          NO_RUNS_TITLE,
+                          "Ya existe al menos una ejecución push de Python CI en main.",
+                      )
+                      print(
+                          "El último éxito concluyente no corresponde al SHA actual "
+                          "de main; no se confirma recuperación."
+                      )
+                      return
+
+                  close_alerts(
+                      issues,
+                      NO_RUNS_MARKER,
+                      NO_RUNS_TITLE,
+                      "Ya existe al menos una ejecución push de Python CI en main.",
+                  )
+                  historical_message = (
+                      "Alerta cerrada automáticamente tras corregir la lógica del "
+                      "monitor Check CI Health. La alerta original fue un falso "
+                      "positivo provocado por la antigüedad de la última ejecución "
+                      "exitosa de Python CI, no por una racha comprobada de fallos. "
+                      f"Ejecución exitosa: {latest['html_url']}"
+                  )
+                  close_alerts(
+                      issues,
+                      FAILURE_MARKER,
+                      FAILURE_TITLE,
+                      "CI se recuperó correctamente. Última ejecución exitosa: "
+                      f"{latest['html_url']}",
+                      historical_message,
+                  )
+                  return
+
+              streak: list[dict[str, Any]] = []
+              for run in conclusive:
+                  if run["conclusion"] == "success":
+                      break
+                  streak.append(run)
+
+              first_failure = streak[-1]
+              failure_start = parse_timestamp(first_failure["updated_at"])
+              now = dt.datetime.now(dt.timezone.utc)
+              failure_hours = int((now - failure_start).total_seconds() // 3600)
+              if failure_hours < 0:
+                  raise MonitorError("La racha de fallos comienza en el futuro.")
+
+              # A partir de aquí toda la decisión, fechas y duración son válidas.
+              close_alerts(
+                  issues,
+                  NO_RUNS_MARKER,
+                  NO_RUNS_TITLE,
+                  "Ya existe al menos una ejecución push de Python CI en main.",
+              )
+              print(f"Racha confirmada sin recuperación: {failure_hours} horas.")
+              if failure_hours < THRESHOLD_HOURS:
+                  print("El fallo todavía no supera el umbral.")
+                  return
+
+              ensure_single_alert(
+                  issues,
+                  FAILURE_MARKER,
+                  FAILURE_TITLE,
+                  "Python CI (ci.yml) acumula "
+                  f"**{failure_hours} horas** de fallos push en main sin una "
+                  "ejecución exitosa posterior. Última ejecución concluyente: "
+                  f"{latest['html_url']}",
+              )
+
+
+          try:
+              main()
+          except (MonitorError, OSError) as error:
+              print(f"ERROR DEL MONITOR: {error}", file=sys.stderr)
+              raise SystemExit(1)
+          PY

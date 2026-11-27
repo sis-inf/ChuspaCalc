@@ -3,7 +3,7 @@
 ## Introducción
 
 Este documento describe el esquema JSON propuesto para exponer las
-herramientas de Escuadra a asistentes de IA mediante function calling,
+herramientas de ChuspaCalc a asistentes de IA mediante function calling,
 permitiendo que un LLM invoque directamente las funciones de cálculo
 del proyecto a partir de su descripción estructurada.
 
@@ -43,7 +43,7 @@ basado en JSON Schema para describir funciones invocables:
 ## Ejemplo: esquema generado para `HerramientaCalculoArea`
 
 Tomando como referencia la herramienta real
-`src/escuadra/modulos/geometria/herramienta_calculo_area.py`, que
+`src/chuspacalc/modulos/geometria/herramienta_calculo_area.py`, que
 calcula el área de triángulos, círculos, rectángulos y trapecios, el
 esquema JSON propuesto para una de sus variantes (triángulo) sería:
 
@@ -121,6 +121,6 @@ Y para la variante de círculo:
 
 ## Referencias
 
-* `src/escuadra/core/herramienta.py` — clase base de las herramientas actuales.
-* `src/escuadra/modulos/geometria/herramienta_calculo_area.py` — ejemplo de herramienta usada como base para este documento.
+* `src/chuspacalc/core/herramienta.py` — clase base de las herramientas actuales.
+* `src/chuspacalc/modulos/geometria/herramienta_calculo_area.py` — ejemplo de herramienta usada como base para este documento.
 * `docs/como-agregar-modulo.md` — guía general para agregar nuevos módulos.
