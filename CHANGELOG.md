@@ -19,6 +19,9 @@ El script genera las entradas del changelog a partir de los commits desde el úl
 
 ## [Unreleased]
 
+### Changed
+- chore(dev): objetivos de calidad del Makefile alineados con CI y limpieza portátil y segura con `scripts/clean.py`
+
 ### Added
 - feat(conversor_longitud): agregado módulo de conversión de longitud
 - feat(herramienta_calculo_area): agregada herramienta de cálculo de áreas

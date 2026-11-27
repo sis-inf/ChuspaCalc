@@ -1,42 +1,61 @@
 .DEFAULT_GOAL := help
 
-.PHONY: help install test test-cov lint format build run clean
+PYTHON ?= python
+
+.PHONY: help install test test-cov test-ci lint typecheck format quality build run clean clean-dry-run
 
 help:
 	@echo "Targets disponibles:"
-	@echo "  install       Instalar dependencias de desarrollo"
-	@echo "  test          Ejecutar pruebas"
-	@echo "  test-cov      Ejecutar pruebas con cobertura"
-	@echo "  lint          Ejecutar ruff check"
-	@echo "  format        Aplicar ruff format"
-	@echo "  build         Generar paquetes de distribución"
-	@echo "  run           Ejecutar la aplicación"
-	@echo "  clean         Limpiar archivos temporales"
+	@echo "  install        Instalar dependencias de desarrollo"
+	@echo "  test           Ejecutar pytest"
+	@echo "  test-cov       Ejecutar pruebas con cobertura"
+	@echo "  test-ci        Verificar ubicacion de tests y ejecutar pytest como en CI"
+	@echo "  lint           Black --check, ruff check y verificacion de PySide6"
+	@echo "  typecheck      Ejecutar mypy sobre src/chuspacalc"
+	@echo "  format         Aplicar black sobre src/ y tests/"
+	@echo "  quality        Ejecutar lint, typecheck y test-ci"
+	@echo "  build          Generar paquetes de distribucion"
+	@echo "  run            Ejecutar la aplicacion"
+	@echo "  clean          Borrar artefactos generados permitidos"
+	@echo "  clean-dry-run  Listar lo que borraria clean, sin borrar"
 
 install:
-	pip install -e ".[dev]"
-	pre-commit install
+	$(PYTHON) -m pip install -e ".[dev]"
+	$(PYTHON) -m pip install -r requirements-dev.txt black
+	$(PYTHON) -m pre_commit install
 
 test:
-	pytest
+	$(PYTHON) -m pytest
 
 test-cov:
-	pytest --cov=src/chuspacalc tests/
+	$(PYTHON) -m pytest --cov=src/chuspacalc tests/
+
+test-ci: export QT_QPA_PLATFORM := offscreen
+test-ci:
+	bash scripts/verificar-tests-ubicacion.sh
+	$(PYTHON) -m pytest -m "not slow" --cov=src/chuspacalc --cov-report=term-missing
 
 lint:
-	ruff check .
+	$(PYTHON) -m black --check src/ tests/
+	$(PYTHON) -m ruff check .
+	bash scripts/verificar-pyside6.sh
+
+typecheck:
+	$(PYTHON) -m mypy src/chuspacalc
 
 format:
-	ruff format .
+	$(PYTHON) -m black src/ tests/
+
+quality: lint typecheck test-ci
 
 build:
-	python -m build
+	$(PYTHON) -m build
 
 run:
-	python -m chuspacalc
+	$(PYTHON) -m chuspacalc
 
 clean:
-	find . -type d -name "__pycache__" -exec rm -rf {} +
-	find . -type d -name ".pytest_cache" -exec rm -rf {} +
-	find . -type f -name "*.pyc" -delete
-	rm -rf htmlcov
+	$(PYTHON) scripts/clean.py
+
+clean-dry-run:
+	$(PYTHON) scripts/clean.py --dry-run
