@@ -2,12 +2,16 @@
 Registry de herramientas de ChuspaCalc.
 Descubre automáticamente todas las clases que heredan de Herramienta
 dentro del paquete chuspacalc.modulos.
+
+Mantiene dos estructuras en memoria: un caché con las clases descubiertas
+y un diccionario con los metadatos validados mediante `registrar`.
 """
 
 import importlib
 import inspect
 import logging
 import pkgutil
+from types import ModuleType
 
 import chuspacalc.modulos as _modulos_pkg
 from chuspacalc.core.carrera import Carrera
@@ -15,8 +19,10 @@ from chuspacalc.core.herramienta import Herramienta
 
 logger = logging.getLogger(__name__)
 
+# Clases descubiertas; None mientras no se haya hecho el descubrimiento.
 _cache: list[type[Herramienta]] | None = None
 
+# Metadatos registrados: {nombre: {"categoria": ..., "descripcion": ...}}.
 _registros: dict[str, dict[str, str]] = {}
 
 
@@ -27,7 +33,8 @@ def descubrir_herramientas() -> list[type[Herramienta]]:
     todas las clases encontradas que heredan de Herramienta.
 
     El resultado se cachea: llamadas posteriores devuelven la lista
-    cacheada sin repetir el descubrimiento.
+    cacheada sin repetir el descubrimiento. Si un módulo no puede
+    importarse, se registra el error en el log y se continúa con el resto.
 
     Returns:
         Lista de clases que heredan de Herramienta.
@@ -46,7 +53,7 @@ def descubrir_herramientas() -> list[type[Herramienta]]:
             continue
 
         try:
-            modulo = importlib.import_module(info.name)
+            modulo: ModuleType = importlib.import_module(info.name)
         except Exception as exc:
             logger.error("No se pudo importar %s: %s", info.name, exc)
             continue
@@ -67,15 +74,17 @@ def herramientas_por_carrera() -> dict[Carrera, list[type[Herramienta]]]:
     """
     Devuelve un diccionario agrupando las herramientas por carrera.
     Las herramientas dentro de cada carrera están ordenadas
-    alfabéticamente por su atributo nombre.
+    alfabéticamente por su atributo nombre. Las herramientas sin carrera
+    se omiten y se registra una advertencia en el log.
 
     Returns:
-        Diccionario {Carrera: [Herramienta, ...]} ordenado por nombre.
+        Diccionario {Carrera: [clase de herramienta, ...]}, con cada
+        lista ordenada por nombre.
     """
     resultado: dict[Carrera, list[type[Herramienta]]] = {}
 
     for herramienta in descubrir_herramientas():
-        carrera = herramienta.carrera
+        carrera: Carrera | None = herramienta.carrera
         if carrera is None:
             logger.warning("Se omitió %s porque no tiene carrera", herramienta.nombre)
             continue
@@ -109,6 +118,9 @@ def registrar(herramienta: type[Herramienta], metadata: dict[str, str]) -> None:
     """
     Valida y registra los metadatos de una herramienta.
 
+    Los valores se guardan sin espacios al inicio ni al final. Si ya
+    existe un registro con el mismo nombre, se reemplaza.
+
     Args:
         herramienta: Clase de la herramienta a registrar.
         metadata: Diccionario con las claves 'categoria' y 'descripcion'.
@@ -132,13 +144,16 @@ def registrar(herramienta: type[Herramienta], metadata: dict[str, str]) -> None:
 
 def obtener_por_categoria(categoria: str) -> list[type[Herramienta]]:
     """
-    Devuelve las herramientas registradas de la categoría solicitada.
+    Devuelve las herramientas descubiertas de la categoría solicitada.
+
+    La categoría se compara con el código de la carrera de cada
+    herramienta; no se consultan los metadatos guardados por `registrar`.
 
     Args:
-        categoria: Categoría técnica de la herramienta.
+        categoria: Código de la carrera, por ejemplo "civil".
 
     Returns:
-        Lista de herramientas de la especialidad, o lista vacía si no hay.
+        Lista de clases de esa carrera, o lista vacía si no hay.
     """
     return [
         herramienta
@@ -150,7 +165,7 @@ def obtener_por_categoria(categoria: str) -> list[type[Herramienta]]:
 def limpiar_cache() -> None:
     """
     Limpia el cache del descubrimiento para forzar un nuevo escaneo.
-    Útil en tests.
+    Útil en tests. No borra los metadatos guardados por `registrar`.
     """
     global _cache
     _cache = None
