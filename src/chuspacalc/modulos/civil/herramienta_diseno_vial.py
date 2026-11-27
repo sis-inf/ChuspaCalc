@@ -55,8 +55,6 @@ def _validar_numero(valor: object, nombre: str) -> float:
 
 
 def _validar_dominio(
-    elevacion_inicial: float,
-    elevacion_final: float,
     distancia_horizontal: float,
     velocidad_diseno: float,
     radio_curva: float,
@@ -91,11 +89,64 @@ def _validar_resultado(valor: float, nombre: str) -> float:
     Raises:
         ErrorValidacion: Si el resultado es NaN o infinito.
     """
-    if not math.isfinite(valor):
+    if not math.isfinite(valor, bool) or not isinstance(valor, Real) or not math.isfinite(valor):
         raise ErrorValidacion(f"El resultado de {nombre} no es un número finito")
 
-    return valor
+    return float(valor)
 
+def _ejecutar_calculos(
+    elevacion_inicial: float,
+    elevacion_final: float,
+    distancia_horizontal: float,
+    velocidad_diseno: float,
+    radio_curva: float,
+    friccion_lateral: float,
+) -> tuple[float, float]:
+    """
+    Ejecuta los cálculos de pendiente y peralte controlando desbordamientos
+    y errores numéricos inesperados.
+
+    Raises:
+        ErrorDisenoVial: Si el módulo de diseño vial reporta un error propio.
+        ErrorValidacion: Si ocurre un desbordamiento, error numérico o
+            resultado no finito.
+    """
+    try:
+        pendiente = calcular_pendiente(
+            elevacion_inicial, elevacion_final, distancia_horizontal
+        )
+    except ErrorDisenoVial:
+        raise
+    except OverflowError:
+        raise ErrorValidacion(
+            "Los valores ingresados provocan un desbordamiento numérico "
+            "al calcular la pendiente"
+        ) from None
+    except (ArithmeticError, ValueError):
+        raise ErrorValidacion(
+            "Error numérico al calcular la pendiente con los valores ingresados"
+        ) from None
+
+    try:
+        peralte = calcular_peralte_curva(
+            velocidad_diseno, radio_curva, friccion_lateral
+        )
+    except ErrorDisenoVial:
+        raise
+    except OverflowError:
+        raise ErrorValidacion(
+            "Los valores ingresados provocan un desbordamiento numérico "
+            "al calcular el peralte"
+        ) from None
+    except (ArithmeticError, ValueError):
+        raise ErrorValidacion(
+            "Error numérico al calcular el peralte con los valores ingresados"
+        ) from None
+
+    pendiente = _validar_resultado(pendiente, "la pendiente")
+    peralte = _validar_resultado(peralte, "el peralte")
+
+    return pendiente, peralte
 
 class HerramientaDisenoVial(Herramienta):
     nombre = "Diseño Vial"
@@ -174,13 +225,20 @@ class HerramientaDisenoVial(Herramienta):
 
                 try:
                     valor = float(texto)
-                except ValueError:
+                except (ValueError, OverflowError):
                     raise ErrorValidacion(
                         f"El campo '{clave}' debe contener un número válido"
                     ) from None
                 valores[clave] = _validar_numero(valor, clave)
 
             _validar_dominio(
+                valores["distancia_horizontal"],
+                valores["velocidad_diseno"],
+                valores["radio_curva"],
+                valores["friccion_lateral"],
+            )
+
+            pendiente, peralte = _ejecutar_calculos(
                 valores["elevacion_inicial"],
                 valores["elevacion_final"],
                 valores["distancia_horizontal"],
@@ -188,20 +246,6 @@ class HerramientaDisenoVial(Herramienta):
                 valores["radio_curva"],
                 valores["friccion_lateral"],
             )
-
-            pendiente = calcular_pendiente(
-                valores["elevacion_inicial"],
-                valores["elevacion_final"],
-                valores["distancia_horizontal"],
-            )
-            peralte = calcular_peralte_curva(
-                valores["velocidad_diseno"],
-                valores["radio_curva"],
-                valores["friccion_lateral"],
-            )
-
-            pendiente = _validar_resultado(pendiente, "la pendiente")
-            peralte = _validar_resultado(peralte, "el peralte")
 
             self._resultado.setText(
                 f"PENDIENTE: {pendiente:.2f}% | PERALTE: {peralte:.4f}"
@@ -238,12 +282,12 @@ def herramienta_diseno_vial(
         friccion_lateral: Coeficiente de fricción lateral (0 <= f < 1).
 
     Returns:
-        Texto con los resultados de pendiente y peralte.
+        Texto con los resultados de pendiente y peralte, o un mensaje con el
+        formato ``"ERROR: ..."`` si ocurre ``ErrorDisenoVial``.
 
     Raises:
-        ErrorValidacion: Si los parámetros son inválidos o están fuera
-            del dominio permitido.
-        ErrorDisenoVial: Si el cálculo del módulo de diseño vial falla.
+        ErrorValidacion: Si los parámetros son inválidos, están fuera del
+            dominio permitido o provocan un desbordamiento numérico.
     """
 
     elevacion_inicial = _validar_numero(elevacion_inicial, "La elevación inicial")
@@ -263,19 +307,15 @@ def herramienta_diseno_vial(
         friccion_lateral,
     )
     try:
-        pendiente = calcular_pendiente(
-            elevacion_inicial, elevacion_final, distancia_horizontal
-        )
-
-        peralte = calcular_peralte_curva(
+        pendiente, peralte = _ejecutar_calculos(
+            elevacion_inicial,
+            elevacion_final,
+            distancia_horizontal,
             velocidad_diseno,
             radio_curva,
             friccion_lateral,
         )
     except ErrorDisenoVial as e:
-        return f"Error: {e}"
-
-    pendiente = _validar_resultado(pendiente, "la pendiente")
-    peralte = _validar_resultado(peralte, "el peralte")
+        return f"ERROR: {e}"
 
     return f"PENDIENTE: {pendiente:.2f}%\n" f"PERALTE: {peralte:.4f}"
