@@ -38,6 +38,7 @@ El script genera las entradas del changelog a partir de los commits desde el úl
 - chore(utils): documentación y anotaciones de tipos en logging_config (#2048).
 - refactor(ley_ohm): validación de tipos numéricos, NaN, infinitos y desbordamiento de resultados mediante ErrorValidacion y anotaciones de tipo completas (#1964).
 - chore(changelog): actualización de módulos documentados en desarrollo
+- refactor(rigidez_axial): validaciones tipadas mediante ErrorValidacion y detección de resultados no representables conservando E*A/L (#1948).
 - refactor(validation): normalización de validaciones numéricas, valores no finitos y contratos de entrada en módulos de cálculo
 - refactor(matrix): validación de matrices nulas o irregulares y escalares no finitos en operaciones matriciales (#1930).
 - refactor(typing): corrección de anotaciones, valores opcionales, parámetros y retornos para validar el paquete con mypy
