@@ -29,7 +29,9 @@ from chuspacalc.modulos.matematicas.error_validacion import (
 class HerramientaPotenciaTrifasica(Herramienta):
     nombre = "Potencia Trifásica"
     carrera = Carrera.ELECTRICA
-    descripcion = "Calcula la potencia activa, reactiva y aparente en sistemas trifásicos."
+    descripcion = (
+        "Calcula la potencia activa, reactiva y aparente en sistemas trifásicos."
+    )
 
     def crear_widget(self) -> QWidget:
         """Construye la interfaz gráfica de la herramienta.
@@ -190,11 +192,15 @@ class HerramientaPotenciaTrifasica(Herramienta):
             # Validar el tipo de conexión
             conexion_seleccionada = self._conexion_combo.currentData()
 
-            if not isinstance(conexion_seleccionada, str) or conexion_seleccionada not in (
+            if not isinstance(
+                conexion_seleccionada, str
+            ) or conexion_seleccionada not in (
                 "estrella",
                 "triangulo",
             ):
-                raise ErrorValidacion("El tipo de conexión debe ser 'estrella' o 'triangulo'.")
+                raise ErrorValidacion(
+                    "El tipo de conexión debe ser 'estrella' o 'triangulo'."
+                )
 
             conexion: str = conexion_seleccionada
 
