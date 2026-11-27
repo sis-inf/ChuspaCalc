@@ -1,6 +1,9 @@
+import math
+
 import pytest
 
 from chuspacalc.modulos.electrica.correccion_fp import calcular_capacitancia_correccion
+from chuspacalc.modulos.matematicas.error_validacion import ErrorValidacion
 
 
 def test_correccion_de_070_a_095_da_capacitancia_positiva_esperada():
@@ -59,3 +62,45 @@ def test_voltaje_no_positivo_lanza_value_error(voltaje):
 def test_frecuencia_no_positiva_lanza_value_error(frecuencia):
     with pytest.raises(ValueError, match="La frecuencia debe ser positiva"):
         calcular_capacitancia_correccion(10000, 0.7, 0.95, 220, frecuencia)
+
+
+@pytest.mark.parametrize("indice", range(5))
+@pytest.mark.parametrize(
+    "invalido",
+    [None, True, False, "0.7", 1j, float("nan"), float("inf"), -float("inf"), 10**400],
+)
+def test_correccion_rechaza_tipos_y_valores_no_finitos(indice, invalido):
+    parametros = [10000, 0.7, 0.95, 220, 60]
+    parametros[indice] = invalido
+    with pytest.raises(ErrorValidacion):
+        calcular_capacitancia_correccion(*parametros)
+
+
+@pytest.mark.parametrize(
+    "parametros",
+    [
+        (0, 0.7, 0.95, 220, 60),
+        (10000, 0, 0.95, 220, 60),
+        (10000, 0.7, 1.1, 220, 60),
+        (10000, 0.7, 0.7, 220, 60),
+        (10000, 0.7, 0.6, 220, 60),
+        (10000, 0.7, 0.95, 0, 60),
+        (10000, 0.7, 0.95, 220, 0),
+        (1e308, 0.7, 0.95, 1e-200, 60),
+        (1e-308, 0.7, 0.95, 1e308, 60),
+    ],
+)
+def test_correccion_propaga_error_validacion_en_dominios_y_resultados_invalidos(
+    parametros,
+):
+    with pytest.raises(ErrorValidacion):
+        calcular_capacitancia_correccion(*parametros)
+
+
+def test_correccion_recupera_resultado_finito_con_denominador_intermedio_desbordado():
+    esperado = (math.tan(math.acos(0.7)) - math.tan(math.acos(0.95))) / (
+        2 * math.pi * 60
+    )
+    assert calcular_capacitancia_correccion(
+        1e308, 0.7, 0.95, 1e154, 60
+    ) == pytest.approx(esperado)
