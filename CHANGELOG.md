@@ -19,6 +19,9 @@ El script genera las entradas del changelog a partir de los commits desde el úl
 
 ## [Unreleased]
 
+### Fixed
+- fix(conversion_bases): validación estricta de base, tipo y dígitos con mensajes descriptivos; se rechazan prefijos, guiones bajos y signos repetidos
+
 ### Added
 - feat(conversor_longitud): agregado módulo de conversión de longitud
 - feat(herramienta_calculo_area): agregada herramienta de cálculo de áreas

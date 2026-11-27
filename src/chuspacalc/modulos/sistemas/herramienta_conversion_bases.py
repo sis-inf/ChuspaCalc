@@ -14,16 +14,42 @@ from PySide6.QtWidgets import (
 
 from chuspacalc.core.carrera import Carrera
 from chuspacalc.core.herramienta import Herramienta
+from chuspacalc.modulos.matematicas.error_validacion import ErrorValidacion
+from chuspacalc.modulos.sistemas.conversor_bases import (
+    BASES_SOPORTADAS,
+    DIGITOS_POR_BASE,
+)
 
 # Logica de conversion
 
 
 def convertir_desde_decimal(entero: int) -> dict[str, str]:
-    """Convierte un entero a sus representaciones en las cuatro bases."""
+    """
+    Convierte un entero a sus representaciones en las cuatro bases.
+
+    Args:
+        entero: Número entero, positivo, negativo o cero.
+
+    Returns:
+        Diccionario con las claves "decimal", "binario", "octal" y
+        "hexadecimal".
+
+    Raises:
+        ErrorValidacion: Si entero no es un int (incluye bool, NaN e
+            infinitos) o es demasiado grande para mostrarse en decimal.
+    """
+    if isinstance(entero, bool) or not isinstance(entero, int):
+        raise ErrorValidacion("El valor a convertir debe ser un número entero.")
+
+    try:
+        decimal = str(entero)
+    except ValueError as error:
+        raise ErrorValidacion("El número es demasiado grande.") from error
+
     signo = "-" if entero < 0 else ""
     magnitud = abs(entero)
     return {
-        "decimal": str(entero),
+        "decimal": decimal,
         "binario": signo + bin(magnitud)[2:],
         "octal": signo + oct(magnitud)[2:],
         "hexadecimal": signo + hex(magnitud)[2:].upper(),
@@ -31,24 +57,58 @@ def convertir_desde_decimal(entero: int) -> dict[str, str]:
 
 
 def parsear_valor(texto: str, base: int) -> int:
-    """Convierte texto en la base indicada a entero. Soporta negativos en decimal."""
+    """
+    Convierte un texto escrito en la base indicada a entero.
+
+    Args:
+        texto: Dígitos de la base, con un signo opcional al inicio.
+        base: Base del texto (2, 8, 10 o 16).
+
+    Returns:
+        Valor entero.
+
+    Raises:
+        ErrorValidacion: Si la base no está soportada, el texto no es una
+            cadena, está vacío, tiene caracteres inválidos o es demasiado
+            largo.
+    """
+    if (
+        isinstance(base, bool)
+        or not isinstance(base, int)
+        or base not in BASES_SOPORTADAS
+    ):
+        raise ErrorValidacion(f"Base no soportada: {base!r}")
+
+    if not isinstance(texto, str):
+        raise ErrorValidacion("El valor debe ser una cadena de texto.")
+
     texto = texto.strip()
-    if base == 10:
-        return int(texto)  # acepta signo '-'
-    negativo = texto.startswith("-")
-    magnitud = texto.lstrip("-")
-    valor = int(magnitud, base)
-    return -valor if negativo else valor
+    magnitud = texto[1:] if texto[:1] in ("+", "-") else texto
+
+    if not magnitud:
+        raise ErrorValidacion("Ingrese al menos un dígito.")
+
+    if any(c not in DIGITOS_POR_BASE[base] for c in magnitud.upper()):
+        raise ErrorValidacion(f"Valor inválido para base {base}: «{texto}»")
+
+    try:
+        return int(texto, base)
+    except ValueError as error:
+        raise ErrorValidacion("El número es demasiado grande.") from error
 
 
 # Widget
 class HerramientaConversionBases(Herramienta):
-    nombre = "Conversión de bases"
-    carrera = Carrera.SISTEMAS
-    descripcion = "Convierte un número entre decimal, binario, octal y hexadecimal."
+    """Interfaz para convertir números entre cuatro bases."""
+
+    nombre: str = "Conversión de bases"
+    carrera: Carrera | None = Carrera.SISTEMAS
+    descripcion: str = (
+        "Convierte un número entre decimal, binario, octal y hexadecimal."
+    )
 
     # Configuración de cada campo: etiqueta, base, placeholder
-    _CAMPOS = [
+    _CAMPOS: list[tuple[str, int, str]] = [
         ("Decimal", 10, "Ej: 255"),
         ("Binario", 2, "Ej: 11111111"),
         ("Octal", 8, "Ej: 377"),
@@ -56,6 +116,12 @@ class HerramientaConversionBases(Herramienta):
     ]
 
     def crear_widget(self) -> QWidget:
+        """
+        Crea el widget con un campo por cada base.
+
+        Returns:
+            Widget principal de la herramienta.
+        """
         widget = QWidget()
         root = QVBoxLayout()
         root.setSpacing(10)
@@ -123,8 +189,8 @@ class HerramientaConversionBases(Herramienta):
         try:
             entero = parsear_valor(texto, base)
             resultados = convertir_desde_decimal(entero)
-        except ValueError:
-            self._error_label.setText(f"Valor inválido para base {base}: «{texto}»")
+        except ErrorValidacion as error:
+            self._error_label.setText(str(error))
             return
 
         self._error_label.setText("")
