@@ -97,3 +97,35 @@ def test_division_grande_conserva_resultado_pequeno_representable():
 def test_division_rechaza_cociente_fuera_de_rango():
     with pytest.raises(ErrorValidacion, match="rango"):
         dividir(complex(1e308, 1e308), complex(1e-308, 0))
+
+
+@pytest.mark.parametrize(
+    "dividendo, divisor, esperado",
+    [
+        (complex(1e308, 0), complex(1e100, 1e-250), complex(1e208, -1e-142)),
+        (complex(1e308, 0), complex(1e100, -1e-250), complex(1e208, 1e-142)),
+        (complex(0, 1e308), complex(1e100, 1e-250), complex(1e-142, 1e208)),
+        (complex(0, 1e308), complex(-1e100, 1e-250), complex(1e-142, -1e208)),
+        (complex(1e308, 0), complex(1e-250, 1e100), complex(1e-142, -1e208)),
+        (complex(0, 1e308), complex(1e-250, 1e100), complex(1e208, 1e-142)),
+        (complex(-1e308, 0), complex(1e100, 1e-250), complex(-1e208, 1e-142)),
+        (complex(1e100, 1e-250), complex(1e308, 0), complex(1e-208, 0)),
+    ],
+    ids=[
+        "imaginaria_perdida_del_revisor",
+        "imaginaria_positiva_pequena",
+        "real_positiva_pequena",
+        "real_pequena_con_divisor_negativo",
+        "real_pequena_con_divisor_imaginario",
+        "imaginaria_pequena_con_divisor_imaginario",
+        "dividendo_negativo",
+        "componente_final_no_representable_se_redondea_a_cero",
+    ],
+)
+def test_division_conserva_cada_componente_representable(dividendo, divisor, esperado):
+    resultado = dividir(dividendo, divisor)
+
+    assert math.isfinite(resultado.real)
+    assert math.isfinite(resultado.imag)
+    assert resultado.real == pytest.approx(esperado.real, rel=1e-14, abs=0)
+    assert resultado.imag == pytest.approx(esperado.imag, rel=1e-14, abs=0)

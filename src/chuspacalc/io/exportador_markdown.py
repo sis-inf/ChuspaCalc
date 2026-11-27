@@ -5,6 +5,18 @@ Módulo para exportar resultados de cálculos a formato Markdown.
 import re
 from typing import Any, Dict, List, Optional
 
+from chuspacalc.modulos.matematicas.error_validacion import ErrorValidacion
+
+
+def _validar_texto(valor: str, nombre: str, permitir_vacio: bool = False) -> None:
+    if not isinstance(valor, str) or (not permitir_vacio and not valor.strip()):
+        raise ErrorValidacion(f"{nombre} debe ser texto válido")
+
+
+def _validar_secuencia(valor: object, nombre: str) -> None:
+    if not isinstance(valor, (list, tuple)):
+        raise ErrorValidacion(f"{nombre} debe ser una lista o tupla")
+
 
 def _escapar_celda(valor: Any) -> str:
     """
@@ -36,7 +48,20 @@ def exportar_markdown(
 
     Returns:
         str: Bloque Markdown con la información formateada.
+
+    Raises:
+        ErrorValidacion: Si una entrada es nula, tiene tipo incorrecto o
+            sus dimensiones no son compatibles con el formato.
     """
+    _validar_texto(titulo, "titulo")
+    if not isinstance(parametros, dict):
+        raise ErrorValidacion("parametros debe ser un diccionario")
+    if resultado is None:
+        raise ErrorValidacion("resultado no puede ser nulo")
+    if descripcion is not None:
+        _validar_texto(descripcion, "descripcion", permitir_vacio=True)
+    if unidad is not None:
+        _validar_texto(unidad, "unidad", permitir_vacio=True)
     # Encabezado
     markdown = f"# {titulo}\n\n"
 
@@ -76,7 +101,22 @@ def exportar_tabla(
 
     Returns:
         str: Tabla en formato Markdown.
+
+    Raises:
+        ErrorValidacion: Si una entrada es nula, tiene tipo incorrecto o
+            sus dimensiones no son compatibles con el formato.
     """
+    _validar_texto(titulo, "titulo")
+    _validar_secuencia(encabezados, "encabezados")
+    _validar_secuencia(filas, "filas")
+    if not encabezados:
+        raise ErrorValidacion("La tabla necesita al menos un encabezado")
+    for encabezado in encabezados:
+        _validar_texto(encabezado, "encabezado")
+    for indice, fila in enumerate(filas, 1):
+        _validar_secuencia(fila, f"fila {indice}")
+        if len(fila) != len(encabezados):
+            raise ErrorValidacion(f"La fila {indice} no coincide con los encabezados")
     markdown = f"## {titulo}\n\n"
 
     # Encabezados
@@ -105,7 +145,18 @@ def exportar_codigo(
 
     Returns:
         str: Bloque de código en Markdown.
+
+    Raises:
+        ErrorValidacion: Si una entrada es nula, tiene tipo incorrecto o
+            sus dimensiones no son compatibles con el formato.
     """
+    _validar_texto(titulo, "titulo")
+    _validar_texto(codigo, "codigo", permitir_vacio=True)
+    _validar_texto(lenguaje, "lenguaje", permitir_vacio=True)
+    if any(caracter in lenguaje for caracter in (chr(96), "\r", "\n")):
+        raise ErrorValidacion(
+            "lenguaje no puede contener delimitadores ni saltos de línea"
+        )
     markdown = f"## {titulo}\n\n"
     markdown += f"```{lenguaje}\n{codigo}\n```\n\n"
     return markdown
@@ -126,7 +177,17 @@ def exportar_lista(
 
     Returns:
         str: Lista en formato Markdown.
+
+    Raises:
+        ErrorValidacion: Si una entrada es nula, tiene tipo incorrecto o
+            sus dimensiones no son compatibles con el formato.
     """
+    _validar_texto(titulo, "titulo")
+    _validar_secuencia(elementos, "elementos")
+    if not isinstance(ordenada, bool):
+        raise ErrorValidacion("ordenada debe ser un booleano")
+    for elemento in elementos:
+        _validar_texto(elemento, "elemento", permitir_vacio=True)
     markdown = f"## {titulo}\n\n"
 
     for i, elemento in enumerate(elementos, 1):
