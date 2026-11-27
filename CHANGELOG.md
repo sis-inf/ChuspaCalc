@@ -30,6 +30,7 @@ El script genera las entradas del changelog a partir de los commits desde el úl
 
 ### Changed
 - refactor(herramienta_columna_pandeo): la herramienta valida los campos con ErrorValidacion y rechaza cero, NaN e infinito antes de calcular (#1942).
+- refactor(divisor_tension): entradas positivas y finitas mediante ErrorValidacion, tipos completos y cálculo estable en valores extremos (#1957).
 - refactor(circuitos_rc_rl): validación de parámetros numéricos mediante ErrorValidacion y anotaciones de tipo completas (#1955).
 - refactor(momento_flector): las entradas inválidas de calcular_momento_max y calcular_momento_maximo lanzan ErrorValidacion; se añade regresión de ambos contratos (#1945).
 - refactor(volumen_excavacion): validación de dimensiones finitas y positivas mediante ErrorValidacion y anotaciones de tipo completas (#1951).
