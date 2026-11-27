@@ -3,6 +3,8 @@ Herramienta de Carga Crítica de Euler para ChuspaCalc.
 Calcula la carga crítica de pandeo para columnas a compresión.
 """
 
+import math
+
 from PySide6.QtWidgets import (
     QComboBox,
     QHBoxLayout,
@@ -16,6 +18,7 @@ from PySide6.QtWidgets import (
 from chuspacalc.core.carrera import Carrera
 from chuspacalc.core.herramienta import Herramienta
 from chuspacalc.modulos.civil.columna_pandeo import calcular_carga_critica_euler
+from chuspacalc.modulos.matematicas.error_validacion import ErrorValidacion
 
 
 class HerramientaColumnaPandeo(Herramienta):
@@ -108,6 +111,20 @@ class HerramientaColumnaPandeo(Herramienta):
             return None
         return float(texto)
 
+    def _leer_valor_positivo(self, clave: str) -> float:
+        texto = self._campos[clave].text().strip()
+        if texto == "":
+            raise ErrorValidacion(f"el campo {clave} es obligatorio.")
+        try:
+            valor = float(texto)
+        except ValueError as error:
+            raise ErrorValidacion(f"«{texto}» no es un número válido.") from error
+        if not math.isfinite(valor):
+            raise ErrorValidacion(f"el valor de {clave} debe ser un número finito.")
+        if valor <= 0:
+            raise ErrorValidacion(f"el valor de {clave} debe ser positivo.")
+        return valor
+
     def _calcular(self) -> None:
         self._error_label.setText("")
         self._carga_critica_output.clear()
@@ -115,20 +132,10 @@ class HerramientaColumnaPandeo(Herramienta):
         # Leer valores
         valores: dict[str, float] = {}
         for clave in ("modulo_elasticidad", "momento_inercia", "longitud"):
-            texto = self._campos[clave].text().strip()
-            if texto == "":
-                self._error_label.setText(f"Error: el campo {clave} es obligatorio.")
-                return
             try:
-                v = float(texto)
-                if v < 0:
-                    self._error_label.setText(
-                        f"Error: el valor de {clave} debe ser positivo."
-                    )
-                    return
-                valores[clave] = v
-            except ValueError:
-                self._error_label.setText(f"Error: «{texto}» no es un número válido.")
+                valores[clave] = self._leer_valor_positivo(clave)
+            except ErrorValidacion as e:
+                self._error_label.setText(f"Error: {e}")
                 return
 
         # Obtener condición de apoyo
