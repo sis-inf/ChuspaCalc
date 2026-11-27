@@ -8,6 +8,7 @@ import math
 
 import pytest
 
+from chuspacalc.modulos.matematicas.error_validacion import ErrorValidacion
 from chuspacalc.modulos.matematicas.numeros_complejos import (
     conjugado,
     dividir,
@@ -65,3 +66,66 @@ def test_polar_a_rectangular_con_modulo_negativo_lanza_error():
     # El módulo no puede ser negativo
     with pytest.raises(ValueError):
         polar_a_rectangular(-1, 0)
+
+
+@pytest.mark.parametrize(
+    "dividendo, divisor, esperado",
+    [
+        (complex(1e308, 1e308), complex(1e308, 1e308), 1 + 0j),
+        (1 + 1j, complex(1e308, 1e308), complex(1e-308, 0)),
+        (complex(1e308, 0), complex(1e308, 1e308), 0.5 - 0.5j),
+        (complex(-1e308, 1e308), complex(1e308, 1e308), 1j),
+        (complex(1e308, 1e308), complex(-1e308, -1e308), -1 + 0j),
+    ],
+)
+def test_division_de_complejos_finitos_no_rechaza_cociente_representable(
+    dividendo, divisor, esperado
+):
+    resultado = dividir(dividendo, divisor)
+    assert math.isfinite(resultado.real)
+    assert math.isfinite(resultado.imag)
+    assert resultado.real == pytest.approx(esperado.real, rel=1e-14, abs=0)
+    assert resultado.imag == pytest.approx(esperado.imag, rel=1e-14, abs=0)
+
+
+def test_division_grande_conserva_resultado_pequeno_representable():
+    resultado = dividir(complex(1e-308, 1e-308), 1 + 1j)
+    assert resultado.real == pytest.approx(1e-308, abs=0)
+    assert resultado.imag == 0
+
+
+def test_division_rechaza_cociente_fuera_de_rango():
+    with pytest.raises(ErrorValidacion, match="rango"):
+        dividir(complex(1e308, 1e308), complex(1e-308, 0))
+
+
+@pytest.mark.parametrize(
+    "dividendo, divisor, esperado",
+    [
+        (complex(1e308, 0), complex(1e100, 1e-250), complex(1e208, -1e-142)),
+        (complex(1e308, 0), complex(1e100, -1e-250), complex(1e208, 1e-142)),
+        (complex(0, 1e308), complex(1e100, 1e-250), complex(1e-142, 1e208)),
+        (complex(0, 1e308), complex(-1e100, 1e-250), complex(1e-142, -1e208)),
+        (complex(1e308, 0), complex(1e-250, 1e100), complex(1e-142, -1e208)),
+        (complex(0, 1e308), complex(1e-250, 1e100), complex(1e208, 1e-142)),
+        (complex(-1e308, 0), complex(1e100, 1e-250), complex(-1e208, 1e-142)),
+        (complex(1e100, 1e-250), complex(1e308, 0), complex(1e-208, 0)),
+    ],
+    ids=[
+        "imaginaria_perdida_del_revisor",
+        "imaginaria_positiva_pequena",
+        "real_positiva_pequena",
+        "real_pequena_con_divisor_negativo",
+        "real_pequena_con_divisor_imaginario",
+        "imaginaria_pequena_con_divisor_imaginario",
+        "dividendo_negativo",
+        "componente_final_no_representable_se_redondea_a_cero",
+    ],
+)
+def test_division_conserva_cada_componente_representable(dividendo, divisor, esperado):
+    resultado = dividir(dividendo, divisor)
+
+    assert math.isfinite(resultado.real)
+    assert math.isfinite(resultado.imag)
+    assert resultado.real == pytest.approx(esperado.real, rel=1e-14, abs=0)
+    assert resultado.imag == pytest.approx(esperado.imag, rel=1e-14, abs=0)

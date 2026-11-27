@@ -7,6 +7,7 @@ aritméticas y conversiones entre forma rectangular y polar.
 
 import cmath
 import math
+from fractions import Fraction
 
 from chuspacalc.modulos.matematicas.error_validacion import (
     ErrorValidacion,
@@ -104,11 +105,16 @@ def dividir(a: complex, b: complex) -> complex:
     if divisor == 0:
         raise ErrorDivisionPorCero("No es posible dividir entre cero.")
 
+    real_a, imag_a = Fraction(dividendo.real), Fraction(dividendo.imag)
+    real_b, imag_b = Fraction(divisor.real), Fraction(divisor.imag)
+    denominador = real_b * real_b + imag_b * imag_b
     try:
-        resultado = dividendo / divisor
-    except (OverflowError, ZeroDivisionError) as exc:
-        raise ErrorValidacion(_MSG_RANGO) from exc
-
+        resultado = complex(
+            float((real_a * real_b + imag_a * imag_b) / denominador),
+            float((imag_a * real_b - real_a * imag_b) / denominador),
+        )
+    except OverflowError as error:
+        raise ErrorValidacion(_MSG_RANGO) from error
     return _resultado_complejo(resultado)
 
 
