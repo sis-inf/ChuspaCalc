@@ -89,6 +89,7 @@ El script genera las entradas del changelog a partir de los commits desde el úl
 - refactor(reacciones_viga): validación de carga y longitud positivas mediante ErrorValidacion y anotaciones de tipo completas (#1947).
 - refactor(combinacion_cargas): validación de cargas, factores y viento finitos mediante ErrorValidacion y anotaciones de tipo completas (#1938).
 - refactor(potencia): validación de tipos numéricos, NaN, infinitos y desbordamiento de resultados mediante ErrorValidacion y anotaciones de tipo completas (#1965).
+- refactor(mecanica): calcular_densidad lanza ErrorValidacion ante datos inválidos o un resultado no finito y agrega type hints (#2014).
 - refactor(topografia): calcular_desnivel lanza ErrorValidacion ante datos inválidos o un resultado no finito y agrega type hints (#2032).
 
 ### Security
