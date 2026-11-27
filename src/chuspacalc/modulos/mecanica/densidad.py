@@ -1,8 +1,10 @@
 import math
 from numbers import Real
 
+from chuspacalc.modulos.matematicas.error_validacion import ErrorValidacion
 
-def calcular_densidad(masa, volumen):
+
+def calcular_densidad(masa: float, volumen: float) -> float:
     """
     Calcula la densidad de un cuerpo a partir de su masa y volumen.
 
@@ -11,28 +13,39 @@ def calcular_densidad(masa, volumen):
         volumen: Volumen del cuerpo, valor positivo.
 
     Returns:
-        float: Densidad calculada (masa / volumen).
+        Densidad calculada (masa / volumen).
 
     Raises:
-        TypeError: Si algún argumento no es numérico.
-        ValueError: Si los valores no son finitos, la masa es negativa
-                    o el volumen no es positivo.
+        ErrorValidacion: Si algún argumento no es numérico o no es finito,
+            si la masa es negativa, si el volumen no es positivo o si el
+            resultado no es finito.
     """
     valores = (masa, volumen)
 
     for valor in valores:
         if isinstance(valor, bool) or not isinstance(valor, Real):
-            raise TypeError("La masa y el volumen deben ser numéricos.")
+            raise ErrorValidacion("La masa y el volumen deben ser numéricos.")
 
-        if not math.isfinite(valor):
-            raise ValueError("La masa y el volumen deben ser finitos.")
+        try:
+            es_finito = math.isfinite(valor)
+        except OverflowError:
+            es_finito = False
+
+        if not es_finito:
+            raise ErrorValidacion("La masa y el volumen deben ser finitos.")
 
     if masa < 0:
-        raise ValueError("La masa no puede ser negativa.")
+        raise ErrorValidacion("La masa no puede ser negativa.")
 
     if volumen <= 0:
-        raise ValueError("El volumen debe ser positivo.")
+        raise ErrorValidacion("El volumen debe ser positivo.")
 
-    densidad = masa / volumen
+    try:
+        densidad = masa / volumen
+    except OverflowError as exc:
+        raise ErrorValidacion("La densidad calculada no es finita.") from exc
+
+    if not math.isfinite(densidad):
+        raise ErrorValidacion("La densidad calculada no es finita.")
 
     return densidad
