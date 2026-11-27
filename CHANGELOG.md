@@ -30,6 +30,7 @@ El script genera las entradas del changelog a partir de los commits desde el úl
 
 ### Changed
 - refactor(herramienta_columna_pandeo): la herramienta valida los campos con ErrorValidacion y rechaza cero, NaN e infinito antes de calcular (#1942).
+- refactor(divisor_tension): entradas positivas y finitas mediante ErrorValidacion, tipos completos y cálculo estable en valores extremos (#1957).
 - refactor(circuitos_rc_rl): validación de parámetros numéricos mediante ErrorValidacion y anotaciones de tipo completas (#1955).
 - refactor(momento_flector): las entradas inválidas de calcular_momento_max y calcular_momento_maximo lanzan ErrorValidacion; se añade regresión de ambos contratos (#1945).
 - refactor(volumen_excavacion): validación de dimensiones finitas y positivas mediante ErrorValidacion y anotaciones de tipo completas (#1951).
@@ -38,6 +39,7 @@ El script genera las entradas del changelog a partir de los commits desde el úl
 - chore(utils): documentación y anotaciones de tipos en logging_config (#2048).
 - refactor(ley_ohm): validación de tipos numéricos, NaN, infinitos y desbordamiento de resultados mediante ErrorValidacion y anotaciones de tipo completas (#1964).
 - chore(changelog): actualización de módulos documentados en desarrollo
+- refactor(rigidez_axial): validaciones tipadas mediante ErrorValidacion y detección de resultados no representables conservando E*A/L (#1948).
 - refactor(validation): normalización de validaciones numéricas, valores no finitos y contratos de entrada en módulos de cálculo
 - refactor(matrix): validación de matrices nulas o irregulares y escalares no finitos en operaciones matriciales (#1930).
 - refactor(typing): corrección de anotaciones, valores opcionales, parámetros y retornos para validar el paquete con mypy
@@ -54,6 +56,7 @@ El script genera las entradas del changelog a partir de los commits desde el úl
 - chore(ui): normalización de señales y slots y captura segura de errores en `widget_herramienta` (#2044)
 - test(chuspacalc): migrar imports históricos a chuspacalc en test_correccion_fp.py (#1873)
 - refactor(transformaciones): validación de parámetros numéricos finitos, detección de resultados desbordados mediante ErrorValidacion y anotaciones de tipo completas (#1987).
+- refactor(exportador_markdown): validación de entradas nulas, tipos y dimensiones de tablas mediante ErrorValidacion, conservando el escape de celdas (#1926).
 - chore(ui): normalización de señales y captura segura de errores en `dialogo_acerca_de` (#2036)
 - chore(ui): normalización de señales y captura segura de errores en `cargador_herramienta`, mostrando un widget informativo cuando falla la carga de una herramienta (#2034)
 - refactor(herramienta_financiera): validación de capital, tasa y períodos mediante ErrorValidacion, con tope de períodos y anotaciones de tipo completas (#2005).
@@ -86,6 +89,7 @@ El script genera las entradas del changelog a partir de los commits desde el úl
 - refactor(combinacion_cargas): validación de cargas, factores y viento finitos mediante ErrorValidacion y anotaciones de tipo completas (#1938).
 - refactor(potencia): validación de tipos numéricos, NaN, infinitos y desbordamiento de resultados mediante ErrorValidacion y anotaciones de tipo completas (#1965).
 - refactor(mecanica): calcular_densidad lanza ErrorValidacion ante datos inválidos o un resultado no finito y agrega type hints (#2014).
+- refactor(topografia): calcular_desnivel lanza ErrorValidacion ante datos inválidos o un resultado no finito y agrega type hints (#2032).
 
 ### Security
 - security(evaluators): sustitución de evaluación dinámica insegura por evaluadores matemáticos y lógicos con listas blancas y límites de complejidad
