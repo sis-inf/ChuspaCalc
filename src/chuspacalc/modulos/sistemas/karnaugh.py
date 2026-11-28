@@ -13,6 +13,8 @@ funciones constantes devuelven "0" o "1".
 
 from itertools import combinations
 
+from chuspacalc.modulos.matematicas.error_validacion import ErrorValidacion
+
 VARIABLES = "ABCD"
 VARIABLES_POR_LONGITUD = {4: 2, 8: 3, 16: 4}
 ORDEN_GRAY = {2: [0, 1], 4: [0, 1, 3, 2]}
@@ -32,15 +34,21 @@ def generar_mapa_karnaugh(
     Retorna la misma tabla de verdad, lista para ``simplificar_expresion``.
 
     Raises:
-        ValueError: Si la cantidad de variables no está entre 2 y 4, si la
-            tabla no tiene 2**num_variables valores o si algún valor no es
-            0 o 1.
+        ErrorValidacion: Si ``num_variables`` no es un entero entre 2 y 4,
+            si la tabla no es una lista con 2**num_variables valores o si
+            algún valor no es 0 o 1.
     """
+    if isinstance(num_variables, bool) or not isinstance(num_variables, int):
+        raise ErrorValidacion("num_variables debe ser un entero.")
+
+    if not isinstance(tabla_verdad, list):
+        raise ErrorValidacion("La tabla de verdad debe ser una lista.")
+
     if num_variables < 2 or num_variables > 4:
-        raise ValueError("Solo se soportan entre 2 y 4 variables.")
+        raise ErrorValidacion("Solo se soportan entre 2 y 4 variables.")
 
     if len(tabla_verdad) != 2**num_variables:
-        raise ValueError(
+        raise ErrorValidacion(
             f"Para {num_variables} variables la tabla debe tener "
             f"{2**num_variables} valores; tiene {len(tabla_verdad)}."
         )
@@ -64,9 +72,13 @@ def simplificar_expresion(mapa: list[list[int]] | list[int]) -> str:
         La expresión mínima en suma de productos (ver docstring del módulo).
 
     Raises:
-        ValueError: Si la tabla no tiene 4, 8 o 16 valores, si el mapa no
-            tiene una forma válida o si algún valor no es 0 o 1.
+        ErrorValidacion: Si ``mapa`` no es una lista, si la tabla no tiene
+            4, 8 o 16 valores, si el mapa no tiene una forma válida o si
+            algún valor no es 0 o 1.
     """
+    if not isinstance(mapa, list):
+        raise ErrorValidacion("El mapa debe ser una lista.")
+
     if mapa and all(isinstance(fila, list) for fila in mapa):
         tabla = _tabla_desde_mapa(mapa)  # type: ignore[arg-type]
     else:
@@ -90,12 +102,14 @@ def simplificar_expresion(mapa: list[list[int]] | list[int]) -> str:
 def _validar_valores(tabla: list[int]) -> None:
     for posicion, valor in enumerate(tabla):
         if type(valor) not in (int, bool) or valor not in (0, 1):
-            raise ValueError(f"Solo se admiten 0 y 1: posición {posicion} = {valor!r}.")
+            raise ErrorValidacion(
+                f"Solo se admiten 0 y 1: posición {posicion} = {valor!r}."
+            )
 
 
 def _num_variables(tabla: list[int]) -> int:
     if len(tabla) not in VARIABLES_POR_LONGITUD:
-        raise ValueError(
+        raise ErrorValidacion(
             "La tabla de verdad debe tener 4, 8 o 16 valores (2 a 4 variables); "
             f"tiene {len(tabla)}."
         )
@@ -107,7 +121,7 @@ def _tabla_desde_mapa(mapa: list[list[int]]) -> list[int]:
     columnas = len(mapa[0])
     forma_valida = (filas, columnas) in {(2, 2), (2, 4), (4, 4)}
     if not forma_valida or any(len(fila) != columnas for fila in mapa):
-        raise ValueError("El mapa de Karnaugh debe ser de 2x2, 2x4 o 4x4.")
+        raise ErrorValidacion("El mapa de Karnaugh debe ser de 2x2, 2x4 o 4x4.")
 
     bits_columnas = columnas.bit_length() - 1
     tabla = [0] * (filas * columnas)
