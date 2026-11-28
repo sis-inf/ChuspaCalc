@@ -11,6 +11,7 @@ import pytest
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 from chuspacalc.math.linear_solver import solve_linear_2x2
+from chuspacalc.modulos.matematicas.error_validacion import ErrorValidacion
 
 
 def test_solve_linear_2x2_simple():
@@ -61,3 +62,29 @@ def test_solve_linear_2x2_rechaza_valores_no_finitos(posicion, no_finito):
 
     with pytest.raises(ValueError, match="debe ser finito"):
         solve_linear_2x2(*datos)
+
+
+@pytest.mark.parametrize("invalido", [None, "2", True, [1], 1 + 2j])
+@pytest.mark.parametrize("posicion", range(6))
+def test_solve_linear_2x2_rechaza_tipos_invalidos(posicion, invalido):
+    """None, texto, bool, listas y complejos lanzan ErrorValidacion"""
+    datos = [2, 3, 1, 4, 5, 6]
+    datos[posicion] = invalido
+
+    with pytest.raises(ErrorValidacion, match="número real"):
+        solve_linear_2x2(*datos)
+
+
+def test_solve_linear_2x2_no_finito_lanza_error_validacion():
+    with pytest.raises(ErrorValidacion, match="debe ser finito"):
+        solve_linear_2x2(math.nan, 3, 1, 4, 5, 6)
+
+
+def test_solve_linear_2x2_entero_enorme_lanza_error_validacion():
+    with pytest.raises(ErrorValidacion, match="debe ser finito"):
+        solve_linear_2x2(10**400, 3, 1, 4, 5, 6)
+
+
+def test_solve_linear_2x2_determinante_no_finito_lanza_error_validacion():
+    with pytest.raises(ErrorValidacion, match="no es finito"):
+        solve_linear_2x2(1e200, 0, 0, 1e200, 1, 1)
