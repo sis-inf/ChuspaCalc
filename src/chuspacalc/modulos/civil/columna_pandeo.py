@@ -1,4 +1,29 @@
 import math
+from numbers import Real
+
+from chuspacalc.modulos.matematicas.error_validacion import ErrorValidacion
+
+
+def _validar_numero(valor: object, nombre: str) -> float:
+    """Verifica que el valor sea un número real y lo devuelve como float.
+
+    Args:
+        valor: Dato a validar.
+        nombre: Nombre del parámetro para el mensaje de error.
+
+    Returns:
+        El valor convertido a ``float``.
+
+    Raises:
+        ErrorValidacion: Si no es numérico (incluye ``bool``) o es demasiado
+            grande para convertirse a ``float``.
+    """
+    if isinstance(valor, bool) or not isinstance(valor, Real):
+        raise ErrorValidacion(f"{nombre} debe ser un número")
+    try:
+        return float(valor)
+    except OverflowError:
+        raise ErrorValidacion(f"{nombre} es demasiado grande") from None
 
 
 def calcular_carga_critica_euler(
@@ -35,24 +60,29 @@ def calcular_carga_critica_euler(
         Carga crítica de pandeo en Newtons (N)
 
     Raises:
-        ValueError: Si los parámetros no son válidos o la condición de apoyo no existe
+        ErrorValidacion: Si los parámetros no son válidos o la condición de
+            apoyo no existe
     """
+    modulo_elasticidad = _validar_numero(modulo_elasticidad, "modulo_elasticidad")
+    momento_inercia = _validar_numero(momento_inercia, "momento_inercia")
+    longitud = _validar_numero(longitud, "longitud")
+
     for nombre, valor in (
         ("modulo_elasticidad", modulo_elasticidad),
         ("momento_inercia", momento_inercia),
         ("longitud", longitud),
     ):
         if not math.isfinite(valor):
-            raise ValueError(f"{nombre} debe ser un número finito")
+            raise ErrorValidacion(f"{nombre} debe ser un número finito")
 
     if modulo_elasticidad <= 0:
-        raise ValueError("modulo_elasticidad debe ser mayor que 0")
+        raise ErrorValidacion("modulo_elasticidad debe ser mayor que 0")
 
     if momento_inercia <= 0:
-        raise ValueError("momento_inercia debe ser mayor que 0")
+        raise ErrorValidacion("momento_inercia debe ser mayor que 0")
 
     if longitud <= 0:
-        raise ValueError("longitud debe ser mayor que 0")
+        raise ErrorValidacion("longitud debe ser mayor que 0")
 
     # Definir factores K según condición de apoyo
     factores_k = {
@@ -63,7 +93,7 @@ def calcular_carga_critica_euler(
     }
 
     if condicion_apoyo not in factores_k:
-        raise ValueError(
+        raise ErrorValidacion(
             f"condicion_apoyo debe ser una de: {list(factores_k.keys())}. "
             f"Valor recibido: {condicion_apoyo}"
         )
