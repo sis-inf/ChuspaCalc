@@ -92,6 +92,7 @@ El script genera las entradas del changelog a partir de los commits desde el úl
 - refactor(potencia): validación de tipos numéricos, NaN, infinitos y desbordamiento de resultados mediante ErrorValidacion y anotaciones de tipo completas (#1965).
 - refactor(mecanica): calcular_densidad lanza ErrorValidacion ante datos inválidos o un resultado no finito y agrega type hints (#2014).
 - refactor(topografia): calcular_desnivel lanza ErrorValidacion ante datos inválidos o un resultado no finito y agrega type hints (#2032).
+- refactor(matematicas): validar datos con ErrorValidacion y agregar tipado en estadisticas (#2001)
 
 ### Security
 - security(evaluators): sustitución de evaluación dinámica insegura por evaluadores matemáticos y lógicos con listas blancas y límites de complejidad
