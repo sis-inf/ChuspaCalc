@@ -1,36 +1,37 @@
 import math
 
+from ..matematicas.error_validacion import ErrorValidacion, validar_numero
 
-def calcular_energia_cinetica(masa, velocidad):
+
+def calcular_energia_cinetica(masa: int | float, velocidad: int | float) -> float:
     """
     Calcula la energia cinetica de un cuerpo.
 
     Args:
-        masa: Masa del cuerpo en kilogramos.
-        velocidad: Velocidad del cuerpo en metros por segundo.
+        masa: Masa del cuerpo en kilogramos. Debe ser un numero finito positivo.
+        velocidad: Velocidad del cuerpo en metros por segundo. Debe ser un
+            numero finito.
 
     Returns:
         Energia cinetica en joules.
 
     Raises:
-        TypeError: Si los argumentos no son numericos.
-        ValueError: Si la masa no es positiva o los valores no son finitos.
+        ErrorValidacion: Si la masa o la velocidad no son numericas, no son
+            finitas o estan fuera del rango representable; si la masa no es
+            positiva; o si el resultado no es finito.
     """
-    if isinstance(masa, bool) or isinstance(velocidad, bool):
-        raise TypeError("La masa y la velocidad deben ser numericas.")
+    masa_kg = validar_numero(masa, "masa")
+    velocidad_ms = validar_numero(velocidad, "velocidad")
 
-    if not isinstance(masa, (int, float)) or not isinstance(velocidad, (int, float)):
-        raise TypeError("La masa y la velocidad deben ser numericas.")
+    if masa_kg <= 0:
+        raise ErrorValidacion("La masa debe ser un numero positivo.")
 
-    if not math.isfinite(masa) or not math.isfinite(velocidad):
-        raise ValueError("Los valores deben ser finitos.")
-
-    if masa <= 0:
-        raise ValueError("La masa debe ser un numero positivo.")
-
-    energia = (masa * velocidad**2) / 2
+    try:
+        energia = (masa_kg * velocidad_ms**2) / 2
+    except OverflowError as exc:
+        raise ErrorValidacion("El resultado esta fuera del rango permitido.") from exc
 
     if not math.isfinite(energia):
-        raise ValueError("El resultado debe ser finito.")
+        raise ErrorValidacion("El resultado debe ser finito.")
 
     return energia
