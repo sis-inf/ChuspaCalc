@@ -3,7 +3,7 @@ Pruebas unitarias para deflexion_viga.py.
 """
 
 import pytest
-from escuadra.modulos.civil.deflexion_viga import calcular_deflexion_max
+from chuspacalc.modulos.civil.deflexion_viga import calcular_deflexion_max
 
 E = 200e9  # Pa (acero)
 INERCIA = 8e-5  # m4
