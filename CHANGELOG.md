@@ -44,6 +44,7 @@ El script genera las entradas del changelog a partir de los commits desde el úl
 - refactor(matrix): validación de matrices nulas o irregulares y escalares no finitos en operaciones matriciales (#1930).
 - refactor(typing): corrección de anotaciones, valores opcionales, parámetros y retornos para validar el paquete con mypy
 - refactor(resolucion_triangulos): validación de lados y ángulos finitos mediante ErrorValidacion y tipos de retorno completos (#1986).
+- refactor(herramienta_resolucion_triangulos): validación de entradas numéricas y finitas, lados positivos y ángulos interiores válidos mediante ErrorValidacion, con anotaciones de tipo completas y pruebas de interfaz ampliadas (#1983).
 - refactor(packaging): consolidación del namespace `chuspacalc` manteniendo el shim de compatibilidad `escuadra`
 - refactor(geometria): validación de dimensiones numéricas, control de desbordamientos mediante ErrorValidacion y anotaciones de tipo completas en volumen (#1988).
 - refactor(coordenadas): validación de coordenadas finitas, radio polar y límites numéricos mediante ErrorValidacion (#1978).
