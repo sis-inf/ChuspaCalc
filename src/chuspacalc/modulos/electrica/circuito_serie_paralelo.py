@@ -1,87 +1,161 @@
 """Cálculo de resistencia equivalente en serie y paralelo."""
 
 import math
+from collections.abc import Sequence
+
+from chuspacalc.modulos.matematicas.error_validacion import (
+    ErrorValidacion,
+    validar_numero,
+)
 
 
-def _validar_finitos(valores, nombre):
-    """Rechaza NaN e infinitos indicando la posición del valor inválido."""
-    for posicion, valor in enumerate(valores, start=1):
-        if not math.isfinite(valor):
-            mensaje = f"{nombre} {posicion} debe ser finita, se recibió: {valor}"
-            raise ValueError(mensaje)
+def _normalizar_componentes(
+    componentes: tuple[object, ...],
+    nombre: str,
+) -> tuple[float, ...]:
+    """Normaliza y valida los componentes eléctricos recibidos."""
+
+    if len(componentes) == 1 and isinstance(componentes[0], (list, tuple)):
+        componentes = tuple(componentes[0])
+
+    if len(componentes) < 2:
+        raise ErrorValidacion(f"Se requieren al menos 2 {nombre.lower()}.")
+
+    valores: list[float] = []
+
+    for posicion, componente in enumerate(componentes, start=1):
+        valor = validar_numero(componente, f"{nombre} {posicion}")
+
+        if valor <= 0:
+            raise ErrorValidacion(
+                f"{nombre} {posicion} debe ser mayor que 0; " f"se recibió: {valor}."
+            )
+
+        valores.append(valor)
+
+    return tuple(valores)
 
 
-def _normalizar_resistencias(resistencias):
-    """Acepta ``f(r1, r2, ...)`` o ``f([r1, r2, ...])`` y valida los valores."""
-    if len(resistencias) == 1 and isinstance(resistencias[0], (list, tuple)):
-        resistencias = tuple(resistencias[0])
+def _validar_resultado(resultado: float, nombre: str) -> float:
+    """Comprueba que el resultado calculado sea finito y positivo."""
 
-    if len(resistencias) < 2:
-        raise ValueError("Se requieren al menos 2 resistencias")
+    if not math.isfinite(resultado) or resultado <= 0:
+        raise ErrorValidacion(
+            f"El resultado de {nombre} debe ser finito y positivo; "
+            f"se obtuvo: {resultado}."
+        )
 
-    _validar_finitos(resistencias, "La resistencia")
-
-    if any(r <= 0 for r in resistencias):
-        raise ValueError("Todas las resistencias deben ser mayores que 0")
-
-    return resistencias
+    return resultado
 
 
-def resistencia_serie(*resistencias):
+def resistencia_serie(
+    *resistencias: float | Sequence[float],
+) -> float:
     """
-    Calcula la resistencia equivalente en serie.
+    Args:
+        resistencias: Resistencias individuales o una lista/tupla.
 
-    Fórmula:
-        R_eq = R1 + R2 + ... + Rn
+    Returns:
+        Resistencia equivalente en ohmios.
+
+    Raises:
+        ErrorValidacion: Si los valores son inválidos o el resultado
+            no puede representarse como un número finito positivo.
+
     """
-    resistencias = _normalizar_resistencias(resistencias)
-    return float(sum(resistencias))
+    valores = _normalizar_componentes(resistencias, "La resistencia")
+
+    try:
+        resultado = math.fsum(valores)
+    except OverflowError as exc:
+        raise ErrorValidacion(
+            "La resistencia equivalente en serie excede el rango numérico"
+        ) from exc
+    return _validar_resultado(resultado, "La resistencia equivalente en serie")
 
 
-def resistencia_paralelo(*resistencias):
+def resistencia_paralelo(
+    *resistencias: float | Sequence[float],
+) -> float:
     """
     Calcula la resistencia equivalente en paralelo.
 
-    Fórmula:
-        1 / R_eq = 1/R1 + 1/R2 + ... + 1/Rn
-    """
-    resistencias = _normalizar_resistencias(resistencias)
-    suma_inversas = sum(1 / r for r in resistencias)
+    Args:
+        resistencias: Resistencias individuales o una lista/tupla.
 
-    return float(1 / suma_inversas)
+    Returns:
+        Resistencia equivalente en ohmios.
+
+    Raises:
+        ErrorValidacion: Si los valores son inválidos o el resultado
+            no puede representarse como un número finito positivo.
+    """
+    valores = _normalizar_componentes(resistencias, "La resistencia")
+
+    menor = min(valores)
+
+    try:
+        suma_relativa = math.fsum(menor / valor for valor in valores)
+        resultado = menor / suma_relativa
+    except (OverflowError, ZeroDivisionError) as exc:
+        raise ErrorValidacion(
+            "No fue posible calcular la resistencia equivalente en paralelo."
+        ) from exc
+
+    return _validar_resultado(resultado, "La resistencia equivalente en paralelo")
 
 
 def capacitancia_paralelo(*capacitancias):
     """
     Calcula la capacitancia equivalente en paralelo.
 
-    Fórmula:
-        C_eq = C1 + C2 + ... + Cn
+    Args:
+        capacitancias: Capacitancias individuales en faradios.
+
+    Returns:
+        Capacitancia equivalente en faradios.
+
+    Raises:
+        ErrorValidacion: Si los valores son inválidos o el resultado
+            no puede representarse como un número finito positivo.
     """
-    if len(capacitancias) < 2:
-        raise ValueError("Se requieren al menos 2 capacitancias")
+    valores = _normalizar_componentes(capacitancias, "La capacitancia")
 
-    _validar_finitos(capacitancias, "La capacitancia")
+    try:
+        resultado = math.fsum(valores)
+    except OverflowError as exc:
+        raise ErrorValidacion(
+            "La capacitancia equivalente en paralelo excede el rango numérico."
+        ) from exc
 
-    if any(c <= 0 for c in capacitancias):
-        raise ValueError("Todas las capacitancias deben ser mayores que 0")
-
-    return float(sum(capacitancias))
+    return _validar_resultado(resultado, "La capacitancia equivalente en paralelo")
 
 
 def capacitancia_serie(*capacitancias):
     """
     Calcula la capacitancia equivalente en serie.
 
-    Fórmula:
-        1 / C_eq = 1/C1 + 1/C2 + ... + 1/Cn
+
+    Args:
+        capacitancias: Capacitancias individuales en faradios.
+
+    Returns:
+        Capacitancia equivalente en faradios.
+
+    Raises:
+        ErrorValidacion: Si los valores son inválidos o el resultado
+            no puede representarse como un número finito positivo.
     """
-    if len(capacitancias) < 2:
-        raise ValueError("Se requieren al menos 2 capacitancias")
+    valores = _normalizar_componentes(capacitancias, "La capacitancia")
 
-    _validar_finitos(capacitancias, "La capacitancia")
+    menor = min(valores)
 
-    if any(c <= 0 for c in capacitancias):
-        raise ValueError("Todas las capacitancias deben ser mayores que 0")
+    try:
+        suma_relativa = math.fsum(menor / valor for valor in valores)
+        resultado = menor / suma_relativa
+    except (OverflowError, ZeroDivisionError) as exc:
+        raise ErrorValidacion(
+            "No fue posible calcular la capacitancia equivalente en serie."
+        ) from exc
 
-    return float(1.0 / sum(1.0 / c for c in capacitancias))
+    return _validar_resultado(resultado, "La capacitancia equivalente en serie")
