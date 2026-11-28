@@ -98,6 +98,7 @@ El script genera las entradas del changelog a partir de los commits desde el úl
 - refactor(fisica): validar parametros con ErrorValidacion y agregar tipado en presion_hidrostatica (#1974)
 - refactor(matematicas): validar datos con ErrorValidacion y agregar tipado en estadisticas (#2001)
 - refactor(plantilla_exportacion): validación de formato, campos e incluir_pasos mediante ErrorValidacion, actualización atómica que solo modifica opciones válidas y anotaciones de tipo completas (#1927).
+- refactor(columna_pandeo): errores de entrada y dominio de `calcular_carga_critica_euler` mediante ErrorValidacion, con rechazo de booleanos, texto, valores no finitos y enteros desbordados (#1937).
 
 ### Security
 - security(evaluators): sustitución de evaluación dinámica insegura por evaluadores matemáticos y lógicos con listas blancas y límites de complejidad

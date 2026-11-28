@@ -60,3 +60,34 @@ def test_parametro_no_finito_lanza_value_error(parametro, no_finito):
     valores[parametro] = no_finito
     with pytest.raises(ValueError, match=f"{parametro} debe ser un número finito"):
         calcular_carga_critica_euler(**valores)
+
+
+def test_errores_de_dominio_son_error_validacion():
+    from chuspacalc.modulos.matematicas.error_validacion import ErrorValidacion
+
+    with pytest.raises(ErrorValidacion):
+        calcular_carga_critica_euler(0, 8e-6, 3)
+    with pytest.raises(ErrorValidacion):
+        calcular_carga_critica_euler(200e9, 8e-6, 3, condicion_apoyo="x")
+    with pytest.raises(ErrorValidacion):
+        calcular_carga_critica_euler(float("nan"), 8e-6, 3)
+
+
+@pytest.mark.parametrize("invalido", ["3", None, True, [1]])
+@pytest.mark.parametrize(
+    "parametro", ["modulo_elasticidad", "momento_inercia", "longitud"]
+)
+def test_tipo_no_numerico_lanza_error_validacion(parametro, invalido):
+    from chuspacalc.modulos.matematicas.error_validacion import ErrorValidacion
+
+    valores = {"modulo_elasticidad": 200e9, "momento_inercia": 8e-6, "longitud": 3}
+    valores[parametro] = invalido
+    with pytest.raises(ErrorValidacion, match=f"{parametro} debe ser un número"):
+        calcular_carga_critica_euler(**valores)
+
+
+def test_entero_gigante_lanza_error_validacion():
+    from chuspacalc.modulos.matematicas.error_validacion import ErrorValidacion
+
+    with pytest.raises(ErrorValidacion, match="demasiado grande"):
+        calcular_carga_critica_euler(10**400, 8e-6, 3)
