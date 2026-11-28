@@ -105,3 +105,75 @@ def test_parse_csv_sin_encabezados_no_valida_cantidad_de_campos(tmp_path):
     resultado = parse_csv(ruta, has_header=False)
 
     assert resultado == [["1", "2"], ["3"]]
+
+
+@pytest.fixture
+def csv_valido(tmp_path):
+    ruta = tmp_path / "valido.csv"
+    ruta.write_text("a,b\n1,2\n", encoding="utf-8")
+    return ruta
+
+
+@pytest.mark.parametrize("ruta", [123, None])
+def test_parse_csv_ruta_de_tipo_invalido_lanza_type_error(ruta):
+    mensaje = "^file_path debe ser una ruta de archivo$"
+    with pytest.raises(TypeError, match=mensaje):
+        parse_csv(ruta)
+
+
+@pytest.mark.parametrize("valor", [1, "si", None])
+def test_parse_csv_has_header_de_tipo_invalido_lanza_type_error(csv_valido, valor):
+    mensaje = "^has_header debe ser un valor booleano$"
+    with pytest.raises(TypeError, match=mensaje):
+        parse_csv(csv_valido, has_header=valor)
+
+
+@pytest.mark.parametrize("valor", [1, None])
+def test_parse_csv_delimiter_de_tipo_invalido_lanza_type_error(csv_valido, valor):
+    with pytest.raises(TypeError, match="^delimiter debe ser texto$"):
+        parse_csv(csv_valido, delimiter=valor)
+
+
+@pytest.mark.parametrize("valor", [1, None])
+def test_parse_csv_encoding_de_tipo_invalido_lanza_type_error(csv_valido, valor):
+    with pytest.raises(TypeError, match="^encoding debe ser texto$"):
+        parse_csv(csv_valido, encoding=valor)
+
+
+@pytest.mark.parametrize(
+    "delimitador",
+    ["", ",,", "\n", "\r", "\0"],
+    ids=[
+        "vacio",
+        "dos_caracteres",
+        "salto_de_linea",
+        "retorno_de_carro",
+        "nul",
+    ],
+)
+def test_parse_csv_delimitador_prohibido_lanza_value_error(csv_valido, delimitador):
+    mensaje = "^delimiter debe tener un carácter distinto de un salto de línea o NUL$"
+    with pytest.raises(ValueError, match=mensaje):
+        parse_csv(csv_valido, delimiter=delimitador)
+
+
+@pytest.mark.parametrize("has_header", [True, False])
+@pytest.mark.parametrize(
+    ("contenido", "fila"),
+    [
+        (b'a,b\n"1,2\n', 2),
+        (b'a,b\n1,2\n"3,4\n', 3),
+        (b'a,b\n"1"x,2\n', 2),
+    ],
+    ids=[
+        "comilla_sin_cerrar_fila_2",
+        "comilla_sin_cerrar_fila_3",
+        "texto_tras_comilla_fila_2",
+    ],
+)
+def test_parse_csv_malformado_informa_fila(tmp_path, contenido, fila, has_header):
+    ruta = tmp_path / "malformado.csv"
+    ruta.write_bytes(contenido)
+
+    with pytest.raises(ValueError, match=rf"^Fila {fila}: CSV inválido: "):
+        parse_csv(ruta, has_header=has_header)
