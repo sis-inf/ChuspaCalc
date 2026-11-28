@@ -6,6 +6,7 @@ vacías y de datos insuficientes.
 
 import pytest
 
+from chuspacalc.modulos.matematicas.error_validacion import ErrorValidacion
 from chuspacalc.modulos.matematicas.estadisticas import (
     calcular_desviacion_estandar,
     calcular_media,
@@ -97,3 +98,57 @@ def test_calcular_desviacion_estandar_muestral():
     resultado = calcular_desviacion_estandar(datos, poblacional=False)
 
     assert resultado == pytest.approx(1.0)
+
+
+@pytest.mark.parametrize(
+    "funcion",
+    [
+        calcular_media,
+        calcular_mediana,
+        calcular_moda,
+        calcular_desviacion_estandar,
+    ],
+)
+@pytest.mark.parametrize("datos", [None, 5, "123"])
+def test_funciones_estadisticas_rechazan_datos_que_no_son_secuencia(funcion, datos):
+    with pytest.raises(ErrorValidacion):
+        funcion(datos)
+
+
+@pytest.mark.parametrize(
+    "funcion",
+    [
+        calcular_media,
+        calcular_mediana,
+        calcular_moda,
+        calcular_desviacion_estandar,
+    ],
+)
+@pytest.mark.parametrize(
+    "datos",
+    [[], [1, True], [1, float("nan")], [1, float("inf")], [1, "hola"]],
+)
+def test_funciones_estadisticas_lanzan_error_validacion_con_datos_invalidos(
+    funcion,
+    datos,
+):
+    with pytest.raises(ErrorValidacion):
+        funcion(datos)
+
+
+@pytest.mark.parametrize(
+    "funcion",
+    [calcular_media, calcular_desviacion_estandar],
+)
+@pytest.mark.parametrize("datos", [[1e308, 1e308], [10**400, 10**400]])
+def test_funciones_estadisticas_lanzan_error_validacion_ante_desbordamiento(
+    funcion,
+    datos,
+):
+    with pytest.raises(ErrorValidacion):
+        funcion(datos)
+
+
+def test_calcular_desviacion_estandar_rechaza_poblacional_no_booleano():
+    with pytest.raises(ErrorValidacion):
+        calcular_desviacion_estandar([1, 2, 3], poblacional="si")
