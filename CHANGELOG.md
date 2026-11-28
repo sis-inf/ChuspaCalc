@@ -29,14 +29,23 @@ El script genera las entradas del changelog a partir de los commits desde el úl
 - feat(error_validacion): agregados validadores numericos (tipo, finitud, no cero y rango)
 
 ### Changed
+- refactor(herramienta_columna_pandeo): la herramienta valida los campos con ErrorValidacion y rechaza cero, NaN e infinito antes de calcular (#1942).
+- refactor(divisor_tension): entradas positivas y finitas mediante ErrorValidacion, tipos completos y cálculo estable en valores extremos (#1957).
+- refactor(circuitos_rc_rl): validación de parámetros numéricos mediante ErrorValidacion y anotaciones de tipo completas (#1955).
+- refactor(momento_flector): las entradas inválidas de calcular_momento_max y calcular_momento_maximo lanzan ErrorValidacion; se añade regresión de ambos contratos (#1945).
 - refactor(volumen_excavacion): validación de dimensiones finitas y positivas mediante ErrorValidacion y anotaciones de tipo completas (#1951).
+- refactor(electrica): validación defensiva y anotaciones de tipo completas en herramienta_circuitos_rc_rl (#1958).
+- refactor(terreno): validación de áreas no negativas y longitud positiva mediante ErrorValidacion y anotaciones de tipo completas (#1949).
 - chore(utils): documentación y anotaciones de tipos en logging_config (#2048).
+- refactor(ley_ohm): validación de tipos numéricos, NaN, infinitos y desbordamiento de resultados mediante ErrorValidacion y anotaciones de tipo completas (#1964).
 - chore(changelog): actualización de módulos documentados en desarrollo
+- refactor(rigidez_axial): validaciones tipadas mediante ErrorValidacion y detección de resultados no representables conservando E*A/L (#1948).
 - refactor(validation): normalización de validaciones numéricas, valores no finitos y contratos de entrada en módulos de cálculo
 - refactor(matrix): validación de matrices nulas o irregulares y escalares no finitos en operaciones matriciales (#1930).
 - refactor(typing): corrección de anotaciones, valores opcionales, parámetros y retornos para validar el paquete con mypy
 - refactor(resolucion_triangulos): validación de lados y ángulos finitos mediante ErrorValidacion y tipos de retorno completos (#1986).
 - refactor(packaging): consolidación del namespace `chuspacalc` manteniendo el shim de compatibilidad `escuadra`
+- refactor(geometria): validación de dimensiones numéricas, control de desbordamientos mediante ErrorValidacion y anotaciones de tipo completas en volumen (#1988).
 - refactor(coordenadas): validación de coordenadas finitas, radio polar y límites numéricos mediante ErrorValidacion (#1978).
 - chore(dependencies): incorporación de `pytest-qt` a las dependencias de desarrollo utilizadas por la suite y CI
 - chore(quality): normalización selectiva del código y las pruebas para Ruff y Black
@@ -48,6 +57,7 @@ El script genera las entradas del changelog a partir de los commits desde el úl
 - chore(ui): normalización de señales y slots y captura segura de errores en `widget_herramienta` (#2044)
 - test(chuspacalc): migrar imports históricos a chuspacalc en test_correccion_fp.py (#1873)
 - refactor(transformaciones): validación de parámetros numéricos finitos, detección de resultados desbordados mediante ErrorValidacion y anotaciones de tipo completas (#1987).
+- refactor(exportador_markdown): validación de entradas nulas, tipos y dimensiones de tablas mediante ErrorValidacion, conservando el escape de celdas (#1926).
 - chore(ui): normalización de señales y captura segura de errores en `dialogo_acerca_de` (#2036)
 - chore(ui): normalización de señales y captura segura de errores en `cargador_herramienta`, mostrando un widget informativo cuando falla la carga de una herramienta (#2034)
 - refactor(herramienta_financiera): validación de capital, tasa y períodos mediante ErrorValidacion, con tope de períodos y anotaciones de tipo completas (#2005).
@@ -67,10 +77,22 @@ El script genera las entradas del changelog a partir de los commits desde el úl
 - chore(ui): panel_estadisticas_uso captura ErrorValidacion al actualizar estadísticas y muestra el mensaje en la interfaz (#2040)
 - chore(ui): panel_historial captura ErrorValidacion al consultar y editar el historial y muestra el mensaje en la interfaz (#2041).
 - refactor(electrica): la herramienta de Ley de Ohm valida con ErrorValidacion valores NaN, infinitos, divisores en cero y desbordes, y completa sus type hints (#1962)
+- refactor(herramienta_potencia_trifasica): validación de voltaje y corriente positivos y finitos, factor de potencia dentro del rango [0, 1], rechazo de entradas inválidas y resultados no finitos mediante ErrorValidacion, y anotaciones de tipo completas (#1963).
 - refactor(punto_equilibrio): validación de costos y precios mediante ErrorValidacion, rechazo de booleanos, texto y valores no finitos, detección de márgenes y resultados desbordados, y anotaciones de tipo completas (#1989).
 - refactor(herramienta_conversion_unidades): validación de valores, categorías y unidades mediante ErrorValidacion, rechazo de booleanos, texto y valores no finitos, cero absoluto, detección de resultados desbordados y anotaciones de tipo completas (#2004).
 - refactor(sistemas_lineales): validación de parámetros numéricos finitos, captura de errores de cálculo mediante ErrorValidacion y anotaciones de tipo completas en la herramienta de sistemas lineales (#2007).
 - refactor(exportador_json): validación de tipos de entrada y de la ruta, detección de datos no serializables sin dejar archivos a medias y propagación de ErrorValidacion con anotaciones de tipo completas (#1924).
+- refactor(numeros_primos): es_numero_primo lanza ErrorValidacion ante valores no enteros, booleanos, NaN o infinitos y completa sus anotaciones de tipo (#2010).
+- refactor(progresion_aritmetica): validación de posición, operandos y resultado finitos mediante ErrorValidacion y tipos de retorno completos (#2012).
+- fix(trigonometria): rechazo de booleanos mediante ErrorValidacion en seno, coseno, tangente y arcofunciones, con prueba de regresión (#2013).
+- refactor(numeros_complejos): validación de operandos complejos finitos, control de desbordes y divisiones por cero mediante ErrorValidacion y anotaciones de tipo completas en el módulo de números complejos (#2006).
+- refactor(financiera): validación de parámetros numéricos finitos, control de desbordes y divisiones por cero mediante ErrorValidacion y anotaciones de tipo completas en el módulo de matemática financiera (#2002).
+- refactor(esfuerzo_axial): validación de fuerza y área finitas mediante ErrorValidacion y anotaciones de tipo completas (#1941).
+- refactor(reacciones_viga): validación de carga y longitud positivas mediante ErrorValidacion y anotaciones de tipo completas (#1947).
+- refactor(combinacion_cargas): validación de cargas, factores y viento finitos mediante ErrorValidacion y anotaciones de tipo completas (#1938).
+- refactor(potencia): validación de tipos numéricos, NaN, infinitos y desbordamiento de resultados mediante ErrorValidacion y anotaciones de tipo completas (#1965).
+- refactor(mecanica): calcular_densidad lanza ErrorValidacion ante datos inválidos o un resultado no finito y agrega type hints (#2014).
+- refactor(topografia): calcular_desnivel lanza ErrorValidacion ante datos inválidos o un resultado no finito y agrega type hints (#2032).
 
 ### Security
 - security(evaluators): sustitución de evaluación dinámica insegura por evaluadores matemáticos y lógicos con listas blancas y límites de complejidad

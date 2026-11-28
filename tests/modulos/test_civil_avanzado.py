@@ -19,7 +19,9 @@ from chuspacalc.modulos.civil.deflexion_viga import (
 )
 from chuspacalc.modulos.civil.momento_flector import (
     calcular_momento_max,
+    calcular_momento_maximo,
 )
+from chuspacalc.modulos.matematicas.error_validacion import ErrorValidacion
 
 # ------------------------
 # Área de secciones
@@ -138,3 +140,25 @@ def test_momento_flector_parametro_no_finito_lanza_error(parametro, no_finito):
     valores[parametro] = no_finito
     with pytest.raises(ValueError, match=f"'{parametro}' debe ser un número finito"):
         calcular_momento_max(**valores)
+
+
+@pytest.mark.parametrize("valor", [0, -1, float("nan"), float("inf"), True, "4"])
+@pytest.mark.parametrize("parametro", ["longitud", "carga"])
+def test_momento_flector_ambos_contratos_lanzan_error_validacion(parametro, valor):
+    valores = {"longitud": 4, "carga": 10}
+    valores[parametro] = valor
+
+    with pytest.raises(ErrorValidacion):
+        calcular_momento_max(**valores)
+
+    with pytest.raises(ErrorValidacion):
+        calcular_momento_maximo(carga=valores["carga"], longitud=valores["longitud"])
+
+
+def test_momento_flector_tipo_de_carga_desconocido_lanza_error_validacion():
+    with pytest.raises(ErrorValidacion, match="El tipo de carga debe ser"):
+        calcular_momento_max(4, 10, "triangular")
+
+
+def test_momento_flector_contrato_escalar_conserva_orden_de_parametros():
+    assert calcular_momento_maximo(10, 4) == pytest.approx(10.0)

@@ -4,8 +4,13 @@ Cálculo de volúmenes de movimiento de tierras.
 
 import math
 
+from chuspacalc.modulos.matematicas.error_validacion import (
+    ErrorValidacion,
+    validar_numero,
+)
 
-def volumen_areas_extremas(area_1, area_2, longitud):
+
+def volumen_areas_extremas(area_1: float, area_2: float, longitud: float) -> float:
     """
     Calcula el volumen de corte o relleno entre dos secciones
     transversales consecutivas por el método de áreas extremas promedio:
@@ -13,25 +18,49 @@ def volumen_areas_extremas(area_1, area_2, longitud):
         V = ((A1 + A2) / 2) * L
 
     Args:
-        area_1: Área de la primera sección transversal, en m².
-        area_2: Área de la segunda sección transversal, en m².
-        longitud: Distancia entre ambas secciones, en m.
+        area_1: Área de la primera sección transversal, en m². Debe ser
+            finita y no negativa.
+        area_2: Área de la segunda sección transversal, en m². Debe ser
+            finita y no negativa.
+        longitud: Distancia entre ambas secciones, en m. Debe ser finita
+            y mayor que cero.
 
     Returns:
         Volumen entre las dos secciones, en m³.
 
     Raises:
-        ValueError: Si algún valor no es finito, si un área es negativa
-            o si la longitud no es positiva.
+        ErrorValidacion: Si algún valor no es un número real finito, si
+            es booleano, si un área es negativa, si la longitud no es
+            mayor que cero o si el volumen resultante se desborda.
     """
 
-    if not all(math.isfinite(v) for v in (area_1, area_2, longitud)):
-        raise ValueError("Los valores deben ser finitos")
+    areas = (("area_1", area_1), ("area_2", area_2))
+    validadas: list[float] = []
 
-    if area_1 < 0 or area_2 < 0:
-        raise ValueError("Las áreas no pueden ser negativas")
+    for nombre, area in areas:
+        numero = validar_numero(area, nombre)
 
-    if longitud <= 0:
-        raise ValueError("La longitud debe ser positiva")
+        if numero < 0:
+            raise ErrorValidacion(
+                f"El valor de '{nombre}' no puede ser negativo "
+                f"(valor recibido: {numero})."
+            )
 
-    return ((area_1 + area_2) / 2) * longitud
+        validadas.append(numero)
+
+    distancia = validar_numero(longitud, "longitud")
+
+    if distancia <= 0:
+        raise ErrorValidacion(
+            f"El valor de 'longitud' debe ser mayor que cero "
+            f"(valor recibido: {distancia})."
+        )
+
+    volumen = ((validadas[0] + validadas[1]) / 2) * distancia
+
+    if not math.isfinite(volumen):
+        raise ErrorValidacion(
+            "El volumen calculado está fuera del rango representable."
+        )
+
+    return volumen
