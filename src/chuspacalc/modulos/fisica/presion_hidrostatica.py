@@ -13,45 +13,38 @@ Unidades:
 
 import math
 
+from ..matematicas.error_validacion import ErrorValidacion, validar_rango
 
-def calcular_presion_hidrostatica(densidad, gravedad, profundidad):
+
+def calcular_presion_hidrostatica(
+    densidad: int | float, gravedad: int | float, profundidad: int | float
+) -> float:
     """
     Calcula la presión hidrostática ejercida por un líquido.
 
     Args:
-        densidad: Densidad del líquido en kg/m³.
-        gravedad: Aceleración de la gravedad en m/s².
-        profundidad: Profundidad en metros.
+        densidad: Densidad del líquido en kg/m³. Debe ser un número finito
+            no negativo.
+        gravedad: Aceleración de la gravedad en m/s². Debe ser un número
+            finito no negativo.
+        profundidad: Profundidad en metros. Debe ser un número finito no
+            negativo.
 
     Returns:
         Presión hidrostática en pascales (Pa).
 
     Raises:
-        TypeError: Si algún argumento no es numérico.
-        ValueError: Si algún valor es negativo, no finito
-            o si el resultado no es finito.
+        ErrorValidacion: Si algún argumento no es numérico, no es finito,
+            está fuera del rango representable o es negativo, o si la
+            presión calculada no es finita.
     """
-    valores = (densidad, gravedad, profundidad)
+    densidad_kg_m3 = validar_rango(densidad, "densidad", minimo=0)
+    gravedad_ms2 = validar_rango(gravedad, "gravedad", minimo=0)
+    profundidad_m = validar_rango(profundidad, "profundidad", minimo=0)
 
-    for valor in valores:
-        if isinstance(valor, bool) or not isinstance(valor, (int, float)):
-            raise TypeError("Todos los argumentos deben ser números.")
-
-        try:
-            if not math.isfinite(valor):
-                raise ValueError("Todos los valores deben ser finitos.")
-        except OverflowError as error:
-            raise ValueError("Todos los valores deben ser finitos.") from error
-
-        if valor < 0:
-            raise ValueError("Los valores no pueden ser negativos.")
-
-    try:
-        presion = densidad * gravedad * profundidad
-    except OverflowError as error:
-        raise ValueError("El resultado está fuera del rango permitido.") from error
+    presion = densidad_kg_m3 * gravedad_ms2 * profundidad_m
 
     if not math.isfinite(presion):
-        raise ValueError("La presión calculada debe ser finita.")
+        raise ErrorValidacion("La presión calculada debe ser finita.")
 
     return presion
